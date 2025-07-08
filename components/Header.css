@@ -1,0 +1,75 @@
+.text-uppercase {
+  text-transform: uppercase;
+}
+
+button,
+html input[type=button],
+input[type=reset],
+input[type=submit] {
+  cursor: pointer;
+}
+
+.header-links-ul ul li p.secondary-color {
+  color: #1e5724 !important;
+}
+
+.megamenuText .progress .progress-value p {
+  font-size: 0.75rem !important;
+  color: var(--black-color);
+}
+
+.megamenuText .project_list_icon {
+  width: 1.5rem;
+  min-width: 1.5rem;
+}
+
+.megamenuText .project_list_icon {
+  width: 1.5rem;
+  min-width: 1.5rem;
+}
+
+.header-links-ul ul li p.secondary-color {
+  color: #1e5724 !important;
+}
+
+@keyframes pulsing {
+  to {
+    box-shadow: 0 0 0 30px rgba(30, 87, 36, 0);
+    /* #1e5724 with fading */
+  }
+}
+
+.blink-background {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #1e572440;
+  box-shadow: 0 0 0 0 #1e572440;
+  animation: pulsing 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+  transition: all 300ms ease-in-out;
+  cursor: pointer;
+}
+
+.blink-background img {
+  width: 30px;
+  height: 30px;
+  transform: scale(0.7);
+}
+
+.content_accordian {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.4s ease;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.content_accordian.active  {
+  max-height: 2000px; /* Large enough for your content */
+  padding-top: 1.125rem;   /* adjust as needed */
+  padding-bottom: 1.125rem; /* adjust as needed */
+}

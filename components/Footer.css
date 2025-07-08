@@ -1,0 +1,13 @@
+.content_accordian {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.4s ease;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+
+.footer-category .projectList_li a {
+  padding: 1rem 0;
+  border-bottom: 1px solid #dedede;
+}
