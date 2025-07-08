@@ -1474,7 +1474,7 @@ export default function Home({
                                             </div>
 
                                             <div
-                                                className={`content_accordian section-paragraph ${openIndex === index ? "open" : ""
+                                                className={`content_accordian section-content ${openIndex === index ? "open" : ""
                                                     }`}
                                             >
                                                 <p

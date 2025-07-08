@@ -19,7 +19,7 @@ export default async function HomePage() {
             homeDetails={homeDetails}
             propertylist={propertylist}
             completedPropertylist={completedPropertylist}
-            pageList={pageList}
+            pageList={pageList} 
             blogData={blogData}
         />
     );
