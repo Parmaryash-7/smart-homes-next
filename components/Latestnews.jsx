@@ -1,14 +1,11 @@
 "use client";
-
 import React from "react";
-import "./Blogs.css";
-import Link from "next/link";
+import "./Latestnews.css";
 
-export default function Blogs({ blogs_types_list }) {
+export default function Latestnews({ blogs_types_list }) {
   return (
     <>
-      <div className="blogs_wrapper">
-        {/* is_blog_list_loading */}
+      <div className="latestnews_wrapper">
         <div className="reecosys-main-wrapper" id="reecosys-main-wrapper">
           <div
             id="reecosys-contact-wrapper"
@@ -30,7 +27,7 @@ export default function Blogs({ blogs_types_list }) {
             <div className="main-container">
               <div className="flex-row articles-tab">
                 <div className="section-title">
-                  <h2 className="secondary-color">Blogs</h2>
+                  <h2 className="secondary-color">Latest News</h2>
                 </div>
               </div>
             </div>
@@ -42,12 +39,13 @@ export default function Blogs({ blogs_types_list }) {
                 <div className="inner-flex">
                   {/* <div className="tags_type_click relative" ng-if="tag_type">
                             <div className="blog_tags_text capitalize relative">
-                                <p>{{tag_type}}</p>
+                                <p>{tag_type}</p>
                                 <div className="clear_tags_filter" ng-click="clear_tag();">
-                                    <img src="/images/icons/close_image.svg" alt="">
+                                    <img src="/images/icons/close_image.svg" alt="" />
                                 </div>
                             </div>
                         </div> */}
+
                   {blogs_types_list.length <= 0 ||
                     (!blogs_types_list && (
                       <div className="inner-flex alc j-c-c" ng-if=" ">
@@ -62,19 +60,24 @@ export default function Blogs({ blogs_types_list }) {
                       </div>
                     ))}
                   {blogs_types_list.length > 0 && (
-                    <div className="project-list-grid project-list-grid-2-column">
+                    <div className="project-list-grid project-list-grid-2-column project-listsmall-gap">
                       {blogs_types_list.map(
                         (data, i) =>
-                          data.tags_commaseparted === "Articles" && (
-                            <div key={i} className="project-list-card">
-                              <Link
-                                href={`/blogs/${data.slug}`}
-                                className="inner-flex"
+                          data.tags_commaseparted === "Latest-News" && (
+                            <div
+                              key={i}
+                              ng-if=""
+                              className="data-list-news-card"
+                            >
+                              <a
+                                href={data.banner_title}
+                                className="data-list-news-card-flex"
+                                target="_blank"
                               >
                                 <div className=" ">
                                   <div className="list_blog_img overflow">
                                     <img
-                                      src={`${data.image_full}&h=400&w=590&q=100`}
+                                      src={`${data.image_full}&h=100&w=150&q=100`}
                                       alt=""
                                       className="image-cover lazyload"
                                     />
@@ -82,33 +85,39 @@ export default function Blogs({ blogs_types_list }) {
                                 </div>
                                 <div className="project-info-list">
                                   <div className="">
-                                    <div className=" flex-row j-c-sb list_blogs_text">
-                                      <div className="section-paragraph">
-                                        <p className="capitalize bold-fonts ellipsis-2">
-                                          {data.banner_title}
-                                        </p>
-                                      </div>
-                                      <div className="project-arrow-icon common-icon">
-                                        <img
-                                          src="/images/icon/right_arrow_line.svg"
-                                          alt="Blog"
-                                        />
-                                      </div>
-                                    </div>
-                                    {data.published_date && (
-                                      <div className="banner-detail-row banner-detail-row-grid">
-                                        <div className="project-information-div">
-                                          <div className="section-content banner-detail-row-grid-text">
-                                            <p className="capitalize">
-                                              {data.published_date}
-                                            </p>
+                                    <div className=" flex-row j-c-sb list_blogs_text alend">
+                                      <div className="inner-flex">
+                                        <div className="section-paragraph">
+                                          <p className="capitalize bold-fonts ellipsis-2 ellipsis-2removemob">
+                                            {data.title}
+                                          </p>
+                                        </div>
+                                        {data.published_date && (
+                                          <div
+                                            className="banner-detail-row banner-detail-row-grid"
+                                            ng-if=""
+                                          >
+                                            <div className="project-information-div">
+                                              <div className="section-content banner-detail-row-grid-text">
+                                                <p className="capitalize">
+                                                  {data.published_date}
+                                                </p>
+                                              </div>
+                                            </div>
                                           </div>
+                                        )}
+                                      </div>
+                                      <div className="read-more-arrow-news">
+                                        <div className="section-content">
+                                          <span className="material-symbols-outlined">
+                                            east
+                                          </span>
                                         </div>
                                       </div>
-                                    )}
+                                    </div>
                                   </div>
                                 </div>
-                              </Link>
+                              </a>
                             </div>
                           )
                       )}

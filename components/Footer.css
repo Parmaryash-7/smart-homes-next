@@ -6,6 +6,10 @@
   padding-bottom: 0;
 }
 
+.content_accordian.open{
+  max-height: fit-content;
+}
+
 
 .footer-category .projectList_li a {
   padding: 1rem 0;

@@ -15,7 +15,6 @@ export default async function HomePage() {
 
     return (
         <Home
-
             homeDetails={homeDetails}
             propertylist={propertylist}
             completedPropertylist={completedPropertylist}

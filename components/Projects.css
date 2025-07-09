@@ -1,0 +1,17 @@
+  #reecosys-list-wrapper {
+      padding: 6rem 0;
+  }
+
+  .filterroowow li.active h4 {
+      color: var(--secondary-color) !important;
+  }
+
+  @media only screen and (max-width: 767px) {
+
+      .filterroowow .section-subtitle h4,
+      .filterroowow .section-subtitle h4 span {
+          font-size: 1.45rem;
+          font-family: var(--semibold-font-family);
+          color: var(--primary-color);
+      }
+  }

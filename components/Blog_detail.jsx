@@ -2,12 +2,32 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import DOMPurify from "dompurify";
+// import DOMPurify from "dompurify";
 
 export default function Blog_detail({ recent_blog_init_data, blogs_types_list, slug }) {
     const [isMobilescreen, setIsMobilescreen] = useState(false);
     const [blog_data, setBlog_data] = useState(null);
     const [recent_blog_data, setRecentBlogData] = useState([]);
+    const [sanitizedHtml, setSanitizedHtml] = useState("");
+
+    // useEffect(() => {
+    //     import("dompurify").then((DOMPurify) => {
+    //         const clean = DOMPurify.default.sanitize(html);
+    //         setSanitizedHtml(clean);
+    //     });
+    // }, [html]);
+
+    useEffect(() => {
+        if (!blog_data?.description) return;
+
+        import("dompurify").then((DOMPurify) => {
+            const clean = DOMPurify.default.sanitize(blog_data.description, {
+                FORBID_TAGS: ["style", "script"],
+                FORBID_ATTR: ["style", "class"],
+            });
+            setSanitizedHtml(clean);
+        });
+    }, [blog_data]);
 
     useEffect(() => {
         if (typeof window !== "undefined" && window.innerWidth < 767) {
@@ -99,20 +119,15 @@ export default function Blog_detail({ recent_blog_init_data, blogs_types_list, s
                                                     </div>
                                                     {blog_data.description && (
                                                         <div className="blog_bind_data">
-                                                            {/* <div
-                                dangerouslySetInnerHTML={{
-                                  __html: blog_data.description,
-                                }}
-                              ></div> */}
+                                                                                        {/* <div
+                                                            dangerouslySetInnerHTML={{
+                                                            __html: blog_data.description,
+                                                            }}
+                                                        ></div> */}
+                                                            
                                                             <div
                                                                 dangerouslySetInnerHTML={{
-                                                                    __html: DOMPurify.sanitize(
-                                                                        blog_data.description,
-                                                                        {
-                                                                            FORBID_TAGS: ["style", "script"],
-                                                                            FORBID_ATTR: ["style", "class"],
-                                                                        }
-                                                                    ),
+                                                                    __html: sanitizedHtml,
                                                                 }}
                                                             />
                                                         </div>
@@ -130,7 +145,7 @@ export default function Blog_detail({ recent_blog_init_data, blogs_types_list, s
                                                         <div className="recent_blog_grids inner-flex inner-flex-small">
                                                             {recent_blog_data?.map((data, i) => (
                                                                 <div className="recent_blogs_details " key={i}>
-                                                                    <Link href={`/blog/${data.slug}`}>
+                                                                    <Link href={`/blogs/${data.slug}`}>
                                                                         <div className="inner-flex">
                                                                             <div className="recent_blog_image">
                                                                                 <img

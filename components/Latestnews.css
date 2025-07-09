@@ -1,0 +1,28 @@
+.latestnews_wrapper .article-chips {
+  background-color: #ccd9ce;
+  padding: 0.7rem 1rem;
+  width: fit-content;
+  height: fit-content;
+  line-height: 1;
+}
+
+.latestnews_wrapper .articles-tab .article-chips:nth-child(2) {
+  margin-left: auto !important;
+}
+
+.latestnews_wrapper .flex-row-tab-btns {
+  margin-left: auto;
+}
+
+.latestnews_wrapper .article-chips.active {
+  background-color: var(--highlight-color) !important;
+}
+
+.latestnews_wrapper .article-chips.active h2 {
+  color: var(--white-color) !important;
+}
+
+.latestnews_wrapper .article-chips h2 {
+  color: var(--highlight-color);
+  font-size: 1.25rem !important;
+}

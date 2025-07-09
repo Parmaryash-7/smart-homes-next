@@ -1,0 +1,13 @@
+.content_accordian {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.4s ease;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.content_accordian.active  {
+  max-height: 2000px; /* Large enough for your content */
+  padding-top: 1.125rem;   /* adjust as needed */
+  padding-bottom: 1.125rem; /* adjust as needed */
+}

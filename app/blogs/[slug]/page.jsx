@@ -1,14 +1,14 @@
 import Blog_detail from "components/Blog_detail";
 import getPageList from "lib/PageList";
 import getBlogDetail from "lib/BlogDetail";
-import getLatestBlogData from "lib/LatestBlogData";
+import getBlogLatest from "lib/BlogLatest";
 
 export default async function BlogSlugPage({ params }) {
     const { slug } = params;
 
     const pageList = await getPageList();
     const blogs_types_list = await getBlogDetail();
-    const recent_blog_init_data = await getLatestBlogData();
+    const recent_blog_init_data = await getBlogLatest();
 
     return (
         <Blog_detail

@@ -6,14 +6,22 @@
     "start": "next start"
   },
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
     "@fancyapps/ui": "^6.0.9",
+    "@mui/material": "^7.2.0",
+    "@reduxjs/toolkit": "^2.8.2",
     "@types/node": "^20.12.7",
     "@types/react": "18.3.1",
     "@types/react-dom": "^18.3.0",
+    "aos": "^2.3.4",
+    "dompurify": "^3.2.6",
     "ms": "3.0.0-canary.1",
     "next": "^14.2.3",
     "react": "18.3.1",
     "react-dom": "18.3.1",
+    "react-redux": "^9.2.0",
+    "react-toastify": "^11.0.5",
     "server-only": "^0.0.1",
     "swiper": "^11.2.10",
     "typescript": "^5.4.5"

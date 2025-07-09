@@ -1,0 +1,78 @@
+#reecosys-main-wrapper-desclaimer {
+  padding: 10rem 0;
+}
+
+#reecosys-main-wrapper-desclaimer h1 {
+  font-size: 40px;
+  line-height: 60px;
+  padding-bottom: 1.5rem;
+}
+
+#reecosys-main-wrapper-desclaimer p,
+#reecosys-main-wrapper-desclaimer li p,
+#reecosys-main-wrapper-desclaimer li {
+  font-size: var(--content-font-size);
+  line-height: 1.5;
+}
+#reecosys-main-wrapper-desclaimer p strong {
+  font-weight: bold;
+}
+
+/* #reecosys-main-wrapper-desclaimer h2 {
+      font-size: 32px;
+      line-height: 48px;
+      margin: 1rem 0;
+    }
+  
+    #reecosys-main-wrapper-desclaimer h3 {
+      font-size: 24px;
+      line-height: 36px;
+    }
+  
+    #reecosys-main-wrapper-desclaimer h4 {
+      font-size: 20px;
+      line-height: 30px;
+    }
+  
+    #reecosys-main-wrapper-desclaimer h3,
+    #reecosys-main-wrapper-desclaimer h4 {
+      font-weight: 700;
+      margin: 1rem 0;
+    }
+   */
+#reecosys-main-wrapper-desclaimer ul {
+  padding-left: 1rem;
+  list-style-type: disc;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 0.25rem;
+  margin: 1.5rem 0;
+}
+#reecosys-main-wrapper-desclaimer ol {
+  list-style: decimal;
+}
+#reecosys-main-wrapper-desclaimer ol li {
+  padding-top: 1.5rem;
+}
+
+#reecosys-main-wrapper-desclaimer a {
+  color: #0452a5;
+}
+#reecosys-main-wrapper-desclaimer h1,
+#reecosys-main-wrapper-desclaimer h2 {
+  font-weight: 700;
+}
+#reecosys-main-wrapper-desclaimer .link-padding {
+  padding-top: 1.5rem;
+}
+
+@media only screen and (max-width: 767px) {
+  #reecosys-main-wrapper-desclaimer {
+    padding: 5rem 0;
+  }
+  #reecosys-main-wrapper-desclaimer h1 {
+    font-size: 27px;
+    line-height: 30px;
+  }
+}
