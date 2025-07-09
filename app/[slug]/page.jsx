@@ -1,7 +1,7 @@
 import Detail from "components/Detail";
 import getPropertyList from "lib/PropertList";
 import getPageList from "lib/PageList";
-import { redirect } from "next/dist/server/api-utils";
+import { redirect } from "next/navigation"; 
 
 export default async function ProjectDetailPage({ params }) {
     const { slug } = params;
@@ -10,9 +10,9 @@ export default async function ProjectDetailPage({ params }) {
     const propertylist = await getPropertyList();
 
     const projectData = propertylist.find((p) => p.slug === slug);
+
     if (!projectData) {
-        redirect('/');
-        return
+        redirect('/'); 
     }
 
     return (

@@ -16,12 +16,12 @@ import {
   Navigation,
   FreeMode,
 } from "swiper/modules";
-// import InquiryForm from "components/InquiryForm";
+import InquiryForm from "components/InquiryForm";
 import BottomStrip from "components/BottomStrip";
 
 export default function Detail({
-  isAmenityOpen,
-  setAmenityToggle,
+  // isAmenityOpen,
+  // setAmenityToggle,
   inquiryPopupObj,
   setInquiryPopupObj,
   inquiryPopup,
@@ -32,11 +32,12 @@ export default function Detail({
   const projectsArray = rawProjectData.list;
   // const { slug } = useParams();
   // const navigate = useNavigate();
-  // const [countryFlag, setCountryFlag] = useState(false);
+  const [countryFlag, setCountryFlag] = useState(false);
   // const [projectDetail, setPropertyDetail] = useState(projectData || null);
   const [isBannerLoaded, setIsBannerLoaded] = useState(false);
   const [isMobilescreen, setMobileScreen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(null);
+  const [isAmenityOpen, setAmenityToggle] = useState(false);
   const toggleAccordion = (index) => {
     setActiveIndex(index === activeIndex ? null : index);
   };
@@ -75,7 +76,7 @@ export default function Detail({
         location_link: StaticData.location_link || "",
       });
     }
-  }, [ projectDetail, propertylist]);
+  }, [projectDetail, propertylist]);
 
   const bannerImages = projectDetail?.banners_data?.images || [];
   const mobileBanners = projectDetail?.banners_mob || [];
@@ -102,6 +103,16 @@ export default function Detail({
       };
     }
   }, [projectDetail]);
+  
+  useEffect(() => {
+    const shouldLockScroll = inquiryPopup || isAmenityOpen;
+
+    document.body.style.overflow = shouldLockScroll ? "hidden" : "auto";
+
+    return () => {
+      document.body.style.overflow = "auto"; // cleanup on unmount
+    };
+  }, [inquiryPopup, isAmenityOpen]);
 
   useEffect(() => {
     let fancyboxInstance;
@@ -1224,11 +1235,11 @@ export default function Detail({
                     data-aos-duration="500"
                     data-aos-delay="600"
                   >
-                    {/* <InquiryForm
+                    <InquiryForm
                       pageDetail={projectDetail}
                       countryFlag={countryFlag}
                       setCountryFlag={setCountryFlag}
-                    /> */}
+                    />
                   </div>
                 </div>
               </div>

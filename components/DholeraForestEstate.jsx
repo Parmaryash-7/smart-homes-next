@@ -1139,11 +1139,11 @@ export default function DholeraForestEstate({
                     data-aos-duration="500"
                     data-aos-delay="600"
                   >
-                    {/* <InquiryForm
+                    <InquiryForm
                       pageDetail={projectDetail}
                       countryFlag={countryFlag}
                       setCountryFlag={setCountryFlag}
-                    /> */}
+                    />
                   </div>
                 </div>
               </div>

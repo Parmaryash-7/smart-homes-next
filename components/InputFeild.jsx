@@ -1,7 +1,6 @@
 "use client"
 
 import React from "react";
-// import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 export default function InputField({
   row,
@@ -165,7 +164,10 @@ export default function InputField({
             ))}
           </select>
           <label className="md-lable">{label}</label>
-          <KeyboardArrowDownIcon className="fa-icon" />
+          {/* <KeyboardArrowDownIcon className="fa-icon" /> */}
+          <span className="material-symbols-outlined fa-icon">
+            keyboard_arrow_down
+          </span>
         </div>
       )}
 
