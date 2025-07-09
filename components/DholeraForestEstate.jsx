@@ -16,7 +16,7 @@ import {
   Navigation,
   FreeMode,
 } from "swiper/modules";
-// import InquiryForm from "components/InquiryForm";
+import InquiryForm from "components/InquiryForm";
 import BottomStrip from "components/BottomStrip";
 import "swiper/css";
 

@@ -341,12 +341,12 @@ export default function Home({
     //         // ]);
     //     }
     // };
-    // useEffect(() => {
-    //     Fancybox.bind('[data-fancybox="podcastGallery"]', {
-    //         Thumbs: true,
-    //         Toolbar: true,
-    //     });
-    // }, []);
+    useEffect(() => {
+        Fancybox.bind('[data-fancybox="podcastGallery"]', {
+            Thumbs: true,
+            Toolbar: true,
+        });
+    }, []);
 
     const handleExploreMoreClick = () => {
         if (defaultPodcastData.length > 0) {
