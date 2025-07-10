@@ -64,15 +64,15 @@ export default function ChannelPartner({ pageList }) {
         if (found) setPrivacy(found);
         if (window.innerWidth < 767) setMobilescreen(true);
 
-        async function fetchCountries() {
-            try {
-                const data = await CountryList();
-                setCountryList(data.filter((c) => c.phonecode !== "92"));
-            } catch (error) {
-                console.error("Country fetch error", error);
-            }
-        }
-        fetchCountries();
+        // async function fetchCountries() {
+        //     try {
+        //         const data = await CountryList();
+        //         setCountryList(data.filter((c) => c.phonecode !== "92"));
+        //     } catch (error) {
+        //         console.error("Country fetch error", error);
+        //     }
+        // }
+        // fetchCountries();
     }, [pageList]);
 
     const handleInputChange = (e) => {
