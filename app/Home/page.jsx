@@ -13,6 +13,10 @@ export default async function HomePage() {
     const blogData = await getBlogDetail();
     const propertylist = await getPropertyList();
 
+    console.log("IN HOME");
+    console.log(propertylist);
+    console.log("IN HOME");
+
     return (
         <Home
             homeDetails={homeDetails}
