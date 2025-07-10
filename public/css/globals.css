@@ -1933,7 +1933,7 @@ body.no-scroll-body {
   display: none;
 }
 
-.country_code_list_data.active {  
+.country_code_list_data.active {
   display: block;
 }
 
@@ -2971,11 +2971,11 @@ label.error {
 .whatsapp-icon {
   width: 3.5rem;
 }
-/* 
+
 .whatsapp_connect.active {
   bottom: 6rem;
   right: 15px;
-} */
+}
 
 .readmore_text span.readmore_click,
 span.readmore_click {
@@ -7161,9 +7161,9 @@ span.readmore_click {
   grid-area: five;
 }
 
-.contactForm form>div:nth-child(6) {
+/* .contactForm form>div:nth-child(6) {
   grid-area: six;
-}
+} */
 
 
 .contactForm form > div:nth-child(7) {

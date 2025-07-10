@@ -1933,7 +1933,7 @@ body.no-scroll-body {
   display: none;
 }
 
-.country_code_list_data.active {  
+.country_code_list_data.active {
   display: block;
 }
 
@@ -2022,8 +2022,7 @@ label.error {
   position: relative;
 }
 
-.home_banner_pagination
-  .swiper-pagination-bullet.swiper-pagination-bullet-active {
+.home_banner_pagination .swiper-pagination-bullet.swiper-pagination-bullet-active {
   opacity: 1;
   background: var(--white-color);
 }
@@ -2971,11 +2970,11 @@ label.error {
 .whatsapp-icon {
   width: 3.5rem;
 }
-/* 
+
 .whatsapp_connect.active {
   bottom: 6rem;
   right: 15px;
-} */
+}
 
 .readmore_text span.readmore_click,
 span.readmore_click {
@@ -7166,7 +7165,7 @@ span.readmore_click {
 }
 
 
-.contactForm form > div:nth-child(7) {
+.contactForm form>div:nth-child(7) {
   grid-area: seven;
 }
 
@@ -7174,7 +7173,7 @@ span.readmore_click {
   grid-area: eight;
 }
 
-.contactForm form > div:last-child {
+.contactForm form>div:last-child {
   grid-column: 1 / span 2;
   /* grid-area: unset; */
 }

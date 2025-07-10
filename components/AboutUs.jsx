@@ -6,7 +6,7 @@ import "swiper/css";
 // import ReadMore from "../components/ReadMore";
 // import Seo from "../components/Seo"; 
 // import { CountryList } from "../services/CountryList";
-// import InquiryForm from "components/InquiryForm";
+import InquiryForm from "components/InquiryForm";
 
 let Swiper = null;
 let SwiperSlide = null;
@@ -608,12 +608,12 @@ export default function AboutUs({ aboutDetails, pageList }) {
                       data-aos-duration="500"
                       data-aos-delay="600"
                     >
-                      {/* <InquiryForm
+                      <InquiryForm
                         //   pageDetail={projectDetail}
                         countryFlag={countryFlag}
                         setCountryFlag={setCountryFlag}
                         isAbout={true}
-                      /> */}
+                      />
                     </div>
                   </div>
                 </div>

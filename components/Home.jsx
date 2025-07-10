@@ -16,7 +16,7 @@ import "swiper/css/pagination";
 import { Fancybox } from "@fancyapps/ui/dist/fancybox/";
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
 import awardsData from "data/awards.json";
-// import InquiryForm from "components/InquiryForm";
+import InquiryForm from "components/InquiryForm";
 
 export default function Home({
     // setInquiryPopupObj,
@@ -1662,30 +1662,30 @@ export default function Home({
                     </div>
                 </section>
 
-                <section
+               <section
                     className="section-padding "
                     style={{ backgroundColor: "white !important" }}
                 >
                     <div className="main-container">
                         <div className="contactFormWrapper  relative" style={{ zIndex: 2 }}>
-                            {/* <div
+                            <div
                                 className="section-title aos fadeInUp"
                                 data-aos-duration="400"
                                 data-aos-delay="600"
                             >
                                 <h2>Inquire Now</h2>
-                            </div> */}
+                            </div>
                             <div
                                 className="contactForm detailForm w100 aos fadeIn"
                                 data-aos-duration="500"
                                 data-aos-delay="600"
                             >
-                                {/* <InquiryForm
-                                    // pageDetail={projectDetail}
+                                <InquiryForm
+                                    //   pageDetail={projectDetail}
                                     countryFlag={countryFlag}
                                     setCountryFlag={setCountryFlag}
                                     isHome={true}
-                                /> */}
+                                />
                             </div>
                         </div>
                     </div>
