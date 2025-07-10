@@ -15,7 +15,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Fancybox } from "@fancyapps/ui/dist/fancybox/";
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
-import InquiryForm from "components/InquiryForm";
+// import InquiryForm from "components/InquiryForm";
 
 export default function Home({
     // setInquiryPopupObj,
@@ -1670,12 +1670,12 @@ export default function Home({
                                 data-aos-duration="500"
                                 data-aos-delay="600"
                             >
-                                <InquiryForm
+                                {/* <InquiryForm
                                     // pageDetail={projectDetail}
                                     countryFlag={countryFlag}
                                     setCountryFlag={setCountryFlag}
                                     isHome={true}
-                                />
+                                /> */}
                             </div>
                         </div>
                     </div>
