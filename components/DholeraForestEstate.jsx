@@ -21,8 +21,8 @@ import BottomStrip from "components/BottomStrip";
 import "swiper/css";
 
 export default function DholeraForestEstate({
-  isAmenityOpen,
-  setAmenityToggle,
+  // isAmenityOpen,
+  // setAmenityToggle,
   inquiryPopupObj,
   setInquiryPopupObj,
   inquiryPopup,
@@ -37,6 +37,7 @@ export default function DholeraForestEstate({
   const [isMobilescreen, setMobileScreen] = useState(false);
   const [isBannerLoaded, setIsBannerLoaded] = useState(false);
   const [activeIndex, setActiveIndex] = useState(null);
+  const [isAmenityOpen, setAmenityToggle] = useState(false);
   const toggleAccordion = (index) => {
     setActiveIndex(index === activeIndex ? null : index);
   };

@@ -1,14 +1,18 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   productionBrowserSourceMaps: true,
+  reactStrictMode: true,
+  swcMinify: true,
+  output: 'standalone', 
+
   async rewrites() {
     return [
       {
         source: '/',
-        destination: '/home'
-      }
-    ]
-  }
-}
+        destination: '/home',
+      },
+    ];
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

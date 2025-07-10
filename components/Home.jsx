@@ -348,12 +348,29 @@ export default function Home({
         });
     }, []);
 
+    // const handleExploreMoreClick = () => {
+    //     if (defaultPodcastData.length > 0) {
+    //         const galleryItems = defaultPodcastData.map((item) => ({
+    //             src: item.url,
+    //             type: "iframe", // for YouTube or podcast iframe
+    //         }));
+
+    //         Fancybox.show(galleryItems, {
+    //             Thumbs: true,
+    //             Toolbar: true,
+    //         });
+    //     }
+    // };
+
     const handleExploreMoreClick = () => {
         if (defaultPodcastData.length > 0) {
-            const galleryItems = defaultPodcastData.map((item) => ({
-                src: item.url,
-                type: "iframe",
-            }));
+            const galleryItems = defaultPodcastData.map((item) => {
+                const videoId = getYouTubeVideoID(item.url); 
+                return {
+                    src: `https://www.youtube.com/embed/${videoId}`,
+                    type: "iframe",
+                };
+            });
 
             Fancybox.show(galleryItems, {
                 Thumbs: true,
@@ -362,6 +379,11 @@ export default function Home({
         }
     };
 
+    const getYouTubeVideoID = (url) => {
+        const regex = /(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([^\s&?/]+)/;
+        const match = url.match(regex);
+        return match ? match[1] : "";
+    };
 
     return (
         <>
@@ -709,50 +731,39 @@ export default function Home({
                             <div className="project-list-grid project-list-grid-2-column">
                                 {defaultPodcastData.slice(0, 2).map((podcast, index) => (
                                     <div className="project-list-card relative" key={index}>
-                                        <a
-                                            // data-fancybox="podcastGallery"
-                                            onClick={(e) => { e.preventDefault(), handleExploreMoreClick() }}
-                                            href={podcast.url}
-                                            target="_self"
+                                        <div
+                                            onClick={() => handleExploreMoreClick(index)}
+                                            className="relative cursor-pointer"
+                                            data-aos="fade-in"
+                                            data-aos-delay="400"
+                                            data-aos-duration="600"
                                         >
-                                            <div
-                                                className="relative"
-                                                data-aos="fade-in"
-                                                data-aos-delay="400"
-                                                data-aos-duration="600"
-                                            >
-                                                <div className="project-img-list overflow relative">
-                                                    <img
-                                                        src={
-                                                            podcast.image ||
-                                                            "/images/dummy-image/dummy-image-1320X750.png"
-                                                        }
-                                                        alt={podcast.name || "Podcast image"}
-                                                    />
-                                                </div>
-                                                <div className="youtubeIcon">
-                                                    <img
-                                                        src="/images/icon/youtube-icon.svg"
-                                                        alt="youtube icon"
-                                                    />
-                                                </div>
-                                                <div className="podcastOverlay"></div>
+                                            <div className="project-img-list overflow relative">
+                                                <img
+                                                    src={podcast.image || "/images/dummy-image/dummy-image-1320X750.png"}
+                                                    alt={podcast.name || "Podcast image"}
+                                                />
                                             </div>
-
-                                            {podcast.name && (
-                                                <div className="podcastText">
-                                                    <div className="inner-flex inner-flex-smallest">
-                                                        <div className="link-font-size">
-                                                            <p className="white-color uppercase">{podcast.type}</p>
-                                                        </div>
-                                                        <div className="section-subtitle">
-                                                            <h4 className="white-color">{podcast.name}</h4>
-                                                        </div>
+                                            <div className="youtubeIcon">
+                                                <img src="/images/icon/youtube-icon.svg" alt="youtube icon" />
+                                            </div>
+                                            <div className="podcastOverlay"></div>
+                                        </div>
+                                        {podcast.name && (
+                                            <div className="podcastText">
+                                                <div className="inner-flex inner-flex-smallest">
+                                                    <div className="link-font-size">
+                                                        <p className="white-color uppercase">{podcast.type}</p>
+                                                    </div>
+                                                    <div className="section-subtitle">
+                                                        <h4 className="white-color">{podcast.name}</h4>
                                                     </div>
                                                 </div>
-                                            )}
-                                        </a>
+                                            </div>
+                                        )}
                                     </div>
+
+
                                 ))}
                             </div>
 
@@ -1493,7 +1504,7 @@ export default function Home({
                             data-aos-delay="600"
                             data-aos-duration="600"
                         >
-                            <Link href="/faqs">
+                            <Link href="/">
                                 <button className="reecosys-template-button button-style-secondary-outline">
                                     <p>View All</p>
                                 </button>
@@ -1629,7 +1640,7 @@ export default function Home({
                                 data-aos-delay="600"
                                 data-aos-duration="600"
                             >
-                                <Link href="/faqs">
+                                <Link href="/">
                                     <div>
                                         <button className="reecosys-template-button button-style-white-fill white-border">
                                             <p>View More</p>
