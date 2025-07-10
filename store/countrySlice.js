@@ -13,7 +13,8 @@ export const fetchCountryList = createAsyncThunk('country/fetch', async () => {
         })
     });
     const result = await response.json();
-    return result.data || [];
+    const filtered = result.data.filter((country) => country.phonecode !== "92");
+    return filtered || [];
 });
 
 const countrySlice = createSlice({

@@ -41,12 +41,12 @@ export default function InquiryForm({
     project_id: "",
   });
   const dispatch = useDispatch();
-  const { countryList, status } = useSelector((state) => state.country);
+  const { countryList } = useSelector((state) => state.country);
 
   // Load country list from redux store
   useEffect(() => {
     dispatch(fetchCountryList());
-  }, [dispatch]);
+  }, [pageDetail, dispatch]);
 
   const [errors, setErrors] = useState({});
 
@@ -198,21 +198,21 @@ export default function InquiryForm({
     setCountryFlag(false);
   };
 
-  const loadCountry = async () => {
-    try {
-      const data = await CountryList();
+  // const loadCountry = async () => {
+  //   try {
+  //     // const data = await CountryList();
 
-      // Filter directly, without `await`
-      const filtered = data.filter((country) => country.phonecode !== "92");
+  //     // Filter directly, without `await`
+  //     // const filtered = data.filter((country) => country.phonecode !== "92");
 
-      setcountryList(filtered);
-    } catch (err) {
-      console.error("Error loading country data:", err);
-    }
-  };
-  useEffect(() => {
-    loadCountry();
-  }, []);
+  //     setcountryList(filtered);
+  //   } catch (err) {
+  //     console.error("Error loading country data:", err);
+  //   }
+  // };
+  // useEffect(() => {
+  //   loadCountry();
+  // }, []);
 
   useEffect(() => {
     setInquiryObj({

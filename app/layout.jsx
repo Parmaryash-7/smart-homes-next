@@ -2,6 +2,7 @@ import '../public/css/globals.css';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
 import getPropertyList from 'lib/PropertList';
+import getCountryList from 'lib/CountryList';
 import getSocialMediaList from 'lib/SocialMediaList';
 import getHomeDetail from 'lib/HomeDetail';
 import { Providers } from "../store/Providers";
@@ -11,6 +12,9 @@ export default async function RootLayout({ children }) {
   const propertylist = await getPropertyList();
   const socialList = await getSocialMediaList();
   const homeDetails = await getHomeDetail();
+  const country = await getCountryList();
+
+  console.log(country);
 
   return (
     <html lang="en">
