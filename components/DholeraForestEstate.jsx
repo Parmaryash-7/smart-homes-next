@@ -16,7 +16,7 @@ import {
   Navigation,
   FreeMode,
 } from "swiper/modules";
-import InquiryForm from "components/InquiryForm";
+// import InquiryForm from "components/InquiryForm";
 import BottomStrip from "components/BottomStrip";
 import "swiper/css";
 
@@ -1140,11 +1140,11 @@ export default function DholeraForestEstate({
                     data-aos-duration="500"
                     data-aos-delay="600"
                   >
-                    <InquiryForm
+                    {/* <InquiryForm
                       pageDetail={projectDetail}
                       countryFlag={countryFlag}
                       setCountryFlag={setCountryFlag}
-                    />
+                    /> */}
                   </div>
                 </div>
               </div>

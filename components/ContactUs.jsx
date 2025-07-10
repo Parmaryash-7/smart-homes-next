@@ -42,18 +42,18 @@ export default function ContactUs({ pageList, contactDetails }) {
     });
 
 
-    useEffect(() => {
-        async function loadCountry() {
-            try {
-                const data = await CountryList();
-                const filtered = data.filter((c) => c.phonecode !== "92");
-                setCountryList(filtered);
-            } catch (err) {
-                console.error("Country load error", err);
-            }
-        }
-        loadCountry();
-    }, []);
+    // useEffect(() => {
+    //     async function loadCountry() {
+    //         try {
+    //             const data = await CountryList();
+    //             const filtered = data.filter((c) => c.phonecode !== "92");
+    //             setCountryList(filtered);
+    //         } catch (err) {
+    //             console.error("Country load error", err);
+    //         }
+    //     }
+    //     loadCountry();
+    // }, []);
 
     // const handleChange = (e) => {
     //     const { name, value } = e.target;

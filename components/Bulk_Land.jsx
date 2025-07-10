@@ -39,18 +39,18 @@ function Bulk_Land({ projects_full_list_detail }) {
     dispatch(fetchCountryList());
   }, [dispatch]);
 
-  useEffect(() => {
-    async function loadCountry() {
-      try {
-        const data = await CountryList();
-        const filtered = data.filter((c) => c.phonecode !== "92");
-        setCountryList(filtered);
-      } catch (error) {
-        console.error("Error loading countries", error);
-      }
-    }
-    loadCountry();
-  }, []);
+  // useEffect(() => {
+  //   async function loadCountry() {
+  //     try {
+  //       const data = await CountryList();
+  //       const filtered = data.filter((c) => c.phonecode !== "92");
+  //       setCountryList(filtered);
+  //     } catch (error) {
+  //       console.error("Error loading countries", error);
+  //     }
+  //   }
+  //   loadCountry();
+  // }, []);
 
   const validate = () => {
     let newErrors = {};
