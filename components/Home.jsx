@@ -1668,13 +1668,13 @@ export default function Home({
                 >
                     <div className="main-container">
                         <div className="contactFormWrapper  relative" style={{ zIndex: 2 }}>
-                            <div
+                            {/* <div
                                 className="section-title aos fadeInUp"
                                 data-aos-duration="400"
                                 data-aos-delay="600"
                             >
                                 <h2>Inquire Now</h2>
-                            </div>
+                            </div> */}
                             <div
                                 className="contactForm detailForm w100 aos fadeIn"
                                 data-aos-duration="500"
@@ -1762,14 +1762,14 @@ export default function Home({
                         </div>
                     </div>
                 </section>
-
+{/* 
                 <div className="">
                     <button className="reecosys-template-button button-style-secondary" data-wow-duration="0.6s" data-wow-delay="0.6s"
                         ng-click="inquire_popup_click();  inquiry_from_click(); " style={{ position: "fixed", bottom: '2rem', left: "50%", width: "fit-content", transform: "translateX(-50%)", zIndex: "9999" }}>
                         <span className="material-symbols-outlined"> chat </span>
                         <p className="capitalize">Inquire Now</p>
                     </button>
-                </div>
+                </div> */}
             </div>
         </>
     );
