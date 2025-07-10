@@ -15,6 +15,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Fancybox } from "@fancyapps/ui/dist/fancybox/";
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
+import awardsData from "data/awards.json";
 // import InquiryForm from "components/InquiryForm";
 
 export default function Home({
@@ -76,6 +77,15 @@ export default function Home({
         if (typeof window !== "undefined" && window.innerWidth < 767) {
             setMobileScreen(true);
         }
+        if (awardsData?.awards?.length) {
+            setAwardsList(awardsData.awards);
+        }
+        if (awardsData?.projects_full_list?.length) {
+            setProjectsList(awardsData.projects_full_list);
+        }
+        if (awardsData?.country_list?.length) {
+            setCountryList(awardsData.country_list);
+        }
     }, []);
 
     const allProjects = useMemo(
@@ -98,18 +108,18 @@ export default function Home({
         );
     }, [homeDetailsData, pageList]);
 
-    useEffect(() => {
-        fetch("/awards.json")
-            .then((res) => res.json())
-            .then((data) => {
-                if (data?.awards?.length) {
-                    setAwardsList(data.awards);
-                }
-            })
-            .catch((err) => {
-                console.error("Error loading awards:", err);
-            });
-    }, []);
+    // useEffect(() => {
+    //     fetch("/awards.json")
+    //         .then((res) => res.json())
+    //         .then((data) => {
+    //             if (data?.awards?.length) {
+    //                 setAwardsList(data.awards);
+    //             }
+    //         })
+    //         .catch((err) => {
+    //             console.error("Error loading awards:", err);
+    //         });
+    // }, []);
 
     if (!homeDetailsData) {
         return <div>Error loading data</div>;
@@ -365,7 +375,7 @@ export default function Home({
     const handleExploreMoreClick = () => {
         if (defaultPodcastData.length > 0) {
             const galleryItems = defaultPodcastData.map((item) => {
-                const videoId = getYouTubeVideoID(item.url); 
+                const videoId = getYouTubeVideoID(item.url);
                 return {
                     src: `https://www.youtube.com/embed/${videoId}`,
                     type: "iframe",
