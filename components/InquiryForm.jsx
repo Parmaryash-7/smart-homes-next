@@ -129,12 +129,12 @@ export default function InquiryForm({
     }
 
     setisSubmitting(true)
-    let project_id = pageDetail.project_id
+    let project_id = !isHome ? pageDetail.project_id : ""
     let client_name = inquiryObj.first_name + ' ' + inquiryObj.last_name
     let client_contact_no =
       inquiryObj.country + ' ' + inquiryObj.client_contact_no_display
-    inquiryObj.remarks =
-      inquiryObj.remarks + ' , Looking For : ' + inquiryObj.property_type
+    inquiryObj.remarks =!isHome ? 
+      inquiryObj.remarks + ' , Looking For : ' + inquiryObj.property_type : ""
 
     const finalInquiry = {
       ...inquiryObj,
@@ -221,11 +221,13 @@ export default function InquiryForm({
   // }, []);
 
   useEffect(() => {
-    setInquiryObj({
-      ...inquiryObj,
-      about_project_id: ''
-    })
-  }, [isAbout])
+    if(isAbout){
+      setInquiryObj({
+        ...inquiryObj,
+        about_project_id: ''
+      })
+    }
+  }, [])
 
   const projectType = [
     {
