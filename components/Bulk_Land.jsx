@@ -8,6 +8,8 @@ import { fetchCountryList } from "store/countrySlice";
 
 function Bulk_Land({ projects_full_list_detail }) {
   const [inquiryObj, setInquiryObj] = useState({
+    agree_tandc : "1",
+    agree_tandc_display : true,
     first_name: "",
     last_name: "",
     email_address: "",
@@ -23,6 +25,7 @@ function Bulk_Land({ projects_full_list_detail }) {
     flag: "https://flagcdn.com/w40/in.webp",
     country: "91",
     project_id: "",
+    client_name: ""
   });
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [countryFlag, setCountryFlag] = useState(false);
@@ -138,9 +141,9 @@ function Bulk_Land({ projects_full_list_detail }) {
       inquiryObj.country + " " + inquiryObj.client_contact_no_display;
 
     try {
-      //   const response = await ProjectInquiry(finalInquiry);
-      //   console.log("Inquiry submitted:", response);
-      console.log("Inquiry submitted:", inquiryObj);
+        const response = await ProjectInquiry(inquiryObj);
+        // console.log("Inquiry submitted:", response);
+      // console.log("Inquiry submitted:", inquiryObj);
       // Reset form
       setInquiryObj({
         first_name: "",

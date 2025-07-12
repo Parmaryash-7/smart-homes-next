@@ -9,6 +9,9 @@ export default function ThankYou({ pageName = "your inquiry" }) {
         <div className="reecosys-main-wrapper" id="reecosys-thankyou-wrapper">
             <section className="reecosys-section relative" id="reecosys-thankyou-section-1">
                 <div className="mini-container">
+
+
+                
                     <div className="thankyou_wrapper inner-flex alc j-c-c text-center">
                         <div className="inner-flex">
                             <div className="thankyou-title">
