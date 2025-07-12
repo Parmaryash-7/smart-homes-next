@@ -6,6 +6,7 @@ import getSocialMediaList from 'lib/SocialMediaList';
 import getHomeDetail from 'lib/HomeDetail';
 import { Providers } from "../store/Providers";
 import AOSInitializer from '../components/AOSInitializer';
+import InquiryPopup from '../components/InquiryPopup';
 
 export default async function RootLayout({ children }) {
   const propertylist = await getPropertyList();
@@ -28,6 +29,7 @@ export default async function RootLayout({ children }) {
             <Header propertylist={propertylist} socialList={socialList} />
             <div className="page">
               {children}
+              <InquiryPopup />
               <Footer
                 propertylist={propertylist}
                 socialList={socialList}
