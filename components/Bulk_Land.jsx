@@ -5,6 +5,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import './Bulk_Land.css'
 import { fetchCountryList } from 'store/countrySlice'
 import { Toast } from './Toast'
+import { setThankYouData } from 'store/inquirySlice'
+import { useRouter } from 'next/navigation'
+import api from 'lib/api.interceptor'
 // import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 function Bulk_Land({ projects_full_list_detail }) {
@@ -26,7 +29,7 @@ function Bulk_Land({ projects_full_list_detail }) {
     user_type: 'N',
     flag: 'https://flagcdn.com/w40/in.webp',
     country: '91',
-    project_id: ''
+    project_id: '756'
   })
   const [formSubmitted, setFormSubmitted] = useState(false)
   const [countryFlag, setCountryFlag] = useState(false)
@@ -35,6 +38,8 @@ function Bulk_Land({ projects_full_list_detail }) {
   const [errors, setErrors] = useState({})
 
   const dispatch = useDispatch()
+  const router = useRouter()
+
   const { countryList, status } = useSelector((state) => state.country)
 
   // Load country list from redux store
@@ -148,12 +153,16 @@ function Bulk_Land({ projects_full_list_detail }) {
       inquiryObj.property_type
 
     try {
-      const response = await ProjectInquiry(inquiryObj)
+      const response = await api.Projectinquiry(inquiryObj)
       //   console.log("Inquiry submitted:", response);
       // console.log("Inquiry submitted:", inquiryObj);
 
       if (response.success) {
-        Toast(response.messgae)
+        dispatch(setThankYouData({ page_name: 'Bulk Land', document: [] }))
+        router.push('/bulk-land-in-dholera/thankyou')
+        console.log(response)
+
+        Toast(response.message)
         setInquiryObj({
           agree_tandc: '1',
           agree_tandc_display: true,
@@ -171,19 +180,19 @@ function Bulk_Land({ projects_full_list_detail }) {
           user_type: 'N',
           flag: 'https://flagcdn.com/w40/in.webp',
           country: '91',
-          project_id: ''
+          project_id: '756'
         })
       } else {
-        Toast(response.messgae)
+        Toast(response.message)
       }
       // Reset form
       setFormSubmitted(false)
       setErrors({})
-      alert('Inquiry submitted successfully!')
+      // alert('Inquiry submitted successfully!')
     } catch (err) {
       console.error('Submission error:', err)
       setFormSubmitted(false)
-      alert('Failed to submit inquiry. Please try again.')
+      // alert('Failed to submit inquiry. Please try again.')
     }
   }
 
@@ -382,7 +391,7 @@ function Bulk_Land({ projects_full_list_detail }) {
                                     errors.first_name ? 'error' : ''
                                   }`}
                                   // required
-                                  tabIndex="11"
+                                  tabIndex="1"
                                   value={inquiryObj.first_name}
                                   onChange={handleChange}
                                 />
@@ -403,7 +412,7 @@ function Bulk_Land({ projects_full_list_detail }) {
                                     errors.last_name ? 'error' : ''
                                   }`}
                                   // required
-                                  tabIndex="12"
+                                  tabIndex="2"
                                   value={inquiryObj.last_name}
                                   onChange={handleChange}
                                 />
@@ -426,7 +435,7 @@ function Bulk_Land({ projects_full_list_detail }) {
                                       property_type: e.target.value
                                     })
                                   }
-                                  tabIndex="13"
+                                  tabIndex="3"
                                   //   defaultValue={"Select Type"}
                                 >
                                   <option
@@ -477,7 +486,7 @@ function Bulk_Land({ projects_full_list_detail }) {
                                   required
                                   minLength="10"
                                   maxLength="10"
-                                  tabIndex="3"
+                                  tabIndex="4"
                                 />
                                 {/* <label className="md-lable contact_code" htmlFor="contact_no">
                                                     Mobile Number*
@@ -562,7 +571,7 @@ function Bulk_Land({ projects_full_list_detail }) {
                                   className={`form-control ${
                                     errors.email_address ? 'error' : ''
                                   }`}
-                                  tabIndex="15"
+                                  tabIndex="5"
                                   onChange={handleChange}
                                   value={inquiryObj.email_address}
                                 />
@@ -583,7 +592,7 @@ function Bulk_Land({ projects_full_list_detail }) {
                                   className={`form-control ${
                                     errors.remarks ? 'error' : ''
                                   }`}
-                                  tabIndex="16"
+                                  tabIndex="6"
                                   value={inquiryObj.remarks}
                                 />
                                 <label className="md-lable" htmlFor="remarks">
@@ -593,7 +602,7 @@ function Bulk_Land({ projects_full_list_detail }) {
 
                               <div className="wfc m0auto">
                                 <button
-                                  tabIndex="17"
+                                  tabIndex={7}
                                   className="reecosys-template-button button-style-secondary"
                                   type="submit"
                                   onClick={handleSubmit}
