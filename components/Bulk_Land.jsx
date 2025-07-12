@@ -391,7 +391,7 @@ function Bulk_Land({ projects_full_list_detail }) {
                                     errors.first_name ? 'error' : ''
                                   }`}
                                   // required
-                                  tabIndex="1"
+                                  tabIndex={1}
                                   value={inquiryObj.first_name}
                                   onChange={handleChange}
                                 />
@@ -412,7 +412,7 @@ function Bulk_Land({ projects_full_list_detail }) {
                                     errors.last_name ? 'error' : ''
                                   }`}
                                   // required
-                                  tabIndex="2"
+                                  tabIndex={2}
                                   value={inquiryObj.last_name}
                                   onChange={handleChange}
                                 />
@@ -435,7 +435,7 @@ function Bulk_Land({ projects_full_list_detail }) {
                                       property_type: e.target.value
                                     })
                                   }
-                                  tabIndex="3"
+                                  tabIndex={3}
                                   //   defaultValue={"Select Type"}
                                 >
                                   <option
@@ -486,7 +486,7 @@ function Bulk_Land({ projects_full_list_detail }) {
                                   required
                                   minLength="10"
                                   maxLength="10"
-                                  tabIndex="4"
+                                  tabIndex={4}
                                 />
                                 {/* <label className="md-lable contact_code" htmlFor="contact_no">
                                                     Mobile Number*
@@ -571,7 +571,7 @@ function Bulk_Land({ projects_full_list_detail }) {
                                   className={`form-control ${
                                     errors.email_address ? 'error' : ''
                                   }`}
-                                  tabIndex="5"
+                                  tabIndex={5}
                                   onChange={handleChange}
                                   value={inquiryObj.email_address}
                                 />
@@ -592,7 +592,7 @@ function Bulk_Land({ projects_full_list_detail }) {
                                   className={`form-control ${
                                     errors.remarks ? 'error' : ''
                                   }`}
-                                  tabIndex="6"
+                                  tabIndex={6}
                                   value={inquiryObj.remarks}
                                 />
                                 <label className="md-lable" htmlFor="remarks">
