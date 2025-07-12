@@ -1,17 +1,17 @@
-import '../public/css/globals.css';
-import Header from 'components/Header';
-import Footer from 'components/Footer';
-import getPropertyList from 'lib/PropertList';
-import getSocialMediaList from 'lib/SocialMediaList';
-import getHomeDetail from 'lib/HomeDetail';
-import { Providers } from "../store/Providers";
-import AOSInitializer from '../components/AOSInitializer';
-import InquiryPopup from '../components/InquiryPopup';
+import '../public/css/globals.css'
+import Header from 'components/Header'
+import Footer from 'components/Footer'
+import api from 'lib/api.interceptor'
+import getSocialMediaList from 'lib/SocialMediaList'
+import getHomeDetail from 'lib/HomeDetail'
+import { Providers } from '../store/Providers'
+import AOSInitializer from '../components/AOSInitializer'
+import InquiryPopup from '../components/InquiryPopup'
 
 export default async function RootLayout({ children }) {
-  const propertylist = await getPropertyList();
-  const socialList = await getSocialMediaList();
-  const homeDetails = await getHomeDetail();
+  const propertylist = await api.Propertylist()
+  const socialList = await getSocialMediaList()
+  const homeDetails = await getHomeDetail()
 
   return (
     <html lang="en">
@@ -20,7 +20,11 @@ export default async function RootLayout({ children }) {
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,500,0,0"
         />
-        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+        <script
+          src="https://www.google.com/recaptcha/api.js"
+          async
+          defer
+        ></script>
       </head>
       <body>
         <AOSInitializer />
@@ -40,5 +44,5 @@ export default async function RootLayout({ children }) {
         </Providers>
       </body>
     </html>
-  );
+  )
 }
