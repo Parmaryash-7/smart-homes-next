@@ -119,22 +119,33 @@ export default function InquiryForm({
   }
   const handleSubmit = async (e) => {
     e.preventDefault()
-
     setFormSubmitted(true)
+
     const validationErrors = validate()
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors)
-      console.log(validationErrors)
+
+      // Scroll to first error field
+      const firstErrorField = Object.keys(validationErrors)[0]
+      const el = document.querySelector(`[name="${firstErrorField}"]`)
+      if (el && typeof el.scrollIntoView === 'function') {
+        el.scrollIntoView({ behavior: 'smooth', block: 'center' })
+        el.focus()
+      }
+
       return
     }
 
     setisSubmitting(true)
-    let project_id = !isHome ? pageDetail.project_id : ""
+
+    let project_id = !isHome ? pageDetail.project_id : ''
     let client_name = inquiryObj.first_name + ' ' + inquiryObj.last_name
     let client_contact_no =
       inquiryObj.country + ' ' + inquiryObj.client_contact_no_display
-    inquiryObj.remarks =!isHome ? 
-      inquiryObj.remarks + ' , Looking For : ' + inquiryObj.property_type : ""
+
+    inquiryObj.remarks = !isHome
+      ? inquiryObj.remarks + ' , Looking For : ' + inquiryObj.property_type
+      : ''
 
     const finalInquiry = {
       ...inquiryObj,
@@ -142,58 +153,18 @@ export default function InquiryForm({
       client_name,
       client_contact_no
     }
-    console.log('Form Data:', inquiryObj)
-    // let response = await ProjectInquiry(finalInquiry);
-    // if (response.success == 1) {
-    //   setFormSubmitted(false);
-    //   setInquiryObj({
-    //     agree_tandc: "1",
-    //     from_app: "true",
-    //     master_user_id: "339",
-    //     logged_in_master_user_id: "339",
-    //     agree_tandc_display: true,
-    //     last_name: "",
-    //     property_type: "",
-    //     first_name: "",
-    //     client_contact_no_display: "",
-    //     client_contact_no: "",
-    //     email_address: "",
-    //     remarks: "",
-    //     user_type: "N",
-    //     flag: "https://flagcdn.com/w40/in.webp",
-    //     country: "91",
-    //     project_id: "",
-    //   });
-    //   if (isAbout) {
-    //     setInquiryObj({
-    //       ...inquiryObj,
-    //       about_project_id: "",
-    //     });
-    //   }
-    //   toast(response.message, {
-    //     position: "bottom-right",
-    //     autoClose: 3000,
-    //     style: {
-    //       background: "#000",
-    //       color: "#fff",
-    //       fontSize: "14px",
-    //     },
-    //   });
-    // } else {
-    //   toast(response.message, {
-    //     position: "bottom-right",
-    //     autoClose: 3000,
-    //     style: {
-    //       background: "#000",
-    //       color: "#fff",
-    //       fontSize: "14px",
-    //     },
-    //   });
-    // }
+
+    console.log('Form Data:', finalInquiry)
+
+    // Example POST
+    // const res = await projectInquiry(finalInquiry)
+    // const response = await res.json()
+    // toast.success('Inquiry submitted successfully')
 
     setisSubmitting(false)
     setFormSubmitted(false)
   }
+
 
   const handleCountrySelect = (phonecode, flag) => {
     setInquiryObj({
@@ -221,7 +192,7 @@ export default function InquiryForm({
   // }, []);
 
   useEffect(() => {
-    if(isAbout){
+    if (isAbout) {
       setInquiryObj({
         ...inquiryObj,
         about_project_id: ''
@@ -376,11 +347,11 @@ export default function InquiryForm({
           className="reecosys-template-button button-style-secondary"
           type="submit"
           disabled={isSubmitting}
-          // onClick={(e) => {
-          //   e.preventDefault()
-          //   e.stopPropagation()
-          //   handleSubmit()
-          // }}
+        // onClick={(e) => {
+        //   e.preventDefault()
+        //   e.stopPropagation()
+        //   handleSubmit()
+        // }}
         >
           <p>{isSubmitting ? 'Please Wait...' : 'Submit'}</p>
         </button>
