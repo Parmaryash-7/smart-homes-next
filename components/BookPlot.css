@@ -1,0 +1,153 @@
+  .contact_lable.radio_label input:hover,
+  .contact_lable.radio_label input:focus,
+  .contact_lable.radio_label input:focus-within,
+  .contact_lable.radio_label input {
+      accent-color: var(--secondary-highlight-color);
+      width: fit-content;
+      margin: 0;
+  }
+
+  .contact_lable.radio_label>div {
+      margin-top: 1rem;
+      gap: 0.5rem;
+  }
+
+  .mini-container {
+      width: 60%;
+  }
+
+  .printOnly {
+      display: none;
+  }
+
+  .upload_file_input.error~.upload-button-wrapper p {
+      color: #FF0000;
+  }
+
+  .form_wrapper {
+      gap: 1rem;
+
+  }
+
+  .get_update_checkbox.error~label {
+      color: red !important;
+  }
+
+  .coapplicant_accordion_id {
+      padding: 1.5rem 3rem;
+  }
+
+  .coapplicant_accordion_id .plot-details-grid {
+      padding: 3rem 0;
+  }
+
+  @media screen and (max-width: 767px) {
+      .mini-container {
+          width: 95%;
+      }
+
+
+      .contact-grid,
+      .inentification-grid,
+      .plot-details-grid,
+      .personal-grid {
+          gap: 3.5rem;
+          padding: 4rem 1.5rem;
+      }
+
+      .coapplicant_accordion_id {
+          margin-top: 3rem !important;
+          padding: 1.5rem;
+      }
+
+      .coapplicant_accordion_id .plot-details-grid {
+          padding: 3rem 0;
+      }
+
+  }
+
+
+  .coapplicant_accordion.active .coapplicant_icon {
+      rotate: 45deg;
+  }
+
+  .coapplicant_icon {
+      font-size: 30px;
+      transition: all 0.5s ease;
+  }
+
+  @media print {
+
+      .coapplicant_accordion_id {
+          padding: 0;
+      }
+
+      .noPrint {
+          display: none;
+      }
+
+      .printOnly {
+          display: block;
+      }
+
+      .section-title h2 {
+          font-size: 2rem;
+      }
+
+      .section-paragraph p {
+          font-size: 1.25rem;
+      }
+
+      .mini-container {
+          width: 95%;
+      }
+
+      .contact-grid,
+      .inentification-grid,
+      .plot-details-grid,
+      .personal-grid {
+          grid-template-columns: calc(50% - 1rem) calc(50% - 1rem);
+          gap: 4rem 2rem;
+          padding: 0;
+          background-color: transparent;
+      }
+
+      .form_wrapper {
+          display: grid;
+          grid-template-columns: 100%;
+          gap: 4rem;
+
+      }
+
+      .contact_lable.select_option .fa-icon,
+      .contact_lable.select_option select option {
+          opacity: 0;
+          display: none;
+      }
+
+      .flex-row.inner-flex-medium {
+          gap: 1.5rem
+      }
+
+      .radio_label.flex-row {
+          gap: 0.5rem
+      }
+
+      .radio_label.flex-row .flex-row {
+          gap: 0.25rem
+      }
+
+      .md-lable {
+          font-size: 0.5rem;
+      }
+
+      .section-padding {
+          padding: 0;
+      }
+
+      /* .contact-grid>div,
+        .inentification-grid>div,
+        .plot-details-grid>div,
+        .personal-grid>div {
+        } */
+  }

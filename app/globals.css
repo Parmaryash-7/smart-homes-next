@@ -2963,8 +2963,9 @@ label.error {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  z-index: 9;
+  z-index: 998;
   transition: var(--common-transition);
+  
 }
 
 .whatsapp-icon {
@@ -2972,8 +2973,8 @@ label.error {
 }
 
 .whatsapp_connect.active {
-  bottom: 6rem;
-  right: 15px;
+  /* bottom: 6rem;
+  right: 15px; */
 }
 
 .readmore_text span.readmore_click,

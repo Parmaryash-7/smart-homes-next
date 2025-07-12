@@ -19,6 +19,7 @@ export default async function RootLayout({ children }) {
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,500,0,0"
         />
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
       </head>
       <body>
         <AOSInitializer />

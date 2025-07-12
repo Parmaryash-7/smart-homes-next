@@ -372,29 +372,60 @@ export default function Home({
     //     }
     // };
 
-    const handleExploreMoreClick = () => {
-        if (defaultPodcastData.length > 0) {
-            const galleryItems = defaultPodcastData.map((item) => {
-                const videoId = getYouTubeVideoID(item.url);
-                return {
-                    src: `https://www.youtube.com/embed/${videoId}`,
-                    type: "iframe",
-                };
-            });
+    // const handleExploreMoreClick = () => {
+    //     if (defaultPodcastData.length > 0) {
+    //         const galleryItems = defaultPodcastData.map((item) => {
+    //             const videoId = getYouTubeVideoID(item.url);
+    //             return {
+    //                 src: `https://www.youtube.com/embed/${videoId}`,
+    //                 type: "iframe",
+    //             };
+    //         });
 
-            Fancybox.show(galleryItems, {
-                Thumbs: true,
-                Toolbar: true,
-            });
-        }
-    };
-
+    //         Fancybox.show(galleryItems, {
+    //             Thumbs: true,
+    //             Toolbar: true,
+    //         });
+    //     }
+    // };
     const getYouTubeVideoID = (url) => {
         const regex = /(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([^\s&?/]+)/;
         const match = url.match(regex);
         return match ? match[1] : "";
     };
 
+    const [showMore, setShowMore] = useState(false);
+    const visiblePodcasts = showMore
+        ? defaultPodcastData
+        : defaultPodcastData.slice(0, 2);
+
+    useEffect(() => {
+        Fancybox.bind('[data-fancybox="podcastFancybox"]', {
+            Thumbs: true,
+            type: 'iframe',
+
+        });
+        return () => Fancybox.destroy();
+    }, []);
+
+    const handleExploreMoreClick = () => {
+        const galleryItems = defaultPodcastData.map((item) => {
+            const videoId = getYouTubeVideoID(item.url);
+            return {
+                src: `https://www.youtube.com/embed/${videoId}`,
+                type: 'iframe',
+            };
+        });
+
+        Fancybox.show(galleryItems, {
+            startIndex: 2,
+            type: "iframe",
+            Thumbs: true
+        });
+        // Fancybox.fancybox({
+        //     type: "iframe",
+        // });
+    };
     return (
         <>
             <style>{`
@@ -739,55 +770,67 @@ export default function Home({
                                 ))}
                             </div> */}
                             <div className="project-list-grid project-list-grid-2-column">
-                                {defaultPodcastData.slice(0, 2).map((podcast, index) => (
-                                    <div className="project-list-card relative" key={index}>
-                                        <div
-                                            onClick={() => handleExploreMoreClick(index)}
-                                            className="relative cursor-pointer"
-                                            data-aos="fade-in"
-                                            data-aos-delay="400"
-                                            data-aos-duration="600"
-                                        >
-                                            <div className="project-img-list overflow relative">
-                                                <img
-                                                    src={podcast.image || "/images/dummy-image/dummy-image-1320X750.png"}
-                                                    alt={podcast.name || "Podcast image"}
-                                                />
-                                            </div>
-                                            <div className="youtubeIcon">
-                                                <img src="/images/icon/youtube-icon.svg" alt="youtube icon" />
-                                            </div>
-                                            <div className="podcastOverlay"></div>
-                                        </div>
-                                        {podcast.name && (
-                                            <div className="podcastText">
-                                                <div className="inner-flex inner-flex-smallest">
-                                                    <div className="link-font-size">
-                                                        <p className="white-color uppercase">{podcast.type}</p>
-                                                    </div>
-                                                    <div className="section-subtitle">
-                                                        <h4 className="white-color">{podcast.name}</h4>
+                                {defaultPodcastData.slice(0, 2).map((podcast, index) => {
+                                    const videoId = getYouTubeVideoID(podcast.url);
+                                    return (
+                                        <div className="project-list-card relative" key={index}>
+                                            <a
+                                                href={`https://www.youtube.com/embed/${videoId}`}
+                                                data-fancybox="podcastFancybox"
+                                                className="relative cursor-pointer"
+                                                data-aos="fade-in"
+                                                data-aos-delay="400"
+                                                data-aos-duration="600"
+                                            >
+                                                <div className="project-img-list overflow relative">
+                                                    <img
+                                                        src={
+                                                            podcast.image ||
+                                                            `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`
+                                                        }
+                                                        alt={podcast.name || 'Podcast image'}
+                                                    />
+                                                </div>
+                                                <div className="youtubeIcon">
+                                                    <img
+                                                        src="/images/icon/youtube-icon.svg"
+                                                        alt="youtube icon"
+                                                    />
+                                                </div>
+                                                <div className="podcastOverlay"></div>
+                                            </a>
+
+                                            {podcast.name && (
+                                                <div className="podcastText">
+                                                    <div className="inner-flex inner-flex-smallest">
+                                                        <div className="link-font-size">
+                                                            <p className="white-color uppercase">
+                                                                {podcast.type || 'Podcast'}
+                                                            </p>
+                                                        </div>
+                                                        <div className="section-subtitle">
+                                                            <h4 className="white-color">{podcast.name}</h4>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        )}
-                                    </div>
-
-
-                                ))}
+                                            )}
+                                        </div>
+                                    );
+                                })}
                             </div>
 
-                            <div className="wfc m0auto">
-                                {defaultPodcastData.length > 0 && (
+                            {defaultPodcastData.length > 2 && (
+                                <div className="wfc m0auto">
                                     <button
-                                        className={`reecosys-template-button button-style-secondary-outline ${isMobilescreen ? "w100" : ""
+                                        className={`reecosys-template-button button-style-secondary-outline ${isMobilescreen ? 'w100' : ''
                                             }`}
                                         onClick={handleExploreMoreClick}
                                     >
                                         <p>Explore More</p>
                                     </button>
-                                )}
-                            </div>
+                                </div>
+                            )}
+
                         </div>
                     </div>
                 </section>
@@ -1662,7 +1705,7 @@ export default function Home({
                     </div>
                 </section>
 
-               <section
+                <section
                     className="section-padding "
                     style={{ backgroundColor: "white !important" }}
                 >
@@ -1680,12 +1723,12 @@ export default function Home({
                                 data-aos-duration="500"
                                 data-aos-delay="600"
                             >
-                                <InquiryForm
+                                {/* <InquiryForm
                                     //   pageDetail={projectDetail}
                                     countryFlag={countryFlag}
                                     setCountryFlag={setCountryFlag}
                                     isHome={true}
-                                />
+                                /> */}
                             </div>
                         </div>
                     </div>
@@ -1762,7 +1805,7 @@ export default function Home({
                         </div>
                     </div>
                 </section>
-{/* 
+                {/* 
                 <div className="">
                     <button className="reecosys-template-button button-style-secondary" data-wow-duration="0.6s" data-wow-delay="0.6s"
                         ng-click="inquire_popup_click();  inquiry_from_click(); " style={{ position: "fixed", bottom: '2rem', left: "50%", width: "fit-content", transform: "translateX(-50%)", zIndex: "9999" }}>

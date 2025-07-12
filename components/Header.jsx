@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import './Header.css'
@@ -74,21 +74,47 @@ export default function Header({ propertylist, socialList }) {
 		document.body.style.overflow = mobileMenuToggle ? "hidden" : "auto";
 	}, [mobileMenuToggle]);
 
+	// const megaMenuClick = (category) => {
+	// 	if (megaMenuCategory === category) {
+	// 		setMegaMenuCategory("");
+	// 		setMegaMenuActive(false);
+	// 	} else {
+	// 		setMegaMenuCategory(category);
+	// 		setMegaMenuActive(true);
+	// 		const filteredList = propertylist.filter(item => item.category === category);
+	// 		setMegaMenuList(filteredList);
+	// 	}
+	// };
+
+	const handleScroll = () => {
+		setMegaMenuCategory("");
+		setMegaMenuActive(false);
+		window.removeEventListener('scroll', handleScroll);
+	};
+
 	const megaMenuClick = (category) => {
 		if (megaMenuCategory === category) {
+			// Close the menu
 			setMegaMenuCategory("");
 			setMegaMenuActive(false);
+			window.removeEventListener('scroll', handleScroll); // clean up
 		} else {
+			// Open the menu
 			setMegaMenuCategory(category);
 			setMegaMenuActive(true);
+
 			const filteredList = propertylist.filter(item => item.category === category);
 			setMegaMenuList(filteredList);
+
+			// Add scroll listener
+			window.addEventListener('scroll', handleScroll, { passive: true });
 		}
 	};
 
 	const megaMenuClickClose = () => {
 		setMegaMenuCategory("");
 		setMegaMenuActive(false);
+		window.removeEventListener('scroll', handleScroll); // clean up scroll listener
 	};
 
 	if (!categoryList.length) return null;

@@ -2971,11 +2971,11 @@ label.error {
 .whatsapp-icon {
   width: 3.5rem;
 }
-
+/* 
 .whatsapp_connect.active {
   bottom: 6rem;
   right: 15px;
-}
+} */
 
 .readmore_text span.readmore_click,
 span.readmore_click {
@@ -9676,4 +9676,12 @@ form .md-lable.contact_code #contact_no {
 
 input.ng-invalid {
   border-color: #FF0000 !important;
+}
+
+.f-carousel__counter span {
+  color: white;
+}
+
+.f-carousel__counter {
+  color: white;
 }
