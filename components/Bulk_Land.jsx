@@ -1,43 +1,46 @@
-"use client"
+'use client'
 
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import "./Bulk_Land.css";
-import { fetchCountryList } from "store/countrySlice";
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import './Bulk_Land.css'
+import { fetchCountryList } from 'store/countrySlice'
+import { Toast } from './Toast'
 // import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 function Bulk_Land({ projects_full_list_detail }) {
   const [inquiryObj, setInquiryObj] = useState({
-    first_name: "",
-    last_name: "",
-    email_address: "",
-    client_contact_no_display: "",
-    client_contact_no: "",
-    remarks: "",
-    property_type: "",
-    from_app: "true",
-    master_user_id: "373",
-    logged_in_master_user_id: "373",
-    inquiry_from: "web",
-    user_type: "N",
-    flag: "https://flagcdn.com/w40/in.webp",
-    country: "91",
-    project_id: "",
-  });
-  const [formSubmitted, setFormSubmitted] = useState(false);
-  const [countryFlag, setCountryFlag] = useState(false);
+    agree_tandc: '1',
+    agree_tandc_display: true,
+    client_name: '',
+    first_name: '',
+    last_name: '',
+    email_address: '',
+    client_contact_no_display: '',
+    client_contact_no: '',
+    remarks: '',
+    property_type: '',
+    from_app: 'true',
+    master_user_id: '339',
+    logged_in_master_user_id: '339',
+    inquiry_from: 'web',
+    user_type: 'N',
+    flag: 'https://flagcdn.com/w40/in.webp',
+    country: '91',
+    project_id: ''
+  })
+  const [formSubmitted, setFormSubmitted] = useState(false)
+  const [countryFlag, setCountryFlag] = useState(false)
   // const [countryList, setCountryList] = useState([]);
-  const [search, setSearch] = useState("");
-  const [errors, setErrors] = useState({});
+  const [search, setSearch] = useState('')
+  const [errors, setErrors] = useState({})
 
-
-  const dispatch = useDispatch();
-  const { countryList, status } = useSelector((state) => state.country);
+  const dispatch = useDispatch()
+  const { countryList, status } = useSelector((state) => state.country)
 
   // Load country list from redux store
   useEffect(() => {
-    dispatch(fetchCountryList());
-  }, [dispatch]);
+    dispatch(fetchCountryList())
+  }, [dispatch])
 
   // useEffect(() => {
   //   async function loadCountry() {
@@ -53,31 +56,31 @@ function Bulk_Land({ projects_full_list_detail }) {
   // }, []);
 
   const validate = () => {
-    let newErrors = {};
-    const nameRegex = /^[a-zA-Z\s]+$/;
-    const phoneRegex = /^\d{10}$/;
-    const emailRegex = /^[\w.-]+@[a-zA-Z\d.-]+\.[a-zA-Z]{2,}$/;
+    let newErrors = {}
+    const nameRegex = /^[a-zA-Z\s]+$/
+    const phoneRegex = /^\d{10}$/
+    const emailRegex = /^[\w.-]+@[a-zA-Z\d.-]+\.[a-zA-Z]{2,}$/
 
     if (!inquiryObj.first_name.trim()) {
-      newErrors.first_name = "Name is required";
+      newErrors.first_name = 'Name is required'
     } else if (!nameRegex.test(inquiryObj.first_name)) {
-      newErrors.first_name = "Name must contain only letters";
+      newErrors.first_name = 'Name must contain only letters'
     }
 
     if (!inquiryObj.last_name.trim()) {
-      newErrors.last_name = "Name is required";
+      newErrors.last_name = 'Name is required'
     } else if (!nameRegex.test(inquiryObj.last_name)) {
-      newErrors.last_name = "Name must contain only letters";
+      newErrors.last_name = 'Name must contain only letters'
     }
 
     if (!inquiryObj.client_contact_no_display.trim()) {
-      newErrors.client_contact_no_display = "Contact number is required";
+      newErrors.client_contact_no_display = 'Contact number is required'
     } else if (!phoneRegex.test(inquiryObj.client_contact_no_display)) {
-      newErrors.client_contact_no_display = "Contact number must be 10 digits";
+      newErrors.client_contact_no_display = 'Contact number must be 10 digits'
     }
 
-    if (!inquiryObj.property_type || inquiryObj.property_type === "") {
-      newErrors.property_type = "Project type is required";
+    if (!inquiryObj.property_type || inquiryObj.property_type === '') {
+      newErrors.property_type = 'Project type is required'
     }
 
     // if (!inquiryObj.email_address.trim()) {
@@ -86,88 +89,103 @@ function Bulk_Land({ projects_full_list_detail }) {
     //   newErrors.email_address = "Invalid email format";
     // }
 
-    return newErrors;
-  };
+    return newErrors
+  }
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    let updatedValue = value;
+    const { name, value } = e.target
+    let updatedValue = value
 
-    if (name === "first_name") {
-      updatedValue = value.replace(/[0-9]/g, "");
+    if (name === 'first_name') {
+      updatedValue = value.replace(/[0-9]/g, '')
     }
 
-    if (name === "last_name") {
-      updatedValue = value.replace(/[0-9]/g, "");
+    if (name === 'last_name') {
+      updatedValue = value.replace(/[0-9]/g, '')
     }
 
-    if (name === "client_contact_no_display") {
-      updatedValue = value.replace(/[^0-9]/g, "").slice(0, 10);
+    if (name === 'client_contact_no_display') {
+      updatedValue = value.replace(/[^0-9]/g, '').slice(0, 10)
     }
 
     setInquiryObj((prev) => ({
       ...prev,
-      [name]: updatedValue,
-    }));
+      [name]: updatedValue
+    }))
 
     setErrors((prev) => ({
       ...prev,
-      [name]: "",
-    }));
-  };
+      [name]: ''
+    }))
+  }
 
   const handleCountrySelect = (phonecode, flag) => {
     setInquiryObj((prev) => ({
       ...prev,
       country: phonecode,
-      flag,
-    }));
-    setCountryFlag(false);
-  };
+      flag
+    }))
+    setCountryFlag(false)
+  }
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setFormSubmitted(true);
-    const validationErrors = validate();
+    e.preventDefault()
+    setFormSubmitted(true)
+    const validationErrors = validate()
     if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors);
-      return;
+      setErrors(validationErrors)
+      return
     }
 
     inquiryObj.client_contact_no =
-      inquiryObj.country + " " + inquiryObj.client_contact_no_display;
+      inquiryObj.country + ' ' + inquiryObj.client_contact_no_display
+    inquiryObj.client_name = inquiryObj.first_name + ' ' + inquiryObj.last_name
+    inquiryObj.remarks =
+      inquiryObj.remarks +
+      ' , BulkLand Project Name: ' +
+      inquiryObj.property_type +
+      ' ,  Looking For: ' +
+      inquiryObj.property_type
 
     try {
-      //   const response = await ProjectInquiry(finalInquiry);
+      const response = await ProjectInquiry(inquiryObj)
       //   console.log("Inquiry submitted:", response);
-      console.log("Inquiry submitted:", inquiryObj);
+      // console.log("Inquiry submitted:", inquiryObj);
+
+      if (response.success) {
+        Toast(response.messgae)
+        setInquiryObj({
+          agree_tandc: '1',
+          agree_tandc_display: true,
+          first_name: '',
+          last_name: '',
+          email_address: '',
+          client_contact_no_display: '',
+          client_contact_no: '',
+          remarks: '',
+          property_type: '',
+          from_app: 'true',
+          master_user_id: '339',
+          logged_in_master_user_id: '339',
+          inquiry_from: 'web',
+          user_type: 'N',
+          flag: 'https://flagcdn.com/w40/in.webp',
+          country: '91',
+          project_id: ''
+        })
+      } else {
+        Toast(response.messgae)
+      }
       // Reset form
-      setInquiryObj({
-        first_name: "",
-        last_name: "",
-        email_address: "",
-        client_contact_no_display: "",
-        client_contact_no: "",
-        remarks: "",
-        property_type: "",
-        from_app: "true",
-        master_user_id: "373",
-        logged_in_master_user_id: "373",
-        inquiry_from: "web",
-        user_type: "N",
-        flag: "https://flagcdn.com/w40/in.webp",
-        country: "91",
-        project_id: "",
-      });
-      setFormSubmitted(false);
-      setErrors({});
-      alert("Inquiry submitted successfully!");
+      setFormSubmitted(false)
+      setErrors({})
+      alert('Inquiry submitted successfully!')
     } catch (err) {
-      console.error("Submission error:", err);
-      setFormSubmitted(false);
-      alert("Failed to submit inquiry. Please try again.");
+      console.error('Submission error:', err)
+      setFormSubmitted(false)
+      alert('Failed to submit inquiry. Please try again.')
     }
-  };
+  }
 
   return (
     <>
@@ -176,7 +194,7 @@ function Bulk_Land({ projects_full_list_detail }) {
           className="reecosys-main-wrapper"
           id="reecosys-main-wrapper"
           onClick={() => {
-            setCountryFlag(false);
+            setCountryFlag(false)
           }}
         >
           <div
@@ -360,8 +378,9 @@ function Bulk_Land({ projects_full_list_detail }) {
                                   type="text"
                                   name="first_name"
                                   id="first_name"
-                                  className={`form-control ${errors.first_name ? "error" : ""
-                                    }`}
+                                  className={`form-control ${
+                                    errors.first_name ? 'error' : ''
+                                  }`}
                                   // required
                                   tabIndex="11"
                                   value={inquiryObj.first_name}
@@ -380,8 +399,9 @@ function Bulk_Land({ projects_full_list_detail }) {
                                   type="text"
                                   name="last_name"
                                   id="last_name"
-                                  className={`form-control ${errors.last_name ? "error" : ""
-                                    }`}
+                                  className={`form-control ${
+                                    errors.last_name ? 'error' : ''
+                                  }`}
                                   // required
                                   tabIndex="12"
                                   value={inquiryObj.last_name}
@@ -395,26 +415,27 @@ function Bulk_Land({ projects_full_list_detail }) {
                               <div className="contact_lable select_option select_apr relative">
                                 <select
                                   name="property_type"
-                                  className={`form-control ${errors.property_type ? "error" : ""
-                                    }`}
+                                  className={`form-control ${
+                                    errors.property_type ? 'error' : ''
+                                  }`}
                                   id="property_type"
                                   value={inquiryObj.property_type}
                                   onChange={(e) =>
                                     setInquiryObj({
                                       ...inquiryObj,
-                                      property_type: e.target.value,
+                                      property_type: e.target.value
                                     })
                                   }
                                   tabIndex="13"
-                                //   defaultValue={"Select Type"}
+                                  //   defaultValue={"Select Type"}
                                 >
                                   <option
                                     value=""
                                     disabled={
-                                      inquiryObj.property_type ? "disabled" : ""
+                                      inquiryObj.property_type ? 'disabled' : ''
                                     }
                                     className="gray-color"
-                                  // selected
+                                    // selected
                                   >
                                     Select Type
                                   </option>
@@ -446,10 +467,11 @@ function Bulk_Land({ projects_full_list_detail }) {
                                   id="client_contact_no_display"
                                   name="client_contact_no_display"
                                   type="tel"
-                                  className={`form-control contact-form ${errors.client_contact_no_display
-                                    ? "error"
-                                    : ""
-                                    }`}
+                                  className={`form-control contact-form ${
+                                    errors.client_contact_no_display
+                                      ? 'error'
+                                      : ''
+                                  }`}
                                   value={inquiryObj.client_contact_no_display}
                                   onChange={handleChange}
                                   required
@@ -471,8 +493,8 @@ function Bulk_Land({ projects_full_list_detail }) {
                                   <div
                                     className="country_code_data"
                                     onClick={(e) => {
-                                      setCountryFlag(true);
-                                      e.stopPropagation();
+                                      setCountryFlag(true)
+                                      e.stopPropagation()
                                     }}
                                   >
                                     <div className="section-paragraph">
@@ -485,8 +507,9 @@ function Bulk_Land({ projects_full_list_detail }) {
                                   </div>
                                 </div>
                                 <div
-                                  className={`country_code_list_data ${countryFlag ? "active" : ""
-                                    }`}
+                                  className={`country_code_list_data ${
+                                    countryFlag ? 'active' : ''
+                                  }`}
                                   onClick={(e) => e.stopPropagation()}
                                 >
                                   <div className="search_c-code">
@@ -522,7 +545,7 @@ function Bulk_Land({ projects_full_list_detail }) {
                                             <img src={item.flag} alt="flag" />
                                             <span className="display_country_code">
                                               +{item.phonecode}
-                                            </span>{" "}
+                                            </span>{' '}
                                             {item.nicename}
                                           </div>
                                         </li>
@@ -536,8 +559,9 @@ function Bulk_Land({ projects_full_list_detail }) {
                                   type="text"
                                   name="email_address"
                                   id="email_address"
-                                  className={`form-control ${errors.email_address ? "error" : ""
-                                    }`}
+                                  className={`form-control ${
+                                    errors.email_address ? 'error' : ''
+                                  }`}
                                   tabIndex="15"
                                   onChange={handleChange}
                                   value={inquiryObj.email_address}
@@ -556,8 +580,9 @@ function Bulk_Land({ projects_full_list_detail }) {
                                   name="remarks"
                                   type="text"
                                   onChange={handleChange}
-                                  className={`form-control ${errors.remarks ? "error" : ""
-                                    }`}
+                                  className={`form-control ${
+                                    errors.remarks ? 'error' : ''
+                                  }`}
                                   tabIndex="16"
                                   value={inquiryObj.remarks}
                                 />
@@ -589,7 +614,7 @@ function Bulk_Land({ projects_full_list_detail }) {
         </div>
       </div>
     </>
-  );
+  )
 }
 
-export default Bulk_Land;
+export default Bulk_Land
