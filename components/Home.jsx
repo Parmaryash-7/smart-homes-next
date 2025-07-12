@@ -16,6 +16,8 @@ import "swiper/css/pagination";
 import { Fancybox } from "@fancyapps/ui/dist/fancybox/";
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
 import awardsData from "data/awards.json";
+import { useDispatch } from "react-redux";
+import { openInquiry } from '../store/inquirySlice';
 import InquiryForm from "components/InquiryForm";
 
 export default function Home({
@@ -43,7 +45,7 @@ export default function Home({
     const toggleAccordion = (index) => {
         setOpenIndex(openIndex === index ? null : index);
     };
-
+    const dispatch = useDispatch();
     useEffect(() => {
         const validBlogData = Array.isArray(blogData) ? blogData : [];
 
@@ -1813,6 +1815,27 @@ export default function Home({
                         <p className="capitalize">Inquire Now</p>
                     </button>
                 </div> */}
+                <div>
+                    <button
+                        className="reecosys-template-button button-style-secondary"
+                        data-wow-duration="0.6s"
+                        data-wow-delay="0.6s"
+                        onClick={() => {
+                            dispatch(openInquiry());
+                        }}
+                        style={{
+                            position: 'fixed',
+                            bottom: '2rem',
+                            left: '50%',
+                            width: 'fit-content',
+                            transform: 'translateX(-50%)',
+                            zIndex: '9999',
+                        }}
+                    >
+                        <span className="material-symbols-outlined">chat</span>
+                        <p className="capitalize">Inquire Now</p>
+                    </button>
+                </div>
             </div>
         </>
     );
