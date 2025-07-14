@@ -19,8 +19,10 @@ export default function NriCorner({ pageList }) {
     const [inquiryObj, setInquiryObj] = useState({
         AgreeTandC: "1",
         AgreeTandC_display: true,
+        name: "",
         client_name: "",
         email: "",
+        contact_no_display: "",
         client_contact_no_display: "",
         from_app: "true",
         logged_in_master_user_id: 339,
@@ -97,24 +99,25 @@ export default function NriCorner({ pageList }) {
         //     department: inquiryObj.department,
         // };
         // inquiryObj.contact_no_display = inquiryObj.country + " " + inquiryObj.contact_no_display
-        inquiryObj.client_contact_no_display =
-            inquiryObj.country + ' ' + inquiryObj.contact_no_display;
-
+        inquiryObj.client_contact_no = inquiryObj.country + ' ' + inquiryObj.contact_no_display;
         inquiryObj.client_name = inquiryObj.name;
+
 
         try {
             const response = await api.Projectinquiry(inquiryObj)
             // console.log(inquiryObj);
             // alert("Form submitted successfully!");
+            console.log(response)
             if (response.success) {
                 dispatch(setThankYouData({ page_name: 'Nri Corner', document: [] }))
                 router.push('/nri-corner/thankyou')
-                console.log(response)
                 setInquiryObj({
                     AgreeTandC: "1",
                     AgreeTandC_display: true,
+                    name: "",
                     client_name: "",
                     email: "",
+                    contact_no_display: "",
                     client_contact_no_display: "",
                     from_app: "true",
                     logged_in_master_user_id: 339,
