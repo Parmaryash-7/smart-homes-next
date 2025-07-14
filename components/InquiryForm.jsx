@@ -250,15 +250,15 @@ export default function InquiryForm({
         />
       )}
 
-      {isAbout && propertyListName ? (
+      {isAbout && propertyList ? (
         <InputField
           tag="select"
-          selectList={propertyListName}
+          selectList={propertyList}
           name="about_project_id"
-          value={inquiryObj.about_project_id}
+          value={inquiryObj.propertyList}
           handleChange={handleChange}
           errors={errors}
-          label="Project Type*"
+          label="Project*"
         />
       ) : (
         <></>

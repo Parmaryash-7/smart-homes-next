@@ -2,16 +2,16 @@ import '../public/css/globals.css'
 import Header from 'components/Header'
 import Footer from 'components/Footer'
 import api from 'lib/api.interceptor'
-import getSocialMediaList from 'lib/SocialMediaList'
-import getHomeDetail from 'lib/HomeDetail'
+// import getSocialMediaList from 'lib/SocialMediaList'
+// import getHomeDetail from 'lib/HomeDetail'
 import { Providers } from '../store/Providers'
 import AOSInitializer from '../components/AOSInitializer'
 import InquiryPopup from '../components/InquiryPopup'
 
 export default async function RootLayout({ children }) {
   const propertylist = await api.Propertylist()
-  const socialList = await getSocialMediaList()
-  const homeDetails = await getHomeDetail()
+  const socialList = await api.SocialMediaList()
+  const homeDetails = await api.HomeDetail()
 
   return (
     <html lang="en">

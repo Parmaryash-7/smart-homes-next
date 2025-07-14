@@ -143,7 +143,7 @@ function Bulk_Land({ projects_full_list_detail }) {
     }
 
     inquiryObj.client_contact_no =
-      inquiryObj.country + ' ' + inquiryObj.client_contact_no_display
+    inquiryObj.country + ' ' + inquiryObj.client_contact_no_display
     inquiryObj.client_name = inquiryObj.first_name + ' ' + inquiryObj.last_name
     inquiryObj.remarks =
       inquiryObj.remarks +
@@ -387,9 +387,8 @@ function Bulk_Land({ projects_full_list_detail }) {
                                   type="text"
                                   name="first_name"
                                   id="first_name"
-                                  className={`form-control ${
-                                    errors.first_name ? 'error' : ''
-                                  }`}
+                                  className={`form-control ${errors.first_name ? 'error' : ''
+                                    }`}
                                   // required
                                   tabIndex={1}
                                   value={inquiryObj.first_name}
@@ -408,9 +407,8 @@ function Bulk_Land({ projects_full_list_detail }) {
                                   type="text"
                                   name="last_name"
                                   id="last_name"
-                                  className={`form-control ${
-                                    errors.last_name ? 'error' : ''
-                                  }`}
+                                  className={`form-control ${errors.last_name ? 'error' : ''
+                                    }`}
                                   // required
                                   tabIndex={2}
                                   value={inquiryObj.last_name}
@@ -424,9 +422,8 @@ function Bulk_Land({ projects_full_list_detail }) {
                               <div className="contact_lable select_option select_apr relative">
                                 <select
                                   name="property_type"
-                                  className={`form-control ${
-                                    errors.property_type ? 'error' : ''
-                                  }`}
+                                  className={`form-control ${errors.property_type ? 'error' : ''
+                                    }`}
                                   id="property_type"
                                   value={inquiryObj.property_type}
                                   onChange={(e) =>
@@ -436,7 +433,7 @@ function Bulk_Land({ projects_full_list_detail }) {
                                     })
                                   }
                                   tabIndex={3}
-                                  //   defaultValue={"Select Type"}
+                                //   defaultValue={"Select Type"}
                                 >
                                   <option
                                     value=""
@@ -444,7 +441,7 @@ function Bulk_Land({ projects_full_list_detail }) {
                                       inquiryObj.property_type ? 'disabled' : ''
                                     }
                                     className="gray-color"
-                                    // selected
+                                  // selected
                                   >
                                     Select Type
                                   </option>
@@ -476,11 +473,10 @@ function Bulk_Land({ projects_full_list_detail }) {
                                   id="client_contact_no_display"
                                   name="client_contact_no_display"
                                   type="tel"
-                                  className={`form-control contact-form ${
-                                    errors.client_contact_no_display
+                                  className={`form-control contact-form ${errors.client_contact_no_display
                                       ? 'error'
                                       : ''
-                                  }`}
+                                    }`}
                                   value={inquiryObj.client_contact_no_display}
                                   onChange={handleChange}
                                   required
@@ -516,9 +512,8 @@ function Bulk_Land({ projects_full_list_detail }) {
                                   </div>
                                 </div>
                                 <div
-                                  className={`country_code_list_data ${
-                                    countryFlag ? 'active' : ''
-                                  }`}
+                                  className={`country_code_list_data ${countryFlag ? 'active' : ''
+                                    }`}
                                   onClick={(e) => e.stopPropagation()}
                                 >
                                   <div className="search_c-code">
@@ -568,9 +563,8 @@ function Bulk_Land({ projects_full_list_detail }) {
                                   type="text"
                                   name="email_address"
                                   id="email_address"
-                                  className={`form-control ${
-                                    errors.email_address ? 'error' : ''
-                                  }`}
+                                  className={`form-control ${errors.email_address ? 'error' : ''
+                                    }`}
                                   tabIndex={5}
                                   onChange={handleChange}
                                   value={inquiryObj.email_address}
@@ -589,9 +583,8 @@ function Bulk_Land({ projects_full_list_detail }) {
                                   name="remarks"
                                   type="text"
                                   onChange={handleChange}
-                                  className={`form-control ${
-                                    errors.remarks ? 'error' : ''
-                                  }`}
+                                  className={`form-control ${errors.remarks ? 'error' : ''
+                                    }`}
                                   tabIndex={6}
                                   value={inquiryObj.remarks}
                                 />

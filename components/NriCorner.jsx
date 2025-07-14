@@ -3,7 +3,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCountryList } from "store/countrySlice";
-import { projectInquiry } from "lib/ProjectInquiry";
+import api from 'lib/api.interceptor'
+
+// import { projectInquiry } from "lib/ProjectInquiry";
 
 export default function NriCorner({ pageList }) {
     const [pageData, setPageData] = useState(null);
@@ -13,9 +15,14 @@ export default function NriCorner({ pageList }) {
     const [search, setSearch] = useState("");
     const [errors, setErrors] = useState({});
     const [inquiryObj, setInquiryObj] = useState({
-        name: "",
+        AgreeTandC: "1",
+        AgreeTandC_display: true,
+        client_name: "",
         email: "",
-        contact_no_display: "",
+        client_contact_no_display: "",
+        from_app: "true",
+        logged_in_master_user_id: 339,
+        master_user_id: 339,
         country: "91",
         flag: "https://flagcdn.com/w40/in.webp",
         message: "",
@@ -74,6 +81,7 @@ export default function NriCorner({ pageList }) {
         setErrors({});
         setFormSubmitted(true);
 
+
         // const contactData = {
         //     name: inquiryObj.name,
         //     email: inquiryObj.email,
@@ -82,26 +90,44 @@ export default function NriCorner({ pageList }) {
         //     department: inquiryObj.department,
         // };
         // inquiryObj.contact_no_display = inquiryObj.country + " " + inquiryObj.contact_no_display
+        inquiryObj.client_contact_no_display =
+            inquiryObj.country + ' ' + inquiryObj.contact_no_display;
+
+        inquiryObj.client_name = inquiryObj.name;
 
         try {
-            console.log(inquiryObj);
-            alert("Form submitted successfully!");
-            setInquiryObj({
-                name: "",
-                email: "",
-                contact_no_display: "",
-                country: "91",
-                flag: "https://flagcdn.com/w40/in.webp",
-                message: "",
-                department: "",
-            });
-            setSearch("");
-            document.getElementById("agree_tandc").checked = false;
+            const response = await api.Projectinquiry(inquiryObj)
+            // console.log(inquiryObj);
+            // alert("Form submitted successfully!");
+            if (response.success) {
+                dispatch(setThankYouData({ page_name: 'Nri Corner', document: [] }))
+                router.push('/nri-corner/thankyou')
+                console.log(response)
+                setInquiryObj({
+                    AgreeTandC: "1",
+                    AgreeTandC_display: true,
+                    client_name: "",
+                    email: "",
+                    client_contact_no_display: "",
+                    from_app: "true",
+                    logged_in_master_user_id: 339,
+                    master_user_id: 339,
+                    country: "91",
+                    flag: "https://flagcdn.com/w40/in.webp",
+                    message: "",
+                    department: "",
+                });
+                setSearch("");
+                document.getElementById("agree_tandc").checked = false;
+            } else {
+                Toast(response.message)
+            }
+            setFormSubmitted(false)
+            setErrors({})
         } catch (error) {
-            alert("Submission failed.");
-            console.error(error);
-        } finally {
-            setFormSubmitted(false);
+            console.error('Submission error:', error)
+            setFormSubmitted(false)
+            // alert("Submission failed.");
         }
     };
 

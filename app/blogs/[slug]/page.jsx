@@ -1,4 +1,6 @@
 import Blog_detail from "components/Blog_detail";
+import api from 'lib/api.interceptor'
+
 import getPageList from "lib/PageList";
 import getBlogDetail from "lib/BlogDetail";
 import getBlogLatest from "lib/BlogLatest";

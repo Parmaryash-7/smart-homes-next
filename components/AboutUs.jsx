@@ -11,7 +11,7 @@ import InquiryForm from "components/InquiryForm";
 let Swiper = null;
 let SwiperSlide = null;
 
-export default function AboutUs({ aboutDetails, pageList }) {
+export default function AboutUs({ aboutDetails, pageList ,propertyList }) {
   const [aboutUsData, setAboutUs] = useState(aboutDetails || null);
   const [isMobilescreen, setMobilescreen] = useState(false);
   const [SwiperComponents, setSwiperComponents] = useState({
@@ -609,8 +609,9 @@ export default function AboutUs({ aboutDetails, pageList }) {
                       data-aos-delay="600"
                     >
                       <InquiryForm
-                        //   pageDetail={projectDetail}
+                        // pageDetail={projectDetail}
                         countryFlag={countryFlag}
+                        propertyList = {propertyList}
                         setCountryFlag={setCountryFlag}
                         isAbout={true}
                       />
