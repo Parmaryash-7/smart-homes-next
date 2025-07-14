@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCountryList } from "store/countrySlice";
+import { useRouter } from 'next/navigation'
 import api from 'lib/api.interceptor'
 
 // import { projectInquiry } from "lib/ProjectInquiry";
@@ -30,6 +31,7 @@ export default function NriCorner({ pageList }) {
     });
 
     const dispatch = useDispatch();
+    const router = useRouter()
     const { countryList } = useSelector((state) => state.country);
 
     useEffect(() => {
