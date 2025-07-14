@@ -3,18 +3,28 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCountryList } from "store/countrySlice";
+import { useRouter } from 'next/navigation'
+import { setThankYouData } from 'store/inquirySlice'
+import { Toast } from './Toast'
 import { projectInquiry } from "lib/ProjectInquiry";
 import "./ContactUs.css";
+import api from "lib/api.interceptor";
 
 export default function ContactUs({ pageList, contactDetails }) {
     const [inquiryObj, setInquiryObj] = useState({
+        agree_tandc: "1",
+        agree_tandc_display: true,
+        contact_no: "",
         name: "",
         email: "",
-        contact_no_display: "",
+        client_contact_no_display: "",
         country: "91",
         flag: "https://flagcdn.com/w40/in.webp",
         message: "",
         department: "",
+        from_app: "true",
+        logged_in_master_user_id: 339,
+        master_user_id: 339
     });
 
     const [formSubmitted, setFormSubmitted] = useState(false);
@@ -24,6 +34,7 @@ export default function ContactUs({ pageList, contactDetails }) {
     const [errors, setErrors] = useState({});
     const [privacyData, setPrivacy] = useState(null);
 
+    const router = useRouter()
     const dispatch = useDispatch();
     const { countryList, status } = useSelector((state) => state.country);
 
@@ -40,36 +51,13 @@ export default function ContactUs({ pageList, contactDetails }) {
             setPrivacy(privacyDData);
         }
     });
-
-
-    // useEffect(() => {
-    //     async function loadCountry() {
-    //         try {
-    //             const data = await CountryList();
-    //             const filtered = data.filter((c) => c.phonecode !== "92");
-    //             setCountryList(filtered);
-    //         } catch (err) {
-    //             console.error("Country load error", err);
-    //         }
-    //     }
-    //     loadCountry();
-    // }, []);
-
-    // const handleChange = (e) => {
-    //     const { name, value } = e.target;
-    //     let val = value;
-    //     if (name === "name") val = val.replace(/[0-9]/g, "");
-    //     if (name === "contact_no_display") val = val.replace(/[^0-9]/g, "").slice(0, 10);
-
-    //     setInquiryObj((prev) => ({ ...prev, [name]: val }));
-    // };
     const handleChange = (e) => {
         const { name, value } = e.target;
         setErrors((prev) => ({ ...prev, [name]: false }));
 
         let val = value;
         if (name === "name") val = val.replace(/[0-9]/g, "");
-        if (name === "contact_no_display") val = val.replace(/[^0-9]/g, "").slice(0, 10);
+        if (name === "client_contact_no_display") val = val.replace(/[^0-9]/g, "").slice(0, 10);
 
         setInquiryObj((prev) => ({ ...prev, [name]: val }));
     };
@@ -94,8 +82,8 @@ export default function ContactUs({ pageList, contactDetails }) {
         if (!inquiryObj.email.trim()) newErrors.email = true;
         else if (!emailRegex.test(inquiryObj.email)) newErrors.email = true;
 
-        if (!inquiryObj.contact_no_display.trim()) newErrors.contact_no_display = true;
-        else if (!phoneRegex.test(inquiryObj.contact_no_display)) newErrors.contact_no_display = true;
+        if (!inquiryObj.client_contact_no_display.trim()) newErrors.client_contact_no_display = true;
+        else if (!phoneRegex.test(inquiryObj.client_contact_no_display)) newErrors.client_contact_no_display = true;
 
         if (!inquiryObj.department.trim()) newErrors.department = true;
 
@@ -108,34 +96,41 @@ export default function ContactUs({ pageList, contactDetails }) {
 
         setErrors({});
         setFormSubmitted(true);
+        inquiryObj.contact_no = inquiryObj.country + ' ' + inquiryObj.client_contact_no_display;
 
-        const contactData = {
-            name: inquiryObj.name,
-            email: inquiryObj.email,
-            contact_no: inquiryObj.country + inquiryObj.contact_no_display,
-            message: inquiryObj.message,
-            department: inquiryObj.department,
-        };
-
-        console.log("Form Data Submitted:", contactData);
 
         try {
-            alert("Form submitted successfully!");
-            setInquiryObj({
-                name: "",
-                email: "",
-                contact_no_display: "",
-                country: "91",
-                flag: "https://flagcdn.com/w40/in.webp",
-                message: "",
-                department: "",
-            });
-            setSearch("");
+            const response = await api.ContactInq(inquiryObj)
+            // console.log(inquiryObj);
+            if (response.success) {
+                // alert("Form submitted successfully!");
+                dispatch(setThankYouData({ page_name: '', document: [] }))
+                router.push('/contact-us/thankyou')
+
+                Toast(response.message)
+                setInquiryObj({
+                    agree_tandc: "1",
+                    agree_tandc_display: true,
+                    contact_no: "",
+                    name: "",
+                    email: "",
+                    client_contact_no_display: "",
+                    country: "91",
+                    flag: "https://flagcdn.com/w40/in.webp",
+                    message: "",
+                    department: "",
+                    from_app: "true",
+                    logged_in_master_user_id: 339,
+                    master_user_id: 339
+                });
+                setSearch("");
+            } else {
+                Toast(response.message)
+            }
         } catch (error) {
             console.error(error);
-        } finally {
-            setFormSubmitted(false);
         }
+
     };
 
 
@@ -327,10 +322,10 @@ export default function ContactUs({ pageList, contactDetails }) {
                                             <div className="contact_lable relative">
                                                 <input
                                                     id="contact_no"
-                                                    name="contact_no_display"
+                                                    name="client_contact_no_display"
                                                     type="tel"
-                                                    className={`form-control contact-form ${errors.contact_no_display ? "error" : ""}`}
-                                                    value={inquiryObj.contact_no_display}
+                                                    className={`form-control contact-form ${errors.client_contact_no_display ? "error" : ""}`}
+                                                    value={inquiryObj.client_contact_no_display}
                                                     onChange={handleChange}
 
                                                     minLength="10"
@@ -340,7 +335,7 @@ export default function ContactUs({ pageList, contactDetails }) {
                                                 {/* <label className="md-lable contact_code" htmlFor="contact_no">
                                                     Mobile Number*
                                                 </label> */}
-                                                <label className={`md-lable contact_code ${errors.contact_no_display ? "error-label" : ""}`}>
+                                                <label className={`md-lable contact_code ${errors.client_contact_no_display ? "error-label" : ""}`}>
                                                     Mobile Number*
                                                 </label>
 

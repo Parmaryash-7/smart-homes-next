@@ -7,6 +7,9 @@ import { fetchCountryList } from 'store/countrySlice'
 import { projectInquiry } from 'lib/ProjectInquiry'
 import InputField from './InputFeild'
 import { toast } from 'react-toastify'
+import api from 'lib/api.interceptor.js'
+import { Toast } from './Toast'
+
 
 export default function InquiryForm({
   pageDetail,
@@ -16,12 +19,12 @@ export default function InquiryForm({
   isAbout,
   propertyList
 }) {
-  // const [countryList, setcountryList] = useState(null);
   const [search, setSearch] = useState('')
   const [formSubmitted, setFormSubmitted] = useState(false)
   const [isSubmitting, setisSubmitting] = useState(false)
+  const [fetchedPropertyList, setFetchedPropertyList] = useState([])
+  const [projectOptions, setProjectOptions] = useState([])
 
-  // const [seoMetaData, setSeoMetaData] = useState(null);
   const [inquiryObj, setInquiryObj] = useState({
     agree_tandc: '1',
     from_app: 'true',
@@ -29,7 +32,7 @@ export default function InquiryForm({
     logged_in_master_user_id: '339',
     agree_tandc_display: true,
     last_name: '',
-    property_type: '',
+    property_type: 'plot',
     first_name: '',
     client_contact_no_display: '',
     client_contact_no: '',
@@ -38,12 +41,12 @@ export default function InquiryForm({
     user_type: 'N',
     flag: 'https://flagcdn.com/w40/in.webp',
     country: '91',
-    project_id: ''
+    project_id: '722',
   })
+
   const dispatch = useDispatch()
   const { countryList } = useSelector((state) => state.country)
 
-  // Load country list from redux store
   useEffect(() => {
     dispatch(fetchCountryList())
   }, [pageDetail, dispatch])
@@ -54,116 +57,158 @@ export default function InquiryForm({
     const { name, value } = e.target
 
     let updatedValue = value
-    // Prevent numbers in client_name (handle paste or typing)
     if (name === 'client_name') {
-      updatedValue = value.replace(/[0-9]/g, '') // remove any digits
+      updatedValue = value.replace(/[0-9]/g, '')
     }
 
-    // For contact_no, allow only numbers
     if (name === 'client_contact_no_display') {
-      updatedValue = value.replace(/[^0-9]/g, '') // remove non-numeric chars
+      updatedValue = value.replace(/[^0-9]/g, '')
       if (updatedValue.length > 10) {
-        updatedValue = updatedValue.slice(0, 10) // limit to 10 digits
+        updatedValue = updatedValue.slice(0, 10)
       }
     }
 
-    // Update state
     setInquiryObj((prev) => ({
       ...prev,
       [name]: updatedValue
     }))
 
-    // Clear error for the current field
     setErrors((prev) => ({
       ...prev,
       [name]: ''
     }))
   }
-  const validate = () => {
-    let newErrors = {}
-    const nameRegex = /^[a-zA-Z\s]+$/
-    const phoneRegex = /^\d{10}$/
-    const emailRegex = /^[\w.-]+@[a-zA-Z\d.-]+\.[a-zA-Z]{2,}$/
 
-    if (!inquiryObj.first_name.trim()) {
-      newErrors.first_name = 'First Name is required'
-    } else if (!nameRegex.test(inquiryObj.first_name)) {
-      newErrors.first_name = 'Name must contain only letters'
-    }
-    if (!inquiryObj.last_name.trim()) {
-      newErrors.last_name = 'Last Name is required'
-    } else if (!nameRegex.test(inquiryObj.last_name)) {
-      newErrors.last_name = 'Name must contain only letters'
-    }
-
-    if (!inquiryObj.client_contact_no_display.trim()) {
-      newErrors.client_contact_no_display = 'Contact number is required'
-    } else if (!phoneRegex.test(inquiryObj.client_contact_no_display)) {
-      newErrors.client_contact_no_display = 'Contact number must be 10 digits'
-    }
-
-    if (
-      !isHome &&
-      (!inquiryObj.property_type || inquiryObj.property_type.trim() === '')
-    ) {
-      newErrors.property_type = 'Address is required'
-    }
-
-    // if (!inquiryObj.email_address.trim()) {
-    //     newErrors.email_address = "Email is required";
-    // } else if (!emailRegex.test(inquiryObj.email_address)) {
-    //     newErrors.email_address = "Invalid email format";
-    // }
-
-    return newErrors
-  }
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    setFormSubmitted(true)
-
-    const validationErrors = validate()
-    if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors)
-
-      // Scroll to first error field
-      const firstErrorField = Object.keys(validationErrors)[0]
-      const el = document.querySelector(`[name="${firstErrorField}"]`)
-      if (el && typeof el.scrollIntoView === 'function') {
-        el.scrollIntoView({ behavior: 'smooth', block: 'center' })
-        el.focus()
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const result = await api.Propertylist()
+        const filtered = result.filter(
+          (item) => item.project_id !== 744 && item.project_id !== 814
+        )
+        setFetchedPropertyList(result)
+        setProjectOptions(filtered)
+      } catch (error) {
+        console.error('Error fetching projects:', error)
       }
-
-      return
     }
 
-    setisSubmitting(true)
+    fetchProjects()
+  }, [])
 
-    let project_id = !isHome ? pageDetail.project_id : ''
-    let client_name = inquiryObj.first_name + ' ' + inquiryObj.last_name
-    let client_contact_no =
-      inquiryObj.country + ' ' + inquiryObj.client_contact_no_display
+  // const validate = () => {
+  //   let newErrors = {}
+  //   const nameRegex = /^[a-zA-Z\s]+$/
+  //   const phoneRegex = /^\d{10}$/
+  //   const emailRegex = /^[\w.-]+@[a-zA-Z\d.-]+\.[a-zA-Z]{2,}$/
 
-    inquiryObj.remarks = !isHome
-      ? inquiryObj.remarks + ' , Looking For : ' + inquiryObj.property_type
-      : ''
+  //   if (!inquiryObj.first_name.trim()) {
+  //     newErrors.first_name = 'First Name is required'
+  //   } else if (!nameRegex.test(inquiryObj.first_name)) {
+  //     newErrors.first_name = 'Name must contain only letters'
+  //   }
+  //   if (!inquiryObj.last_name.trim()) {
+  //     newErrors.last_name = 'Last Name is required'
+  //   } else if (!nameRegex.test(inquiryObj.last_name)) {
+  //     newErrors.last_name = 'Name must contain only letters'
+  //   }
 
-    const finalInquiry = {
-      ...inquiryObj,
-      project_id,
-      client_name,
-      client_contact_no
+  //   if (!inquiryObj.client_contact_no_display.trim()) {
+  //     newErrors.client_contact_no_display = 'Contact number is required'
+  //   } else if (!phoneRegex.test(inquiryObj.client_contact_no_display)) {
+  //     newErrors.client_contact_no_display = 'Contact number must be 10 digits'
+  //   }
+
+  //   if (
+  //     !isHome &&
+  //     (!inquiryObj.property_type || inquiryObj.property_type.trim() === '')
+  //   ) {
+  //     newErrors.property_type = 'Address is required'
+  //   }
+
+  //   return newErrors
+  // }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setFormSubmitted(true);
+    if (isSubmitting) return;
+
+    const newErrors = {};
+    const nameRegex = /^[a-zA-Z\s]+$/;
+    const phoneRegex = /^\d{10}$/;
+    const emailRegex = /^[\w.-]+@[a-zA-Z\d.-]+\.[a-zA-Z]{2,}$/;
+
+    if (!inquiryObj.first_name.trim()) newErrors.first_name = true;
+    else if (!nameRegex.test(inquiryObj.first_name)) newErrors.first_name = true;
+
+    if (!inquiryObj.last_name.trim()) newErrors.last_name = true;
+    else if (!nameRegex.test(inquiryObj.last_name)) newErrors.last_name = true;
+
+    if (!inquiryObj.client_contact_no_display.trim()) newErrors.client_contact_no_display = true;
+    else if (!phoneRegex.test(inquiryObj.client_contact_no_display)) newErrors.client_contact_no_display = true;
+
+    if (!inquiryObj.email_address.trim()) newErrors.email_address = true;
+    else if (!emailRegex.test(inquiryObj.email_address)) newErrors.email_address = true;
+
+    if (!isHome && (!inquiryObj.property_type || inquiryObj.property_type.trim() === '')) {
+      newErrors.property_type = true;
     }
 
-    console.log('Form Data:', finalInquiry)
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      const firstErrorField = Object.keys(newErrors)[0];
+      const el = document.querySelector(`[name="${firstErrorField}"]`);
+      if (el && typeof el.scrollIntoView === 'function') {
+        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        el.focus();
+      }
+      return;
+    }
 
-    // Example POST
-    // const res = await projectInquiry(finalInquiry)
-    // const response = await res.json()
-    // toast.success('Inquiry submitted successfully')
+    setErrors({});
+    setisSubmitting(true);
+    inquiryObj.client_contact_no = inquiryObj.country + ' ' + inquiryObj.client_contact_no_display;
+    inquiryObj.client_name = inquiryObj.first_name + " " + inquiryObj.last_name;
+    inquiryObj.remarks = inquiryObj.remarks + ' ,  Looking For: ' + inquiryObj.property_type
+    // const finalPayload = {
+    //   ...inquiryObj,
+    //   client_contact_no: `${inquiryObj.country} ${inquiryObj.client_contact_no_display}`,
+    // };
 
-    setisSubmitting(false)
-    setFormSubmitted(false)
-  }
+    try {
+      const response = await api.Projectinquiry(inquiryObj);
+      console.log(response);
+      if (response.success) {
+        Toast(response.message)
+        setInquiryObj({
+          agree_tandc: '1',
+          from_app: 'true',
+          master_user_id: '339',
+          logged_in_master_user_id: '339',
+          agree_tandc_display: true,
+          last_name: '',
+          property_type: 'plot',
+          first_name: '',
+          client_contact_no_display: '',
+          client_contact_no: '',
+          email_address: '',
+          remarks: '',
+          user_type: 'N',
+          flag: 'https://flagcdn.com/w40/in.webp',
+          country: '91',
+          project_id: '722',
+        });
+        setSearch('');
+      }
+      else {
+        Toast(response.message)
+      }
+    } catch (error) {
+      console.error('Submission error:', error);
+      toast.error('Something went wrong. Please try again.');
+    }
+  };
 
 
   const handleCountrySelect = (phonecode, flag) => {
@@ -175,22 +220,6 @@ export default function InquiryForm({
     setCountryFlag(false)
   }
 
-  // const loadCountry = async () => {
-  //   try {
-  //     // const data = await CountryList();
-
-  //     // Filter directly, without `await`
-  //     // const filtered = data.filter((country) => country.phonecode !== "92");
-
-  //     setcountryList(filtered);
-  //   } catch (err) {
-  //     console.error("Error loading country data:", err);
-  //   }
-  // };
-  // useEffect(() => {
-  //   loadCountry();
-  // }, []);
-
   useEffect(() => {
     if (isAbout) {
       setInquiryObj({
@@ -201,29 +230,14 @@ export default function InquiryForm({
   }, [])
 
   const projectType = [
-    {
-      name: '',
-      value: ''
-    },
-    {
-      name: 'Villa',
-      value: 'Villa'
-    },
-    {
-      name: 'Plot',
-      value: 'Plot'
-    }
+    { name: '', value: '' },
+    { name: 'Villa', value: 'Villa' },
+    { name: 'Plot', value: 'Plot' }
   ]
 
   const aboutProjectType = [
-    {
-      name: '',
-      value: ''
-    },
-    {
-      name: 'Plot',
-      value: 'Plot'
-    }
+    { name: '', value: '' },
+    { name: 'Plot', value: 'Plot' }
   ]
 
   const propertyListName = [
@@ -231,8 +245,6 @@ export default function InquiryForm({
     { name: 'name1', value: 'name1' },
     { name: 'name2', value: 'name2' }
   ]
-
-  // return null;
 
   return (
     <form className="contactForm detailForm w100" onSubmit={handleSubmit}>
@@ -250,19 +262,17 @@ export default function InquiryForm({
         />
       )}
 
-      {isAbout && propertyList ? (
+      {isAbout && fetchedPropertyList.length > 0 ? (
         <InputField
           tag="select"
-          selectList={propertyList}
+          selectList={fetchedPropertyList}
           name="about_project_id"
-          value={inquiryObj.propertyList}
+          value={inquiryObj.property_type}
           handleChange={handleChange}
           errors={errors}
           label="Project*"
         />
-      ) : (
-        <></>
-      )}
+      ) : null}
 
       {isAbout ? (
         <InputField
@@ -274,9 +284,7 @@ export default function InquiryForm({
           errors={errors}
           label="Project Type*"
         />
-      ) : (
-        <></>
-      )}
+      ) : null}
 
       <InputField
         tag="input"
@@ -347,11 +355,6 @@ export default function InquiryForm({
           className="reecosys-template-button button-style-secondary"
           type="submit"
           disabled={isSubmitting}
-        // onClick={(e) => {
-        //   e.preventDefault()
-        //   e.stopPropagation()
-        //   handleSubmit()
-        // }}
         >
           <p>{isSubmitting ? 'Please Wait...' : 'Submit'}</p>
         </button>

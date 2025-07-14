@@ -2022,8 +2022,29 @@ label.error {
   position: relative;
 }
 
-.home_banner_pagination
-  .swiper-pagination-bullet.swiper-pagination-bullet-active {
+.about_wrpper .contactForm.detailForm form {
+    grid-template-areas:
+        "one two"
+        "three four"
+        "five six"
+        "six six"
+        "seven seven"
+        "eight";
+}
+
+.about_wrapper .contactForm form>div:nth-child(6) {
+  grid-area: six;
+}
+/* 
+.about_wrapper .contactForm form>div:nth-child(7) {
+  grid-area: seven;
+}
+
+.about_wrapper .contactForm form>div:nth-child(8) {
+  grid-area: eight;
+} */
+
+.home_banner_pagination .swiper-pagination-bullet.swiper-pagination-bullet-active {
   opacity: 1;
   background: var(--white-color);
 }
@@ -2971,6 +2992,7 @@ label.error {
 .whatsapp-icon {
   width: 3.5rem;
 }
+
 /* 
 .whatsapp_connect.active {
   bottom: 6rem;
@@ -7166,7 +7188,7 @@ span.readmore_click {
 } */
 
 
-.contactForm form > div:nth-child(7) {
+.contactForm form>div:nth-child(7) {
   grid-area: seven;
 }
 
@@ -7174,7 +7196,7 @@ span.readmore_click {
   grid-area: eight;
 }
 
-.contactForm form > div:last-child {
+.contactForm form>div:last-child {
   grid-column: 1 / span 2;
   /* grid-area: unset; */
 }

@@ -1,26 +1,37 @@
-"use client";
-
-import React, { useEffect, useState } from "react";
-import { projectInquiry } from "lib/ProjectInquiry";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchCountryList } from "store/countrySlice";
+'use client';
+import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchCountryList } from 'store/countrySlice';
+import { useRouter } from 'next/navigation'
+import { setThankYouData } from 'store/inquirySlice'
+import { Toast } from "./Toast";
+import api from 'lib/api.interceptor'
 
 export default function ChannelPartner({ pageList }) {
     const [privacyData, setPrivacy] = useState(null);
     const [isMobilescreen, setMobilescreen] = useState(false);
-    // const [countryList, setCountryList] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
     const [errors, setErrors] = useState({});
     const [cp_save_f, setCpSaveF] = useState(false);
 
+    const router = useRouter();
     const dispatch = useDispatch();
-    const { countryList, loading } = useSelector((state) => state.country);
+    const { countryList } = useSelector((state) => state.country);
 
     useEffect(() => {
         dispatch(fetchCountryList());
     }, [dispatch]);
 
+    useEffect(() => {
+        const found = pageList.find((page) => page.slug === "channelpartner");
+        if (found) setPrivacy(found);
+        if (window.innerWidth < 767) setMobilescreen(true);
+    }, [pageList]);
+
     const [cpFormData, setCpFormData] = useState({
+        AgreeTandC: "1",
+        AgreeTandC_display: true,
+        agree_tandc_display: true,
         first_name: "",
         email_address: "",
         contact_no_display: "",
@@ -43,6 +54,7 @@ export default function ChannelPartner({ pageList }) {
         account_holder_name: "",
         bank_account_no: "",
         ifsc_code: "",
+        agree_tandc_display: false,
     });
 
     const [cpObj, setCpObj] = useState({
@@ -59,31 +71,17 @@ export default function ChannelPartner({ pageList }) {
     const [countryDropdown2, setCountryDropdown2] = useState(false);
     const [countryDropdown3, setCountryDropdown3] = useState(false);
 
-    useEffect(() => {
-        const found = pageList.find((page) => page.slug === "channelpartner");
-        if (found) setPrivacy(found);
-        if (window.innerWidth < 767) setMobilescreen(true);
-
-        // async function fetchCountries() {
-        //     try {
-        //         const data = await CountryList();
-        //         setCountryList(data.filter((c) => c.phonecode !== "92"));
-        //     } catch (error) {
-        //         console.error("Country fetch error", error);
-        //     }
-        // }
-        // fetchCountries();
-    }, [pageList]);
-
     const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        let newVal = value;
+        const { name, value, type, checked } = e.target;
+        let newVal = type === "checkbox" ? checked : value;
 
         if (name === "first_name") newVal = newVal.replace(/[0-9]/g, "");
         if (name === "contact_no_display" || name === "contact_no_display_2") {
             newVal = newVal.replace(/[^0-9]/g, "").slice(0, 10);
         }
-
+        if (name === "aadhar_no") {
+            newVal = newVal.replace(/[^0-9]/g, "").slice(0, 12);
+        }
         setCpFormData((prev) => ({ ...prev, [name]: newVal }));
         setErrors((prev) => ({ ...prev, [name]: false }));
     };
@@ -91,6 +89,7 @@ export default function ChannelPartner({ pageList }) {
     const handleChange = (e) => {
         const { name, value } = e.target;
         setCpObj((prev) => ({ ...prev, [name]: value }));
+        setErrors((prev) => ({ ...prev, [name]: false }));
     };
 
     const handleCountryClick = (code, flag) => {
@@ -108,43 +107,113 @@ export default function ChannelPartner({ pageList }) {
         setCountryDropdown3(false);
     };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        console.log("submit");
-
+    const validateForm = () => {
         const newErrors = {};
+
         const nameRegex = /^[a-zA-Z\s]+$/;
         const phoneRegex = /^\d{10}$/;
         const emailRegex = /^[\w.-]+@[a-zA-Z\d.-]+\.[a-zA-Z]{2,}$/;
+        const aadharRegex = /^[2-9]{1}[0-9]{11}$/;
+        const panRegex = /^[A-Z]{5}[0-9]{4}[A-Z]{1}$/;
+        const gstRegex = /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$/;
+        const pincodeRegex = /^[1-9][0-9]{5}$/;
 
         if (!cpFormData.first_name.trim() || !nameRegex.test(cpFormData.first_name)) newErrors.first_name = true;
         if (!cpFormData.email_address.trim() || !emailRegex.test(cpFormData.email_address)) newErrors.email_address = true;
         if (!cpFormData.contact_no_display.trim() || !phoneRegex.test(cpFormData.contact_no_display)) newErrors.contact_no_display = true;
+        if (!cpFormData.aadhar_no.trim() || !aadharRegex.test(cpFormData.aadhar_no)) newErrors.aadhar_no = true;
+        if (!cpFormData.pan_no.trim() || !panRegex.test(cpFormData.pan_no.toUpperCase())) newErrors.pan_no = true;
+        if (!cpObj.pincode.trim() || !pincodeRegex.test(cpObj.pincode)) newErrors.pincode = true;
+        if (!cpObj.gst_no.trim() || !gstRegex.test(cpObj.gst_no.toUpperCase())) newErrors.gst_no = true;
         if (!cpFormData.agree_tandc_display) newErrors.agree_tandc_display = true;
 
-        if (Object.keys(newErrors).length > 0) {
-            setErrors(newErrors);
-            // console.log(newErrors, "erreaiwhdoiaj");
+        return newErrors;
+    };
+
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        const validationErrors = validateForm();
+        if (Object.keys(validationErrors).length > 0) {
+            setErrors(validationErrors);
             return;
         }
 
         setCpSaveF(true);
 
-        const contact_no = cpFormData.country + " " + cpFormData.contact_no_display;
-        const secondary_contact_no = cpFormData.country2 + " " + cpFormData.contact_no_display_2;
-
-        const finalPayload = {
+        // Combine all data into one payload
+        const contactPayload = {
             ...cpFormData,
             ...cpObj,
-            contact_no,
-            secondary_contact_no,
             pan_no: cpFormData.pan_no.toUpperCase(),
+            contact_no: cpFormData.country + ' ' + cpFormData.contact_no_display,
+            reference_number: cpFormData.country + ' ' + cpFormData.contact_no_display_2,
+            from_app: "true",
+            logged_in_master_user_id: 339,
+            master_user_id: 339,
+            company_id: 14,
+            is_crown: "0",
+            last_name: "",
+            company_name: "",
+            associated_company: false,
+            reference_name: "",
         };
+        console.log(contactPayload)
 
         try {
-            console.log(cpFormData);
-            // await ProjectInquiry(finalPayload);
-            alert("Form submitted successfully!");
+            const response = await api.ContactInq(contactPayload);
+            console.log(response)
+            if (response.success) {
+                dispatch(setThankYouData({
+                    type: "channelpartner",
+                    name: cpFormData.first_name,
+                }));
+                router.push("/channel-partner/thank-you");
+
+                setCpFormData({
+                    AgreeTandC: "1",
+                    AgreeTandC_display: true,
+                    agree_tandc_display: true,
+                    first_name: "",
+                    email_address: "",
+                    contact_no_display: "",
+                    contact_no_display_2: "",
+                    country: "91",
+                    flag: "https://flagcdn.com/w40/in.webp",
+                    country2: "91",
+                    flag2: "https://flagcdn.com/w40/in.webp",
+                    country3: "91",
+                    flag3: "https://flagcdn.com/w40/in.webp",
+                    pan_no: "",
+                    aadhar_no: "",
+                    years_of_experience_in_real_estate: "",
+                    previous_projects_developers_worked_with: "",
+                    primary_areas_of_operation: "",
+                    nature_of_business: "",
+                    average_monthly_sales: "",
+                    bank_name: "",
+                    branch_name: "",
+                    account_holder_name: "",
+                    bank_account_no: "",
+                    ifsc_code: "",
+                    agree_tandc_display: false,
+                });
+
+                setCpObj({
+                    company_type: "",
+                    address: "",
+                    city: "",
+                    state: "",
+                    pincode: "",
+                    company_url: "",
+                    gst_no: "",
+                });
+
+                setErrors({});
+            } else {
+                Toast(response.message || "Something went wrong!");
+            }
         } catch (err) {
             console.error("Submission error", err);
             alert("Submission failed.");
@@ -152,6 +221,8 @@ export default function ChannelPartner({ pageList }) {
             setCpSaveF(false);
         }
     };
+
+
     return (
         <>
             <div
@@ -397,7 +468,8 @@ export default function ChannelPartner({ pageList }) {
                                                         onChange={handleInputChange}
                                                         type="text"
                                                         className="form-control"
-
+                                                        pattern="\d*"
+                                                        inputMode="numeric"
                                                         minLength="12"
                                                         maxLength="12"
                                                         tabIndex="16"

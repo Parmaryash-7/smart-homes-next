@@ -3,13 +3,14 @@
 import React from "react";
 import { useEffect, useRef } from "react";
 import Link from "next/link";
-
+import { openInquiry } from '../store/inquirySlice'
+import { useDispatch } from 'react-redux'
 
 export default function BottomStrip({
   isMobilescreen,
   isAmenityOpen,
   projectDetail,
-  inquiryPopup,
+  // openInquiry,
   setInquiryPopup,
   setInquiryPopupObj,
 }) {
@@ -41,12 +42,12 @@ export default function BottomStrip({
       window.removeEventListener("scroll", handleScroll); // Clean up on unmount
     };
   }, []);
-
+  const dispatch = useDispatch()
   return (
     <>
       <div
         ref={bottomStripRef}
-        className={`bottomStrip ${isAmenityOpen || inquiryPopup ? "hidestrip" : ""
+        className={`bottomStrip ${isAmenityOpen || openInquiry ? "hidestrip" : ""
           } `}
         id="bottomStrip"
       >
@@ -93,7 +94,9 @@ export default function BottomStrip({
           <div className={`bottomEnquirybtn  ${isMobilescreen ? "w100" : ""}`}>
             <div className="hidden-xs">
               {/* ng-click="inquire_popup_click();  inquiry_from_click(); " */}
-              <button
+              <button onClick={() => {
+                dispatch(openInquiry())
+              }}
                 className={`reecosys-template-button button-style-secondary ${isMobilescreen ? "w100" : ""
                   } `}
               >

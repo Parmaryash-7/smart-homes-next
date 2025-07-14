@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCountryList } from "store/countrySlice";
 import { useRouter } from 'next/navigation'
+import { setThankYouData } from 'store/inquirySlice'
 import { Toast } from "./Toast";
 import api from 'lib/api.interceptor'
 
@@ -19,18 +20,18 @@ export default function NriCorner({ pageList }) {
     const [inquiryObj, setInquiryObj] = useState({
         AgreeTandC: "1",
         AgreeTandC_display: true,
+        agree_tandc_display : true,
         name: "",
-        client_name: "",
+        // client_name: "",
         email: "",
-        contact_no_display: "",
         client_contact_no_display: "",
+        contact_no: "",
         from_app: "true",
         logged_in_master_user_id: 339,
         master_user_id: 339,
         country: "91",
         flag: "https://flagcdn.com/w40/in.webp",
         message: "",
-        department: "",
     });
 
     const dispatch = useDispatch();
@@ -50,7 +51,7 @@ export default function NriCorner({ pageList }) {
         setErrors({})
         let val = value;
         if (name === "name") val = val.replace(/[0-9]/g, "");
-        if (name === "contact_no_display") val = val.replace(/[^0-9]/g, "").slice(0, 10);
+        if (name === "client_contact_no_display") val = val.replace(/[^0-9]/g, "").slice(0, 10);
         setInquiryObj((prev) => ({ ...prev, [name]: val }));
     };
 
@@ -72,13 +73,13 @@ export default function NriCorner({ pageList }) {
         if (!inquiryObj.email || !inquiryObj.email.trim()) newErrors.email = true;
         else if (!emailRegex.test(inquiryObj.email)) newErrors.email = true;
 
-        if (!inquiryObj.contact_no_display || !inquiryObj.contact_no_display.trim()) {
-            newErrors.contact_no_display = true;
-        } else if (!phoneRegex.test(inquiryObj.contact_no_display)) {
-            newErrors.contact_no_display = true;
+        if (!inquiryObj.client_contact_no_display || !inquiryObj.client_contact_no_display.trim()) {
+            newErrors.client_contact_no_display = true;
+        } else if (!phoneRegex.test(inquiryObj.client_contact_no_display)) {
+            newErrors.client_contact_no_display = true;
         }
 
-        if (!inquiryObj.department || !inquiryObj.department.trim()) newErrors.department = true;
+        // if (!inquiryObj.department || !inquiryObj.department.trim()) newErrors.department = true;
         if (!inquiryObj.message || !inquiryObj.message.trim()) newErrors.message = true;
 
 
@@ -94,38 +95,36 @@ export default function NriCorner({ pageList }) {
         // const contactData = {
         //     name: inquiryObj.name,
         //     email: inquiryObj.email,
-        //     contact_no: inquiryObj.country + inquiryObj.contact_no_display,
+        //     contact_no: inquiryObj.country + inquiryObj.client_contact_no_display,
         //     message: inquiryObj.message,
         //     department: inquiryObj.department,
         // };
-        // inquiryObj.contact_no_display = inquiryObj.country + " " + inquiryObj.contact_no_display
-        inquiryObj.client_contact_no = inquiryObj.country + ' ' + inquiryObj.contact_no_display;
-        inquiryObj.client_name = inquiryObj.name;
-
+        // inquiryObj.client_contact_no_display = inquiryObj.country + " " + inquiryObj.client_contact_no_display
+        inquiryObj.contact_no = inquiryObj.country + ' ' + inquiryObj.client_contact_no_display;
+        // inquiryObj.client_name = inquiryObj.name;
 
         try {
-            const response = await api.Projectinquiry(inquiryObj)
+            const response = await api.NriInq(inquiryObj)
             // console.log(inquiryObj);
             // alert("Form submitted successfully!");
-            console.log(response)
             if (response.success) {
+                // console.log(response)
                 dispatch(setThankYouData({ page_name: 'Nri Corner', document: [] }))
                 router.push('/nri-corner/thankyou')
                 setInquiryObj({
                     AgreeTandC: "1",
                     AgreeTandC_display: true,
                     name: "",
-                    client_name: "",
                     email: "",
-                    contact_no_display: "",
                     client_contact_no_display: "",
+                    contact_no: "",
                     from_app: "true",
                     logged_in_master_user_id: 339,
                     master_user_id: 339,
                     country: "91",
                     flag: "https://flagcdn.com/w40/in.webp",
                     message: "",
-                    department: "",
+                    // department: "",
                 });
                 setSearch("");
                 document.getElementById("agree_tandc").checked = false;
@@ -271,8 +270,8 @@ export default function NriCorner({ pageList }) {
                                                     </div>
 
                                                     <div className="contact_lable">
-                                                        <input id="client_contact_no_display" name="contact_no_display" type="text" value={inquiryObj.contact_no_display} onChange={handleChange} className={`form-control contact-form ${errors.contact_no_display ? "error" : ""}`} minLength={10} maxLength={10} />
-                                                        <label className="md-lable" htmlFor="client_contact_no_display">Phone Number*</label>
+                                                        <input id="contact_no" name="client_contact_no_display" type="text" value={inquiryObj.client_contact_no_display} onChange={handleChange} className={`form-control contact-form ${errors.client_contact_no_display ? "error" : ""}`} minLength={10} maxLength={10} />
+                                                        <label className="md-lable" htmlFor="contact_no">Phone Number*</label>
                                                         <div className="conatct_number_input">
                                                             <div
                                                                 className="country_code_data"

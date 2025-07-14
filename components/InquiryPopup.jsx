@@ -4,27 +4,21 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { closeInquiry } from 'store/inquirySlice';
 import { useRouter } from 'next/navigation';
+import { setThankYouData } from 'store/inquirySlice'
 import { fetchCountryList } from 'store/countrySlice';
 import './InquiryPopup.css';
+import api from 'lib/api.interceptor.js'
+import { Toast } from './Toast'
+
 
 export default function InquiryPopupDetail() {
   const dispatch = useDispatch();
   const router = useRouter();
   const isOpen = useSelector((state) => state.inquiry.isOpen);
+  const [propertylist, setPropertylist] = useState([]);
+  const [projectOptions, setProjectOptions] = useState([]);
 
   const [form, setForm] = useState({
-    project_id: '',
-    property_type: '',
-    first_name: '',
-    last_name: '',
-    email_address: '',
-    client_contact_no_display: '',
-    remarks: '',
-    agree_tandc_display: true,
-    flag: 'https://flagcdn.com/w40/in.webp',
-    country: '91',
-  });
-  const [inquiryObj, setInquiryObj] = useState({
     agree_tandc: '1',
     agree_tandc_display: true,
     client_name: '',
@@ -45,25 +39,60 @@ export default function InquiryPopupDetail() {
     project_id: '756'
   });
 
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const result = await api.Propertylist();
+        const filtered = result.filter((item) => item.project_id !== 744 && item.project_id !== 814);
+        setPropertylist(result);
+        setProjectOptions(filtered);
+        console.log("object");
+      } catch (error) {
+        console.error("Error fetching projects:", error);
+      }
+    };
+
+    fetchProjects();
+  }, []);
+
+
+  // const handleChange = (e) => {
+  //   const selectedId = parseInt(e.target.value);
+  //   setSelectedProjectId(selectedId);
+
+  //   const selected = propertylist.find((p) => p.project_id === selectedId);
+  //   if (onProjectChange) onProjectChange(selected);
+  // };
+
   const [countryFlag, setCountryFlag] = useState(false);
   const [search, setSearch] = useState('');
   const [saveInquiry, setSaveInquiry] = useState(false);
   const [errors, setErrors] = useState({});
+  const inquiryPrefill = useSelector((state) => state.inquiry.inquiryPrefill);
+  useEffect(() => {
+    if (isOpen && inquiryPrefill) {
+      setForm((prevForm) => ({
+        ...prevForm,
+        project_id: inquiryPrefill.projectId || '',
+        remarks: inquiryPrefill.remarks || '',
+      }));
+    }
+  }, [isOpen, inquiryPrefill]);
 
   const { countryList, status } = useSelector((state) => state.country)
 
   useEffect(() => {
     dispatch(fetchCountryList())
   }, [dispatch])
-
   const handleCountrySelect = (phonecode, flag) => {
-    setInquiryObj((prev) => ({
+    setForm((prev) => ({
       ...prev,
       country: phonecode,
-      flag
+      flag,
     }));
     setCountryFlag(false);
   };
+
 
   useEffect(() => {
     if (isOpen) {
@@ -76,46 +105,111 @@ export default function InquiryPopupDetail() {
     };
   }, [isOpen]);
 
-  const validate = () => {
-    const newErrors = {};
-    const nameRegex = /^[a-zA-Z\s]+$/;
-    const phoneRegex = /^\d{10}$/;
+  // const validate = () => {
+  //   const newErrors = {};
+  //   const nameRegex = /^[a-zA-Z\s]+$/;
+  //   const phoneRegex = /^\d{10}$/;
 
-    if (!form.project_id) newErrors.project_id = 'Project is required';
-    if (!form.property_type) newErrors.property_type = 'Property type is required';
+  //   if (!form.project_id) newErrors.project_id = 'Project is required';
+  //   if (!form.property_type) newErrors.property_type = 'Property type is required';
 
-    if (!form.first_name.trim()) {
-      newErrors.first_name = 'First name is required';
-    } else if (!nameRegex.test(form.first_name)) {
-      newErrors.first_name = 'Only letters allowed';
-    }
+  //   if (!form.first_name.trim()) {
+  //     newErrors.first_name = 'First name is required';
+  //   } else if (!nameRegex.test(form.first_name)) {
+  //     newErrors.first_name = 'Only letters allowed';
+  //   }
 
-    if (!form.last_name.trim()) {
-      newErrors.last_name = 'Last name is required';
-    } else if (!nameRegex.test(form.last_name)) {
-      newErrors.last_name = 'Only letters allowed';
-    }
+  //   if (!form.last_name.trim()) {
+  //     newErrors.last_name = 'Last name is required';
+  //   } else if (!nameRegex.test(form.last_name)) {
+  //     newErrors.last_name = 'Only letters allowed';
+  //   }
 
-    if (!form.client_contact_no_display.trim()) {
-      newErrors.client_contact_no_display = 'Phone number is required';
-    } else if (!phoneRegex.test(form.client_contact_no_display)) {
-      newErrors.client_contact_no_display = 'Must be 10 digits';
-    }
+  //   if (!form.client_contact_no_display.trim()) {
+  //     newErrors.client_contact_no_display = 'Phone number is required';
+  //   } else if (!phoneRegex.test(form.client_contact_no_display)) {
+  //     newErrors.client_contact_no_display = 'Must be 10 digits';
+  //   }
 
-    return newErrors;
-  };
+  //   return newErrors;
+  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (saveInquiry) return;
 
-    const validationErrors = validate();
-    if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors);
+    const newErrors = {};
+    const nameRegex = /^[a-zA-Z\s]+$/;
+    const phoneRegex = /^\d{10}$/;
+
+    if (!form.project_id) newErrors.project_id = true;
+    if (!form.property_type) newErrors.property_type = true;
+
+    if (!form.first_name.trim()) newErrors.first_name = true;
+    else if (!nameRegex.test(form.first_name)) newErrors.first_name = true;
+
+    if (!form.last_name.trim()) newErrors.last_name = true;
+    else if (!nameRegex.test(form.last_name)) newErrors.last_name = true;
+
+    if (!form.client_contact_no_display.trim()) newErrors.client_contact_no_display = true;
+    else if (!phoneRegex.test(form.client_contact_no_display)) newErrors.client_contact_no_display = true;
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
       setSaveInquiry(false);
       return;
     }
+
+    setErrors({});
+    setSaveInquiry(true);
+    form.client_contact_no = form.country + ' ' + form.client_contact_no_display;
+    form.client_name = form.first_name + " " + form.last_name;
+    // const finalPayload = {
+    //   ...form,
+    //   contact_no: form.country + ' ' + form.client_contact_no_display,
+    // };
+
+    // console.log('Submitted Form Data:',);
+
+    try {
+      const response = await api.Projectinquiry(form);
+      // console.log(response);
+      if (response.success) {
+        dispatch(setThankYouData({ page_name: '', document: [] }));
+        router.push('/home/thankyou');
+
+        setForm({
+          agree_tandc: '1',
+          agree_tandc_display: true,
+          client_name: '',
+          first_name: '',
+          last_name: '',
+          email_address: '',
+          client_contact_no_display: '',
+          client_contact_no: '',
+          remarks: '' + "Looking For : Plot",
+          property_type: '',
+          from_app: 'true',
+          master_user_id: '339',
+          logged_in_master_user_id: '339',
+          inquiry_from: 'web',
+          user_type: 'N',
+          flag: 'https://flagcdn.com/w40/in.webp',
+          country: '91',
+          project_id: '756'
+        });
+        setSaveInquiry(false);
+      }
+      else {
+        Toast(response.message)
+      }
+    } catch (error) {
+      console.error('Submission error:', error);
+      setSaveInquiry(false);
+    }
   };
+
+
 
   if (!isOpen) return null;
 
@@ -147,12 +241,19 @@ export default function InquiryPopupDetail() {
                 <select
                   name="project_id"
                   className={`form-control ${errors.project_id ? 'error' : ''}`}
+                  id="project_id"
                   value={form.project_id}
+                  autoComplete="off"
                   onChange={(e) => setForm({ ...form, project_id: e.target.value })}
                 >
                   <option value="" disabled>Select Projects</option>
-                  <option value="101">Sample A</option>
+                  {projectOptions.map((data) => (
+                    <option key={data.project_id} value={data.project_id} className="capitalize">
+                      {data.project_title}
+                    </option>
+                  ))}
                 </select>
+
                 <label className="md-lable project_id_label">Project*</label>
               </div>
 
@@ -164,7 +265,7 @@ export default function InquiryPopupDetail() {
                   onChange={(e) => setForm({ ...form, property_type: e.target.value })}
                 >
                   <option value="" disabled>Select Type</option>
-                  <option value="Villa">Villa</option>
+                  {/* <option value="Villa">Villa</option> */}
                   <option value="Plot">Plot</option>
                 </select>
                 <label className="md-lable project_id_label">Looking For*</label>
@@ -211,16 +312,18 @@ export default function InquiryPopupDetail() {
                   id="client_contact_no_display"
                   name="client_contact_no_display"
                   type="tel"
-                  className={`form-control contact-form ${errors.client_contact_no_display
-                      ? 'error'
-                      : ''
+                  className={`form-control contact-form ${errors.client_contact_no_display ? 'error' : ''
                     }`}
-                  value={inquiryObj.client_contact_no_display}
-                  onChange={(e) => setForm({ ...form, client_contact_no_display: e.target.value })}
+                  value={form.client_contact_no_display}
+                  onChange={(e) => {
+                    const numericValue = e.target.value.replace(/\D/g, ''); // remove non-digits
+                    setForm({ ...form, client_contact_no_display: numericValue });
+                  }}
                   minLength="10"
                   maxLength="10"
                   tabIndex={4}
                 />
+
                 {/* <label className="md-lable contact_code" htmlFor="contact_no">
                                                     Mobile Number*
                                                 </label> */}
@@ -241,9 +344,9 @@ export default function InquiryPopupDetail() {
                   >
                     <div className="section-paragraph">
                       <span>
-                        <img src={inquiryObj.flag} alt="" />
+                        <img src={form.flag} alt="" />
                       </span>
-                      <p>+{inquiryObj.country}</p>
+                      <p>+{form.country}</p>
                       <p>|</p>
                     </div>
                   </div>

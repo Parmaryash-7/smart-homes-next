@@ -5,9 +5,11 @@ import Link from "next/link";
 import ReadMore from "components/ReadMore";
 import WalkthroughVideo from "components/Walkthrough";
 import rawProjectData from "data/projectList.json";
+import { useDispatch } from 'react-redux'
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Fancybox } from "@fancyapps/ui/dist/fancybox/";
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
+import { openInquiry } from '../store/inquirySlice'
 import {
   Pagination,
   Keyboard,
@@ -16,7 +18,7 @@ import {
   Navigation,
   FreeMode,
 } from "swiper/modules";
-// import InquiryForm from "components/InquiryForm";
+import InquiryForm from "components/InquiryForm";
 import BottomStrip from "components/BottomStrip";
 import "swiper/css";
 
@@ -86,7 +88,7 @@ export default function DholeraForestEstate({
       });
     }
   }, [projectData, propertylist]);
-
+  const dispatch = useDispatch()
   useEffect(() => {
     if (
       projectDetail &&
@@ -320,7 +322,9 @@ export default function DholeraForestEstate({
                     <div className="m0auto wfc">
                       {/* ng-click="inquire_popup_click(); inquiry_from_click();" */}
                       <div className="about-btn-home outline-div-button button-div ">
-                        <button className="reecosys-template-button button-style-white white-text ">
+                        <button className="reecosys-template-button button-style-white white-text " onClick={() => {
+                          dispatch(openInquiry())
+                        }}>
                           <span className="material-symbols-outlined">
                             call
                           </span>
@@ -405,7 +409,9 @@ export default function DholeraForestEstate({
                         >
                           <div className="about-btn-home outline-div-button button-div ">
                             {/* ng-click="inquire_popup_click(); inquiry_from_click();" */}
-                            <button className="reecosys-template-button button-style-secondary ">
+                            <button className="reecosys-template-button button-style-secondary " onClick={() => {
+                              dispatch(openInquiry())
+                            }}>
                               <span className="material-symbols-outlined">
                                 chat
                               </span>
@@ -420,7 +426,9 @@ export default function DholeraForestEstate({
                                   key={index}
                                 >
                                   {/* ng-click="inquire_popup_click(); inquiry_from_click(data.type);" */}
-                                  <button className="reecosys-template-button button-style-secondary-outline ">
+                                  <button className="reecosys-template-button button-style-secondary-outline " onClick={() => {
+                                    dispatch(openInquiry())
+                                  }}>
                                     <span className="material-symbols-outlined">
                                       download
                                     </span>
@@ -433,8 +441,10 @@ export default function DholeraForestEstate({
                               )
                             )}
                           {/* ng-click="inquire_popup_click();    inquiry_from_click('legal-document');" */}
-                          <div className="about-btn-home outline-div-button button-div  ">
-                            <button className="reecosys-template-button button-style-secondary-outline ">
+                          <div className="about-btn-home outline-div-button button-div " onClick={() => {
+                            dispatch(openInquiry())
+                          }}>
+                            <button className="reecosys-template-button button-style-secondary-outline " >
                               <span className="material-symbols-outlined">
                                 download
                               </span>
@@ -1140,11 +1150,11 @@ export default function DholeraForestEstate({
                     data-aos-duration="500"
                     data-aos-delay="600"
                   >
-                    {/* <InquiryForm
+                    <InquiryForm
                       pageDetail={projectDetail}
                       countryFlag={countryFlag}
                       setCountryFlag={setCountryFlag}
-                    /> */}
+                    />
                   </div>
                 </div>
               </div>

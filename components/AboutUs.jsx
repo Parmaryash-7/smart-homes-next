@@ -11,7 +11,7 @@ import InquiryForm from "components/InquiryForm";
 let Swiper = null;
 let SwiperSlide = null;
 
-export default function AboutUs({ aboutDetails, pageList ,propertyList }) {
+export default function AboutUs({ aboutDetails, pageList, propertyList }) {
   const [aboutUsData, setAboutUs] = useState(aboutDetails || null);
   const [isMobilescreen, setMobilescreen] = useState(false);
   const [SwiperComponents, setSwiperComponents] = useState({
@@ -19,7 +19,8 @@ export default function AboutUs({ aboutDetails, pageList ,propertyList }) {
     SwiperSlide: null,
   });
   const [countryFlag, setCountryFlag] = useState(false);
-
+  const [propertylist, setPropertylist] = useState([]);
+  const [projectOptions, setProjectOptions] = useState([]);
   const seoMetaData = aboutUsData && {
     page_title:
       aboutUsData.seo_title || "About Us | Smarthomes Infrastructure",
@@ -32,6 +33,22 @@ export default function AboutUs({ aboutDetails, pageList ,propertyList }) {
         : `${aboutUsData.seo_image_full}?w=1280&h=640`
       : "/images/og-image.png",
   };
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        // const result = await api.Propertylist();
+        const filtered = result.filter((item) => item.project_id !== 744 && item.project_id !== 814);
+        setPropertylist(result);
+        setProjectOptions(filtered);
+        console.log("object");
+      } catch (error) {
+        console.error("Error fetching projects:", error);
+      }
+    };
+
+    fetchProjects();
+  }, []);
 
   useEffect(() => {
     const loadSwiper = async () => {
@@ -611,7 +628,7 @@ export default function AboutUs({ aboutDetails, pageList ,propertyList }) {
                       <InquiryForm
                         // pageDetail={projectDetail}
                         countryFlag={countryFlag}
-                        propertyList = {propertyList}
+                        propertyList={propertyList}
                         setCountryFlag={setCountryFlag}
                         isAbout={true}
                       />

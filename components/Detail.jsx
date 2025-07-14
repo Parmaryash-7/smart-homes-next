@@ -7,7 +7,9 @@ import ReadMore from "components/ReadMore";
 import WalkthroughVideo from "components/Walkthrough";
 // import "public/styles/Detail.css"
 import rawProjectData from "data/projectList.json";
+import { openInquiry } from '../store/inquirySlice'
 import { Swiper, SwiperSlide } from "swiper/react";
+import { useDispatch } from 'react-redux'
 import {
   Pagination,
   Keyboard,
@@ -18,11 +20,12 @@ import {
 } from "swiper/modules";
 // import InquiryForm from "components/InquiryForm";
 import BottomStrip from "components/BottomStrip";
+import InquiryForm from "./InquiryForm";
 
 export default function Detail({
   // isAmenityOpen,
   // setAmenityToggle,
-  inquiryPopupObj,
+  // inquiryPopupObj,
   setInquiryPopupObj,
   inquiryPopup,
   setInquiryPopup,
@@ -30,6 +33,8 @@ export default function Detail({
   propertylist,
 }) {
   const projectsArray = rawProjectData.list;
+  const dispatch = useDispatch()
+
   // const { slug } = useParams();
   // const navigate = useNavigate();
   const [countryFlag, setCountryFlag] = useState(false);
@@ -103,7 +108,7 @@ export default function Detail({
       };
     }
   }, [projectDetail]);
-  
+
   useEffect(() => {
     const shouldLockScroll = inquiryPopup || isAmenityOpen;
 
@@ -513,7 +518,9 @@ export default function Detail({
                                   className="about-btn-home outline-div-button button-div  "
                                 >
                                   {/* ng-click="inquire_popup_click(); inquiry_from_click(data.type);" */}
-                                  <button className="reecosys-template-button button-style-secondary-outline ">
+                                  <button className="reecosys-template-button button-style-secondary-outline " onClick={() => {
+                                    dispatch(openInquiry())
+                                  }}>
                                     <span className="material-symbols-outlined">
                                       download
                                     </span>
@@ -528,8 +535,9 @@ export default function Detail({
                           {projectDetail.legal_document && (
                             <div className="about-btn-home outline-div-button button-div  ">
                               <button
-                                className="reecosys-template-button button-style-secondary-outline "
-                                ng-click="inquire_popup_click();    inquiry_from_click('legal-document');"
+                                className="reecosys-template-button button-style-secondary-outline " onClick={() => {
+                                  dispatch(openInquiry())
+                                }}
                               >
                                 <span className="material-symbols-outlined">
                                   download
@@ -552,7 +560,9 @@ export default function Detail({
                                 },
                               }}
                             >
-                              <button className="reecosys-template-button button-style-secondary-outline ">
+                              <button className="reecosys-template-button button-style-secondary-outline " onClick={() => {
+                                dispatch(openInquiry())
+                              }}>
                                 <span className="material-symbols-outlined">
                                   apartment
                                 </span>
@@ -1235,11 +1245,11 @@ export default function Detail({
                     data-aos-duration="500"
                     data-aos-delay="600"
                   >
-                    {/* <InquiryForm
+                    <InquiryForm
                       pageDetail={projectDetail}
                       countryFlag={countryFlag}
                       setCountryFlag={setCountryFlag}
-                    /> */}
+                    />
                   </div>
                 </div>
               </div>

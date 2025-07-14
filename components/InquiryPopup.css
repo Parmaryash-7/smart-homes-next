@@ -2,12 +2,12 @@
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 3.5rem 1.5rem;
-      grid-template-areas:
+      /* grid-template-areas:
           'one two'
           'three four'
           'five five'
           'six six'
-          'seven seven';
+          'seven seven'; */
       /* grid-template-areas:
         'one two'
         'three four'
@@ -23,7 +23,7 @@
       left: 0;
       opacity: 0;
       background-color: #00000050;
-      z-index: 99998; 
+      /* z-index: 99998;  */
       pointer-events: none;
       transition: var(--common-transition);
   }
