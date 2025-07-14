@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { closeInquiry } from 'store/inquirySlice';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { fetchCountryList } from 'store/countrySlice';
 import './InquiryPopup.css';
 
@@ -11,7 +11,6 @@ export default function InquiryPopupDetail() {
   const dispatch = useDispatch();
   const router = useRouter();
   const isOpen = useSelector((state) => state.inquiry.isOpen);
-  const searchParams = useSearchParams();
 
   const [form, setForm] = useState({
     project_id: '',

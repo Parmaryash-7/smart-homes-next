@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCountryList } from "store/countrySlice";
 import { useRouter } from 'next/navigation'
+import { Toast } from "./Toast";
 import api from 'lib/api.interceptor'
 
 // import { projectInquiry } from "lib/ProjectInquiry";
@@ -63,17 +64,21 @@ export default function NriCorner({ pageList }) {
         const emailRegex = /^[\w.-]+@[a-zA-Z\d.-]+\.[a-zA-Z]{2,}$/;
         const phoneRegex = /^\d{10}$/;
 
-        if (!inquiryObj.name.trim()) newErrors.name = true;
+        if (!inquiryObj.name || !inquiryObj.name.trim()) newErrors.name = true;
         else if (!nameRegex.test(inquiryObj.name)) newErrors.name = true;
 
-        if (!inquiryObj.email.trim()) newErrors.email = true;
+        if (!inquiryObj.email || !inquiryObj.email.trim()) newErrors.email = true;
         else if (!emailRegex.test(inquiryObj.email)) newErrors.email = true;
 
-        if (!inquiryObj.contact_no_display.trim()) newErrors.contact_no_display = true;
-        else if (!phoneRegex.test(inquiryObj.contact_no_display)) newErrors.contact_no_display = true;
+        if (!inquiryObj.contact_no_display || !inquiryObj.contact_no_display.trim()) {
+            newErrors.contact_no_display = true;
+        } else if (!phoneRegex.test(inquiryObj.contact_no_display)) {
+            newErrors.contact_no_display = true;
+        }
 
-        if (!inquiryObj.department.trim()) newErrors.department = true;
-        if (!inquiryObj.message.trim()) newErrors.message = true;
+        if (!inquiryObj.department || !inquiryObj.department.trim()) newErrors.department = true;
+        if (!inquiryObj.message || !inquiryObj.message.trim()) newErrors.message = true;
+
 
         if (Object.keys(newErrors).length > 0) {
             setErrors(newErrors);
