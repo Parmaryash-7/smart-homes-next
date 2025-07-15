@@ -128,9 +128,8 @@ export default function NriCorner({ pageList }) {
                 });
                 setSearch("");
                 document.getElementById("agree_tandc").checked = false;
-            } else {
+            } 
                 Toast(response.message)
-            }
             setFormSubmitted(false)
             setErrors({})
         } catch (error) {

@@ -43,7 +43,38 @@ export default function InquiryForm({
     flag: 'https://flagcdn.com/w40/in.webp',
     country: '91',
     project_id: '',
+    department: "General",
+    inquiry_from: "web"
   })
+
+  // const homeInquiryInitialState = {
+  //   agree_tandc: '1',
+  //   from_app: 'true',
+  //   master_user_id: '339',
+  //   logged_in_master_user_id: '339',
+  //   agree_tandc_display: true,
+  //   last_name: '',
+  //   property_type: 'plot',
+  //   first_name: '',
+  //   client_contact_no_display: '',
+  //   client_contact_no: '',
+  //   email_address: '',
+  //   remarks: '',
+  //   user_type: 'N',
+  //   flag: 'https://flagcdn.com/w40/in.webp',
+  //   country: '91',
+  //   project_id: '',
+  // };
+
+  // const defaultInquiryInitialState = {
+  //   ...homeInquiryInitialState,
+  //   about_project_id: '',
+  // };
+
+  // const [inquiryObj, setInquiryObj] = useState(
+  //   isHome ? homeInquiryInitialState : defaultInquiryInitialState
+  // );
+
 
   const dispatch = useDispatch()
   const { countryList } = useSelector((state) => state.country)
@@ -84,7 +115,7 @@ export default function InquiryForm({
     const fetchProjects = async () => {
       try {
         // const result = await api.Propertylist()
-        
+
         const filtered = fetchedPropertyList?.filter(
           (item) => item.project_id !== 744 && item.project_id !== 814
         )
@@ -173,7 +204,7 @@ export default function InquiryForm({
     setErrors({});
     setisSubmitting(true);
     inquiryObj.client_contact_no = inquiryObj.country + ' ' + inquiryObj.client_contact_no_display;
-    inquiryObj.client_name = inquiryObj.first_name + " " + inquiryObj.last_name;
+    inquiryObj.name = inquiryObj.first_name + " " + inquiryObj.last_name;
     inquiryObj.remarks = inquiryObj.remarks + ' ,  Looking For: ' + inquiryObj.property_type
     // const finalPayload = {
     //   ...inquiryObj,
@@ -182,7 +213,7 @@ export default function InquiryForm({
 
     try {
       const response = await api.Projectinquiry(inquiryObj);
-      console.log(response);
+      // console.log(response);
       if (response.success) {
         Toast(response.message)
         setInquiryObj({
@@ -201,13 +232,14 @@ export default function InquiryForm({
           user_type: 'N',
           flag: 'https://flagcdn.com/w40/in.webp',
           country: '91',
-          project_id:  projectDetailInq?.project_id || '',
+          project_id: projectDetailInq?.project_id || '',
+          department: "General",
+          inquiry_from: "web"
         });
         setSearch('');
       }
-      else {
-        Toast(response.message)
-      }
+      Toast(response.message)
+
     } catch (error) {
       console.error('Submission error:', error);
       toast.error('Something went wrong. Please try again.');

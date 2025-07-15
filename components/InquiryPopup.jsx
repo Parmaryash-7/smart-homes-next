@@ -190,7 +190,7 @@ export default function InquiryPopupDetail() {
       // console.log('Submitted Form Data:',);
 
       try {
-const detail = projectOptions.find((item) => item.project_id == form.project_id);
+        const detail = projectOptions.find((item) => item.project_id == form.project_id);
         const docs = detail.document_other_data ? detail.document_other_data : []
 
         // console.log(form, 'res');

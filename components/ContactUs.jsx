@@ -124,9 +124,8 @@ export default function ContactUs({ pageList, contactDetails }) {
                     master_user_id: 339
                 });
                 setSearch("");
-            } else {
+            } 
                 Toast(response.message)
-            }
         } catch (error) {
             console.error(error);
         }

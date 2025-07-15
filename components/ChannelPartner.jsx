@@ -211,9 +211,8 @@ export default function ChannelPartner({ pageList }) {
                 });
 
                 setErrors({});
-            } else {
-                Toast(response.message || "Something went wrong!");
             }
+            Toast(response.message || "Something went wrong!");
         } catch (err) {
             console.error("Submission error", err);
             alert("Submission failed.");
