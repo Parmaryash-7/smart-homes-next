@@ -14,6 +14,17 @@ export default function InquiryPopupDetail() {
     const pathname = usePathname();
     const isOpen = useSelector((state) => state.inquiry.isOpen);
 
+    useEffect(() => {
+        if (inquiryPrefill && inquiryPrefill.project_id) {
+            setSelectedProject(inquiryPrefill);
+            setForm((prev) => ({
+                ...prev,
+                project_id: inquiryPrefill.project_id.toString(),
+            }));
+        }
+    }, [inquiryPrefill]);
+
+
     const [propertylist, setPropertylist] = useState([]);
     const [projectOptions, setProjectOptions] = useState([]);
     const [selectedProject, setSelectedProject] = useState(null);
@@ -54,7 +65,7 @@ export default function InquiryPopupDetail() {
 
                 if (isSlugPage) {
                     const match = filtered.find(
-                       (p) => slugify(p.project_title).toLowerCase() === slug?.toLowerCase()
+                        (p) => slugify(p.project_title).toLowerCase() === slug?.toLowerCase()
                     );
                     if (match) {
                         setSelectedProject(match);

@@ -43,7 +43,7 @@ export default function Footer({
         setIsSubmitting(true);
 
         setTimeout(() => {
-            console.log("Email : ", email);
+            // console.log("Email : ", email);
             setEmail("");
             setIsSubmitting(false);
         }, 1000);

@@ -2,7 +2,7 @@ export async function POST(req) {
     const body = await req.json();
     const projectId = body.project_id || "";
 
-    console.log("project id is ", projectId);
+    // console.log("project id is ", projectId);
     try {
         const response = await fetch("https://www.reecosys.com/api/Services/projects_units/unit_all_list", {
             method: "POST",

@@ -70,6 +70,7 @@ export async function generateMetadata() {
 
 export default async function AboutUsPage() {
     const propertylist = await api.Propertylist();
+    // console.log(propertylist);
     const pageList = await api.PageList();
     const aboutDetails = pageList.find((page) => page.slug === "about-us");
 

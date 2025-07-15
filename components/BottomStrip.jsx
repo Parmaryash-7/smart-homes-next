@@ -1,20 +1,18 @@
-"use client"
+"use client";
 
-import React from "react";
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import Link from "next/link";
-import { openInquiry } from '../store/inquirySlice'
-import { useDispatch } from 'react-redux'
+import { openInquiry, setProjectDetail } from '../store/inquirySlice';
+import { useDispatch, useSelector } from 'react-redux';
 
 export default function BottomStrip({
   isMobilescreen,
   isAmenityOpen,
   projectDetail,
-  // openInquiry,
-  setInquiryPopup,
-  setInquiryPopupObj,
 }) {
   const bottomStripRef = useRef(null);
+  const dispatch = useDispatch();
+  const isInquiryOpen = useSelector((state) => state.inquiry.isOpen); // ✅ moved to top-level
 
   useEffect(() => {
     const handleScroll = () => {
@@ -37,18 +35,23 @@ export default function BottomStrip({
     };
 
     window.addEventListener("scroll", handleScroll);
-
     return () => {
-      window.removeEventListener("scroll", handleScroll); // Clean up on unmount
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-  const dispatch = useDispatch()
+
+  // const projectDetailInq = useSelector((state) => state.inquiry.projectDetailInq);
+  dispatch(setProjectDetail(projectDetail))
+  const handleInq = ()=> {
+    // console.log(projectDetail);
+    dispatch(openInquiry(projectDetail))
+  }
+
   return (
     <>
       <div
         ref={bottomStripRef}
-        className={`bottomStrip ${isAmenityOpen || openInquiry ? "hidestrip" : ""
-          } `}
+        className={`bottomStrip ${isAmenityOpen || isInquiryOpen ? "hidestrip" : ""}`}
         id="bottomStrip"
       >
         <div className="bottomStripFlex main-container relative">
@@ -56,78 +59,70 @@ export default function BottomStrip({
             href="/projects"
             className="flex-row inner-flex-zero backArrowProject"
           >
-            <span className="material-symbols-outlined"> chevron_left </span>
+            <span className="material-symbols-outlined">chevron_left</span>
           </Link>
 
           <div className="bottomSubFlex hidden-xs hidden-sm">
-            <div className=" ">
+            <div>
               <div className="section-content">
                 <p className="uppercase gray-color">Project</p>
               </div>
               <div className="section-paragraph">
-                <p className="capitalize bold-fonts">
-                  {projectDetail.project_title}
-                </p>
+                <p className="capitalize bold-fonts">{projectDetail.project_title}</p>
               </div>
             </div>
-            <div className="">
+
+            <div>
               <div className="section-content">
                 <p className="uppercase gray-color">Type</p>
               </div>
               <div className="section-paragraph">
-                <p className="capitalize bold-fonts">
-                  {projectDetail.size_price}
-                </p>
+                <p className="capitalize bold-fonts">{projectDetail.size_price}</p>
               </div>
             </div>
-            <div className="">
+
+            <div>
               <div className="section-content">
                 <p className="uppercase gray-color">Location</p>
               </div>
               <div className="section-paragraph">
-                <p className="capitalize bold-fonts">
-                  {projectDetail.location}
-                </p>
+                <p className="capitalize bold-fonts">{projectDetail.location}</p>
               </div>
             </div>
           </div>
-          <div className={`bottomEnquirybtn  ${isMobilescreen ? "w100" : ""}`}>
+
+          <div className={`bottomEnquirybtn ${isMobilescreen ? "w100" : ""}`}>
             <div className="hidden-xs">
-              {/* ng-click="inquire_popup_click();  inquiry_from_click(); " */}
-              <button onClick={() => {
-                dispatch(openInquiry())
-              }}
-                className={`reecosys-template-button button-style-secondary ${isMobilescreen ? "w100" : ""
-                  } `}
+              <button
+                onClick={handleInq} 
+                className={`reecosys-template-button button-style-secondary ${isMobilescreen ? "w100" : ""}`}
               >
-                <span className="material-symbols-outlined"> chat </span>
+                <span className="material-symbols-outlined">chat</span>
                 <p className="capitalize">Inquire Now</p>
               </button>
             </div>
+
             <div className="w100 visible-xs">
-              {/* ng-click="inquire_popup_click();  inquiry_from_click(); "  */}
-              <button className="bottomStripButton reecosys-template-button button-style-secondary w100">
+              <button
+                onClick={handleInq}
+                className="bottomStripButton reecosys-template-button button-style-secondary w100"
+              >
                 <div className="flex-row alc">
                   <span className="bottomInquiryImg">
                     <img
                       src={`${projectDetail.banners_data.images[0].image_web_full}&h=100&w=100&q=100`}
                       alt={projectDetail.project_title}
-                      className=""
                       style={{ borderRadius: "5px" }}
                     />
                   </span>
                   <p className="capitalize">Inquire Now</p>
                 </div>
-                <span className="material-symbols-outlined">
-                  {" "}
-                  keyboard_arrow_right{" "}
-                </span>
+                <span className="material-symbols-outlined">keyboard_arrow_right</span>
               </button>
             </div>
           </div>
         </div>
       </div>
-      {/* <BottomStrip projectDetail={projectDetail} isAmenityOpen={isAmenityOpen} inquiryPopup={inquiryPopup} setInquiryPopup={setInquiryPopup} isMobilescreen={isMobilescreen} setInquiryPopupObj={setInquiryPopupObj} /> */}
     </>
   );
 }

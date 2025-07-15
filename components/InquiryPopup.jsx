@@ -18,6 +18,8 @@ export default function InquiryPopupDetail() {
   const [propertylist, setPropertylist] = useState([]);
   const [projectOptions, setProjectOptions] = useState([]);
 
+  const projectDetailInq = useSelector((state) => state.inquiry.projectDetailInq);
+  // console.log(projectDetailInq);
   const [form, setForm] = useState({
     agree_tandc: '1',
     agree_tandc_display: true,
@@ -36,8 +38,10 @@ export default function InquiryPopupDetail() {
     user_type: 'N',
     flag: 'https://flagcdn.com/w40/in.webp',
     country: '91',
-    project_id: '756'
+    project_id: projectDetailInq.project_id
   });
+
+
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -46,7 +50,7 @@ export default function InquiryPopupDetail() {
         const filtered = result.filter((item) => item.project_id !== 744 && item.project_id !== 814);
         setPropertylist(result);
         setProjectOptions(filtered);
-        console.log("object");
+        // console.log("object");
       } catch (error) {
         console.error("Error fetching projects:", error);
       }
@@ -209,7 +213,7 @@ export default function InquiryPopupDetail() {
     }
   };
 
-
+  // console.log(projectDetailInq);
 
   if (!isOpen) return null;
 
@@ -231,13 +235,17 @@ export default function InquiryPopupDetail() {
         </div>
 
         <div className="inner-flex inner-flex-medium" onClick={(e) => e.stopPropagation()}>
-          <div className="section-title">
-            <h2>Inquire Now</h2>
+          <div class="section-title">
+            <h2>
+              Inquire Now
+            </h2>
           </div>
+          {/* <!-- <span ng-if="project_filter_data.project_title && projet_get == ''"></span> --> */}
+
 
           <form id="inquiry_form" onSubmit={handleSubmit} onClick={() => setCountryFlag(false)}>
             <div className="form_wrapper">
-              <div className="contact_lable select_option select_apr relative">
+              {!projectDetailInq ? <div className="contact_lable select_option select_apr relative">
                 <select
                   name="project_id"
                   className={`form-control ${errors.project_id ? 'error' : ''}`}
@@ -255,7 +263,13 @@ export default function InquiryPopupDetail() {
                 </select>
 
                 <label className="md-lable project_id_label">Project*</label>
-              </div>
+              </div> : <> {projectDetailInq &&
+                <div class="section-content">
+                  <p class="capitalize">
+                    {projectDetailInq.project_title}
+                  </p>
+                </div>
+              }</>}
 
               <div className="contact_lable select_option select_apr relative">
                 <select

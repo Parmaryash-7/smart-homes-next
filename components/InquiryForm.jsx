@@ -17,12 +17,13 @@ export default function InquiryForm({
   setCountryFlag,
   isHome,
   isAbout,
-  propertyList
+  propertyList,
+  fetchedPropertyList
 }) {
   const [search, setSearch] = useState('')
   const [formSubmitted, setFormSubmitted] = useState(false)
   const [isSubmitting, setisSubmitting] = useState(false)
-  const [fetchedPropertyList, setFetchedPropertyList] = useState([])
+  // const [fetchedPropertyList, setFetchedPropertyList] = useState()
   const [projectOptions, setProjectOptions] = useState([])
 
   const [inquiryObj, setInquiryObj] = useState({
@@ -63,7 +64,7 @@ export default function InquiryForm({
 
     if (name === 'client_contact_no_display') {
       updatedValue = value.replace(/[^0-9]/g, '')
-      if (updatedValue.length > 10) {
+      if (updatedValue?.length > 10) {
         updatedValue = updatedValue.slice(0, 10)
       }
     }
@@ -82,11 +83,14 @@ export default function InquiryForm({
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const result = await api.Propertylist()
-        const filtered = result.filter(
+        // const result = await api.Propertylist()
+        
+        const filtered = fetchedPropertyList?.filter(
           (item) => item.project_id !== 744 && item.project_id !== 814
         )
-        setFetchedPropertyList(result)
+        // setFetchedPropertyList(result)
+        // console.log("List",fetchedPropertyList);
+        // console.log("Filter",filtered);
         setProjectOptions(filtered)
       } catch (error) {
         console.error('Error fetching projects:', error)
@@ -178,7 +182,7 @@ export default function InquiryForm({
 
     try {
       const response = await api.Projectinquiry(inquiryObj);
-      console.log(response);
+      // console.log(response);
       if (response.success) {
         Toast(response.message)
         setInquiryObj({
@@ -262,10 +266,10 @@ export default function InquiryForm({
         />
       )}
 
-      {isAbout && fetchedPropertyList.length > 0 ? (
+      {isAbout && projectOptions?.length > 0 ? (
         <InputField
           tag="select"
-          selectList={fetchedPropertyList}
+          selectList={projectOptions}
           name="about_project_id"
           value={inquiryObj.property_type}
           handleChange={handleChange}

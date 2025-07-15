@@ -7,7 +7,7 @@ import ReadMore from "components/ReadMore";
 import WalkthroughVideo from "components/Walkthrough";
 // import "public/styles/Detail.css"
 import rawProjectData from "data/projectList.json";
-import { openInquiry } from '../store/inquirySlice'
+import { openInquiry, setProjectDetail } from '../store/inquirySlice'
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useDispatch } from 'react-redux'
 import {

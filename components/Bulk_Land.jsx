@@ -160,7 +160,7 @@ function Bulk_Land({ projects_full_list_detail }) {
       if (response.success) {
         dispatch(setThankYouData({ page_name: 'Bulk Land', document: [] }))
         router.push('/bulk-land-in-dholera/thankyou')
-        console.log(response)
+        // console.log(response)
 
         Toast(response.message)
         setInquiryObj({

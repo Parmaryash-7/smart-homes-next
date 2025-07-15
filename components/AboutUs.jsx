@@ -21,18 +21,7 @@ export default function AboutUs({ aboutDetails, pageList, propertyList }) {
   const [countryFlag, setCountryFlag] = useState(false);
   const [propertylist, setPropertylist] = useState([]);
   const [projectOptions, setProjectOptions] = useState([]);
-  const seoMetaData = aboutUsData && {
-    page_title:
-      aboutUsData.seo_title || "About Us | Smarthomes Infrastructure",
-    page_description: aboutUsData.seo_description,
-    page_keywords: aboutUsData.seo_keywords,
-    slug: aboutUsData.slug,
-    image: aboutUsData.seo_image_full
-      ? aboutUsData.seo_image_full.includes("?")
-        ? `${aboutUsData.seo_image_full}&w=1280&h=640`
-        : `${aboutUsData.seo_image_full}?w=1280&h=640`
-      : "/images/og-image.png",
-  };
+
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -41,7 +30,7 @@ export default function AboutUs({ aboutDetails, pageList, propertyList }) {
         const filtered = result.filter((item) => item.project_id !== 744 && item.project_id !== 814);
         setPropertylist(result);
         setProjectOptions(filtered);
-        console.log("object");
+        // console.log("object");
       } catch (error) {
         console.error("Error fetching projects:", error);
       }
@@ -113,7 +102,6 @@ export default function AboutUs({ aboutDetails, pageList, propertyList }) {
 
   return (
     <>
-      {/* {seoMetaData && <Seo metaData={seoMetaData} />} */}
       <div
         className="about_wrapper"
         onClick={() => {
@@ -628,7 +616,7 @@ export default function AboutUs({ aboutDetails, pageList, propertyList }) {
                       <InquiryForm
                         // pageDetail={projectDetail}
                         countryFlag={countryFlag}
-                        propertyList={propertyList}
+                        fetchedPropertyList={propertyList}
                         setCountryFlag={setCountryFlag}
                         isAbout={true}
                       />

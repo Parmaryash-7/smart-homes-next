@@ -249,89 +249,89 @@ export default function BookPlotsForm({
       setBookPlotBirthDate(moment(value).format('DD-MM-YYYY'))
     }
   }
-
   const handleChange = (e) => {
-    const { name, value, type, checked } = e.target
+    const { name, value, type, checked } = e.target;
 
-    // ✅ PHONE FIELDS — digits only
+    // ✅ PHONE FIELDS — digits only, do NOT affect nationality/flag
     if (name === 'phone_number' || name === 'reference_contact_number') {
-      const numericValue = value.replace(/\D/g, '') // removes non-digit characters
+      const numericValue = value.replace(/\D/g, ''); // allow only digits
+
       setInquiryObj2((prev) => ({
         ...prev,
         [name]: numericValue
-      }))
+      }));
 
-      // Also handle real-time error removal
       setFormErrors((prevErrors) => {
-        const updatedErrors = { ...prevErrors }
-        if (numericValue.length === 10) delete updatedErrors[name]
-        return updatedErrors
-      })
+        const updatedErrors = { ...prevErrors };
+        if (numericValue.length === 10) delete updatedErrors[name];
+        return updatedErrors;
+      });
 
-      return
+      return;
     }
 
-    // ✅ NATIONALITY — sync flag and code
+    // ✅ NATIONALITY — updates nationality, flag, and phone code
     if (name === 'nationality') {
-      const selected = countryList.find((c) => c.nicename === value)
+      const selected = countryList.find((c) => c.nicename === value);
       if (selected) {
         setInquiryObj2((prev) => ({
           ...prev,
           nationality: value,
           country: selected.phonecode,
           flag: selected.flag
-        }))
+        }));
       }
 
-      // Clear error if valid
       setFormErrors((prevErrors) => {
-        const updatedErrors = { ...prevErrors }
-        if (value.trim() !== '') delete updatedErrors[name]
-        return updatedErrors
-      })
+        const updatedErrors = { ...prevErrors };
+        if (value.trim() !== '') delete updatedErrors[name];
+        return updatedErrors;
+      });
 
-      return
+      return;
     }
 
-    // ✅ PROJECT TYPE — filter
+    // ✅ PROJECT TYPE — apply project type filter
     if (name === 'project_type') {
-      setFilterType(value)
+      setFilterType(value);
     }
 
-    // ✅ PROJECT ID — fetch unit plans
+    // ✅ PROJECT ID — update unit plans for selected project
     if (name === 'project_id') {
       const selectedProject = filteredProjects.find(
         (p) => p.project_id === value
-      )
+      );
+
       if (selectedProject?.floor_plans?.[0]?.unit_plans?.length > 0) {
-        setUnitPlans(selectedProject.floor_plans[0].unit_plans)
+        setUnitPlans(selectedProject.floor_plans[0].unit_plans);
       } else {
-        setUnitPlans([])
+        setUnitPlans([]);
       }
     }
 
-    // ✅ PLOT NUMBER — update plot size and ID
+    // ✅ PLOT NUMBER — auto-fill size + unit ID
     if (name === 'plot_number') {
-      const selectedUnit = unitPlans.find((unit) => unit.flat_no_temp === value)
+      const selectedUnit = unitPlans.find((unit) => unit.flat_no_temp === value);
+
       if (selectedUnit) {
         setInquiryObj2((prev) => ({
           ...prev,
           plot_number: value,
           plot_size: `${selectedUnit.super_built_up_area} SA sq. ft - ${selectedUnit.carpet_area} CA sq. ft / ${selectedUnit.super_build_up_area_yard} SA sq. yd - ${selectedUnit.carpet_area_yard} CA sq. yd`,
           unit_id: selectedUnit.unit_id
-        }))
+        }));
       }
     }
 
-    // ✅ Default update for input/select/checkbox
+    // ✅ DEFAULT UPDATE — all other inputs
     setInquiryObj2((prev) => ({
       ...prev,
       [name]: type === 'checkbox' ? checked : value
-    }))
+    }));
 
-    // ✅ Real-time error removal for all other fields
+    // ✅ ERROR REMOVAL — field-specific
     setFormErrors((prevErrors) => {
-      const updatedErrors = { ...prevErrors }
+      const updatedErrors = { ...prevErrors };
 
       switch (name) {
         case 'full_name':
@@ -346,24 +346,25 @@ export default function BookPlotsForm({
         case 'project_id':
         case 'plot_number':
         case 'reference_name':
-          if (value.trim() !== '') delete updatedErrors[name]
-          break
+          if (value.trim() !== '') delete updatedErrors[name];
+          break;
 
         case 'date_of_birth_display':
-          if (value !== '') delete updatedErrors[name]
-          break
+          if (value !== '') delete updatedErrors[name];
+          break;
 
         case 'terms_condition_agreed_display':
-          if (checked) delete updatedErrors[name]
-          break
+          if (checked) delete updatedErrors[name];
+          break;
 
         default:
-          break
+          break;
       }
 
-      return updatedErrors
-    })
-  }
+      return updatedErrors;
+    });
+  };
+
 
   const fetchUnitPlansFromAPI = async (projectId) => {
     try {
@@ -490,9 +491,8 @@ export default function BookPlotsForm({
                         id="full_name"
                         name="full_name"
                         type="text"
-                        className={`form-control ${
-                          formErrors.full_name ? 'error' : ''
-                        }`}
+                        className={`form-control ${formErrors.full_name ? 'error' : ''
+                          }`}
                         tabIndex="101"
                         autoComplete="off"
                         value={inquiryObj2.full_name}
@@ -508,9 +508,8 @@ export default function BookPlotsForm({
                         id="so_do_wo"
                         name="so_do_wo"
                         type="text"
-                        className={`form-control ${
-                          formErrors.so_do_wo ? 'error' : ''
-                        }`}
+                        className={`form-control ${formErrors.so_do_wo ? 'error' : ''
+                          }`}
                         tabIndex="102"
                         autoComplete="off"
                         value={inquiryObj2.so_do_wo}
@@ -531,9 +530,8 @@ export default function BookPlotsForm({
                         minLength="10"
                         maxLength="10"
                         autoComplete="off"
-                        className={`form-control contact-form ${
-                          formErrors.phone_number ? 'error' : ''
-                        }`}
+                        className={`form-control contact-form ${formErrors.phone_number ? 'error' : ''
+                          }`}
                         tabIndex="103"
                         value={inquiryObj2.phone_number}
                         onChange={handleChange}
@@ -617,9 +615,8 @@ export default function BookPlotsForm({
                         name="email"
                         type="email"
                         autoComplete="off"
-                        className={`form-control ${
-                          formErrors.email ? 'error' : ''
-                        }`}
+                        className={`form-control ${formErrors.email ? 'error' : ''
+                          }`}
                         tabIndex="104"
                         value={inquiryObj2.email}
                         onChange={handleChange}
@@ -636,9 +633,8 @@ export default function BookPlotsForm({
                           name="date_of_birth_display"
                           type="date"
                           max={moment().format('YYYY-MM-DD')}
-                          className={`date_picker_input form-control ${
-                            formErrors.date_of_birth_display ? 'error' : ''
-                          }`}
+                          className={`date_picker_input form-control ${formErrors.date_of_birth_display ? 'error' : ''
+                            }`}
                           tabIndex="105"
                           value={inquiryObj2.date_of_birth_display}
                           onChange={(e) => {
@@ -648,9 +644,8 @@ export default function BookPlotsForm({
                         />
                         <div className="date_picker_input_text">
                           <p
-                            className={`date_picker_input_text_p ${
-                              bookPlotBirthDate ? 'active' : ''
-                            }`}
+                            className={`date_picker_input_text_p ${bookPlotBirthDate ? 'active' : ''
+                              }`}
                           >
                             {bookPlotBirthDate || 'dd-mm-yyyy'}
                           </p>
@@ -670,9 +665,8 @@ export default function BookPlotsForm({
                     <div className="contact_lable select_option select_apr relative noPrint">
                       <select
                         name="nationality"
-                        className={`form-control ${
-                          formErrors.nationality ? 'error' : ''
-                        }`}
+                        className={`form-control ${formErrors.nationality ? 'error' : ''
+                          }`}
                         id="nationality"
                         tabIndex="106"
                         value={inquiryObj2.nationality}
@@ -707,9 +701,8 @@ export default function BookPlotsForm({
                         id="permanent_address"
                         name="permanent_address"
                         autoComplete="off"
-                        className={`form-control ${
-                          formErrors.permanent_address ? 'error' : ''
-                        }`}
+                        className={`form-control ${formErrors.permanent_address ? 'error' : ''
+                          }`}
                         tabIndex="107"
                         rows="3"
                         value={inquiryObj2.permanent_address}
@@ -725,9 +718,8 @@ export default function BookPlotsForm({
                         id="current_address"
                         name="current_address"
                         autoComplete="off"
-                        className={`form-control ${
-                          formErrors.current_address ? 'error' : ''
-                        }`}
+                        className={`form-control ${formErrors.current_address ? 'error' : ''
+                          }`}
                         tabIndex="107"
                         rows="3"
                         value={inquiryObj2.current_address}
@@ -744,9 +736,8 @@ export default function BookPlotsForm({
                         name="occupation"
                         type="text"
                         autoComplete="off"
-                        className={`form-control ${
-                          formErrors.occupation ? 'error' : ''
-                        }`}
+                        className={`form-control ${formErrors.occupation ? 'error' : ''
+                          }`}
                         tabIndex="108"
                         value={inquiryObj2.occupation}
                         onChange={handleChange}
@@ -762,9 +753,8 @@ export default function BookPlotsForm({
                         name="company_name"
                         type="text"
                         autoComplete="off"
-                        className={`form-control ${
-                          formErrors.company_name ? 'error' : ''
-                        }`}
+                        className={`form-control ${formErrors.company_name ? 'error' : ''
+                          }`}
                         tabIndex="109"
                         value={inquiryObj2.company_name}
                         onChange={handleChange}
@@ -780,9 +770,8 @@ export default function BookPlotsForm({
                         name="work_address"
                         type="text"
                         autoComplete="off"
-                        className={`form-control ${
-                          formErrors.work_address ? 'error' : ''
-                        }`}
+                        className={`form-control ${formErrors.work_address ? 'error' : ''
+                          }`}
                         tabIndex="110"
                         value={inquiryObj2.work_address}
                         onChange={handleChange}
@@ -903,9 +892,8 @@ export default function BookPlotsForm({
                         id="reference_name"
                         name="reference_name"
                         type="text"
-                        className={`form-control ${
-                          formErrors.reference_name ? 'error' : ''
-                        }`}
+                        className={`form-control ${formErrors.reference_name ? 'error' : ''
+                          }`}
                         tabIndex="118"
                         autoComplete="off"
                         value={inquiryObj2.reference_name || ''}
@@ -925,9 +913,8 @@ export default function BookPlotsForm({
                         minLength="10"
                         maxLength="10"
                         autoComplete="off"
-                        className={`form-control contact-form ${
-                          formErrors.reference_contact_number ? 'error' : ''
-                        }`}
+                        className={`form-control contact-form ${formErrors.reference_contact_number ? 'error' : ''
+                          }`}
                         tabIndex="119"
                         value={inquiryObj2.reference_contact_number || ''}
                         onChange={handleChange}
@@ -1034,14 +1021,12 @@ export default function BookPlotsForm({
 
                   {/* Terms & Conditions */}
                   <p
-                    className={`relative check_box_error get_update_text align_center ${
-                      formErrors.terms_condition_agreed_display ? 'error' : ''
-                    }`}
+                    className={`relative check_box_error get_update_text align_center ${formErrors.terms_condition_agreed_display ? 'error' : ''
+                      }`}
                   >
                     <input
-                      className={`get_update_checkbox ${
-                        formErrors.terms_condition_agreed_display ? 'error' : ''
-                      }`}
+                      className={`get_update_checkbox ${formErrors.terms_condition_agreed_display ? 'error' : ''
+                        }`}
                       type="checkbox"
                       id="terms_condition_agreed"
                       name="terms_condition_agreed_display"
@@ -1052,11 +1037,10 @@ export default function BookPlotsForm({
                       onChange={handleChange}
                     />
                     <label
-                      className={`darkgray-font ${
-                        formErrors.terms_condition_agreed_display
-                          ? 'error-label'
-                          : ''
-                      }`}
+                      className={`darkgray-font ${formErrors.terms_condition_agreed_display
+                        ? 'error-label'
+                        : ''
+                        }`}
                       htmlFor="terms_condition_agreed"
                     >
                       I Agree with the website's{' '}

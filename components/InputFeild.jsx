@@ -153,15 +153,29 @@ export default function InputField({
             onChange={handleChange}
             className={`form-control ${errors?.[name] ? "error" : ""} `}
           >
-            {selectList.map((data, index) => (
-              <option
+            {selectList.map((data, index) => {             
+              return (
+              <>
+
+                {data.project_title && index == 0 && 
+                  <option
+                  key={0}
+                  disabled={true}
+                  value={""}
+                  selected
+                >
+                  </option>
+                }
+                <option
                 key={index}
                 disabled={data.value == ""}
                 value={data.value}
               >
-                {data.name}
+                {data.name || data.project_title}
               </option>
-            ))}
+              </>  
+              )  
+            })}
           </select>
           <label className="md-lable">{label}</label>
           {/* <KeyboardArrowDownIcon className="fa-icon" /> */}
