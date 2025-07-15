@@ -17,7 +17,8 @@ export function Toast(msg) {
       fontSize: '14px',
       width: 'auto',
       maxWidth: '98vw',
-      wordBreak: 'break-word'
+      wordBreak: 'break-word',
+      opacity : '9999999'
     }
   })
 }

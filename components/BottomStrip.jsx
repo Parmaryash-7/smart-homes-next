@@ -15,13 +15,13 @@ export default function BottomStrip({
   const isInquiryOpen = useSelector((state) => state.inquiry.isOpen); // ✅ moved to top-level
 
   useEffect(() => {
+    const bottomStrip = bottomStripRef.current;
     const handleScroll = () => {
       const scrollTop = window.scrollY;
       const windowHeight = window.innerHeight;
       const documentHeight = document.documentElement.scrollHeight;
       const remainingDistance = documentHeight - (scrollTop + windowHeight);
 
-      const bottomStrip = bottomStripRef.current;
 
       if (scrollTop > 600 && remainingDistance > 600) {
         bottomStrip?.classList.add("showStrip");
@@ -32,9 +32,14 @@ export default function BottomStrip({
           bottomStrip?.classList.remove("showStrip");
         }, 100);
       }
+    
     };
 
     window.addEventListener("scroll", handleScroll);
+    if(isAmenityOpen && isInquiryOpen){
+      bottomStrip.classList.remove("showStrip");
+      bottomStrip.classList.add("hidestrip");
+    }
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
@@ -51,7 +56,7 @@ export default function BottomStrip({
     <>
       <div
         ref={bottomStripRef}
-        className={`bottomStrip ${isAmenityOpen || isInquiryOpen ? "hidestrip" : ""}`}
+        className={`bottomStrip ${isAmenityOpen || isInquiryOpen ? "hidestrip" : "showStrip"}`}
         id="bottomStrip"
       >
         <div className="bottomStripFlex main-container relative">

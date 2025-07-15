@@ -281,6 +281,12 @@ body {
   --medium-gap-size: 3rem;
   --big-gap-size: 4.5rem;
   --middle-gap-size: 2.5rem;
+  --f-html-padding: 0;
+}
+
+.f-html {
+  width: 70%
+  /* as: ; */
 }
 
 .bold-fonts {

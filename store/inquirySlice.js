@@ -4,7 +4,7 @@ const initialState = {
   isOpen: false,
   thankyouData: {
     page_name: '',
-    document: [],
+    documents: [],
   },
   projectDetailInq: null,
   inquiryPrefill: null, 
@@ -29,10 +29,10 @@ const inquirySlice = createSlice({
       state.thankyouData = initialState.thankyouData;
     },
     setProjectDetail(state, action) {
-      state.projectDetailInq = action.payload; // ✅ Set project detail
+      state.projectDetailInq = action.payload; 
     },
     removeProjectDetail(state) {
-      state.projectDetailInq = null; // ✅ Clear project detail
+      state.projectDetailInq = null; 
     },
   },
 });
@@ -43,7 +43,7 @@ export const {
   setThankYouData,
   clearThankYouData,
   setProjectDetail,
-  removeProjectDetail, // ✅ Export new actions
+  removeProjectDetail, 
 } = inquirySlice.actions;
 
 export default inquirySlice.reducer;

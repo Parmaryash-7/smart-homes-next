@@ -164,7 +164,7 @@ export default function Detail({
     };
   }, []);
 
-  if (projectDetail) {
+  // if (projectDetail) {
     // return (
     //     <>
     //         <h1>
@@ -560,9 +560,7 @@ export default function Detail({
                                 },
                               }}
                             >
-                              <button className="reecosys-template-button button-style-secondary-outline " onClick={() => {
-                                dispatch(openInquiry())
-                              }}>
+                              <button className="reecosys-template-button button-style-secondary-outline ">
                                 <span className="material-symbols-outlined">
                                   apartment
                                 </span>
@@ -1318,7 +1316,7 @@ export default function Detail({
         />
       </>
     );
-  } else {
-    return <h1>Please Wait</h1>;
-  }
+  // } else {
+  //   return <h1>Please Wait</h1>;
+  // }
 }

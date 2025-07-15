@@ -7,6 +7,8 @@ import api from 'lib/api.interceptor'
 import { Providers } from '../store/Providers'
 import AOSInitializer from '../components/AOSInitializer'
 import InquiryPopup from '../components/InquiryPopup'
+import { ToastContainer } from 'react-toastify'
+
 
 export default async function RootLayout({ children }) {
   const propertylist = await api.Propertylist()
@@ -40,6 +42,17 @@ export default async function RootLayout({ children }) {
                 propertylist={propertylist}
                 socialList={socialList}
                 homeDetails={homeDetails}
+              />
+              <ToastContainer
+                position="bottom-right"
+                autoClose={3000}
+                hideProgressBar={true}
+                newestOnTop={false}
+                closeOnClick={true}
+                rtl={false}
+                pauseOnFocusLoss={false}
+                draggable={false}
+                pauseOnHover={false}
               />
             </div>
           </main>

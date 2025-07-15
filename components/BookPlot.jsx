@@ -4,6 +4,7 @@ import React, { useEffect, useState, useMemo, useRef } from 'react'
 import moment from 'moment'
 import './BookPlot.css'
 import { useDispatch, useSelector } from 'react-redux'
+import { useRouter } from 'next/navigation'
 import { fetchCountryList } from 'store/countrySlice'
 // import getPlotList from "lib/getPlotList";
 
@@ -12,6 +13,7 @@ export default function BookPlotsForm({
   completedPropertylist = [],
   searchParams = {}
 }) {
+  const router = useRouter()
   const dispatch = useDispatch()
   const { countryList } = useSelector((state) => state.country)
   const [selectedProjectId, setSelectedProjectId] = useState(null)
@@ -182,14 +184,18 @@ export default function BookPlotsForm({
     return Object.keys(errors).length === 0
   }
 
-  const handleSubmit = (e) => {
+  
+  const handleSubmit = async (e) => {
     e.preventDefault()
 
     if (validateForm()) {
       console.log('Form Submitted', inquiryObj2)
 
-      alert('Form submitted successfully!')
+      localStorage.setItem('bookingData', JSON.stringify(inquiryObj2))
 
+      router.push('/bookplotpayment')
+
+      // Optionally reset form
       setInquiryObj2({
         full_name: '',
         so_do_wo: '',
@@ -216,12 +222,9 @@ export default function BookPlotsForm({
         country4: '91'
       })
 
-      // ✅ Clear errors
       setFormErrors({})
     } else {
       console.log('Validation Failed')
-
-      // ✅ Scroll to top on error
       window.scrollTo({ top: 0, behavior: 'smooth' })
     }
   }
@@ -329,7 +332,6 @@ export default function BookPlotsForm({
       [name]: type === 'checkbox' ? checked : value
     }));
 
-    // ✅ ERROR REMOVAL — field-specific
     setFormErrors((prevErrors) => {
       const updatedErrors = { ...prevErrors };
 

@@ -42,7 +42,7 @@ export default function InquiryForm({
     user_type: 'N',
     flag: 'https://flagcdn.com/w40/in.webp',
     country: '91',
-    project_id: '722',
+    project_id: '',
   })
 
   const dispatch = useDispatch()
@@ -182,7 +182,7 @@ export default function InquiryForm({
 
     try {
       const response = await api.Projectinquiry(inquiryObj);
-      // console.log(response);
+      console.log(response);
       if (response.success) {
         Toast(response.message)
         setInquiryObj({
@@ -201,7 +201,7 @@ export default function InquiryForm({
           user_type: 'N',
           flag: 'https://flagcdn.com/w40/in.webp',
           country: '91',
-          project_id: '722',
+          project_id:  projectDetailInq?.project_id || '',
         });
         setSearch('');
       }

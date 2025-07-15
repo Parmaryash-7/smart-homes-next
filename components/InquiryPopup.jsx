@@ -3,8 +3,8 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { closeInquiry } from 'store/inquirySlice';
-import { useRouter } from 'next/navigation';
-import { setThankYouData } from 'store/inquirySlice'
+import { usePathname, useRouter } from 'next/navigation';
+import { setThankYouData, openInquiry } from 'store/inquirySlice'
 import { fetchCountryList } from 'store/countrySlice';
 import './InquiryPopup.css';
 import api from 'lib/api.interceptor.js'
@@ -14,11 +14,19 @@ import { Toast } from './Toast'
 export default function InquiryPopupDetail() {
   const dispatch = useDispatch();
   const router = useRouter();
+  const activePath = usePathname();
   const isOpen = useSelector((state) => state.inquiry.isOpen);
   const [propertylist, setPropertylist] = useState([]);
   const [projectOptions, setProjectOptions] = useState([]);
+  const [projectDetailInq, setProjectDetailInq] = useState('')
+  const [countryFlag, setCountryFlag] = useState(false);
+  const [search, setSearch] = useState('');
+  const [saveInquiry, setSaveInquiry] = useState(false);
+  const [errors, setErrors] = useState({});
+  
+  const slug = useSelector((state) => state.inquiry.projectDetailInq);;
+ 
 
-  const projectDetailInq = useSelector((state) => state.inquiry.projectDetailInq);
   // console.log(projectDetailInq);
   const [form, setForm] = useState({
     agree_tandc: '1',
@@ -38,7 +46,7 @@ export default function InquiryPopupDetail() {
     user_type: 'N',
     flag: 'https://flagcdn.com/w40/in.webp',
     country: '91',
-    project_id: projectDetailInq.project_id
+    project_id:''
   });
 
 
@@ -59,6 +67,10 @@ export default function InquiryPopupDetail() {
     fetchProjects();
   }, []);
 
+   useEffect(()=>{
+     setProjectDetailInq( activePath == '/' ? null : slug)
+     
+  }, [activePath])
 
   // const handleChange = (e) => {
   //   const selectedId = parseInt(e.target.value);
@@ -68,20 +80,17 @@ export default function InquiryPopupDetail() {
   //   if (onProjectChange) onProjectChange(selected);
   // };
 
-  const [countryFlag, setCountryFlag] = useState(false);
-  const [search, setSearch] = useState('');
-  const [saveInquiry, setSaveInquiry] = useState(false);
-  const [errors, setErrors] = useState({});
-  const inquiryPrefill = useSelector((state) => state.inquiry.inquiryPrefill);
-  useEffect(() => {
-    if (isOpen && inquiryPrefill) {
-      setForm((prevForm) => ({
-        ...prevForm,
-        project_id: inquiryPrefill.projectId || '',
-        remarks: inquiryPrefill.remarks || '',
-      }));
-    }
-  }, [isOpen, inquiryPrefill]);
+  
+  // const inquiryPrefill = useSelector((state) => state.inquiry.inquiryPrefill);
+  // useEffect(() => {
+  //   if (isOpen && inquiryPrefill) {
+  //     setForm((prevForm) => ({
+  //       ...prevForm,
+  //       project_id: inquiryPrefill.projectId || '',
+  //       remarks: inquiryPrefill.remarks || '',
+  //     }));
+  //   }
+  // }, [isOpen, inquiryPrefill]);
 
   const { countryList, status } = useSelector((state) => state.country)
 
@@ -140,7 +149,10 @@ export default function InquiryPopupDetail() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (saveInquiry) return;
+    if(projectDetailInq?.project_id){
+      form.project_id = projectDetailInq.project_id
+    }
+    // if (saveInquiry) return;
 
     const newErrors = {};
     const nameRegex = /^[a-zA-Z\s]+$/;
@@ -160,27 +172,34 @@ export default function InquiryPopupDetail() {
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
+      console.log(newErrors, 'Err');
       setSaveInquiry(false);
       return;
     }
-
+    
     setErrors({});
     setSaveInquiry(true);
     form.client_contact_no = form.country + ' ' + form.client_contact_no_display;
     form.client_name = form.first_name + " " + form.last_name;
+    form.project_id = form.project_id || projectDetailInq?.project_id
     // const finalPayload = {
-    //   ...form,
-    //   contact_no: form.country + ' ' + form.client_contact_no_display,
-    // };
+      //   ...form,
+      //   contact_no: form.country + ' ' + form.client_contact_no_display,
+      // };
+      
+      // console.log('Submitted Form Data:',);
 
-    // console.log('Submitted Form Data:',);
+      try {
+const detail = projectOptions.find((item) => item.project_id == form.project_id);
+        const docs = detail.document_other_data ? detail.document_other_data : []
 
-    try {
+        // console.log(form, 'res');
       const response = await api.Projectinquiry(form);
       // console.log(response);
       if (response.success) {
-        dispatch(setThankYouData({ page_name: '', document: [] }));
-        router.push('/home/thankyou');
+        dispatch(closeInquiry());
+        dispatch(setThankYouData({ page_name: detail.project_title, documents: docs }));
+        router.push(`${detail.slug}/thankyou`);
 
         setForm({
           agree_tandc: '1',
@@ -191,7 +210,7 @@ export default function InquiryPopupDetail() {
           email_address: '',
           client_contact_no_display: '',
           client_contact_no: '',
-          remarks: '' + "Looking For : Plot",
+          remarks: '',
           property_type: '',
           from_app: 'true',
           master_user_id: '339',
@@ -200,13 +219,11 @@ export default function InquiryPopupDetail() {
           user_type: 'N',
           flag: 'https://flagcdn.com/w40/in.webp',
           country: '91',
-          project_id: '756'
+          project_id: ''
         });
         setSaveInquiry(false);
       }
-      else {
-        Toast(response.message)
-      }
+      Toast(response.message)
     } catch (error) {
       console.error('Submission error:', error);
       setSaveInquiry(false);
@@ -235,7 +252,7 @@ export default function InquiryPopupDetail() {
         </div>
 
         <div className="inner-flex inner-flex-medium" onClick={(e) => e.stopPropagation()}>
-          <div class="section-title">
+          <div className="section-title">
             <h2>
               Inquire Now
             </h2>
@@ -264,8 +281,8 @@ export default function InquiryPopupDetail() {
 
                 <label className="md-lable project_id_label">Project*</label>
               </div> : <> {projectDetailInq &&
-                <div class="section-content">
-                  <p class="capitalize">
+                <div className="section-content">
+                  <p className="capitalize">
                     {projectDetailInq.project_title}
                   </p>
                 </div>

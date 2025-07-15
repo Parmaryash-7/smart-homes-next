@@ -159,7 +159,7 @@ export default function ChannelPartner({ pageList }) {
             associated_company: false,
             reference_name: "",
         };
-        // console.log(contactPayload)
+        console.log(contactPayload)
 
         try {
             const response = await api.ContactInq(contactPayload);
