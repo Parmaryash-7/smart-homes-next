@@ -1,16 +1,15 @@
 import Home from "components/Home";
-// import api from "lib/api.interceptor";
+import api from "lib/api.interceptor";
 import getHomeDetail from "lib/HomeDetail";
 import getPropertyList from 'lib/PropertList';
 import getCompletedPropertyList from "lib/CompletedPropertyList";
 import getPageList from "lib/PageList";
 import getBlogDetail from "lib/BlogDetail";
 
-// ✅ Default Metadata fallback
 const defaultMetadata = {
     title: "SmartHomes Infrastructure | Leading Developer in Dholera Smart City",
     description:
-        "Explore SmartHomes Infrastructure’s innovative real estate projects in Dholera Smart City. Join us in building a smarter future with eco-friendly infrastructure and modern living solutions.",
+        "Explore SmartHomes Infrastructure's innovative real estate projects in Dholera Smart City. Join us in building a smarter future with eco-friendly infrastructure and modern living solutions.",
     keywords:
         "SmartHomes Infrastructure, Dholera smart city, real estate developer, Dholera projects, sustainable real estate, smart city investment",
     image: "https://www.smarthomesinfra.in/assets/images/default-og-image.jpg", // update to your default SEO image
@@ -20,12 +19,12 @@ export async function generateMetadata() {
     const slug = "home"; // same as AngularJS used via $routeProvider.when("/")
     const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.smarthomesinfra.in";
 
-    const page = await getPageMeta(slug);
+    const page = await api.Propertylist(slug);
 
-    const title = page?.page_title || defaultMetadata.title;
-    const description = page?.page_description || defaultMetadata.description;
-    const keywords = page?.page_keywords || defaultMetadata.keywords;
-    const ogImage = page?.page_image || defaultMetadata.image;
+    const title = page?.seo_title || defaultMetadata.title;
+    const description = page?.seo_description || defaultMetadata.description;
+    const keywords = page?.seo_keywords || defaultMetadata.keywords;
+    const ogImage = page?.seo_image || defaultMetadata.image;
     const canonicalUrl = `${siteUrl}/`;
 
     return {
