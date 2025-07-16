@@ -20,7 +20,12 @@ export default async function RootLayout({ children }) {
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,500,0,0"
         />
+        <link rel='preload' href='public/css/globals.css' />
         <meta name="robots" content="noindex, nofollow" />
+        <meta
+          property="og:image"
+          content="https://smarthomesinfra.onrender.com/images/smart-homes.png"
+        />
       </head>
       <body>
         {/* Google Analytics Script */}
@@ -53,8 +58,7 @@ export default async function RootLayout({ children }) {
         </Script>
 
         {/* Google reCAPTCHA */}
-        <Script
-          src="https://www.google.com/recaptcha/api.js"
+        <Script src="https://www.google.com/recaptcha/api.js"
           strategy="afterInteractive"
         />
 
