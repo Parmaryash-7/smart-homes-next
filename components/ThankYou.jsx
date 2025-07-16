@@ -95,7 +95,7 @@ export default function ThankYou() {
                         ))}
                       </div>
 
-                      <iframe src={pdfURL} width="100%" height="600px" />
+                      <iframe src={pdfURL} width="100%" height="100%" />
                     </div>
                   )}
                 </>

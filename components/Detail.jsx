@@ -1247,6 +1247,7 @@ export default function Detail({
                       pageDetail={projectDetail}
                       countryFlag={countryFlag}
                       setCountryFlag={setCountryFlag}
+                      
                     />
                   </div>
                 </div>

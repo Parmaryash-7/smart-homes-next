@@ -104,7 +104,7 @@ export default function ContactUs({ pageList, contactDetails }) {
             // console.log(inquiryObj);
             if (response.success) {
                 // alert("Form submitted successfully!");
-                dispatch(setThankYouData({ page_name: '', document: [] }))
+                dispatch(setThankYouData({ page_name: 'Contact Us', document: [] }))
                 router.push('/contact-us/thankyou')
 
                 Toast(response.message)
@@ -125,7 +125,7 @@ export default function ContactUs({ pageList, contactDetails }) {
                 });
                 setSearch("");
             } 
-                Toast(response.message)
+                // Toast(response.message)
         } catch (error) {
             console.error(error);
         }

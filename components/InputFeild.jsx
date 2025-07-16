@@ -129,8 +129,8 @@ export default function InputField({
             <option disabled>{placeholder}</option>
             {selectList
               .filter((p) => p.project_id !== "744" && p.project_id !== "814")
-              .map((data) => (
-                <option key={data.project_id} value={data.project_id}>
+              .map((data , i) => (
+                <option key={i} value={i}>
                   {data.project_title}
                 </option>
               ))}

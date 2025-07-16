@@ -96,7 +96,8 @@ export default function Projects({ propertylist: initialPropertyList, pageList }
                                       <img
                                         src={`${project_list_data.banner_data.image_web_full}&h=1079&w=1920&q=100`}
                                         alt={project_list_data.project_title}
-                                        className=""
+                                       style={{ aspectRatio: "16/9" , background: 'gray'}}
+                                        // className="shimer-block"
                                       />
                                     </div>
                                   )}

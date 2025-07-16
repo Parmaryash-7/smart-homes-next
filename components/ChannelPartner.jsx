@@ -55,6 +55,7 @@ export default function ChannelPartner({ pageList }) {
         bank_account_no: "",
         ifsc_code: "",
         agree_tandc_display: false,
+        birthdate : ''
     });
 
     const [cpObj, setCpObj] = useState({
@@ -82,6 +83,10 @@ export default function ChannelPartner({ pageList }) {
         if (name === "aadhar_no") {
             newVal = newVal.replace(/[^0-9]/g, "").slice(0, 12);
         }
+
+        if (name === "reference_number") {
+            newVal = newVal.replace(/[^0-9]/g, "").slice(0, 10);
+        }
         setCpFormData((prev) => ({ ...prev, [name]: newVal }));
         setErrors((prev) => ({ ...prev, [name]: false }));
     };
@@ -107,9 +112,128 @@ export default function ChannelPartner({ pageList }) {
         setCountryDropdown3(false);
     };
 
-    const validateForm = () => {
-        const newErrors = {};
+    // const validateForm = () => {
+    //     const newErrors = {};
 
+    //     const nameRegex = /^[a-zA-Z\s]+$/;
+    //     const phoneRegex = /^\d{10}$/;
+    //     const emailRegex = /^[\w.-]+@[a-zA-Z\d.-]+\.[a-zA-Z]{2,}$/;
+    //     const aadharRegex = /^[2-9]{1}[0-9]{11}$/;
+    //     const panRegex = /^[A-Z]{5}[0-9]{4}[A-Z]{1}$/;
+    //     const gstRegex = /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$/;
+    //     const pincodeRegex = /^[1-9][0-9]{5}$/;
+
+    //     if (!cpFormData.first_name.trim() || !nameRegex.test(cpFormData.first_name)) newErrors.first_name = true;
+    //     if (!cpFormData.email_address.trim() || !emailRegex.test(cpFormData.email_address)) newErrors.email_address = true;
+    //     if (!cpFormData.contact_no_display.trim() || !phoneRegex.test(cpFormData.contact_no_display)) newErrors.contact_no_display = true;
+    //     if (!cpFormData.aadhar_no.trim() || !aadharRegex.test(cpFormData.aadhar_no)) newErrors.aadhar_no = true;
+    //     if (!cpFormData.pan_no.trim() || !panRegex.test(cpFormData.pan_no.toUpperCase())) newErrors.pan_no = true;
+    //     if (!cpObj.pincode.trim() || !pincodeRegex.test(cpObj.pincode)) newErrors.pincode = true;
+    //     if (!cpObj.gst_no.trim() || !gstRegex.test(cpObj.gst_no.toUpperCase())) newErrors.gst_no = true;
+    //     if (!cpFormData.agree_tandc_display) newErrors.agree_tandc_display = true;
+
+    //     // console.log("Validation errors",);
+    //     return newErrors;
+    // };
+
+    // console.log("cpFormData:", cpFormData);
+    // console.log("cpObj:", cpObj);
+
+
+    // const handleSubmit = async (e) => {
+    //     console.log("🚀 Submit clicked");
+    //     e.preventDefault();
+
+    //     const validationErrors = validateForm();
+    //     if (Object.keys(validationErrors).length > 0) {
+    //         setErrors(validationErrors);
+    //         return;
+    //     }
+
+    //     setCpSaveF(true);
+
+    //     // Combine all data into one payload
+    //     const contactPayload = {
+    //         ...cpFormData,
+    //         ...cpObj,
+    //         pan_no: cpFormData.pan_no.toUpperCase(),
+    //         contact_no: cpFormData.country + ' ' + cpFormData.contact_no_display,
+    //         reference_number: cpFormData.country + ' ' + cpFormData.contact_no_display_2,
+    //         from_app: "true",
+    //         logged_in_master_user_id: 339,
+    //         master_user_id: 339,
+    //         company_id: 14,
+    //         is_crown: "0",
+    //         last_name: "",
+    //         company_name: "",
+    //         associated_company: false,
+    //         reference_name: "",
+    //     };
+    //     console.log(contactPayload)
+
+    //     try {
+    //         const response = await api.ContactInq(contactPayload);
+    //         console.log(response)
+    //         if (response.success) {
+    //             dispatch(setThankYouData({
+    //                 type: "channelpartner",
+    //                 name: cpFormData.first_name,
+    //             }));
+    //             router.push("/channel-partner/thank-you");
+
+    //             setCpFormData({
+    //                 AgreeTandC: "1",
+    //                 AgreeTandC_display: true,
+    //                 agree_tandc_display: true,
+    //                 first_name: "",
+    //                 email_address: "",
+    //                 contact_no_display: "",
+    //                 contact_no_display_2: "",
+    //                 country: "91",
+    //                 flag: "https://flagcdn.com/w40/in.webp",
+    //                 country2: "91",
+    //                 flag2: "https://flagcdn.com/w40/in.webp",
+    //                 country3: "91",
+    //                 flag3: "https://flagcdn.com/w40/in.webp",
+    //                 pan_no: "",
+    //                 aadhar_no: "",
+    //                 years_of_experience_in_real_estate: "",
+    //                 previous_projects_developers_worked_with: "",
+    //                 primary_areas_of_operation: "",
+    //                 nature_of_business: "",
+    //                 average_monthly_sales: "",
+    //                 bank_name: "",
+    //                 branch_name: "",
+    //                 account_holder_name: "",
+    //                 bank_account_no: "",
+    //                 ifsc_code: "",
+    //                 agree_tandc_display: false,
+    //             });
+
+    //             setCpObj({
+    //                 company_type: "",
+    //                 address: "",
+    //                 city: "",
+    //                 state: "",
+    //                 pincode: "",
+    //                 company_url: "",
+    //                 gst_no: "",
+    //             });
+
+    //             setErrors({});
+    //         }
+    //         Toast(response.message || "Something went wrong!");
+    //     } catch (err) {
+    //         console.error("Submission error", err);
+    //         alert("Submission failed.");
+    //     } finally {
+    //         setCpSaveF(false);
+    //     }
+    // };
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        const newErrors = {};
         const nameRegex = /^[a-zA-Z\s]+$/;
         const phoneRegex = /^\d{10}$/;
         const emailRegex = /^[\w.-]+@[a-zA-Z\d.-]+\.[a-zA-Z]{2,}$/;
@@ -118,31 +242,27 @@ export default function ChannelPartner({ pageList }) {
         const gstRegex = /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$/;
         const pincodeRegex = /^[1-9][0-9]{5}$/;
 
+        // Validate fields
         if (!cpFormData.first_name.trim() || !nameRegex.test(cpFormData.first_name)) newErrors.first_name = true;
         if (!cpFormData.email_address.trim() || !emailRegex.test(cpFormData.email_address)) newErrors.email_address = true;
         if (!cpFormData.contact_no_display.trim() || !phoneRegex.test(cpFormData.contact_no_display)) newErrors.contact_no_display = true;
         if (!cpFormData.aadhar_no.trim() || !aadharRegex.test(cpFormData.aadhar_no)) newErrors.aadhar_no = true;
-        if (!cpFormData.pan_no.trim() || !panRegex.test(cpFormData.pan_no.toUpperCase())) newErrors.pan_no = true;
+        // if (!cpFormData.pan_no.trim() || !panRegex.test(cpFormData.pan_no.toUpperCase())) newErrors.pan_no = true;
         if (!cpObj.pincode.trim() || !pincodeRegex.test(cpObj.pincode)) newErrors.pincode = true;
-        if (!cpObj.gst_no.trim() || !gstRegex.test(cpObj.gst_no.toUpperCase())) newErrors.gst_no = true;
-        if (!cpFormData.agree_tandc_display) newErrors.agree_tandc_display = true;
+        // if (!cpObj.gst_no.trim() || !gstRegex.test(cpObj.gst_no.toUpperCase())) newErrors.gst_no = true;
+        // if (!cpFormData.agree_tandc_display) newErrors.agree_tandc_display = true;
 
-        return newErrors;
-    };
+        if (Object.keys(newErrors).length > 0) {
 
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        const validationErrors = validateForm();
-        if (Object.keys(validationErrors).length > 0) {
-            setErrors(validationErrors);
+            setErrors(newErrors);
+            console.log("Form Errors:", newErrors);
+            setCpSaveF(false);
             return;
         }
 
+        setErrors({});
         setCpSaveF(true);
 
-        // Combine all data into one payload
         const contactPayload = {
             ...cpFormData,
             ...cpObj,
@@ -156,21 +276,36 @@ export default function ChannelPartner({ pageList }) {
             is_crown: "0",
             last_name: "",
             company_name: "",
+            birthdate : '',
             associated_company: false,
-            reference_name: "",
+            reference_name: "Test", // set from UI if needed
         };
-        console.log(contactPayload)
+
+        // Filter out empty, null, undefined and `false` boolean values
+        const filteredPayload = Object.fromEntries(
+            Object.entries(contactPayload).filter(
+                ([_, value]) =>
+                    value !== "" &&
+                    value !== null &&
+                    value !== undefined &&
+                    !(typeof value === "boolean" && value === false)
+            )
+        );
+
+        console.log("✅ Final Submitted Data:", filteredPayload);
 
         try {
             const response = await api.ContactInq(contactPayload);
-            console.log(response)
+
             if (response.success) {
                 dispatch(setThankYouData({
                     type: "channelpartner",
                     name: cpFormData.first_name,
                 }));
+
                 router.push("/channel-partner/thank-you");
 
+                // Reset forms
                 setCpFormData({
                     AgreeTandC: "1",
                     AgreeTandC_display: true,
@@ -198,6 +333,7 @@ export default function ChannelPartner({ pageList }) {
                     bank_account_no: "",
                     ifsc_code: "",
                     agree_tandc_display: false,
+                    birthdate : ''
                 });
 
                 setCpObj({
@@ -212,14 +348,16 @@ export default function ChannelPartner({ pageList }) {
 
                 setErrors({});
             }
+
             Toast(response.message || "Something went wrong!");
-        } catch (err) {
-            console.error("Submission error", err);
+        } catch (error) {
+            console.error("❌ Submission error:", error);
             alert("Submission failed.");
         } finally {
             setCpSaveF(false);
         }
     };
+
 
 
     return (
@@ -283,7 +421,8 @@ export default function ChannelPartner({ pageList }) {
                                     </div>
 
                                     <div className="form-box green_lable form-box-top_padding form_bg_input border-radius-contact">
-                                        <form id="cp_form_data">
+                                        {/* <form id="cp_form_data"> */}
+                                        <form id="cp_form_data" onSubmit={handleSubmit}>
                                             <div className="section-paragraph flb100" style={{ paddingBottom: "1rem" }}>
                                                 <p className="secondary-highlight-color">1. Personal Details</p>
                                             </div>
@@ -326,7 +465,6 @@ export default function ChannelPartner({ pageList }) {
                                                         type="tel"
                                                         minLength="10"
                                                         maxLength="10"
-
                                                         className={`form-control contact-form ${errors.contact_no_display ? "error" : ""}`}
                                                         tabIndex="13"
                                                     />
@@ -855,8 +993,17 @@ export default function ChannelPartner({ pageList }) {
                                                     </p>
                                                 </div>
 
-                                                <div className="submit-button border-div-venus-wrapper form_button w100x flb100">
+                                                {/* <div className="submit-button border-div-venus-wrapper form_button w100x flb100">
                                                     <button onClick={(e) => { e.stopPropagation(); handleSubmit(e) }}
+                                                        className="reecosys-template-button button-style-secondary w100x"
+                                                        type="submit"
+                                                        tabIndex="37"
+                                                    >
+                                                        <p>{cp_save_f ? "Please Wait..." : "Submit"}</p>
+                                                    </button>
+                                                </div> */}
+                                                <div className="submit-button border-div-venus-wrapper form_button w100x flb100">
+                                                    <button
                                                         className="reecosys-template-button button-style-secondary w100x"
                                                         type="submit"
                                                         tabIndex="37"

@@ -9,6 +9,8 @@ import InputField from './InputFeild'
 import { toast } from 'react-toastify'
 import api from 'lib/api.interceptor.js'
 import { Toast } from './Toast'
+import { usePathname, useRouter } from 'next/navigation';
+import { setThankYouData } from 'store/inquirySlice';
 
 
 export default function InquiryForm({
@@ -25,18 +27,20 @@ export default function InquiryForm({
   const [isSubmitting, setisSubmitting] = useState(false)
   // const [fetchedPropertyList, setFetchedPropertyList] = useState()
   const [projectOptions, setProjectOptions] = useState([])
+  const router = useRouter();
+  const activePath = usePathname()
+  const isHomeRoute = activePath == '/';
 
   const [inquiryObj, setInquiryObj] = useState({
     agree_tandc: '1',
     from_app: 'true',
-    master_user_id: '339',
-    logged_in_master_user_id: '339',
+    master_user_id: 339,
+    logged_in_master_user_id: 339,
     agree_tandc_display: true,
     last_name: '',
     property_type: 'plot',
     first_name: '',
     client_contact_no_display: '',
-    client_contact_no: '',
     email_address: '',
     remarks: '',
     user_type: 'N',
@@ -121,7 +125,7 @@ export default function InquiryForm({
         )
         // setFetchedPropertyList(result)
         // console.log("List",fetchedPropertyList);
-        // console.log("Filter",filtered);
+        // console.log("Filter",fetchedPropertyList);
         setProjectOptions(filtered)
       } catch (error) {
         console.error('Error fetching projects:', error)
@@ -164,6 +168,8 @@ export default function InquiryForm({
   //   return newErrors
   // }
 
+  // console.log(pageDetail);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setFormSubmitted(true);
@@ -203,8 +209,14 @@ export default function InquiryForm({
 
     setErrors({});
     setisSubmitting(true);
+    inquiryObj.project_id = inquiryObj.project_id || pageDetail?.project_id
+    inquiryObj.contact_no = inquiryObj.country + ' ' + inquiryObj.client_contact_no_display;
     inquiryObj.client_contact_no = inquiryObj.country + ' ' + inquiryObj.client_contact_no_display;
+    inquiryObj.contact_no_display = inquiryObj.client_contact_no_display;
     inquiryObj.name = inquiryObj.first_name + " " + inquiryObj.last_name;
+    inquiryObj.client_name = inquiryObj.first_name + " " + inquiryObj.last_name;
+    inquiryObj.email = inquiryObj.email_address;
+    inquiryObj.message = inquiryObj.message
     inquiryObj.remarks = inquiryObj.remarks + ' ,  Looking For: ' + inquiryObj.property_type
     // const finalPayload = {
     //   ...inquiryObj,
@@ -212,37 +224,122 @@ export default function InquiryForm({
     // };
 
     try {
-      const response = await api.Projectinquiry(inquiryObj);
+      // console.log(inquiryObj);
+      // const response = await api.Projectinquiry(JSON.stringify(inquiryObj));
+
+      let response;
+      if (isHome) {
+        response = await api.ContactInq(inquiryObj);
+
+      } else {
+        response = await api.Projectinquiry(inquiryObj);
+      }
       // console.log(response);
+      Toast(response.message)
+      // if (response.success) {
+      //   // setInquiryObj(isHome ? {
+      //   //   contact_no: "",
+      //   //   contact_no_display: "",
+      //   //   country: "91",
+      //   //   department: "General",
+      //   //   email: "",
+      //   //   first_name: "",
+      //   //   flag: "https://flagcdn.com/w40/in.webp",
+      //   //   from_app: 'true',
+      //   //   inquiry_from: "web",
+      //   //   last_name: "",
+      //   //   logged_in_master_user_id: 339,
+      //   //   master_user_id: 339,
+      //   //   message: "",
+      //   //   name: "",
+      //   //   user_type: "N",
+      //   // } : {
+      //   //   agree_tandc: '1',
+      //   //   from_app: 'true',
+      //   //   master_user_id: 339,
+      //   //   logged_in_master_user_id: 339,
+      //   //   agree_tandc_display: true,
+      //   //   last_name: '',
+      //   //   property_type: 'plot',
+      //   //   first_name: '',
+      //   //   client_contact_no_display: '',
+      //   //   contact_no_display,
+      //   //   client_contact_no: '',
+      //   //   contact_no: '',
+      //   //   email: '',
+      //   //   remarks: '',
+      //   //   message: '',
+      //   //   user_type: 'N',
+      //   //   flag: 'https://flagcdn.com/w40/in.webp',
+      //   //   country: '91',
+      //   //   project_id: projectDetailInq?.project_id || '',
+      //   //   department: "General",
+      //   //   inquiry_from: "web",
+      //   //   client_name: ''
+      //   setInquiryObj({
+      //     agree_tandc: '1',
+      //     from_app: 'true',
+      //     master_user_id: 339,
+      //     logged_in_master_user_id: 339,
+      //     agree_tandc_display: true,
+      //     last_name: '',
+      //     property_type: 'plot',
+      //     first_name: '',
+      //     client_contact_no_display: '',
+      //     email_address: '',
+      //     remarks: '',
+      //     user_type: 'N',
+      //     flag: 'https://flagcdn.com/w40/in.webp',
+      //     country: '91',
+      //     project_id: '',
+      //     department: "General",
+      //     inquiry_from: "web",
+      //     message: ""
+      //   });
+      //   setSearch('');
+      // }
+
+
       if (response.success) {
-        Toast(response.message)
+        if (!isHomeRoute) {
+          console.log(isHomeRoute, "isHomeRoute ??");
+          // console.log(projectOptions);
+          const detail = pageDetail
+          console.log(detail, "detail");
+          const docs = detail.document_other_data ? detail.document_other_data : []
+          // console.log(docs, "docs");
+          dispatch(setThankYouData({ page_name: detail.project_title, documents: docs }));
+          router.push(`${detail.slug}/thankyou`);
+        }
+
         setInquiryObj({
           agree_tandc: '1',
           from_app: 'true',
-          master_user_id: '339',
-          logged_in_master_user_id: '339',
+          master_user_id: 339,
+          logged_in_master_user_id: 339,
           agree_tandc_display: true,
           last_name: '',
           property_type: 'plot',
           first_name: '',
           client_contact_no_display: '',
-          client_contact_no: '',
           email_address: '',
           remarks: '',
           user_type: 'N',
           flag: 'https://flagcdn.com/w40/in.webp',
           country: '91',
-          project_id: projectDetailInq?.project_id || '',
+          project_id: '',
           department: "General",
-          inquiry_from: "web"
+          inquiry_from: "web",
+          message: ""
         });
         setSearch('');
       }
-      Toast(response.message)
 
-    } catch (error) {
-      console.error('Submission error:', error);
-      toast.error('Something went wrong. Please try again.');
+      setisSubmitting(false);
+      // e.target.reset();
+    }
+    catch (error) {
+      // console.error('Submission error:', error);
     }
   };
 
@@ -376,10 +473,10 @@ export default function InquiryForm({
       <InputField
         tag="textarea"
         row={isHome || isAbout ? 2 : 1}
-        id="remarks"
+        id={isHome ? "message" : "remarks"}
         type="text"
-        name="remarks"
-        value={inquiryObj.remarks}
+        name={isHome ? "message" : "remarks"}
+        value={isHome ? inquiryObj.message : inquiryObj.remarks}
         handleChange={handleChange}
         errors={errors}
         label="Comments"

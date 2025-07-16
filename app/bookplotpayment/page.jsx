@@ -214,7 +214,7 @@
 
 // import dynamic from 'next/dynamic'
 // import { redirect } from 'next/navigation'
-// import BookPlotPayment from 'components/BookPlotPayment'
+import BookPlotPayment from 'components/BookPlotPayment'
 
 // const BookPlotPayment = dynamic(() => import('components/BookPlotPayment'), { ssr: false })
 
@@ -222,7 +222,8 @@ export default function BookPlotPaymentPage() {
     // const paymentDetail = typeof window !== 'undefined'
     //     ? sessionStorage.getItem('paymentDetailObj')
     //     : null
-    console.log("PLOT");
+    // console.log("PLOT");
 
-    return <>PAYMENT</>
+    // return <>PAYMENT</>
+    return <BookPlotPayment />
 }
