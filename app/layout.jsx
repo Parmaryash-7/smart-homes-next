@@ -41,7 +41,7 @@ export default async function RootLayout({ children }) {
         <link rel="preload" href="/fonts/poppins/Poppins-Medium.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         <link rel="preload" href="/fonts/poppins/Poppins-Regular.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         <link rel="preload" href="/fonts/poppins/Poppins-SemiBold.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
-        <meta name="robots" content="noindex, nofollow" />
+        {/* <meta name="robots" content="noindex, nofollow" /> */}
         <meta
           property="og:image"
           content="https://smarthomesinfra.onrender.com/images/smart-homes.png"
