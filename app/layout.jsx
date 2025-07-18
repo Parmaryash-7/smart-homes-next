@@ -22,7 +22,9 @@ export default async function RootLayout({ children }) {
         />
         {/* Style Preload */}
 
-        <link rel='preload' href='public/css/globals.css' />
+        <link rel='preload' href='/css/globals.css' />
+        <link rel="stylesheet" href="/css/globals.css" />
+
         
         {/* Fonts Preload */}
 

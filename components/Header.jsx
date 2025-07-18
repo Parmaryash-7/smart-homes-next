@@ -305,7 +305,7 @@ export default function Header({ propertylist, socialList }) {
 											</div>
 										)}
 										<div className="megamenuImg relative overflow small-border-radius">
-											<img style={{aspectRatio : '1:1'}}
+											<img style={{aspectRatio : '1/1'}}
 												src={`${data.banner_data.image_web_full}&h=350&w=350&q=100`}
 												alt={data.project_title}
 											/>
