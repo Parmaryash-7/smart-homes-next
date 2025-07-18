@@ -54,21 +54,21 @@ export default function Header({ propertylist, socialList }) {
 		}
 	}
 
-	useEffect(() => {
-		const handleScroll = () => {
-			const currentScroll = window.scrollY;
-			if (currentScroll > 100) {
-				setIsHidden(currentScroll > prevScrollY);
-			} else {
-				setIsHidden(false);
-			}
-			setIsScrolled(currentScroll > 250);
-			setPrevScrollY(currentScroll);
-		};
+	// useEffect(() => {
+	// 	const handleScroll = () => {
+	// 		const currentScroll = window.scrollY;
+	// 		if (currentScroll > 100) {
+	// 			setIsHidden(currentScroll > prevScrollY);
+	// 		} else {
+	// 			setIsHidden(false);
+	// 		}
+	// 		setIsScrolled(currentScroll > 250);
+	// 		setPrevScrollY(currentScroll);
+	// 	};
 
-		window.addEventListener("scroll", handleScroll);
-		return () => window.removeEventListener("scroll", handleScroll);
-	}, [prevScrollY]);
+	// 	window.addEventListener("scroll", handleScroll);
+	// 	return () => window.removeEventListener("scroll", handleScroll);
+	// }, [prevScrollY]);
 
 	useEffect(() => {
 		document.body.style.overflow = mobileMenuToggle ? "hidden" : "auto";
@@ -114,7 +114,7 @@ export default function Header({ propertylist, socialList }) {
 	const megaMenuClickClose = () => {
 		setMegaMenuCategory("");
 		setMegaMenuActive(false);
-		window.removeEventListener('scroll', handleScroll); // clean up scroll listener
+		window.removeEventListener('scroll', handleScroll); 
 	};
 
 	if (!categoryList.length) return null;
@@ -305,7 +305,7 @@ export default function Header({ propertylist, socialList }) {
 											</div>
 										)}
 										<div className="megamenuImg relative overflow small-border-radius">
-											<img
+											<img style={{aspectRatio : '1:1'}}
 												src={`${data.banner_data.image_web_full}&h=350&w=350&q=100`}
 												alt={data.project_title}
 											/>

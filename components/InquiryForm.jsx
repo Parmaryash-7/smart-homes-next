@@ -302,10 +302,10 @@ export default function InquiryForm({
 
       if (response.success) {
         if (!isHomeRoute) {
-          console.log(isHomeRoute, "isHomeRoute ??");
+          // console.log(isHomeRoute, "isHomeRoute ??");
           // console.log(projectOptions);
           const detail = pageDetail
-          console.log(detail, "detail");
+          // console.log(detail, "detail");
           const docs = detail.document_other_data ? detail.document_other_data : []
           // console.log(docs, "docs");
           dispatch(setThankYouData({ page_name: detail.project_title, documents: docs }));

@@ -28,7 +28,8 @@ export default function Home({
     propertylist,
     completedPropertylist,
     pageList,
-    blogData
+    blogData,
+    projectListJson
 }) {
     const [isMobilescreen, setMobileScreen] = useState(false)
     const [homeDetailsData, setHomeDetail] = useState(homeDetails || null)
@@ -41,7 +42,6 @@ export default function Home({
     const [tagType, setTagType] = useState('')
     const [blogsTypesList, setBlogsTypesList] = useState([])
     const [countryFlag, setCountryFlag] = useState(false)
-
     const toggleAccordion = (index) => {
         setOpenIndex(openIndex === index ? null : index)
     }
@@ -981,7 +981,7 @@ export default function Home({
                                                                     </div>
                                                                 </div>
                                                             )}
-                                                            {project.total_area && (
+                                                            {projectListJson.total_area && console.log(projectListJson) && (
                                                                 <div
                                                                     className={`project-information-div flex-row alc inner-flex-smallest ${isMobilescreen ? 'w100' : ''
                                                                         }`}
@@ -994,7 +994,7 @@ export default function Home({
                                                                     </div>
                                                                     <div className="link-font-size ellipsis-1">
                                                                         <p className="secondary-color medium-fonts">
-                                                                            Total Area of {project.total_area}
+                                                                            Total Area of {projectListJson.total_area}
                                                                         </p>
                                                                     </div>
                                                                 </div>
@@ -1426,7 +1426,7 @@ export default function Home({
                                             target="_blank"
                                             rel="noopener noreferrer"
                                         >
-                                            <div className="testimonialCard border-radius inner-flex-small inner-flex">
+                                            <div className="testimonialCard border-radius inner-flex-small inner-flex" style={{ textAlign: 'start' }}>
                                                 <div className="inner-flex inner-flex-common">
                                                     <div className="flex-row inner-flex-common alc">
                                                         <div className="testimonial-img">

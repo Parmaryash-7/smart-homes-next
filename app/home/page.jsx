@@ -5,6 +5,8 @@ import getPropertyList from 'lib/PropertList';
 import getCompletedPropertyList from "lib/CompletedPropertyList";
 import getPageList from "lib/PageList";
 import getBlogDetail from "lib/BlogDetail";
+import projectListJson from "../../data/projectList.json"
+
 
 const defaultMetadata = {
     title: "SmartHomes Infrastructure | Leading Developer in Dholera Smart City",
@@ -83,7 +85,6 @@ export default async function HomePage() {
     const pageList = await getPageList();
     const blogData = await getBlogDetail();
     const propertylist = await getPropertyList();
-
     // console.log("IN HOME");
     // console.log(propertylist);
     // console.log("IN HOME");
@@ -95,6 +96,8 @@ export default async function HomePage() {
             completedPropertylist={completedPropertylist}
             pageList={pageList}
             blogData={blogData}
+            projectListJson={projectListJson}
+
         />
     );
 }
