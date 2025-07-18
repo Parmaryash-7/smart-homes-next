@@ -34,7 +34,9 @@ export default function ChannelPartner({ pageList }) {
         agree_tandc_display: true,
         first_name: "",
         email_address: "",
+
         contact_no_display: "",
+        birthdate: "",
         contact_no_display_2: "",
         country: "91",
         flag: "https://flagcdn.com/w40/in.webp",
@@ -55,7 +57,6 @@ export default function ChannelPartner({ pageList }) {
         bank_account_no: "",
         ifsc_code: "",
         agree_tandc_display: false,
-        birthdate : ''
     });
 
     const [cpObj, setCpObj] = useState({
@@ -80,9 +81,9 @@ export default function ChannelPartner({ pageList }) {
         if (name === "contact_no_display" || name === "contact_no_display_2") {
             newVal = newVal.replace(/[^0-9]/g, "").slice(0, 10);
         }
-        if (name === "aadhar_no") {
-            newVal = newVal.replace(/[^0-9]/g, "").slice(0, 12);
-        }
+        // if (name === "aadhar_no") {
+        //     newVal = newVal.replace(/[^0-9]/g, "").slice(0, 12);
+        // }
 
         if (name === "reference_number") {
             newVal = newVal.replace(/[^0-9]/g, "").slice(0, 10);
@@ -276,7 +277,7 @@ export default function ChannelPartner({ pageList }) {
             is_crown: "0",
             last_name: "",
             company_name: "",
-            birthdate : '',
+            birthdate: Math.floor(Date.now() / 1000),
             associated_company: false,
             reference_name: "Test", // set from UI if needed
         };
