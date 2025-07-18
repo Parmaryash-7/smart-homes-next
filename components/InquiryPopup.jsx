@@ -352,7 +352,7 @@ export default function InquiryPopupDetail() {
                   }}
                   minLength="10"
                   maxLength="10"
-                  tabIndex={4}
+
                 />
 
                 {/* <label className="md-lable contact_code" htmlFor="contact_no">

@@ -1,0 +1,17 @@
+/* .section-title h2 {
+    cursor: pointer;
+    margin-right: 20px;
+    transition: opacity 0.3s;
+}
+*/
+/* .section-title h2:not(.active) {
+    opacity: 0.5;
+} */
+
+.secondary-color {
+    color: #000; 
+}
+
+.opacity-50 {
+    opacity: 0.5;
+}

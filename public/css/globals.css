@@ -286,7 +286,7 @@ body {
 
 .f-html {
   width: 70%
-  /* as: ; */
+    /* as: ; */
 }
 
 .bold-fonts {
@@ -2029,18 +2029,19 @@ label.error {
 }
 
 .about_wrpper .contactForm.detailForm form {
-    grid-template-areas:
-        "one two"
-        "three four"
-        "five six"
-        "six six"
-        "seven seven"
-        "eight";
+  grid-template-areas:
+    "one two"
+    "three four"
+    "five six"
+    "six six"
+    "seven seven"
+    "eight";
 }
 
 .about_wrapper .contactForm form>div:nth-child(6) {
   grid-area: six;
 }
+
 /* 
 .about_wrapper .contactForm form>div:nth-child(7) {
   grid-area: seven;
@@ -6585,16 +6586,19 @@ span.readmore_click {
     color: var(--primary-color);
   }
 
+
   .contactForm form {
-    grid-template-columns: 100% !important;
+    display: flex;
+    flex-direction: column;
+    /* grid-template-columns: 100%;
     grid-template-areas:
       "one "
-      " two"
-      "three "
-      " four"
-      "five "
-      "six " "seven" "eight" !important;
+      "two "" three"
+      "four "" five"
+      "six "" six"
+      "seven "; */
   }
+
 
   .homeSubmitBtn {
     padding-top: 0;
@@ -9092,7 +9096,7 @@ form .md-lable.contact_code #contact_no {
     grid-template-areas:
       "one " " two"
       "three " " four"
-      "five "
+      "five " 
       "six ";
   }
 

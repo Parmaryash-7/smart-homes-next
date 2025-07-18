@@ -14,7 +14,8 @@
 //     );
 // }
 
-import Blogs from "components/Blogs";
+// import Blogs from "components/Blogs";
+import BlogsTab from "components/BlogsTab";
 import api from 'lib/api.interceptor';
 import getPageList from "lib/PageList";
 import getBlogDetail from "lib/BlogDetail";
@@ -91,7 +92,7 @@ export default async function BlogsPage() {
     const blogDetailData = await getBlogDetail();
 
     return (
-        <Blogs
+        <BlogsTab
             pageList={pageList}
             blogs_types_list={blogDetailData}
         />

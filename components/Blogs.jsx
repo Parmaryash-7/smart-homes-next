@@ -14,7 +14,7 @@ export default function Blogs({ blogs_types_list }) {
             id="reecosys-contact-wrapper"
             className=" inner-flex inner-flex-big"
           >
-            <section
+            {/* <section
               className="reecosys-section relative"
               data-aos="fade-in"
               data-aos-delay="600"
@@ -33,7 +33,7 @@ export default function Blogs({ blogs_types_list }) {
                   <h2 className="secondary-color">Blogs</h2>
                 </div>
               </div>
-            </div>
+            </div> */}
             <section
               className="reecosys-section project_blog_list_setion"
               id="reecosys-blog-section-2"

@@ -462,11 +462,11 @@ export default function Footer({
                                                 <p className="capitalize">blogs</p>
                                             </Link>
                                         </li>
-                                        <li className="wfc footer-hover">
-                                            <Link href="/latest-news" className={activePath === "/latest-news" ? "active_page" : ""}>
+                                        {/* <li className="wfc footer-hover">
+                                            <Link href="/blogs" className={activePath === "/blogs" ? "active_page" : ""}>
                                                 <p className="capitalize">Latest News</p>
                                             </Link>
-                                        </li>
+                                        </li> */}
                                         <li className="wfc footer-hover">
                                             <Link href="/newsletters" className={activePath === "/newsletters" ? "active_page" : ""}>
                                                 <p className="capitalize">News Letters</p>
