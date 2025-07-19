@@ -189,8 +189,8 @@ export default function InquiryForm({
     if (!inquiryObj.client_contact_no_display.trim()) newErrors.client_contact_no_display = true;
     else if (!phoneRegex.test(inquiryObj.client_contact_no_display)) newErrors.client_contact_no_display = true;
 
-    if (!isHome && !inquiryObj.email_address.trim()) newErrors.email_address = true;
-    else if (!isHome && !emailRegex.test(inquiryObj.email_address)) newErrors.email_address = true;
+    // if (!isHome && !inquiryObj.email_address.trim()) newErrors.email_address = true;
+    // else if (!isHome && !emailRegex.test(inquiryObj.email_address)) newErrors.email_address = true;
 
     if (!isHome && (!inquiryObj.property_type || inquiryObj.property_type.trim() === '')) {
       newErrors.property_type = true;
@@ -236,69 +236,6 @@ export default function InquiryForm({
       }
       // console.log(response);
       Toast(response.message)
-      // if (response.success) {
-      //   // setInquiryObj(isHome ? {
-      //   //   contact_no: "",
-      //   //   contact_no_display: "",
-      //   //   country: "91",
-      //   //   department: "General",
-      //   //   email: "",
-      //   //   first_name: "",
-      //   //   flag: "https://flagcdn.com/w40/in.webp",
-      //   //   from_app: 'true',
-      //   //   inquiry_from: "web",
-      //   //   last_name: "",
-      //   //   logged_in_master_user_id: 339,
-      //   //   master_user_id: 339,
-      //   //   message: "",
-      //   //   name: "",
-      //   //   user_type: "N",
-      //   // } : {
-      //   //   agree_tandc: '1',
-      //   //   from_app: 'true',
-      //   //   master_user_id: 339,
-      //   //   logged_in_master_user_id: 339,
-      //   //   agree_tandc_display: true,
-      //   //   last_name: '',
-      //   //   property_type: 'plot',
-      //   //   first_name: '',
-      //   //   client_contact_no_display: '',
-      //   //   contact_no_display,
-      //   //   client_contact_no: '',
-      //   //   contact_no: '',
-      //   //   email: '',
-      //   //   remarks: '',
-      //   //   message: '',
-      //   //   user_type: 'N',
-      //   //   flag: 'https://flagcdn.com/w40/in.webp',
-      //   //   country: '91',
-      //   //   project_id: projectDetailInq?.project_id || '',
-      //   //   department: "General",
-      //   //   inquiry_from: "web",
-      //   //   client_name: ''
-      //   setInquiryObj({
-      //     agree_tandc: '1',
-      //     from_app: 'true',
-      //     master_user_id: 339,
-      //     logged_in_master_user_id: 339,
-      //     agree_tandc_display: true,
-      //     last_name: '',
-      //     property_type: 'plot',
-      //     first_name: '',
-      //     client_contact_no_display: '',
-      //     email_address: '',
-      //     remarks: '',
-      //     user_type: 'N',
-      //     flag: 'https://flagcdn.com/w40/in.webp',
-      //     country: '91',
-      //     project_id: '',
-      //     department: "General",
-      //     inquiry_from: "web",
-      //     message: ""
-      //   });
-      //   setSearch('');
-      // }
-
 
       if (response.success) {
         if (!isHomeRoute) {
@@ -400,7 +337,8 @@ export default function InquiryForm({
           tag="select"
           selectList={projectOptions}
           name="about_project_id"
-          value={inquiryObj.property_type}
+          // value={inquiryObj.property_type}
+          value={inquiryObj.about_project_id}
           handleChange={handleChange}
           errors={errors}
           label="Project*"

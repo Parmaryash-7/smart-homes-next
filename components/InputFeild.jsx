@@ -52,8 +52,8 @@ export default function InputField({
             onChange={handleChange}
             className={`form-control contact-form ${errors?.[name] ? "error" : ""
               }`}
-            minLength={10}
-            maxLength={10}
+            // minLength={10}
+            // maxLength={10}
           />
           <label className="md-lable" htmlFor={id}>
             {label}
