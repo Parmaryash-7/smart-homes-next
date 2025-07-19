@@ -300,7 +300,7 @@ export default function InquiryForm({
   }, [])
 
   const projectType = [
-    { name: '', value: '' },
+    { name: 'Select Projects', value: '', disabled: true},
     { name: 'Villa', value: 'Villa' },
     { name: 'Plot', value: 'Plot' }
   ]
@@ -322,13 +322,14 @@ export default function InquiryForm({
         <InputField
           tag="select"
           selectList={projectType}
+          disabled
           id="property_type"
           placeholder="Select Project"
           name="property_type"
           value={inquiryObj.property_type}
           handleChange={handleChange}
           errors={errors}
-          label="Project*"
+          label="Looking for*"
         />
       )}
 

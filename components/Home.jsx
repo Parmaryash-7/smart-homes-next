@@ -31,6 +31,7 @@ export default function Home({
     blogData,
     projectListJson
 }) {
+    // console.log(projectListJson);
     const [isMobilescreen, setMobileScreen] = useState(false)
     const [homeDetailsData, setHomeDetail] = useState(homeDetails || null)
     const [filterType, setFilterType] = useState('')
@@ -981,7 +982,7 @@ export default function Home({
                                                                     </div>
                                                                 </div>
                                                             )}
-                                                            {projectListJson.total_area && console.log(projectListJson) && (
+                                                            {projectListJson.total_area && (
                                                                 <div
                                                                     className={`project-information-div flex-row alc inner-flex-smallest ${isMobilescreen ? 'w100' : ''
                                                                         }`}
@@ -1306,7 +1307,7 @@ export default function Home({
                         <div className="timelineSwiper">
                             <Swiper
                                 className="swiper-container"
-                                modules={[Navigation]}
+                                modules={[Navigation , FreeMode]}
                                 observer={true}
                                 observeParents={true}
                                 slidesPerView={3.5}
@@ -1742,7 +1743,7 @@ export default function Home({
                     className="reecosys-template-section relative"
                     id="reecosys-template-home-section-10"
                 >
-                    <div className="    ">
+                    <div className="">
                         <div className="homeContactForm relative j-c-sb">
                             <div
                                 className="inner-flex j-c-sb  relative"
@@ -1760,50 +1761,42 @@ export default function Home({
                                     </h2>
                                 </div>
                             </div>
-                            <div
-                                className="flex-row alc contactBtnFlex   relative"
-                                style={{ zIndex: 2 }}
-                            >
-                                <a href="tel:+917096961250">
-                                    <button
-                                        className="reecosys-template-button button-style-white white-text"
-                                        data-aos="fade-up"
-                                        data-aos-delay="300"
-                                        data-aos-duration="600"
-                                    >
-                                        <span className="material-symbols-outlined">
-                                            phone_in_talk
-                                        </span>
-                                        <p>Call Us</p>
-                                    </button>
-                                </a>
-                                <a href="mailto:info@smarthomesinfra.com">
-                                    <button
-                                        className="reecosys-template-button button-style-white white-text"
-                                        data-aos="fade-up"
-                                        data-aos-delay="400"
-                                        data-aos-duration="600"
-                                    >
-                                        <span className="material-symbols-outlined">drafts</span>
-                                        <p>Send an email</p>
-                                    </button>
-                                </a>
-                                <a
-                                    href="https://maps.app.goo.gl/4CYF8dhjXH65BjNK7"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                >
-                                    <button
-                                        className="reecosys-template-button button-style-white white-text"
-                                        data-aos="fade-up"
-                                        data-aos-delay="500"
-                                        data-aos-duration="600"
-                                    >
-                                        <span className="material-symbols-outlined">distance</span>
-                                        <p>Visit Our Office</p>
-                                    </button>
-                                </a>
-                            </div>
+                              <div className="flex-row alc contactBtnFlex relative" style={{ zIndex: 2 }}>
+                                        
+                                        <Link href="tel:+917096961250" passHref>
+                                            <button
+                                            className="reecosys-template-button button-style-white white-text wow fadeInUp"
+                                            data-wow-delay="0.3s"
+                                            data-wow-duration="0.6s"
+                                            >
+                                            <span className="material-symbols-outlined">phone_in_talk</span>
+                                            <p>Call Us</p>
+                                            </button>
+                                        </Link>
+
+                                        <Link href="mailto:info@smart-homes.in" passHref>
+                                            <button
+                                            className="reecosys-template-button button-style-white white-text wow fadeInUp"
+                                            data-wow-delay="0.4s"
+                                            data-wow-duration="0.6s"
+                                            >
+                                            <span className="material-symbols-outlined">drafts</span>
+                                            <p>Send an email</p>
+                                            </button>
+                                        </Link>
+
+                                        <Link href="https://maps.app.goo.gl/4CYF8dhjXH65BjNK7" target="_blank" rel="noopener noreferrer">
+                                            <button
+                                            className="reecosys-template-button button-style-white white-text wow fadeInUp"
+                                            data-wow-delay="0.5s"
+                                            data-wow-duration="0.6s"
+                                            >
+                                            <span className="material-symbols-outlined">distance</span>
+                                            <p>Visit Our Office</p>
+                                            </button>
+                                        </Link>
+
+                                        </div>
 
                             <div className="homeContactFormOverlay"></div>
                         </div>

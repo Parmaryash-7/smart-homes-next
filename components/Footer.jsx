@@ -12,42 +12,57 @@ export default function Footer({
     const activePath = usePathname();
     const year = new Date().getFullYear();
     const [openAccordions, setOpenAccordions] = useState({});
-    const [email, setEmail] = useState("");
-    const [error, setError] = useState("");
+    const [email, setEmail] = useState('');
+    const [error, setError] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [touched, setTouched] = useState(false);
 
-    const isValidEmail = (email) => {
-        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    };
+    // const isValidEmail = (email) => {
+    //     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    // };
 
 
-    const validate = () => {
-        if (!email.trim()) {
-            setError("Please enter your email.");
-            return false;
-        }
-        if (!isValidEmail(email)) {
-            setError("Please enter a valid email.");
-            return false;
-        }
-        setError("");
-        return true;
-    };
+        const isValidEmail = (email) => {
+          return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        };
 
-
-    const subscribeform = (e) => {
+        const subscribeform = async (e) => {
         e.preventDefault();
-        if (!validate()) return;
 
+        const newErrors = {};
+
+        if (!email.trim()) {
+            newErrors.email = "Please enter your email.";
+        } else if (!isValidEmail(email)) {
+            newErrors.email = "Please enter a valid email.";
+        }
+
+        if (Object.keys(newErrors).length > 0) {
+            setError(newErrors.email);
+            setIsSubmitting(false);
+            setTouched(true);
+            return;
+        }
+
+        setError("");
         setIsSubmitting(true);
 
-        setTimeout(() => {
-            // console.log("Email : ", email);
+        try {
+            const response = await api.FooterEmail();
+            console.log(response, "response");
+             if (response.success) {
+            setTimeout(() => {
             setEmail("");
+            setTouched(false);
             setIsSubmitting(false);
-        }, 1000);
-    };
+            }, 1000);
+        }
+
+        } catch (err) {
+            setIsSubmitting(false);
+        }
+        };
+
 
     const toggleAccordion = (key) => {
         setOpenAccordions((prev) => ({ ...prev, [key]: !prev[key] }));
@@ -229,42 +244,47 @@ export default function Footer({
 
                                     <div className="inquiryWrapper footer-subscribe">
                                         <form
-                                            name="subscribeForm"
-                                            id="subscribeForm"
-                                            className="footer-inquiryForm"
-                                            onSubmit={subscribeform}
+                                        name="subscribeForm"
+                                        id="subscribeForm"
+                                        className="footer-inquiryForm"
+                                        onSubmit={subscribeform}
                                         >
-                                            <div className="inquiry-label subscribe-label">
-                                                <input
-                                                    className={
-                                                        touched && !isValidEmail(email) ? "ng-invalid" : touched ? "ng-valid" : ""
-                                                    }
-                                                    type="email"
-                                                    name="email_address"
-                                                    id="email_address"
-                                                    placeholder="Enter your email"
-                                                    value={email}
-                                                    onChange={(e) => {
-                                                        setEmail(e.target.value);
-                                                        if (error) setError("");
-                                                    }}
-                                                    onBlur={() => setTouched(true)}
-                                                />
+                                        <div className="inquiry-label subscribe-label">
+                                            <input
+                                            className={
+                                                touched && !isValidEmail(email)
+                                                ? "ng-invalid"
+                                                : touched && isValidEmail(email)
+                                                ? "ng-valid"
+                                                : ""
+                                            }
+                                            type="text"
+                                            name="email_address"
+                                            id="email_address"
+                                            placeholder="Enter your email"
+                                            value={email}
+                                            onChange={(e) => {
+                                                setEmail(e.target.value);
+                                                if (error) setError("");
+                                            }}
+                                            onBlur={() => setTouched(true)}
+                                            />
+                                            {/* {error && <span className="error-text">{error}</span>} */}
+                                        </div>
 
-
-                                            </div>
-
-                                            <div>
-                                                <button
-                                                    className={`reecosys-template-button button-style-secondary ${!isValidEmail(email) ? 'ng-invalid' : 'ng-valid'
-                                                        }`}
-                                                    type="submit"
-                                                >
-                                                    <p>{isSubmitting ? "Please wait..." : "Submit"}</p>
-                                                </button>
-
-                                            </div>
+                                        <div>
+                                            <button
+                                            className={`reecosys-template-button button-style-secondary ${
+                                                touched && !isValidEmail(email) ? "ng-invalid" : touched ? "ng-valid" : ""
+                                            }`}
+                                            type="submit"
+                                            disabled={isSubmitting}
+                                            >
+                                            <p>{isSubmitting ? "Please wait..." : "Submit"}</p>
+                                            </button>
+                                        </div>
                                         </form>
+
                                     </div>
                                 </div>
                             </div>
@@ -286,9 +306,9 @@ export default function Footer({
                                                     .map((data, idx) => (
                                                         <li key={idx} className="wfc footer-hover">
                                                             <Link
-                                                                href={`/${data.slug}/`}
+                                                                href={`${data.slug}/`}
                                                                 className={
-                                                                    activePath === `/${data.slug}/`
+                                                                    activePath === `${data.slug}/`
                                                                         ? "active_page"
                                                                         : ""
                                                                 }
@@ -312,9 +332,9 @@ export default function Footer({
                                                         <div className="inner-flex inner-flex-smallest footer-navigation-link">
                                                             <li className="wfc footer-hover">
                                                                 <Link
-                                                                    href="/privacy-policy"
+                                                                    href="privacy-policy/"
                                                                     className={
-                                                                        activePath === "/privacy-policy/"
+                                                                        activePath === "privacy-policy/"
                                                                             ? "active_page"
                                                                             : ""
                                                                     }
@@ -324,9 +344,9 @@ export default function Footer({
                                                             </li>
                                                             <li className="wfc footer-hover">
                                                                 <Link
-                                                                    href="/terms-and-conditions"
+                                                                    href="terms-and-conditions/"
                                                                     className={
-                                                                        activePath === "/terms-and-conditions/"
+                                                                        activePath === "terms-and-conditions/"
                                                                             ? "active_page"
                                                                             : ""
                                                                     }
@@ -336,9 +356,9 @@ export default function Footer({
                                                             </li>
                                                             <li className="wfc footer-hover">
                                                                 <Link
-                                                                    href="/disclaimer"
+                                                                    href="disclaimer/"
                                                                     className={
-                                                                        activePath === "/disclaimer/"
+                                                                        activePath === "disclaimer/"
                                                                             ? "active_page"
                                                                             : ""
                                                                     }
@@ -418,47 +438,47 @@ export default function Footer({
                                             <p className="uppercase">Quick links</p>
                                         </li>
                                         <li className="wfc footer-hover">
-                                            <Link href="about-us/" className={activePath === "/about-us" ? "active_page" : ""}>
+                                            <Link href="about-us/" className={activePath === "about-us/" ? "active_page" : ""}>
                                                 <p className="capitalize">About</p>
                                             </Link>
                                         </li>
                                         <li className="wfc footer-hover">
-                                            <Link href="/completed-projects" className={activePath === "/completed-projects" ? "active_page" : ""}>
+                                            <Link href="completed-projects/" className={activePath === "completed-projects/" ? "active_page" : ""}>
                                                 <p className="capitalize">Completed Projects</p>
                                             </Link>
                                         </li>
                                         <li className="wfc footer-hover">
-                                            <Link href="/channel-partners" className={activePath === "/channel-partners" ? "active_page" : ""}>
+                                            <Link href="channel-partners/" className={activePath === "channel-partners/" ? "active_page" : ""}>
                                                 <p className="capitalize">Channel Partners</p>
                                             </Link>
                                         </li>
                                         <li className="wfc footer-hover">
-                                            <Link href="/contact-us">
+                                            <Link href="contact-us/">
                                                 <p className="capitalize">Contact Us</p>
                                             </Link>
                                         </li>
                                         <li className="wfc footer-hover">
-                                            <Link href="/dholera-sir" className={activePath === "/dholera-sir/" ? "active_page" : ""}>
+                                            <Link href="dholera-sir/" className={activePath === "dholera-sir/" ? "active_page" : ""}>
                                                 <p className="capitalize">Dholera SIR</p>
                                             </Link>
                                         </li>
                                         <li className="wfc footer-hover">
-                                            <Link href="/construction-updates" className={activePath === "/construction-updates/" ? "active_page" : ""}>
+                                            <Link href="construction-updates/" className={activePath === "construction-updates/" ? "active_page" : ""}>
                                                 <p className="capitalize">Construction Updates</p>
                                             </Link>
                                         </li>
                                         <li className="footer-hover">
-                                            <Link href="/awards-and-accolades/" className={activePath === "/awards-and-accolades" ? "active_page" : ""}>
+                                            <Link href="awards-and-accolades/" className={activePath === "awards-and-accolades/" ? "active_page" : ""}>
                                                 <p className="capitalize">Awards &amp; Accolades</p>
                                             </Link>
                                         </li>
                                         <li className="wfc footer-hover">
-                                            <Link href="/nri-corner" className={activePath === "/nri-corner" ? "active_page" : ""}>
+                                            <Link href="nri-corner/" className={activePath === "nri-corner/" ? "active_page" : ""}>
                                                 <p className="capitalize">NRI Corner</p>
                                             </Link>
                                         </li>
                                         <li className="wfc footer-hover">
-                                            <Link href="/blogs" className={activePath === "/blogs" ? "active_page" : ""}>
+                                            <Link href="blogs/" className={activePath === "blogs/" ? "active_page" : ""}>
                                                 <p className="capitalize">blogs</p>
                                             </Link>
                                         </li>
@@ -468,17 +488,17 @@ export default function Footer({
                                             </Link>
                                         </li> */}
                                         <li className="wfc footer-hover">
-                                            <Link href="/newsletters" className={activePath === "/newsletters" ? "active_page" : ""}>
+                                            <Link href="newsletters/" className={activePath === "/newsletters/" ? "active_page" : ""}>
                                                 <p className="capitalize">News Letters</p>
                                             </Link>
                                         </li>
                                         <li className="wfc footer-hover">
-                                            <Link href="/franchise-opportunities" className={activePath === "/franchise-opportunities" ? "active_page" : ""}>
+                                            <Link href="franchise-opportunities/" className={activePath === "/franchise-opportunities/" ? "active_page" : ""}>
                                                 <p className="capitalize">Franchise Opportunities</p>
                                             </Link>
                                         </li>
                                         <li className="wfc footer-hover">
-                                            <Link href="/sitemap">
+                                            <Link href="sitemap/">
                                                 <p className="capitalize">Sitemap</p>
                                             </Link>
                                         </li>
@@ -685,7 +705,7 @@ export default function Footer({
                                             <ul className="inner-flex inner-flex-common">
                                                 <li className="footerAccordionBlock">
                                                     <div className="section-content flex-row alc j-c-sb w100 footer_accordion_click">
-                                                        <Link href="/about-us">
+                                                        <Link href="about-us/">
                                                             <p className="capitalize">About</p>
                                                         </Link>
                                                     </div>
@@ -711,7 +731,7 @@ export default function Footer({
                                                                         {propertylist
                                                                             .filter((data) => data.category === category.category && data.project_id !== '744')
                                                                             .map((data, index) => (
-                                                                                <Link href={`/${data.slug}`} className="header-hover" key={data.project_id}>
+                                                                                <Link href={`${data.slug}`} className="header-hover" key={data.project_id}>
                                                                                     <div className="flex-row flex-gap-small">
                                                                                         <div className="flex-30">
                                                                                             <img
@@ -819,7 +839,7 @@ export default function Footer({
                                                 {["completed-projects", "channel-partners", "contact-us", "dholera-sir", "construction-updates", "awards-and-accolades", "nri-corner", "blogs", "latest-news", "newsletters", "franchise-opportunities", "sitemap"].map((link) => (
                                                     <li className="footerAccordionBlock" key={link}>
                                                         <div className="section-content flex-row alc j-c-sb w100 footer_accordion_click">
-                                                            <Link href={`/${link}`}>
+                                                            <Link href={`/${link}/`}>
                                                                 <p className="capitalize">{link.replace(/-/g, " ")}</p>
                                                             </Link>
                                                         </div>
