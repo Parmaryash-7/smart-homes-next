@@ -1,4 +1,5 @@
 import '../public/css/globals.css'
+import '../components/Header.css'
 import Header from 'components/Header'
 import Footer from 'components/Footer'
 import api from 'lib/api.interceptor'
@@ -24,8 +25,8 @@ export default async function RootLayout({ children }) {
 
         <link rel='preload' href='/css/globals.css' />
         <link rel="stylesheet" href="/css/globals.css" />
-        
-        
+
+
         {/* Fonts Preload */}
 
         {/* Cabinet Grotesk Fonts */}
@@ -48,6 +49,10 @@ export default async function RootLayout({ children }) {
           property="og:image"
           content="https://smarthomesinfra.onrender.com/images/smart-homes.png"
         />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <meta http-equiv="ScreenOrientation" content="autoRotate:disabled"></meta>
       </head>
       <body>
         {/* Google Analytics Script */}
@@ -88,7 +93,7 @@ export default async function RootLayout({ children }) {
         <Providers>
           <main>
             <Header propertylist={propertylist} socialList={socialList} />
-            <div className="page">
+            <div className="page" >
               {children}
               <InquiryPopup />
               <Footer

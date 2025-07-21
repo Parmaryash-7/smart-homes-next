@@ -120,7 +120,7 @@ export default function Header({ propertylist, socialList }) {
 		window.removeEventListener('scroll', handleScroll);
 	};
 
-	if (!categoryList.length) return null;
+	// if (!categoryList.length) return null;
 
 	return (
 		<div className={`header-wrapper ${inquire_popup ? "webmenu_hidden2" : ""}`}>
@@ -132,7 +132,7 @@ export default function Header({ propertylist, socialList }) {
 						style={{ zIndex: 999 }}
 					>
 						<Link href="/">
-							<img src="/images/logo/smart-homes-logo.svg" alt="Smart Homes Infrastructure" />
+							<img src="/images/logo/smart-homes-logo.svg" alt="Smart Homes Infrastructure" loading="lazy" />
 						</Link>
 					</div>
 
@@ -311,6 +311,7 @@ export default function Header({ propertylist, socialList }) {
 											<img style={{ aspectRatio: '1/1' }}
 												src={`${data.banner_data.image_web_full}&h=350&w=350&q=100`}
 												alt={data.project_title}
+												loading="lazy"
 											/>
 											<div className="megamenu_overlay"></div>
 											<div className="megamenu_overlay_2"></div>
@@ -402,7 +403,7 @@ export default function Header({ propertylist, socialList }) {
 														<div className="flex-row flex-gap-small">
 															<div className="flex-30">
 																<img src={`${data.banner_data.image_web_full}&h=250&w=250`}
-																	alt="reecosys" />
+																	alt="reecosys" loading="lazy" />
 															</div>
 															<div className="flex-70 inner-flex">
 																<div className="section-paragraph">
@@ -444,7 +445,7 @@ export default function Header({ propertylist, socialList }) {
 														<div className="flex-row flex-gap-small">
 															<div className="flex-30">
 																<img src={`${data.banner_data.image_web_full}&h=250&w=250`}
-																	alt="reecosys" />
+																	alt="reecosys" loading="lazy" />
 															</div>
 															<div className="flex-70 inner-flex">
 																<div className="section-paragraph">

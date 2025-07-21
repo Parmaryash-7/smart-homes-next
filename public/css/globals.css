@@ -47,6 +47,10 @@ body {
   }
 }
 
+.btn-amn {
+  display: none;
+}
+
 .progress {
   overflow: hidden;
 }
@@ -8517,9 +8521,9 @@ form .md-lable.contact_code #contact_no {
     white-space: nowrap;
   }
 
-  .reecosys-template-button.button-style-secondary {
+  /* .reecosys-template-button.button-style-secondary {
     display: none;
-  }
+  } */
 
   /* .cp_form_flex {
      display: grid;

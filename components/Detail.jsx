@@ -1147,7 +1147,7 @@ export default function Detail({
                       data-aos-delay="700"
                     >
                       {projectDetail.amenities_data?.length > 8 && (
-                        <div className="">
+                        <div className="btn-amn">
                           {/* ng-click="amenityClick()" */}
                           <button
                             className={`reecosys-template-button button-style-secondary-outline ${isMobilescreen ? "w100" : ""
