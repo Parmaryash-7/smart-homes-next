@@ -189,7 +189,11 @@ export default function InquiryForm({
     if (!inquiryObj.client_contact_no_display.trim()) newErrors.client_contact_no_display = true;
     else if (!phoneRegex.test(inquiryObj.client_contact_no_display)) newErrors.client_contact_no_display = true;
 
-    if (!inquiryObj.projectType) newErrors.projectType = true;
+    // if (!inquiryObj.projectType) newErrors.projectType = true;
+
+    if (isAbout && !inquiryObj.about_project_id) newErrors.about_project_id = true;
+    if (!inquiryObj.property_type || inquiryObj.property_type.trim() === '') newErrors.property_type = true;
+
 
     // if (!isHome && !inquiryObj.email_address.trim()) newErrors.email_address = true;
     // else if (!isHome && !emailRegex.test(inquiryObj.email_address)) newErrors.email_address = true;
@@ -302,13 +306,14 @@ export default function InquiryForm({
   }, [])
 
   const projectType = [
-    { name: 'Select Projects', value: '', disabled: true},
+    { name: 'Select Projects', value: '', disabled: true },
     { name: 'Villa', value: 'Villa' },
     { name: 'Plot', value: 'Plot' }
   ]
 
   const aboutProjectType = [
-    { name: '', value: '' },
+    { name: 'Select Projects', value: '', disabled: true },
+    // { name: '', value: '' },
     { name: 'Plot', value: 'Plot' }
   ]
 
@@ -339,10 +344,11 @@ export default function InquiryForm({
       {isAbout && projectOptions?.length > 0 ? (
         <InputField
           tag="select"
+          disabled
           selectList={projectOptions}
           name="about_project_id"
-          // value={inquiryObj.property_type}
-          value={inquiryObj.about_project_id}
+          value={inquiryObj.property_type}
+          // value={inquiryObj.about_project_id}
           handleChange={handleChange}
           errors={errors}
           label="Project*"
@@ -358,6 +364,8 @@ export default function InquiryForm({
           handleChange={handleChange}
           errors={errors}
           label="Project Type*"
+          disabled
+
         />
       ) : null}
 

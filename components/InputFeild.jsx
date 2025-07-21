@@ -53,8 +53,8 @@ export default function InputField({
             onChange={handleChange}
             className={`form-control contact-form ${errors?.[name] ? "error" : ""
               }`}
-            // minLength={10}
-            // maxLength={10}
+          // minLength={10}
+          // maxLength={10}
           />
           <label className="md-lable" htmlFor={id}>
             {label}
@@ -130,7 +130,7 @@ export default function InputField({
             <option disabled>{placeholder}</option>
             {selectList
               .filter((p) => p.project_id !== "744" && p.project_id !== "814")
-              .map((data , i) => (
+              .map((data, i) => (
                 <option key={i} value={i}>
                   {data.project_title}
                 </option>
@@ -154,29 +154,20 @@ export default function InputField({
             onChange={handleChange}
             className={`form-control ${errors?.[name] ? "error" : ""} `}
           >
-            {selectList.map((data, index) => {             
+            {selectList.map((data, index) => {
               return (
-              <>
-
-                {data.project_title && index == 0 && 
+                <>
                   <option
-                  key={0}
-                  disabled={true}
-                  value={""}
-                  selected
-                >
+                    key={index}
+                    value={data.value}
+                    disabled={index === 0 && start}
+                    className={`form-control ${errors?.[name] ? "error" : ""} `}
+                  >
+                    {data.name || data.project_title}
                   </option>
-                }
-                <option
-                key={index}
-                disabled={data.value == ""}
-                value={data.value}
-                selected={start && index == 0 }
-              >
-                {data.name || data.project_title}
-              </option>
-              </>  
-              )  
+
+                </>
+              )
             })}
           </select>
           <label className="md-lable">{label}</label>
