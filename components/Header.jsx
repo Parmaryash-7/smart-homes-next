@@ -180,10 +180,10 @@ export default function Header({ propertylist, socialList }) {
               ))}
 
               <li>
-                <Link href="bulk-land-in-dholera/">
+                <Link href="/bulk-land-in-dholera/">
                   <p
                     className={`capitalize ${
-                      activePath === 'bulk-land-in-dholera/'
+                      activePath === '/bulk-land-in-dholera'
                         ? 'secondary-color'
                         : ''
                     }`}
@@ -193,10 +193,10 @@ export default function Header({ propertylist, socialList }) {
                 </Link>
               </li>
               <li>
-                <Link href="about-us/">
+                <Link href="/about-us/">
                   <p
                     className={`capitalize ${
-                      activePath === 'about-us/' ? 'secondary-color' : ''
+                      activePath === '/about-us' ? 'secondary-color' : ''
                     }`}
                   >
                     About
@@ -204,10 +204,10 @@ export default function Header({ propertylist, socialList }) {
                 </Link>
               </li>
               <li>
-                <Link href="channel-partners/">
+                <Link href="/channel-partners/">
                   <p
                     className={`capitalize ${
-                      activePath === 'channel-partners/'
+                      activePath === '/channel-partners'
                         ? 'secondary-color'
                         : ''
                     }`}
@@ -217,10 +217,10 @@ export default function Header({ propertylist, socialList }) {
                 </Link>
               </li>
               <li>
-                <Link href="nri-corner/">
+                <Link href="/nri-corner/">
                   <p
                     className={`capitalize ${
-                      activePath === 'nri-corner/' ? 'secondary-color' : ''
+                      activePath === '/nri-corner' ? 'secondary-color' : ''
                     }`}
                   >
                     NRI Corner
@@ -228,7 +228,7 @@ export default function Header({ propertylist, socialList }) {
                 </Link>
               </li>
               <li className="headerBtn">
-                <Link href="contact-us/">
+                <Link href="/contact-us/">
                   <button className="reecosys-template-button button-style-secondary">
                     <p>Contact Us</p>
                   </button>
@@ -344,7 +344,7 @@ export default function Header({ propertylist, socialList }) {
                 </h2>
               </div>
               <div className="wfc" style={{ marginTop: '2rem' }}>
-                <Link href="projects/">
+                <Link href="/projects/">
                   <button className="reecosys-template-button button-style-primary">
                     <p>View All Projects</p>
                   </button>
@@ -356,11 +356,11 @@ export default function Header({ propertylist, socialList }) {
                 <div
                   key={idx}
                   className={`megamenuItem relative inner-flex ${
-                    activePath === `${data.slug}/` ? 'active' : ''
+                    activePath === `/${data.slug}` ? 'active' : ''
                   }`}
                   onClick={() => megaMenuClickClose()}
                 >
-                  <Link href={`${data.slug}/`}>
+                  <Link href={`/${data.slug}/`}>
                     {data.status && (
                       <div className="megamenuStatus statusText">
                         <p className="text-uppercase white-color">
@@ -473,7 +473,7 @@ export default function Header({ propertylist, socialList }) {
                     setMobileMenuToggle(false)
                   }}
                 >
-                  <Link href="about-us/">
+                  <Link href="/about-us/">
                     <div className="flex-row j-c-sb header_accordion accordion_click">
                       <div className="section-paragraph">
                         <p className="capitalize">About</p>
@@ -538,7 +538,7 @@ export default function Header({ propertylist, socialList }) {
                               >
                                 {category_data.category != 'Commercial' && (
                                   <Link
-                                    href={`${data.slug}/`}
+                                    href={`/${data.slug}/`}
                                     className="header-hover"
                                   >
                                     <div className="flex-row flex-gap-small">
@@ -609,7 +609,7 @@ export default function Header({ propertylist, socialList }) {
                                 )}
                                 {category_data.category == 'Commercial' && (
                                   <Link
-                                    href={`${data.slug}/`}
+                                    href={`/${data.slug}/`}
                                     className="header-hover"
                                   >
                                     <div className="flex-row flex-gap-small">
@@ -692,9 +692,9 @@ export default function Header({ propertylist, socialList }) {
               <li>
                 <div>
                   <Link
-                    href="bulk-land-in-dholera/"
+                    href="/bulk-land-in-dholera/"
                     className={`capitalize section-paragraph ${
-                      activePath == 'bulk-land-in-dholera/' ? 'active_page' : ''
+                      activePath == '/bulk-land-in-dholera' ? 'active_page' : ''
                     }`}
                     onClick={() => {
                       setMobileMenuToggle(false)
@@ -708,9 +708,9 @@ export default function Header({ propertylist, socialList }) {
               <li>
                 <div>
                   <Link
-                    href="completed-projects/"
+                    href="/completed-projects/"
                     className={`capitalize section-paragraph ${
-                      activePath == 'completed-projects/' ? 'active_page' : ''
+                      activePath == '/completed-projects' ? 'active_page' : ''
                     }`}
                     onClick={() => {
                       setMobileMenuToggle(false)
@@ -724,9 +724,9 @@ export default function Header({ propertylist, socialList }) {
               <li>
                 <div>
                   <Link
-                    href="channel-partners/"
+                    href="/channel-partners/"
                     className={`capitalize section-paragraph ${
-                      activePath == 'channel-partners/' ? 'active_page' : ''
+                      activePath == '/channel-partners' ? 'active_page' : ''
                     }`}
                     onClick={() => {
                       setMobileMenuToggle(false)
@@ -741,9 +741,9 @@ export default function Header({ propertylist, socialList }) {
               <li>
                 <div>
                   <Link
-                    href="nri-corner/"
+                    href="/nri-corner/"
                     className={`capitalize section-paragraph ${
-                      activePath == 'nri-corner/' ? 'active_page' : ''
+                      activePath == '/nri-corner' ? 'active_page' : ''
                     }`}
                     onClick={() => {
                       setMobileMenuToggle(false)
@@ -758,9 +758,9 @@ export default function Header({ propertylist, socialList }) {
               <li>
                 <div>
                   <Link
-                    href="contact-us/"
+                    href="/contact-us/"
                     className={`capitalize section-paragraph ${
-                      activePath == 'contact-us/' ? 'active_page' : ''
+                      activePath == '/contact-us' ? 'active_page' : ''
                     }`}
                     onClick={() => {
                       setMobileMenuToggle(false)
