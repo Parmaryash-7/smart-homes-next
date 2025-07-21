@@ -189,6 +189,8 @@ export default function InquiryForm({
     if (!inquiryObj.client_contact_no_display.trim()) newErrors.client_contact_no_display = true;
     else if (!phoneRegex.test(inquiryObj.client_contact_no_display)) newErrors.client_contact_no_display = true;
 
+    if (!inquiryObj.projectType) newErrors.projectType = true;
+
     // if (!isHome && !inquiryObj.email_address.trim()) newErrors.email_address = true;
     // else if (!isHome && !emailRegex.test(inquiryObj.email_address)) newErrors.email_address = true;
 
