@@ -8512,6 +8512,15 @@ form .md-lable.contact_code #contact_no {
     display: block !important;
   }
 
+  .reecosys-template-button p,
+  .reecosys-template-button span {
+    white-space: nowrap;
+  }
+
+  .reecosys-template-button.button-style-secondary {
+    display: none;
+  }
+
   /* .cp_form_flex {
      display: grid;
     grid-template-columns: repeat(1, 1fr);

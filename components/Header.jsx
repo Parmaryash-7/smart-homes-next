@@ -370,7 +370,7 @@ export default function Header({ propertylist, socialList }) {
 				<div className="header-navigation-links" >
 					<ul>
 
-						{<li className={`${activePath == '/about-us/' ? "active" : ""}`} onClick={() => { setMobileMenuToggle(false) }}>
+						{<li className={`${activePath == 'about-us/' ? "active" : ""}`} onClick={() => { setMobileMenuToggle(false) }}>
 							<Link href="about-us/">
 								<div className="flex-row j-c-sb header_accordion accordion_click">
 									<div className="section-paragraph">
@@ -395,10 +395,10 @@ export default function Header({ propertylist, socialList }) {
 							</div>
 							<div className={`content_accordian ${activeIndex == category_data.category ? "active" : ""} `}>
 								<div>
-									<div className="inner-flex projectList_li inner-flex-zero">
+									<div className="inner-flex projectList_li inner-flex-zero" onClick={() => { setMobileMenuToggle(false) }}>
 										{propertylist.filter((data) => (category_data.category == data.category && data.project_id != 744)).map((data, index) => (
 											<div key={index} className={index == 0 ? "pt0" : ""} >
-												{category_data.category != "Commercial" && <Link href={`/${data.slug}/`} className="header-hover">
+												{category_data.category != "Commercial" && <Link href={`${data.slug}/`} className="header-hover">
 													<div className="flex-row flex-gap-small">
 														<div className="flex-30">
 															<img src={`${data.banner_data.image_web_full}&h=250&w=250`}
@@ -440,11 +440,11 @@ export default function Header({ propertylist, socialList }) {
 														</div>
 													</div>
 												</Link>}
-												{category_data.category == 'Commercial' && <Link href={`/${data.slug}/`} className="header-hover">
+												{category_data.category == 'Commercial' && <Link href={`${data.slug}/`} className="header-hover">
 													<div className="flex-row flex-gap-small">
 														<div className="flex-30">
 															<img src={`${data.banner_data.image_web_full}&h=250&w=250`}
-																alt="reecosys" />
+																alt="reecosys"/>
 														</div>
 														<div className="flex-70 inner-flex">
 															<div className="section-paragraph">
