@@ -327,8 +327,8 @@ export default function ContactUs({ pageList, contactDetails }) {
                                                     value={inquiryObj.client_contact_no_display}
                                                     onChange={handleChange}
 
-                                                    minLength="10"
-                                                    maxLength="10"
+                                                    // minLength="10"
+                                                    // maxLength="10"
                                                     tabIndex="3"
                                                 />
                                                 {/* <label className="md-lable contact_code" htmlFor="contact_no">
