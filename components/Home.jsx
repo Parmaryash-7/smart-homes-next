@@ -786,7 +786,7 @@ export default function Home({
                                 {defaultPodcastData.slice(0, 2).map((podcast, index) => {
                                     const videoId = getYouTubeVideoID(podcast.url)
                                     return (
-                                        <div className="project-list-card relative" key={index}>
+                                        <div className="project-list-card relative" key={index} style={{cursor: 'pointer'}}>
                                             <a
                                                 href={`https://www.youtube.com/embed/${videoId}`}
                                                 data-fancybox="podcastFancybox"

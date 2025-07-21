@@ -234,7 +234,7 @@ export default function InquiryForm({
       // const response = await api.Projectinquiry(JSON.stringify(inquiryObj));
 
       let response;
-      if (isHome) {
+      if (isHome & isAbout) {
         response = await api.ContactInq(inquiryObj);
 
       } else {
@@ -347,8 +347,8 @@ export default function InquiryForm({
           disabled
           selectList={projectOptions}
           name="about_project_id"
-          value={inquiryObj.property_type}
-          // value={inquiryObj.about_project_id}
+          // value={inquiryObj.property_type}
+          value={inquiryObj.about_project_id}
           handleChange={handleChange}
           errors={errors}
           label="Project*"
