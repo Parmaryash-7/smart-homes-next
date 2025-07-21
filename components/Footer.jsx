@@ -51,15 +51,16 @@ export default function Footer({ homeDetails, adminData, propertylist }) {
 
     try {
       const response = await api.FooterEmail(inqObj)
-    //   console.log(response, 'response')
-      if (response.success) {
-        setTimeout(() => {
-          setEmail('')
-          setTouched(false)
-          setIsSubmitting(false)
-        }, 1000)
-      }
+      //   console.log(response, 'response')
+      //   if (response.success) {
+      setTimeout(() => {
+        setEmail('')
+        setTouched(false)
+        setIsSubmitting(false)
+      }, 1000)
+      //   }
       Toast(response.message)
+      setIsSubmitting(false)
     } catch (err) {
       setIsSubmitting(false)
       console.log(err)
