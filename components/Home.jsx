@@ -354,12 +354,8 @@ export default function Home({
     //         // ]);
     //     }
     // };
-    useEffect(() => {
-        Fancybox.bind('[data-fancybox="podcastGallery"]', {
-            Thumbs: true,
-            Toolbar: true
-        })
-    }, [])
+
+
 
     // const handleExploreMoreClick = () => {
     //     if (defaultPodcastData.length > 0) {
@@ -403,32 +399,41 @@ export default function Home({
         ? defaultPodcastData
         : defaultPodcastData.slice(0, 2)
 
+
     useEffect(() => {
         Fancybox.bind('[data-fancybox="podcastFancybox"]', {
-            Thumbs: true,
-            type: 'iframe'
-        })
-        return () => Fancybox.destroy()
-    }, [])
+            Thumbs: { autoStart: true },
+            Toolbar: true
+        });
 
-    const handleExploreMoreClick = () => {
-        const galleryItems = defaultPodcastData.map((item) => {
-            const videoId = getYouTubeVideoID(item.url)
-            return {
-                src: `https://www.youtube.com/embed/${videoId}`,
-                type: 'iframe'
-            }
-        })
+    }, []);
+    useEffect(() => {
+        Fancybox.bind('[data-fancybox="podcastFancybox2"]', {
+            Thumbs: { autoStart: true },
+            Toolbar: true
+        });
+    }, []);
 
-        Fancybox.show(galleryItems, {
-            startIndex: 2,
-            type: 'iframe',
-            Thumbs: true
-        })
-        // Fancybox.fancybox({
-        //     type: "iframe",
-        // });
-    }
+    
+
+    // const handleExploreMoreClick = () => {
+    //     const galleryItems = defaultPodcastData.slice(0, 2).map((item) => {
+    //         const videoId = getYouTubeVideoID(item.url)
+    //         return {
+    //             src: `https://www.youtube.com/embed/${videoId}`,
+    //             type: 'iframe'
+    //         }
+    //     })
+
+    //     Fancybox.fancybox(galleryItems, {
+    //         startIndex: 2,
+    //         type: 'iframe',
+    //         // Thumbs: true
+    //     })
+    //     // Fancybox.fancybox({
+    //     //     type: "iframe",
+    //     // });
+    // }
     return (
         <>
             <style>{`
@@ -783,10 +788,11 @@ export default function Home({
                                 ))}
                             </div> */}
                             <div className="project-list-grid project-list-grid-2-column">
-                                {defaultPodcastData.slice(0, 2).map((podcast, index) => {
+                                {defaultPodcastData.map((podcast, index) => {
                                     const videoId = getYouTubeVideoID(podcast.url)
+
                                     return (
-                                        <div className="project-list-card relative" key={index} style={{cursor: 'pointer'}}>
+                                        <div className="project-list-card relative" key={index} style={{ cursor: 'pointer', display: `${index < 2 ? "block" : "none"}` }}>
                                             <a
                                                 href={`https://www.youtube.com/embed/${videoId}`}
                                                 data-fancybox="podcastFancybox"
@@ -794,10 +800,10 @@ export default function Home({
                                                 data-aos="fade-in"
                                                 data-aos-delay="400"
                                                 data-aos-duration="600"
-                                                style={{display : 'block'}}
+                                                style={{ display: 'block' }}
                                             >
                                                 <div className="project-img-list overflow relative">
-                                                    <img style={{aspectRatio : '16 / 9' , background : 'gray'}}
+                                                    <img style={{ aspectRatio: '16 / 9', background: 'gray' }}
                                                         src={
                                                             podcast.image ||
                                                             `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`
@@ -833,17 +839,21 @@ export default function Home({
                                 })}
                             </div>
 
-                            {defaultPodcastData.length > 2 && (
-                                <div className="wfc m0auto">
-                                    <button
-                                        className={`reecosys-template-button button-style-secondary-outline ${isMobilescreen ? 'w100' : ''
-                                            }`}
-                                        onClick={handleExploreMoreClick}
-                                    >
-                                        <p>Explore More</p>
-                                    </button>
-                                </div>
-                            )}
+                            {defaultPodcastData.length > 2 && defaultPodcastData.map((podcast, index) => {
+                                const videoId = getYouTubeVideoID(podcast.url)
+                                return (
+                                    <div key={index} className="wfc m0auto" style={{ display: index == 0 ? "block" : "none" }} >
+                                        <a href={`https://www.youtube.com/embed/${videoId}`}
+                                            data-fancybox="podcastFancybox2">
+
+                                            <button className={`reecosys-template-button button-style-secondary-outline ${isMobilescreen ? 'w100' : ''
+                                                }`}  >
+                                                <p>Explore More</p>
+                                            </button>
+                                        </a>
+                                    </div>
+                                )
+                            })}
                         </div>
                     </div>
                 </section>
