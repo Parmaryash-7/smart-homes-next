@@ -323,6 +323,7 @@ export default function InquiryForm({
           tag="select"
           selectList={projectType}
           disabled
+          start={true}
           id="property_type"
           placeholder="Select Project"
           name="property_type"

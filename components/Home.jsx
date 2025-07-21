@@ -537,51 +537,61 @@ export default function Home({
                                                     />
                                                     <div className="homeBannerOverlayOne hidden-xs"></div>
                                                     <div className="homeBannerOverlaytwo"></div>
-                                                    <div className="bannerText homeBannerText  overflow_section">
+                                                    <div className="bannerText homeBannerText overflow_section">
                                                         <div className="inner-flex w100">
                                                             <div className="section-content">
                                                                 <p className="statusTag uppercase white-color light-fonts relative wfc">
-                                                                    {data.status === 'under construction'
-                                                                        ? 'Ongoing'
-                                                                        : data.status}
+                                                                    {data.status === 'under construction' ? 'Ongoing' : data.status}
                                                                 </p>
                                                             </div>
+
                                                             <div className="section-title overflow_section w60">
-                                                                <h1 className="white-color">
-                                                                    {data.project_title}
-                                                                </h1>
+                                                                <h1 className="white-color">{data.project_title}</h1>
                                                             </div>
+
                                                             <div className="section-content overflow_section">
-                                                                <p
-                                                                    className="capitalize white-color light-fonts"
-                                                                    style={{ lineHeight: 2 }}
-                                                                >
-                                                                    {data.size_price}
-                                                                    {data.size_price && (
-                                                                        <>
-                                                                            <br className="visible-xs" />
-                                                                            <span className="white-color hidden-xs">
-                                                                                {' '}
-                                                                                &nbsp; | &nbsp;{' '}
-                                                                            </span>
-                                                                        </>
-                                                                    )}
-                                                                    {data.total_area}
-                                                                    {data.total_area && (
-                                                                        <>
-                                                                            <br className="visible-xs" />
-                                                                            <span className="white-color hidden-xs">
-                                                                                {' '}
-                                                                                &nbsp; | &nbsp;{' '}
-                                                                            </span>
-                                                                        </>
-                                                                    )}
-                                                                    {data.location}
-                                                                </p>
+                                                                {(() => {
+                                                                    const matchedProject = projectListJson.find(
+                                                                        (item) => item.project_id == data.project_id
+                                                                    );
+                                                                    const totalArea = matchedProject?.total_area;
+
+                                                                    return (
+                                                                        <p
+                                                                            className="capitalize white-color light-fonts"
+                                                                            style={{ lineHeight: 2 }}
+                                                                        >
+                                                                            {data.size_price}
+
+                                                                            {data.size_price && totalArea && (
+                                                                                <>
+                                                                                    <br className="visible-xs" />
+                                                                                    <span className="white-color hidden-xs">
+                                                                                        &nbsp; | &nbsp;
+                                                                                    </span>
+                                                                                </>
+                                                                            )}
+
+                                                                            {totalArea}
+
+                                                                            {totalArea && data.location && (
+                                                                                <>
+                                                                                    <br className="visible-xs" />
+                                                                                    <span className="white-color hidden-xs">
+                                                                                        &nbsp; | &nbsp;
+                                                                                    </span>
+                                                                                </>
+                                                                            )}
+
+                                                                            {data.location}
+                                                                        </p>
+                                                                    );
+                                                                })()}
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
+
                                             </Link>
                                         </SwiperSlide>
                                     ))}
@@ -786,7 +796,7 @@ export default function Home({
                                                 data-aos-duration="600"
                                             >
                                                 <div className="project-img-list overflow relative">
-                                                    <img
+                                                    <img style={{aspectRatio : '16 / 9' , background : 'gray'}}
                                                         src={
                                                             podcast.image ||
                                                             `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`
@@ -982,24 +992,32 @@ export default function Home({
                                                                     </div>
                                                                 </div>
                                                             )}
-                                                            {projectListJson.total_area && (
-                                                                <div
-                                                                    className={`project-information-div flex-row alc inner-flex-smallest ${isMobilescreen ? 'w100' : ''
-                                                                        }`}
-                                                                >
-                                                                    <div className="building-icon common-icon">
-                                                                        <img
-                                                                            src="/images/icon/detail-icons/area.svg"
-                                                                            alt="reecosys"
-                                                                        />
+                                                            {(() => {
+                                                                const matchedProject = projectListJson.find(
+                                                                    (item) => item.project_id == project.project_id
+                                                                );
+                                                                const totalArea = matchedProject?.total_area;
+
+                                                                return totalArea && (
+                                                                    <div
+                                                                        className={`project-information-div flex-row alc inner-flex-smallest ${isMobilescreen ? 'w100' : ''
+                                                                            }`}
+                                                                    >
+                                                                        <div className="building-icon common-icon">
+                                                                            <img
+                                                                                src="/images/icon/detail-icons/area.svg"
+                                                                                alt="reecosys"
+                                                                            />
+                                                                        </div>
+                                                                        <div className="link-font-size ellipsis-1">
+                                                                            <p className="secondary-color medium-fonts">
+                                                                                Total Area of {totalArea}
+                                                                            </p>
+                                                                        </div>
                                                                     </div>
-                                                                    <div className="link-font-size ellipsis-1">
-                                                                        <p className="secondary-color medium-fonts">
-                                                                            Total Area of {projectListJson.total_area}
-                                                                        </p>
-                                                                    </div>
-                                                                </div>
-                                                            )}
+                                                                );
+                                                            })()}
+
                                                             {project.location && (
                                                                 <div
                                                                     className={`project-information-div flex-row alc inner-flex-smallest ${isMobilescreen ? 'w100' : ''
@@ -1307,7 +1325,7 @@ export default function Home({
                         <div className="timelineSwiper">
                             <Swiper
                                 className="swiper-container"
-                                modules={[Navigation , FreeMode]}
+                                modules={[Navigation, FreeMode]}
                                 observer={true}
                                 observeParents={true}
                                 slidesPerView={3.5}
@@ -1761,42 +1779,42 @@ export default function Home({
                                     </h2>
                                 </div>
                             </div>
-                              <div className="flex-row alc contactBtnFlex relative" style={{ zIndex: 2 }}>
-                                        
-                                        <Link href="tel:+917096961250" passHref>
-                                            <button
-                                            className="reecosys-template-button button-style-white white-text wow fadeInUp"
-                                            data-wow-delay="0.3s"
-                                            data-wow-duration="0.6s"
-                                            >
-                                            <span className="material-symbols-outlined">phone_in_talk</span>
-                                            <p>Call Us</p>
-                                            </button>
-                                        </Link>
+                            <div className="flex-row alc contactBtnFlex relative" style={{ zIndex: 2 }}>
 
-                                        <Link href="mailto:info@smart-homes.in" passHref>
-                                            <button
-                                            className="reecosys-template-button button-style-white white-text wow fadeInUp"
-                                            data-wow-delay="0.4s"
-                                            data-wow-duration="0.6s"
-                                            >
-                                            <span className="material-symbols-outlined">drafts</span>
-                                            <p>Send an email</p>
-                                            </button>
-                                        </Link>
+                                <Link href="tel:+917096961250" passHref>
+                                    <button
+                                        className="reecosys-template-button button-style-white white-text wow fadeInUp"
+                                        data-wow-delay="0.3s"
+                                        data-wow-duration="0.6s"
+                                    >
+                                        <span className="material-symbols-outlined">phone_in_talk</span>
+                                        <p>Call Us</p>
+                                    </button>
+                                </Link>
 
-                                        <Link href="https://maps.app.goo.gl/4CYF8dhjXH65BjNK7" target="_blank" rel="noopener noreferrer">
-                                            <button
-                                            className="reecosys-template-button button-style-white white-text wow fadeInUp"
-                                            data-wow-delay="0.5s"
-                                            data-wow-duration="0.6s"
-                                            >
-                                            <span className="material-symbols-outlined">distance</span>
-                                            <p>Visit Our Office</p>
-                                            </button>
-                                        </Link>
+                                <Link href="mailto:info@smart-homes.in" passHref>
+                                    <button
+                                        className="reecosys-template-button button-style-white white-text wow fadeInUp"
+                                        data-wow-delay="0.4s"
+                                        data-wow-duration="0.6s"
+                                    >
+                                        <span className="material-symbols-outlined">drafts</span>
+                                        <p>Send an email</p>
+                                    </button>
+                                </Link>
 
-                                        </div>
+                                <Link href="https://maps.app.goo.gl/4CYF8dhjXH65BjNK7" target="_blank" rel="noopener noreferrer">
+                                    <button
+                                        className="reecosys-template-button button-style-white white-text wow fadeInUp"
+                                        data-wow-delay="0.5s"
+                                        data-wow-duration="0.6s"
+                                    >
+                                        <span className="material-symbols-outlined">distance</span>
+                                        <p>Visit Our Office</p>
+                                    </button>
+                                </Link>
+
+                            </div>
 
                             <div className="homeContactFormOverlay"></div>
                         </div>

@@ -4,10 +4,13 @@ import React, { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import './Header.css'
+import { useSelector } from "react-redux";
 
 export default function Header({ propertylist, socialList }) {
 	const pathname = usePathname();
 	const activePath = pathname;
+
+	const inquire_popup = useSelector((state)=> state.inquiry.isOpen);
 
 	const [isMobileScreen, setIsMobileScreen] = useState(false);
 	const [categoryList, setCategoryList] = useState([]);
@@ -120,7 +123,7 @@ export default function Header({ propertylist, socialList }) {
 	if (!categoryList.length) return null;
 
 	return (
-		<div className={`header-wrapper ${isHidden ? "webmenu_hidden" : ""} ${isScrolled ? "header_change" : ""}`}>
+		<div className={`header-wrapper ${inquire_popup ? "webmenu_hidden2" : ""}`}>
 			<div className="main-container" onClick={() => setMegaMenuActive(false)}>
 				<div className="header-flex" onClick={(e) => e.stopPropagation()}>
 					<div
@@ -159,35 +162,35 @@ export default function Header({ propertylist, socialList }) {
 							))}
 
 							<li>
-								<Link href="/bulk-land-in-dholera/">
-									<p className={`capitalize ${activePath === '/bulk-land-in-dholera/' ? "secondary-color" : ""}`}>
+								<Link href="bulk-land-in-dholera/">
+									<p className={`capitalize ${activePath === 'bulk-land-in-dholera/' ? "secondary-color" : ""}`}>
 										Bulk Land
 									</p>
 								</Link>
 							</li>
 							<li>
-								<Link href="/about-us/">
-									<p className={`capitalize ${activePath === '/about-us/' ? "secondary-color" : ""}`}>
+								<Link href="about-us/">
+									<p className={`capitalize ${activePath === 'about-us/' ? "secondary-color" : ""}`}>
 										About
 									</p>
 								</Link>
 							</li>
 							<li>
-								<Link href="/channel-partners/">
-									<p className={`capitalize ${activePath === '/channel-partners/' ? "secondary-color" : ""}`}>
+								<Link href="channel-partners/">
+									<p className={`capitalize ${activePath === 'channel-partners/' ? "secondary-color" : ""}`}>
 										Channel Partners
 									</p>
 								</Link>
 							</li>
 							<li>
-								<Link href="/nri-corner/">
-									<p className={`capitalize ${activePath === '/nri-corner/' ? "secondary-color" : ""}`}>
+								<Link href="nri-corner/">
+									<p className={`capitalize ${activePath === 'nri-corner/' ? "secondary-color" : ""}`}>
 										NRI Corner
 									</p>
 								</Link>
 							</li>
 							<li className="headerBtn">
-								<Link href="/contact-us/">
+								<Link href="contact-us/">
 									<button className="reecosys-template-button button-style-secondary">
 										<p>Contact Us</p>
 									</button>
@@ -289,16 +292,16 @@ export default function Header({ propertylist, socialList }) {
 								<h2 className="medium-fonts uppercase">{megaMenuCategory} <br /> Projects</h2>
 							</div>
 							<div className="wfc" style={{ marginTop: "2rem" }}>
-								<Link href="/projects/">
+								<Link href="projects/">
 									<button className="reecosys-template-button button-style-primary"><p>View All Projects</p></button>
 								</Link>
 							</div>
 						</div>
 						<div className="megamenuContent">
 							{megaMenuList.slice(0, 8).map((data, idx) => (
-								<div key={idx} className={`megamenuItem relative inner-flex ${activePath === `/${data.slug}/` ? 'active' : ''}`}
+								<div key={idx} className={`megamenuItem relative inner-flex ${activePath === `${data.slug}/` ? 'active' : ''}`}
 									onClick={() => megaMenuClickClose()}>
-									<Link href={`/${data.slug}`}>
+									<Link href={`${data.slug}/`}>
 										{data.status && (
 											<div className="megamenuStatus statusText">
 												<p className="text-uppercase white-color">{data.status === "under construction" ? "Ongoing" : data.status}</p>
@@ -487,21 +490,21 @@ export default function Header({ propertylist, socialList }) {
 
 						<li>
 							<div>
-								<Link href="/bulk-land-in-dholera" className={`capitalize section-paragraph ${activePath == "/bulk-land-in-dholera/" ? "active_page" : ""}`} onClick={() => { setMobileMenuToggle(false) }} title="bulk-land-in-Dholera">
+								<Link href="bulk-land-in-dholera/" className={`capitalize section-paragraph ${activePath == "bulk-land-in-dholera/" ? "active_page" : ""}`} onClick={() => { setMobileMenuToggle(false) }} title="bulk-land-in-Dholera">
 									<p>Bulk Land</p>
 								</Link>
 							</div>
 						</li>
 						<li>
 							<div>
-								<Link href="/completed-projects" className={`capitalize section-paragraph ${activePath == "/completed-projects/" ? "active_page" : ""}`} onClick={() => { setMobileMenuToggle(false) }} title="completed-projects">
+								<Link href="completed-projects/" className={`capitalize section-paragraph ${activePath == "completed-projects/" ? "active_page" : ""}`} onClick={() => { setMobileMenuToggle(false) }} title="completed-projects">
 									<p>completed-projects</p>
 								</Link>
 							</div>
 						</li>
 						<li>
 							<div>
-								<Link href="/channel-partners" className={`capitalize section-paragraph ${activePath == "/channel-partners/" ? "active_page" : ""}`} onClick={() => { setMobileMenuToggle(false) }} title="Channel Partners">
+								<Link href="channel-partners/" className={`capitalize section-paragraph ${activePath == "channel-partners/" ? "active_page" : ""}`} onClick={() => { setMobileMenuToggle(false) }} title="Channel Partners">
 									<p>Channel Partners</p>
 								</Link>
 							</div>
@@ -510,7 +513,7 @@ export default function Header({ propertylist, socialList }) {
 
 						<li>
 							<div>
-								<Link href="/nri-corner" className={`capitalize section-paragraph ${activePath == "/nri-corner/" ? "active_page" : ""}`} onClick={() => { setMobileMenuToggle(false) }} title="Construction Updates">
+								<Link href="nri-corner/" className={`capitalize section-paragraph ${activePath == "nri-corner/" ? "active_page" : ""}`} onClick={() => { setMobileMenuToggle(false) }} title="Construction Updates">
 									<p>NRI Corner</p>
 								</Link>
 							</div>
@@ -520,7 +523,7 @@ export default function Header({ propertylist, socialList }) {
 
 						<li>
 							<div>
-								<Link href="/contact-us" className={`capitalize section-paragraph ${activePath == "/contact-us/" ? "active_page" : ""}`} onClick={() => { setMobileMenuToggle(false) }} title="Contact Us">
+								<Link href="contact-us/" className={`capitalize section-paragraph ${activePath == "contact-us/" ? "active_page" : ""}`} onClick={() => { setMobileMenuToggle(false) }} title="Contact Us">
 									<p>Contact Us</p>
 								</Link>
 							</div>

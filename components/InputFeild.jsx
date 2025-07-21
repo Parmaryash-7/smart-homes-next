@@ -23,6 +23,7 @@ export default function InputField({
   setCountryFlag,
   countryFlag,
   isHome,
+  start
 }) {
   return (
     <>
@@ -170,6 +171,7 @@ export default function InputField({
                 key={index}
                 disabled={data.value == ""}
                 value={data.value}
+                selected={start && index == 0 }
               >
                 {data.name || data.project_title}
               </option>

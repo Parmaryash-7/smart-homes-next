@@ -1056,6 +1056,7 @@ body.no-scroll-body {
 }
 
 .header-wrapper {
+  /* position: fixed; */
   position: sticky;
   background-color: var(--white-color);
   transition: var(--common-transition);
@@ -1067,9 +1068,17 @@ body.no-scroll-body {
   z-index: 999;
 }
 
+
+
+
+/* .webmenu_hidden{
+  display: none;
+} */
+
 .header-wrapper.webmenu_hidden2,
 .header-wrapper.webmenu_hidden {
   top: -100% !important;
+  transition: var(--common-transition);
 }
 
 /* .header-wrapper.black-header {
@@ -5100,6 +5109,15 @@ span.readmore_click {
   font-size: 1rem !important;
 }
 
+#pdf-viewer-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100dvw;
+  height: 100dvh;
+  z-index: 999;
+}
+
 .pdf-popup-box {
   position: fixed;
   top: 50%;
@@ -9096,7 +9114,7 @@ form .md-lable.contact_code #contact_no {
     grid-template-areas:
       "one " " two"
       "three " " four"
-      "five " 
+      "five "
       "six ";
   }
 
@@ -9670,7 +9688,7 @@ form .md-lable.contact_code #contact_no {
 }
 
 .content_accordian.open {
-  max-height: 500px;
+  max-height: fit-content;
   opacity: 1;
   padding: 10px 0;
 }

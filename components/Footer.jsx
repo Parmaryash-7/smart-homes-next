@@ -3,7 +3,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import "./Footer.css";
-
+import api from '../lib/api.interceptor'
 export default function Footer({
     homeDetails,
     adminData,
@@ -38,6 +38,7 @@ export default function Footer({
         }
 
         if (Object.keys(newErrors).length > 0) {
+            console.log(newErrors);
             setError(newErrors.email);
             setIsSubmitting(false);
             setTouched(true);
@@ -46,9 +47,14 @@ export default function Footer({
 
         setError("");
         setIsSubmitting(true);
+        const inqObj = {
+            email_address: email ,
+            logged_in_master_user_id :339,
+            master_user_id : 339
+        }
 
         try {
-            const response = await api.FooterEmail();
+            const response = await api.FooterEmail(inqObj);
             console.log(response, "response");
              if (response.success) {
             setTimeout(() => {
@@ -60,6 +66,7 @@ export default function Footer({
 
         } catch (err) {
             setIsSubmitting(false);
+            console.log(err);
         }
         };
 
@@ -278,7 +285,6 @@ export default function Footer({
                                                 touched && !isValidEmail(email) ? "ng-invalid" : touched ? "ng-valid" : ""
                                             }`}
                                             type="submit"
-                                            disabled={isSubmitting}
                                             >
                                             <p>{isSubmitting ? "Please wait..." : "Submit"}</p>
                                             </button>
@@ -379,9 +385,9 @@ export default function Footer({
                                                         <div className="inner-flex inner-flex-smallest footer-navigation-link">
                                                             <li className="wfc footer-hover">
                                                                 <Link
-                                                                    href="/important-documents"
+                                                                    href="important-documents/"
                                                                     className={
-                                                                        activePath === "/important-documents/"
+                                                                        activePath === "important-documents/"
                                                                             ? "active_page"
                                                                             : ""
                                                                     }

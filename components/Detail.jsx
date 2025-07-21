@@ -466,8 +466,7 @@ export default function Detail({
                                 >
                                   <img
                                     src={projectDetail.amenities_image}
-                                    alt="
-                                                        "
+                                    alt=""
                                     style={{ height: "100%" }}
                                   />
                                 </div>

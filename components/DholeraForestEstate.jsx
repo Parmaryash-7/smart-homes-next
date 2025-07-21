@@ -371,7 +371,7 @@ export default function DholeraForestEstate({
                                   data-aos-delay="500"
                                   data-aos-duration="600"
                                   dangerouslySetInnerHTML={{
-                                    __html: projectDetail.project_title,
+                                    __html: projectDetail.big_text_pain,
                                   }}
                                 ></p>
                               </div>
