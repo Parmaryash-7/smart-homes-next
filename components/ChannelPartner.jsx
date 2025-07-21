@@ -34,7 +34,6 @@ export default function ChannelPartner({ pageList }) {
         agree_tandc_display: true,
         first_name: "",
         email_address: "",
-
         contact_no_display: "",
         birthdate: "",
         contact_no_display_2: "",
@@ -248,7 +247,7 @@ export default function ChannelPartner({ pageList }) {
         if (!cpFormData.email_address.trim() || !emailRegex.test(cpFormData.email_address)) newErrors.email_address = true;
         if (!cpFormData.contact_no_display.trim() || !phoneRegex.test(cpFormData.contact_no_display)) newErrors.contact_no_display = true;
         if (!cpFormData.aadhar_no.trim() || !aadharRegex.test(cpFormData.aadhar_no)) newErrors.aadhar_no = true;
-        // if (!cpFormData.pan_no.trim() || !panRegex.test(cpFormData.pan_no.toUpperCase())) newErrors.pan_no = true;
+        if (!cpFormData.pan_no.trim() || !panRegex.test(cpFormData.pan_no.toUpperCase())) newErrors.pan_no = true;
         if (!cpObj.pincode.trim() || !pincodeRegex.test(cpObj.pincode)) newErrors.pincode = true;
         // if (!cpObj.gst_no.trim() || !gstRegex.test(cpObj.gst_no.toUpperCase())) newErrors.gst_no = true;
         // if (!cpFormData.agree_tandc_display) newErrors.agree_tandc_display = true;
@@ -350,13 +349,10 @@ export default function ChannelPartner({ pageList }) {
                 setErrors({});
             }
 
-            Toast(response.message || "Something went wrong!");
+            Toast(response.message);
         } catch (error) {
             console.error("❌ Submission error:", error);
-            alert("Submission failed.");
-        } finally {
-            setCpSaveF(false);
-        }
+        } 
     };
 
 

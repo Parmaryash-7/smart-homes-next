@@ -8546,6 +8546,11 @@ form .md-lable.contact_code #contact_no {
     row-gap: 3rem;
   }
 
+  .contactForm.detailForm {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
   .location_para {
     width: 100%;
   }
