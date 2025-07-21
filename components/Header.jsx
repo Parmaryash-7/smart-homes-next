@@ -10,7 +10,7 @@ export default function Header({ propertylist, socialList }) {
 	const pathname = usePathname();
 	const activePath = pathname;
 
-	const inquire_popup = useSelector((state)=> state.inquiry.isOpen);
+	const inquire_popup = useSelector((state) => state.inquiry.isOpen);
 
 	const [isMobileScreen, setIsMobileScreen] = useState(false);
 	const [categoryList, setCategoryList] = useState([]);
@@ -117,7 +117,7 @@ export default function Header({ propertylist, socialList }) {
 	const megaMenuClickClose = () => {
 		setMegaMenuCategory("");
 		setMegaMenuActive(false);
-		window.removeEventListener('scroll', handleScroll); 
+		window.removeEventListener('scroll', handleScroll);
 	};
 
 	if (!categoryList.length) return null;
@@ -308,7 +308,7 @@ export default function Header({ propertylist, socialList }) {
 											</div>
 										)}
 										<div className="megamenuImg relative overflow small-border-radius">
-											<img style={{aspectRatio : '1/1'}}
+											<img style={{ aspectRatio: '1/1' }}
 												src={`${data.banner_data.image_web_full}&h=350&w=350&q=100`}
 												alt={data.project_title}
 											/>
@@ -365,193 +365,194 @@ export default function Header({ propertylist, socialList }) {
 					</div>
 				</div>
 			)}
+			{isMobileScreen && (
+				<div className={`mobile_menu_wrapper inner-flex inner-flex-medium j-c-sb ${mobileMenuToggle ? "mobileMenuActive" : ""} `}>
+					<div className="header-navigation-links" >
+						<ul>
 
-			<div className={`mobile_menu_wrapper inner-flex inner-flex-medium j-c-sb ${mobileMenuToggle ? "mobileMenuActive" : ""} `}>
-				<div className="header-navigation-links" >
-					<ul>
+							{<li className={`${activePath == 'about-us/' ? "active" : ""}`} onClick={() => { setMobileMenuToggle(false) }}>
+								<Link href="about-us/">
+									<div className="flex-row j-c-sb header_accordion accordion_click">
+										<div className="section-paragraph">
+											<p className="capitalize">About</p>
+										</div>
 
-						{<li className={`${activePath == 'about-us/' ? "active" : ""}`} onClick={() => { setMobileMenuToggle(false) }}>
-							<Link href="about-us/">
-								<div className="flex-row j-c-sb header_accordion accordion_click">
+									</div>
+								</Link>
+							</li>}
+							{categoryList && categoryList.map((category_data, categoryIndex) => (<li className="inner-flex inner-flex-small accordion-block"
+								style={{ gap: "0px" }}
+								key={categoryIndex}>
+								<div className={`flex-row j-c-sb header_accordion accordion_click ${activeIndex == category_data.category ? "active" : ""} `}
+									onClick={() => { toggleAccordion(category_data.category) }}>
 									<div className="section-paragraph">
-										<p className="capitalize">About</p>
+										<p className="capitalize">{category_data.category}</p>
 									</div>
-
-								</div>
-							</Link>
-						</li>}
-						{categoryList && categoryList.map((category_data, categoryIndex) => (<li className="inner-flex inner-flex-small accordion-block"
-							style={{ gap: "0px" }}
-							key={categoryIndex}>
-							<div className={`flex-row j-c-sb header_accordion accordion_click ${activeIndex == category_data.category ? "active" : ""} `}
-								onClick={() => { toggleAccordion(category_data.category) }}>
-								<div className="section-paragraph">
-									<p className="capitalize">{category_data.category}</p>
-								</div>
-								<div>
-									<img src="/images/icon/down-arrow.svg" alt="" className="manu-accordian-downarrow" />
-									<img src="/images/icon/up-arrow.svg" alt="" className="manu-accordian-uparrow" />
-								</div>
-							</div>
-							<div className={`content_accordian ${activeIndex == category_data.category ? "active" : ""} `}>
-								<div>
-									<div className="inner-flex projectList_li inner-flex-zero" onClick={() => { setMobileMenuToggle(false) }}>
-										{propertylist.filter((data) => (category_data.category == data.category && data.project_id != 744)).map((data, index) => (
-											<div key={index} className={index == 0 ? "pt0" : ""} >
-												{category_data.category != "Commercial" && <Link href={`${data.slug}/`} className="header-hover">
-													<div className="flex-row flex-gap-small">
-														<div className="flex-30">
-															<img src={`${data.banner_data.image_web_full}&h=250&w=250`}
-																alt="reecosys" />
-														</div>
-														<div className="flex-70 inner-flex">
-															<div className="section-paragraph">
-																<p className="header-title capitalize">
-																	{data.project_title}
-																</p>
-															</div>
-															<div className="inner-flex inner-flex-smallest">
-																{data.size_price && <div className="flex-row alc">
-																	<div className="iconimg" >
-																		<img src="/images/icon/detail-icons/building.svg" alt="building-icon" />
-																	</div>
-																	<div className="section-content">
-																		<span className="ellipsis-1 uppercase secondary-color">{data.size_price}</span>
-																	</div>
-																</div>}
-																{data.total_area && data.total_area != ' ' && <div className="flex-row alc" >
-																	<div className="iconimg">
-																		<img src="/images/icon/detail-icons/area.svg" alt="area-icon" />
-																	</div>
-																	<div className="section-content">
-																		<span className="ellipsis-1 uppercase secondary-color">
-																			{data.total_area}</span>
-																	</div>
-																</div>}
-																{data.location && <div className="flex-row alc" >
-																	<div className="iconimg">
-																		<img src="/images/icon/detail-icons/location.svg" alt="location-icon" />
-																	</div>
-																	<div className="section-content">
-																		<span className="ellipsis-1 uppercase secondary-color">{data.location}</span>
-																	</div>
-																</div>}
-															</div>
-														</div>
-													</div>
-												</Link>}
-												{category_data.category == 'Commercial' && <Link href={`${data.slug}/`} className="header-hover">
-													<div className="flex-row flex-gap-small">
-														<div className="flex-30">
-															<img src={`${data.banner_data.image_web_full}&h=250&w=250`}
-																alt="reecosys"/>
-														</div>
-														<div className="flex-70 inner-flex">
-															<div className="section-paragraph">
-																<p className="header-title capitalize">
-																	{data.project_title}
-																</p>
-															</div>
-															<div className="inner-flex inner-flex-smallest">
-																{data.size_price && <div className="flex-row alc">
-																	<div className="iconimg" >
-																		<img src="/images/icon/detail-icons/building.svg" alt="building-icon" />
-																	</div>
-																	<div className="section-content">
-																		<span className="ellipsis-1 uppercase secondary-color">{data.size_price}</span>
-																	</div>
-																</div>}
-																{data.total_area && data.total_area != ' ' && <div className="flex-row alc" >
-																	<div className="iconimg">
-																		<img src="/images/icon/detail-icons/area.svg" alt="area-icon" />
-																	</div>
-																	<div className="section-content">
-																		<span className="ellipsis-1 uppercase secondary-color">
-																			{data.total_area}</span>
-																	</div>
-																</div>}
-																{data.location && <div className="flex-row alc" ng-if="">
-																	<div className="iconimg">
-																		<img src="/images/icon/detail-icons/location.svg" alt="location-icon" />
-																	</div>
-																	<div className="section-content">
-																		<span className="ellipsis-1 uppercase secondary-color">{data.location}</span>
-																	</div>
-																</div>}
-															</div>
-														</div>
-													</div>
-												</Link>}
-											</div>))}
+									<div>
+										<img src="/images/icon/down-arrow.svg" alt="" className="manu-accordian-downarrow" />
+										<img src="/images/icon/up-arrow.svg" alt="" className="manu-accordian-uparrow" />
 									</div>
 								</div>
-							</div>
-						</li>))}
+								<div className={`content_accordian ${activeIndex == category_data.category ? "active" : ""} `}>
+									<div>
+										<div className="inner-flex projectList_li inner-flex-zero" onClick={() => { setMobileMenuToggle(false) }}>
+											{propertylist.filter((data) => (category_data.category == data.category && data.project_id != 744)).map((data, index) => (
+												<div key={index} className={index == 0 ? "pt0" : ""} >
+													{category_data.category != "Commercial" && <Link href={`${data.slug}/`} className="header-hover">
+														<div className="flex-row flex-gap-small">
+															<div className="flex-30">
+																<img src={`${data.banner_data.image_web_full}&h=250&w=250`}
+																	alt="reecosys" />
+															</div>
+															<div className="flex-70 inner-flex">
+																<div className="section-paragraph">
+																	<p className="header-title capitalize">
+																		{data.project_title}
+																	</p>
+																</div>
+																<div className="inner-flex inner-flex-smallest">
+																	{data.size_price && <div className="flex-row alc">
+																		<div className="iconimg" >
+																			<img src="/images/icon/detail-icons/building.svg" alt="building-icon" />
+																		</div>
+																		<div className="section-content">
+																			<span className="ellipsis-1 uppercase secondary-color">{data.size_price}</span>
+																		</div>
+																	</div>}
+																	{data.total_area && data.total_area != ' ' && <div className="flex-row alc" >
+																		<div className="iconimg">
+																			<img src="/images/icon/detail-icons/area.svg" alt="area-icon" />
+																		</div>
+																		<div className="section-content">
+																			<span className="ellipsis-1 uppercase secondary-color">
+																				{data.total_area}</span>
+																		</div>
+																	</div>}
+																	{data.location && <div className="flex-row alc" >
+																		<div className="iconimg">
+																			<img src="/images/icon/detail-icons/location.svg" alt="location-icon" />
+																		</div>
+																		<div className="section-content">
+																			<span className="ellipsis-1 uppercase secondary-color">{data.location}</span>
+																		</div>
+																	</div>}
+																</div>
+															</div>
+														</div>
+													</Link>}
+													{category_data.category == 'Commercial' && <Link href={`${data.slug}/`} className="header-hover">
+														<div className="flex-row flex-gap-small">
+															<div className="flex-30">
+																<img src={`${data.banner_data.image_web_full}&h=250&w=250`}
+																	alt="reecosys" />
+															</div>
+															<div className="flex-70 inner-flex">
+																<div className="section-paragraph">
+																	<p className="header-title capitalize">
+																		{data.project_title}
+																	</p>
+																</div>
+																<div className="inner-flex inner-flex-smallest">
+																	{data.size_price && <div className="flex-row alc">
+																		<div className="iconimg" >
+																			<img src="/images/icon/detail-icons/building.svg" alt="building-icon" />
+																		</div>
+																		<div className="section-content">
+																			<span className="ellipsis-1 uppercase secondary-color">{data.size_price}</span>
+																		</div>
+																	</div>}
+																	{data.total_area && data.total_area != ' ' && <div className="flex-row alc" >
+																		<div className="iconimg">
+																			<img src="/images/icon/detail-icons/area.svg" alt="area-icon" />
+																		</div>
+																		<div className="section-content">
+																			<span className="ellipsis-1 uppercase secondary-color">
+																				{data.total_area}</span>
+																		</div>
+																	</div>}
+																	{data.location && <div className="flex-row alc" ng-if="">
+																		<div className="iconimg">
+																			<img src="/images/icon/detail-icons/location.svg" alt="location-icon" />
+																		</div>
+																		<div className="section-content">
+																			<span className="ellipsis-1 uppercase secondary-color">{data.location}</span>
+																		</div>
+																	</div>}
+																</div>
+															</div>
+														</div>
+													</Link>}
+												</div>))}
+										</div>
+									</div>
+								</div>
+							</li>))}
 
-						<li>
-							<div>
-								<Link href="bulk-land-in-dholera/" className={`capitalize section-paragraph ${activePath == "bulk-land-in-dholera/" ? "active_page" : ""}`} onClick={() => { setMobileMenuToggle(false) }} title="bulk-land-in-Dholera">
-									<p>Bulk Land</p>
-								</Link>
-							</div>
-						</li>
-						<li>
-							<div>
-								<Link href="completed-projects/" className={`capitalize section-paragraph ${activePath == "completed-projects/" ? "active_page" : ""}`} onClick={() => { setMobileMenuToggle(false) }} title="completed-projects">
-									<p>completed-projects</p>
-								</Link>
-							</div>
-						</li>
-						<li>
-							<div>
-								<Link href="channel-partners/" className={`capitalize section-paragraph ${activePath == "channel-partners/" ? "active_page" : ""}`} onClick={() => { setMobileMenuToggle(false) }} title="Channel Partners">
-									<p>Channel Partners</p>
-								</Link>
-							</div>
-						</li>
+							<li>
+								<div>
+									<Link href="bulk-land-in-dholera/" className={`capitalize section-paragraph ${activePath == "bulk-land-in-dholera/" ? "active_page" : ""}`} onClick={() => { setMobileMenuToggle(false) }} title="bulk-land-in-Dholera">
+										<p>Bulk Land</p>
+									</Link>
+								</div>
+							</li>
+							<li>
+								<div>
+									<Link href="completed-projects/" className={`capitalize section-paragraph ${activePath == "completed-projects/" ? "active_page" : ""}`} onClick={() => { setMobileMenuToggle(false) }} title="completed-projects">
+										<p>completed-projects</p>
+									</Link>
+								</div>
+							</li>
+							<li>
+								<div>
+									<Link href="channel-partners/" className={`capitalize section-paragraph ${activePath == "channel-partners/" ? "active_page" : ""}`} onClick={() => { setMobileMenuToggle(false) }} title="Channel Partners">
+										<p>Channel Partners</p>
+									</Link>
+								</div>
+							</li>
 
 
-						<li>
-							<div>
-								<Link href="nri-corner/" className={`capitalize section-paragraph ${activePath == "nri-corner/" ? "active_page" : ""}`} onClick={() => { setMobileMenuToggle(false) }} title="Construction Updates">
-									<p>NRI Corner</p>
-								</Link>
-							</div>
-						</li>
+							<li>
+								<div>
+									<Link href="nri-corner/" className={`capitalize section-paragraph ${activePath == "nri-corner/" ? "active_page" : ""}`} onClick={() => { setMobileMenuToggle(false) }} title="Construction Updates">
+										<p>NRI Corner</p>
+									</Link>
+								</div>
+							</li>
 
 
 
-						<li>
-							<div>
-								<Link href="contact-us/" className={`capitalize section-paragraph ${activePath == "contact-us/" ? "active_page" : ""}`} onClick={() => { setMobileMenuToggle(false) }} title="Contact Us">
-									<p>Contact Us</p>
-								</Link>
-							</div>
-						</li>
+							<li>
+								<div>
+									<Link href="contact-us/" className={`capitalize section-paragraph ${activePath == "contact-us/" ? "active_page" : ""}`} onClick={() => { setMobileMenuToggle(false) }} title="Contact Us">
+										<p>Contact Us</p>
+									</Link>
+								</div>
+							</li>
 
-						<li className="flex-row alc no-border">
-							{socialList && socialList.map((social, index) => (
-								<div key={index} className="navigation-mobile-icon" >
-									{social.name == 'facebook' && <a href={social.slug} target="_blank">
-										<img src="/images/icon/social-icons/facebook.svg" alt="facebook" />
-									</a>}
-									{social.name == 'instagram' && <a href={social.slug} target="_blank">
-										<img src="/images/icon/social-icons/instagram.svg" alt="instagram" />
-									</a>}
-									{social.name == 'twitter' && <a href={social.slug} target="_blank">
-										<img src="/images/icon/social-icons/twitter.svg" alt="twitter" />
-									</a>}
-									{social.name == 'linkedin' && <a href={social.slug} target="_blank">
-										<img src="/images/icon/social-icons/linkedin.svg" alt="linkedin" />
-									</a>}
-									{social.name == 'youtube' && <a href={social.slug} target="_blank">
-										<img src="/images/icon/social-icons/youtube.svg" alt="youtube" />
-									</a>}
-								</div>))}
-						</li>
-					</ul>
+							<li className="flex-row alc no-border">
+								{socialList && socialList.map((social, index) => (
+									<div key={index} className="navigation-mobile-icon" >
+										{social.name == 'facebook' && <a href={social.slug} target="_blank">
+											<img src="/images/icon/social-icons/facebook.svg" alt="facebook" />
+										</a>}
+										{social.name == 'instagram' && <a href={social.slug} target="_blank">
+											<img src="/images/icon/social-icons/instagram.svg" alt="instagram" />
+										</a>}
+										{social.name == 'twitter' && <a href={social.slug} target="_blank">
+											<img src="/images/icon/social-icons/twitter.svg" alt="twitter" />
+										</a>}
+										{social.name == 'linkedin' && <a href={social.slug} target="_blank">
+											<img src="/images/icon/social-icons/linkedin.svg" alt="linkedin" />
+										</a>}
+										{social.name == 'youtube' && <a href={social.slug} target="_blank">
+											<img src="/images/icon/social-icons/youtube.svg" alt="youtube" />
+										</a>}
+									</div>))}
+							</li>
+						</ul>
+					</div>
 				</div>
-			</div>
+			)}
 			<div className={`click-overlay  ${megaMenuActive || openContactDropdown || mobileMenuToggle ? "active" : ""} `}
 				onClick={() => { megaMenuClickClose(), setOpenContactDropdown(false), setMobileMenuToggle(false) }}
 			>

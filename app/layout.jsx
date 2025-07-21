@@ -24,7 +24,7 @@ export default async function RootLayout({ children }) {
 
         <link rel='preload' href='/css/globals.css' />
         <link rel="stylesheet" href="/css/globals.css" />
-
+        
         
         {/* Fonts Preload */}
 
