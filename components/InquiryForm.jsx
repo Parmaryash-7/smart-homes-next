@@ -9,9 +9,8 @@ import InputField from './InputFeild'
 import { toast } from 'react-toastify'
 import api from 'lib/api.interceptor.js'
 import { Toast } from './Toast'
-import { usePathname, useRouter } from 'next/navigation';
-import { setThankYouData } from 'store/inquirySlice';
-
+import { usePathname, useRouter } from 'next/navigation'
+import { setThankYouData } from 'store/inquirySlice'
 
 export default function InquiryForm({
   pageDetail,
@@ -27,9 +26,9 @@ export default function InquiryForm({
   const [isSubmitting, setisSubmitting] = useState(false)
   // const [fetchedPropertyList, setFetchedPropertyList] = useState()
   const [projectOptions, setProjectOptions] = useState([])
-  const router = useRouter();
+  const router = useRouter()
   const activePath = usePathname()
-  const isHomeRoute = activePath == '/';
+  const isHomeRoute = activePath == '/' || activePath == '/about-us'
 
   const [inquiryObj, setInquiryObj] = useState({
     agree_tandc: '1',
@@ -47,8 +46,8 @@ export default function InquiryForm({
     flag: 'https://flagcdn.com/w40/in.webp',
     country: '91',
     project_id: '',
-    department: "General",
-    inquiry_from: "web"
+    department: 'General',
+    inquiry_from: 'web'
   })
 
   // const homeInquiryInitialState = {
@@ -78,7 +77,6 @@ export default function InquiryForm({
   // const [inquiryObj, setInquiryObj] = useState(
   //   isHome ? homeInquiryInitialState : defaultInquiryInitialState
   // );
-
 
   const dispatch = useDispatch()
   const { countryList } = useSelector((state) => state.country)
@@ -171,59 +169,69 @@ export default function InquiryForm({
   // console.log(pageDetail);
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setFormSubmitted(true);
-    if (isSubmitting) return;
+    e.preventDefault()
+    setFormSubmitted(true)
+    if (isSubmitting) return
 
-    const newErrors = {};
-    const nameRegex = /^[a-zA-Z\s]+$/;
-    const phoneRegex = /^\d{10}$/;
-    const emailRegex = /^[\w.-]+@[a-zA-Z\d.-]+\.[a-zA-Z]{2,}$/;
+    const newErrors = {}
+    const nameRegex = /^[a-zA-Z\s]+$/
+    const phoneRegex = /^\d{10}$/
+    const emailRegex = /^[\w.-]+@[a-zA-Z\d.-]+\.[a-zA-Z]{2,}$/
 
-    if (!inquiryObj.first_name.trim()) newErrors.first_name = true;
-    else if (!nameRegex.test(inquiryObj.first_name)) newErrors.first_name = true;
+    if (!inquiryObj.first_name.trim()) newErrors.first_name = true
+    else if (!nameRegex.test(inquiryObj.first_name)) newErrors.first_name = true
 
-    if (!inquiryObj.last_name.trim()) newErrors.last_name = true;
-    else if (!nameRegex.test(inquiryObj.last_name)) newErrors.last_name = true;
+    if (!inquiryObj.last_name.trim()) newErrors.last_name = true
+    else if (!nameRegex.test(inquiryObj.last_name)) newErrors.last_name = true
 
-    if (!inquiryObj.client_contact_no_display.trim()) newErrors.client_contact_no_display = true;
-    else if (!phoneRegex.test(inquiryObj.client_contact_no_display)) newErrors.client_contact_no_display = true;
+    if (!inquiryObj.client_contact_no_display.trim())
+      newErrors.client_contact_no_display = true
+    else if (!phoneRegex.test(inquiryObj.client_contact_no_display))
+      newErrors.client_contact_no_display = true
 
     // if (!inquiryObj.projectType) newErrors.projectType = true;
 
-    if (isAbout && !inquiryObj.about_project_id) newErrors.about_project_id = true;
-    if (!inquiryObj.property_type || inquiryObj.property_type.trim() === '') newErrors.property_type = true;
-
+    // if (isAbout && !inquiryObj.about_project_id)
+    //   newErrors.about_project_id = true
+    if (!inquiryObj.property_type || inquiryObj.property_type.trim() === '')
+      newErrors.property_type = true
 
     // if (!isHome && !inquiryObj.email_address.trim()) newErrors.email_address = true;
     // else if (!isHome && !emailRegex.test(inquiryObj.email_address)) newErrors.email_address = true;
 
-    if (!isHome && (!inquiryObj.property_type || inquiryObj.property_type.trim() === '')) {
-      newErrors.property_type = true;
+    if (
+      !isHome &&
+      !isAbout &&
+      (!inquiryObj.property_type || inquiryObj.property_type.trim() === '')
+    ) {
+      newErrors.property_type = true
     }
 
     if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
-      const firstErrorField = Object.keys(newErrors)[0];
-      const el = document.querySelector(`[name="${firstErrorField}"]`);
+      setErrors(newErrors)
+      const firstErrorField = Object.keys(newErrors)[0]
+      const el = document.querySelector(`[name="${firstErrorField}"]`)
       if (el && typeof el.scrollIntoView === 'function') {
-        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        el.focus();
+        el.scrollIntoView({ behavior: 'smooth', block: 'center' })
+        el.focus()
       }
-      return;
+      return
     }
 
-    setErrors({});
-    setisSubmitting(true);
+    setErrors({})
+    setisSubmitting(true)
     inquiryObj.project_id = inquiryObj.project_id || pageDetail?.project_id
-    inquiryObj.contact_no = inquiryObj.country + ' ' + inquiryObj.client_contact_no_display;
-    inquiryObj.client_contact_no = inquiryObj.country + ' ' + inquiryObj.client_contact_no_display;
-    inquiryObj.contact_no_display = inquiryObj.client_contact_no_display;
-    inquiryObj.name = inquiryObj.first_name + " " + inquiryObj.last_name;
-    inquiryObj.client_name = inquiryObj.first_name + " " + inquiryObj.last_name;
-    inquiryObj.email = inquiryObj.email_address;
+    inquiryObj.contact_no =
+      inquiryObj.country + ' ' + inquiryObj.client_contact_no_display
+    inquiryObj.client_contact_no =
+      inquiryObj.country + ' ' + inquiryObj.client_contact_no_display
+    inquiryObj.contact_no_display = inquiryObj.client_contact_no_display
+    inquiryObj.name = inquiryObj.first_name + ' ' + inquiryObj.last_name
+    inquiryObj.client_name = inquiryObj.first_name + ' ' + inquiryObj.last_name
+    inquiryObj.email = inquiryObj.email_address
     inquiryObj.message = inquiryObj.message
-    inquiryObj.remarks = inquiryObj.remarks + ' ,  Looking For: ' + inquiryObj.property_type
+    inquiryObj.remarks =
+      inquiryObj.remarks + ' ,  Looking For: ' + inquiryObj.property_type
     // const finalPayload = {
     //   ...inquiryObj,
     //   client_contact_no: `${inquiryObj.country} ${inquiryObj.client_contact_no_display}`,
@@ -233,12 +241,11 @@ export default function InquiryForm({
       // console.log(inquiryObj);
       // const response = await api.Projectinquiry(JSON.stringify(inquiryObj));
 
-      let response;
-      if (isHome & isAbout) {
-        response = await api.ContactInq(inquiryObj);
-
+      let response
+      if (isHome || isAbout) {
+        response = await api.ContactInquiry(inquiryObj)
       } else {
-        response = await api.Projectinquiry(inquiryObj);
+        response = await api.Projectinquiry(inquiryObj)
       }
       // console.log(response);
       Toast(response.message)
@@ -249,10 +256,25 @@ export default function InquiryForm({
           // console.log(projectOptions);
           const detail = pageDetail
           // console.log(detail, "detail");
-          const docs = detail.document_other_data ? detail.document_other_data : []
+          const docs = detail.document_other_data
+            ? detail.document_other_data
+            : []
           // console.log(docs, "docs");
-          dispatch(setThankYouData({ page_name: detail.project_title, documents: docs }));
-          router.push(`${detail.slug}/thankyou`);
+          dispatch(
+            setThankYouData({
+              page_name: detail.project_title,
+              documents: docs
+            })
+          )
+          router.push(`${detail.slug}/thankyou`)
+        } else {
+          dispatch(
+            setThankYouData({
+              page_name: isHome ? 'Contact Us' : 'Contact Us',
+              document: []
+            })
+          )
+          router.push(isHome ? '/home/thankyou' : '/about-us/thankyou')
         }
 
         setInquiryObj({
@@ -271,21 +293,19 @@ export default function InquiryForm({
           flag: 'https://flagcdn.com/w40/in.webp',
           country: '91',
           project_id: '',
-          department: "General",
-          inquiry_from: "web",
-          message: ""
-        });
-        setSearch('');
+          department: 'General',
+          inquiry_from: 'web',
+          message: ''
+        })
+        setSearch('')
       }
 
-      setisSubmitting(false);
+      setisSubmitting(false)
       // e.target.reset();
-    }
-    catch (error) {
+    } catch (error) {
       // console.error('Submission error:', error);
     }
-  };
-
+  }
 
   const handleCountrySelect = (phonecode, flag) => {
     setInquiryObj({
@@ -341,7 +361,7 @@ export default function InquiryForm({
         />
       )}
 
-      {isAbout && projectOptions?.length > 0 ? (
+      {/* {isAbout && projectOptions?.length > 0 ? (
         <InputField
           tag="select"
           disabled
@@ -365,9 +385,8 @@ export default function InquiryForm({
           errors={errors}
           label="Project Type*"
           disabled
-
         />
-      ) : null}
+      ) : null} */}
 
       <InputField
         tag="input"
@@ -423,21 +442,25 @@ export default function InquiryForm({
       <InputField
         tag="textarea"
         row={isHome || isAbout ? 2 : 1}
-        id={isHome ? "message" : "remarks"}
+        id={isHome ? 'message' : 'remarks'}
         type="text"
-        name={isHome ? "message" : "remarks"}
-        value={isHome ? inquiryObj.message : inquiryObj.remarks}
+        name={isHome || isAbout ? 'message' : 'remarks'}
+        value={isHome || isAbout ? inquiryObj.message : inquiryObj.remarks}
         handleChange={handleChange}
         errors={errors}
         label="Comments"
         isHome={isHome ? isHome : false}
+        isAbout={isAbout ? isAbout : false}
       />
 
-      <div className="wfc m0auto homeSubmitBtn formSubmit">
+      <div
+        className="wfc m0auto homeSubmitBtn formSubmit"
+        style={isAbout ? { gridArea: 'seven' } : {}}
+      >
         <button
           className="reecosys-template-button button-style-secondary"
           type="submit"
-          disabled={isSubmitting}
+          // disabled={isSubmitting}
         >
           <p>{isSubmitting ? 'Please Wait...' : 'Submit'}</p>
         </button>

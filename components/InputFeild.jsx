@@ -1,6 +1,6 @@
-"use client"
+'use client'
 
-import React from "react";
+import React from 'react'
 
 export default function InputField({
   row,
@@ -23,11 +23,12 @@ export default function InputField({
   setCountryFlag,
   countryFlag,
   isHome,
-  start
+  start,
+  isAbout
 }) {
   return (
     <>
-      {tag === "input" && name !== "client_contact_no_display" && (
+      {tag === 'input' && name !== 'client_contact_no_display' && (
         <div className="contact_lable">
           <input
             id={id}
@@ -35,7 +36,7 @@ export default function InputField({
             name={name}
             value={value}
             onChange={handleChange}
-            className={`form-control ${errors?.[name] ? "error" : ""}`}
+            className={`form-control ${errors?.[name] ? 'error' : ''}`}
           />
           <label className="md-lable" htmlFor={id}>
             {label}
@@ -43,7 +44,7 @@ export default function InputField({
         </div>
       )}
 
-      {tag === "input" && name === "client_contact_no_display" && (
+      {tag === 'input' && name === 'client_contact_no_display' && (
         <div className="contact_lable">
           <input
             id={id}
@@ -51,10 +52,11 @@ export default function InputField({
             name={name}
             value={value}
             onChange={handleChange}
-            className={`form-control contact-form ${errors?.[name] ? "error" : ""
-              }`}
-          // minLength={10}
-          // maxLength={10}
+            className={`form-control contact-form ${
+              errors?.[name] ? 'error' : ''
+            }`}
+            // minLength={10}
+            // maxLength={10}
           />
           <label className="md-lable" htmlFor={id}>
             {label}
@@ -63,7 +65,7 @@ export default function InputField({
             <div
               className="country_code_data"
               onClick={(e) => {
-                setCountryFlag(!countryFlag), e.stopPropagation();
+                setCountryFlag(!countryFlag), e.stopPropagation()
               }}
             >
               <div className="section-paragraph">
@@ -117,7 +119,7 @@ export default function InputField({
         </div>
       )}
 
-      {tag === "select" && name === "project_id" && (
+      {tag === 'select' && name === 'project_id' && (
         <div className="contact_lable select_option select_apr relative">
           <select
             id={id}
@@ -125,11 +127,11 @@ export default function InputField({
             value={value}
             defaultValue=""
             onChange={handleChange}
-            className={`form-control ${errors?.[name] ? "error" : ""} `}
+            className={`form-control ${errors?.[name] ? 'error' : ''} `}
           >
             <option disabled>{placeholder}</option>
             {selectList
-              .filter((p) => p.project_id !== "744" && p.project_id !== "814")
+              .filter((p) => p.project_id !== '744' && p.project_id !== '814')
               .map((data, i) => (
                 <option key={i} value={i}>
                   {data.project_title}
@@ -144,7 +146,7 @@ export default function InputField({
         </div>
       )}
 
-      {tag === "select" && name !== "project_id" && (
+      {tag === 'select' && name !== 'project_id' && (
         <div className="contact_lable select_option select_apr relative">
           <select
             id={id}
@@ -152,7 +154,7 @@ export default function InputField({
             value={value}
             defaultValue=""
             onChange={handleChange}
-            className={`form-control ${errors?.[name] ? "error" : ""} `}
+            className={`form-control ${errors?.[name] ? 'error' : ''} `}
           >
             {selectList.map((data, index) => {
               return (
@@ -161,11 +163,10 @@ export default function InputField({
                     key={index}
                     value={data.value}
                     disabled={index === 0 && start}
-                    className={`form-control ${errors?.[name] ? "error" : ""} `}
+                    className={`form-control ${errors?.[name] ? 'error' : ''} `}
                   >
                     {data.name || data.project_title}
                   </option>
-
                 </>
               )
             })}
@@ -178,10 +179,10 @@ export default function InputField({
         </div>
       )}
 
-      {tag === "textarea" && (
+      {tag === 'textarea' && (
         <div
           className="contact_lable select_option select_apr relative"
-          style={isHome ? { gridColumn: "1 / span 2" } : {}}
+          style={isHome || isAbout ? { gridColumn: '1 / span 2' } : {}}
         >
           <textarea
             id={id}
@@ -189,11 +190,11 @@ export default function InputField({
             name={name}
             value={value}
             onChange={handleChange}
-            className={`form-control ${errors?.[name] ? "error" : ""}`}
+            className={`form-control ${errors?.[name] ? 'error' : ''}`}
           ></textarea>
           <label className="md-lable">{label}</label>
         </div>
       )}
     </>
-  );
+  )
 }

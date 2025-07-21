@@ -1,118 +1,119 @@
-"use client";
+'use client'
 
-import React, { useEffect, useState } from "react";
-import "swiper/css";
+import React, { useEffect, useState } from 'react'
+import 'swiper/css'
 
 // import ReadMore from "../components/ReadMore";
-// import Seo from "../components/Seo"; 
+// import Seo from "../components/Seo";
 // import { CountryList } from "../services/CountryList";
-import InquiryForm from "components/InquiryForm";
+import InquiryForm from 'components/InquiryForm'
 
-let Swiper = null;
-let SwiperSlide = null;
+let Swiper = null
+let SwiperSlide = null
 
 export default function AboutUs({ aboutDetails, pageList, propertyList }) {
-  const [aboutUsData, setAboutUs] = useState(aboutDetails || null);
-  const [isMobilescreen, setMobilescreen] = useState(false);
+  const [aboutUsData, setAboutUs] = useState(aboutDetails || null)
+  const [isMobilescreen, setMobilescreen] = useState(false)
   const [SwiperComponents, setSwiperComponents] = useState({
     Swiper: null,
-    SwiperSlide: null,
-  });
-  const [countryFlag, setCountryFlag] = useState(false);
-  const [propertylist, setPropertylist] = useState([]);
-  const [projectOptions, setProjectOptions] = useState([]);
-
+    SwiperSlide: null
+  })
+  const [countryFlag, setCountryFlag] = useState(false)
+  const [propertylist, setPropertylist] = useState([])
+  const [projectOptions, setProjectOptions] = useState([])
 
   useEffect(() => {
     const fetchProjects = async () => {
       try {
         // const result = await api.Propertylist();
-        const filtered = result.filter((item) => item.project_id !== 744 && item.project_id !== 814);
-        setPropertylist(result);
-        setProjectOptions(filtered);
+        const filtered = propertyList.filter(
+          (item) => item.project_id !== 744 && item.project_id !== 814
+        )
+        setPropertylist(result)
+        setProjectOptions(filtered)
         // console.log("object");
       } catch (error) {
-        console.error("Error fetching projects:", error);
+        console.error('Error fetching projects:', error)
       }
-    };
+    }
 
-    fetchProjects();
-  }, []);
+    fetchProjects()
+  }, [])
 
   useEffect(() => {
     const loadSwiper = async () => {
-      const swiper = await import("swiper/react");
-      const SwiperCore = await import("swiper");
+      const swiper = await import('swiper/react')
+      const SwiperCore = await import('swiper')
 
       const { Navigation, Pagination, Autoplay, Keyboard, Scrollbar } =
-        await import("swiper/modules");
+        await import('swiper/modules')
 
       SwiperCore.default.use([
         Navigation,
         Pagination,
         Autoplay,
         Keyboard,
-        Scrollbar,
-      ]);
+        Scrollbar
+      ])
 
       setSwiperComponents({
         Swiper: swiper.Swiper,
-        SwiperSlide: swiper.SwiperSlide,
-      });
-    };
+        SwiperSlide: swiper.SwiperSlide
+      })
+    }
 
-    loadSwiper();
+    loadSwiper()
 
     if (!aboutUsData && Array.isArray(pageList)) {
-      const aboutData = pageList.find((page) => page.slug === "about-us");
-      setAboutUs(aboutData);
+      const aboutData = pageList.find((page) => page.slug === 'about-us')
+      setAboutUs(aboutData)
     }
 
-    if (typeof window !== "undefined" && window.innerWidth < 767) {
-      setMobilescreen(true);
+    if (typeof window !== 'undefined' && window.innerWidth < 767) {
+      setMobilescreen(true)
     }
-  }, []);
+  }, [])
 
   if (!aboutUsData) {
-    return <div>Error loading About Us data.</div>;
+    return <div>Error loading About Us data.</div>
   }
 
   const ourvalueswiperData = [
     {
-      title: "Honesty & Integrity",
+      title: 'Honesty & Integrity',
       description:
-        "We hold ourselves to the highest ethical standards in all that we do. At Smart Homes, our foundation is built on unwavering honesty and integrity.",
+        'We hold ourselves to the highest ethical standards in all that we do. At Smart Homes, our foundation is built on unwavering honesty and integrity.'
     },
     {
-      title: "Transparency",
+      title: 'Transparency',
       description:
-        "Transparency is not just a promise; it's our way of doing business. We believe in openness and clarity in every transaction and decision.",
+        "Transparency is not just a promise; it's our way of doing business. We believe in openness and clarity in every transaction and decision."
     },
     {
-      title: "Customer-Centric Approach",
+      title: 'Customer-Centric Approach',
       description:
-        "Our clients are our most valuable assets. We are deeply committed to their satisfaction, tailoring our services to meet their unique desires and expectations.",
+        'Our clients are our most valuable assets. We are deeply committed to their satisfaction, tailoring our services to meet their unique desires and expectations.'
     },
     {
-      title: "Quality & Innovation",
+      title: 'Quality & Innovation',
       description:
-        "Smart Homes leads with quality and innovation. We constantly embrace the latest technology to redefine our approach, setting new industry standards.",
-    },
-  ];
+        'Smart Homes leads with quality and innovation. We constantly embrace the latest technology to redefine our approach, setting new industry standards.'
+    }
+  ]
 
   return (
     <>
       <div
         className="about_wrapper"
         onClick={() => {
-          setCountryFlag(false);
+          setCountryFlag(false)
         }}
       >
         {aboutUsData && aboutUsData.page_name && (
           <div
             className="reecosys-main-wrapper"
             id="reecosys-main-wrapper"
-          // onClick="country_code_click_false();"
+            // onClick="country_code_click_false();"
           >
             <div
               id="reecosys-aboutus-wrapper"
@@ -419,14 +420,14 @@ export default function AboutUs({ aboutDetails, pageList, propertyList }) {
                             <img
                               src="/images/icon/left-arrow.svg"
                               alt=""
-                              style={{ filter: "invert(1) brightness(5.5)" }}
+                              style={{ filter: 'invert(1) brightness(5.5)' }}
                             />
                           </div>
                           <div className="swiper-button-next timeline-button about_button">
                             <img
                               src="/images/icon/right-arrow.svg"
                               alt=""
-                              style={{ filter: "invert(1) brightness(5.5)" }}
+                              style={{ filter: 'invert(1) brightness(5.5)' }}
                             />
                           </div>
                         </div>
@@ -435,7 +436,7 @@ export default function AboutUs({ aboutDetails, pageList, propertyList }) {
 
                     <div className="timelineSwiper about_swiper">
                       {SwiperComponents.Swiper &&
-                        SwiperComponents.SwiperSlide ? (
+                      SwiperComponents.SwiperSlide ? (
                         <SwiperComponents.Swiper
                           className="swiper-container"
                           observer={true}
@@ -444,23 +445,23 @@ export default function AboutUs({ aboutDetails, pageList, propertyList }) {
                           spaceBetween={16}
                           freeMode={true}
                           navigation={{
-                            prevEl: ".swiper-button-prev.timeline-button",
-                            nextEl: ".swiper-button-next.timeline-button",
+                            prevEl: '.swiper-button-prev.timeline-button',
+                            nextEl: '.swiper-button-next.timeline-button'
                           }}
                           pagination={{
-                            el: ".swiper-pagination.ourvalueswiper-pagination",
-                            clickable: true,
+                            el: '.swiper-pagination.ourvalueswiper-pagination',
+                            clickable: true
                           }}
                           breakpoints={{
                             1152: {
-                              slidesPerView: 3.2,
+                              slidesPerView: 3.2
                             },
                             767: {
-                              slidesPerView: 2.3,
+                              slidesPerView: 2.3
                             },
                             0: {
-                              slidesPerView: 1.2,
-                            },
+                              slidesPerView: 1.2
+                            }
                           }}
                         >
                           {ourvalueswiperData.map((timeline, index) => (
@@ -475,7 +476,7 @@ export default function AboutUs({ aboutDetails, pageList, propertyList }) {
                                   <div className="section-title section-title-new">
                                     <h2
                                       className="highlight-colorx"
-                                      style={{ color: "#2e2e2e" }}
+                                      style={{ color: '#2e2e2e' }}
                                     >
                                       {timeline.title}
                                     </h2>
@@ -484,9 +485,9 @@ export default function AboutUs({ aboutDetails, pageList, propertyList }) {
                                 <div className="link-font-size">
                                   <p
                                     className="highlight-colorx"
-                                    style={{ color: "#2e2e2e" }}
+                                    style={{ color: '#2e2e2e' }}
                                     dangerouslySetInnerHTML={{
-                                      __html: timeline.description,
+                                      __html: timeline.description
                                     }}
                                   />
                                 </div>
@@ -550,9 +551,9 @@ export default function AboutUs({ aboutDetails, pageList, propertyList }) {
                                   src={`${data.profile_image_main}&h=800&w=700&q=75`}
                                   alt={aboutUsData.profile_name}
                                   style={{
-                                    objectPosition: "top",
-                                    objectFit: "contain",
-                                    height: "100%",
+                                    objectPosition: 'top',
+                                    objectFit: 'contain',
+                                    height: '100%'
                                   }}
                                 />
                               </div>
@@ -574,11 +575,10 @@ export default function AboutUs({ aboutDetails, pageList, propertyList }) {
                                     >
                                       <p
                                         dangerouslySetInnerHTML={{
-                                          __html:
-                                            data.profile_description_short,
+                                          __html: data.profile_description_short
                                         }}
                                         className="white-color text-center"
-                                        style={{ opacity: "0.8" }}
+                                        style={{ opacity: '0.8' }}
                                       ></p>
                                     </div>
                                   )}
@@ -594,7 +594,7 @@ export default function AboutUs({ aboutDetails, pageList, propertyList }) {
 
               <section
                 className="section-padding "
-                style={{ backgroundColor: "white !important" }}
+                style={{ backgroundColor: 'white !important' }}
               >
                 <div className="main-container">
                   <div
@@ -704,5 +704,5 @@ export default function AboutUs({ aboutDetails, pageList, propertyList }) {
         )}
       </div>
     </>
-  );
+  )
 }
