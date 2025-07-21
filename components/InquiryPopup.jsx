@@ -254,14 +254,18 @@ export default function InquiryPopupDetail() {
         <div className="inner-flex inner-flex-medium" onClick={(e) => e.stopPropagation()}>
 
           {/* <!-- <span ng-if="project_filter_data.project_title && projet_get == ''"></span> --> */}
-
+          <div className="section-title">
+            <h2>
+              Inquire Now
+            </h2>
+          </div>
 
           <form id="inquiry_form" onSubmit={handleSubmit} onClick={() => setCountryFlag(false)}>
-            <div className="section-title">
+            {/* <div className="section-title">
               <h2>
                 Inquire Now
               </h2>
-            </div>
+            </div> */}
             <div className="form_wrapper">
               {!projectDetailInq ? <div className="contact_lable select_option select_apr relative">
                 <select
