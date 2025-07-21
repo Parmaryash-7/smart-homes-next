@@ -794,6 +794,7 @@ export default function Home({
                                                 data-aos="fade-in"
                                                 data-aos-delay="400"
                                                 data-aos-duration="600"
+                                                style={{display : 'block'}}
                                             >
                                                 <div className="project-img-list overflow relative">
                                                     <img style={{aspectRatio : '16 / 9' , background : 'gray'}}
