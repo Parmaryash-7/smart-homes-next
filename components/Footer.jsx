@@ -154,7 +154,7 @@ export default function Footer({ homeDetails, adminData, propertylist }) {
                       {homeDetails.facebook_url && (
                         <li>
                           <div>
-                            <Link
+                            <a
                               href={homeDetails.facebook_url}
                               target="_blank"
                               rel="noopener noreferrer"
@@ -164,14 +164,14 @@ export default function Footer({ homeDetails, adminData, propertylist }) {
                                 alt="Facebook"
                                 className="social-media-icon-footer common-icon"
                               />
-                            </Link>
+                            </a>
                           </div>
                         </li>
                       )}
                       {homeDetails.instagram_url && (
                         <li>
                           <div>
-                            <Link
+                            <a
                               href={homeDetails.instagram_url}
                               target="_blank"
                               rel="noopener noreferrer"
@@ -181,14 +181,14 @@ export default function Footer({ homeDetails, adminData, propertylist }) {
                                 alt="Instagram"
                                 className="social-media-icon-footer common-icon"
                               />
-                            </Link>
+                            </a>
                           </div>
                         </li>
                       )}
                       {homeDetails.twitter_url && (
                         <li>
                           <div>
-                            <Link
+                            <a
                               href={homeDetails.twitter_url}
                               target="_blank"
                               rel="noopener noreferrer"
@@ -198,14 +198,14 @@ export default function Footer({ homeDetails, adminData, propertylist }) {
                                 alt="Twitter"
                                 className="social-media-icon-footer common-icon"
                               />
-                            </Link>
+                            </a>
                           </div>
                         </li>
                       )}
                       {homeDetails.linkedin_url && (
                         <li>
                           <div>
-                            <Link
+                            <a
                               href={homeDetails.linkedin_url}
                               target="_blank"
                               rel="noopener noreferrer"
@@ -215,14 +215,14 @@ export default function Footer({ homeDetails, adminData, propertylist }) {
                                 alt="LinkedIn"
                                 className="social-media-icon-footer common-icon"
                               />
-                            </Link>
+                            </a>
                           </div>
                         </li>
                       )}
                       {homeDetails.youtube_page_url && (
                         <li>
                           <div>
-                            <Link
+                            <a
                               href={homeDetails.youtube_page_url}
                               target="_blank"
                               rel="noopener noreferrer"
@@ -232,7 +232,7 @@ export default function Footer({ homeDetails, adminData, propertylist }) {
                                 alt="YouTube"
                                 className="social-media-icon-footer common-icon"
                               />
-                            </Link>
+                            </a>
                           </div>
                         </li>
                       )}
@@ -315,9 +315,9 @@ export default function Footer({ homeDetails, adminData, propertylist }) {
                           .map((data, idx) => (
                             <li key={idx} className="wfc footer-hover">
                               <Link
-                                href={`${data.slug}/`}
+                                href={`/${data.slug}/`}
                                 className={
-                                  activePath === `${data.slug}/`
+                                  activePath == `/${data.slug}`
                                     ? 'active_page'
                                     : ''
                                 }
@@ -343,9 +343,9 @@ export default function Footer({ homeDetails, adminData, propertylist }) {
                             <div className="inner-flex inner-flex-smallest footer-navigation-link">
                               <li className="wfc footer-hover">
                                 <Link
-                                  href="privacy-policy/"
+                                  href="/privacy-policy/"
                                   className={
-                                    activePath === 'privacy-policy/'
+                                    activePath == '/privacy-policy'
                                       ? 'active_page'
                                       : ''
                                   }
@@ -355,9 +355,9 @@ export default function Footer({ homeDetails, adminData, propertylist }) {
                               </li>
                               <li className="wfc footer-hover">
                                 <Link
-                                  href="terms-and-conditions/"
+                                  href="/terms-and-conditions/"
                                   className={
-                                    activePath === 'terms-and-conditions/'
+                                    activePath == '/terms-and-conditions'
                                       ? 'active_page'
                                       : ''
                                   }
@@ -369,9 +369,9 @@ export default function Footer({ homeDetails, adminData, propertylist }) {
                               </li>
                               <li className="wfc footer-hover">
                                 <Link
-                                  href="disclaimer/"
+                                  href="/disclaimer/"
                                   className={
-                                    activePath === 'disclaimer/'
+                                    activePath == '/disclaimer'
                                       ? 'active_page'
                                       : ''
                                   }
@@ -392,9 +392,9 @@ export default function Footer({ homeDetails, adminData, propertylist }) {
                             <div className="inner-flex inner-flex-smallest footer-navigation-link">
                               <li className="wfc footer-hover">
                                 <Link
-                                  href="important-documents/"
+                                  href="/important-documents/"
                                   className={
-                                    activePath === 'important-documents/'
+                                    activePath == '/important-documents'
                                       ? 'active_page'
                                       : ''
                                   }
@@ -452,9 +452,9 @@ export default function Footer({ homeDetails, adminData, propertylist }) {
                     </li>
                     <li className="wfc footer-hover">
                       <Link
-                        href="about-us/"
+                        href="/about-us/"
                         className={
-                          activePath === 'about-us/' ? 'active_page' : ''
+                          activePath == '/about-us' ? 'active_page' : ''
                         }
                       >
                         <p className="capitalize">About</p>
@@ -462,9 +462,9 @@ export default function Footer({ homeDetails, adminData, propertylist }) {
                     </li>
                     <li className="wfc footer-hover">
                       <Link
-                        href="completed-projects/"
+                        href="/completed-projects/"
                         className={
-                          activePath === 'completed-projects/'
+                          activePath == '/completed-projects'
                             ? 'active_page'
                             : ''
                         }
@@ -474,26 +474,29 @@ export default function Footer({ homeDetails, adminData, propertylist }) {
                     </li>
                     <li className="wfc footer-hover">
                       <Link
-                        href="channel-partners/"
+                        href="/channel-partners/"
                         className={
-                          activePath === 'channel-partners/'
-                            ? 'active_page'
-                            : ''
+                          activePath == '/channel-partners' ? 'active_page' : ''
                         }
                       >
                         <p className="capitalize">Channel Partners</p>
                       </Link>
                     </li>
                     <li className="wfc footer-hover">
-                      <Link href="contact-us/">
+                      <Link
+                        href="/contact-us/"
+                        className={
+                          activePath == '/contact-us' ? 'active_page' : ''
+                        }
+                      >
                         <p className="capitalize">Contact Us</p>
                       </Link>
                     </li>
                     <li className="wfc footer-hover">
                       <Link
-                        href="dholera-sir/"
+                        href="/dholera-sir/"
                         className={
-                          activePath === 'dholera-sir/' ? 'active_page' : ''
+                          activePath == '/dholera-sir' ? 'active_page' : ''
                         }
                       >
                         <p className="capitalize">Dholera SIR</p>
@@ -501,9 +504,9 @@ export default function Footer({ homeDetails, adminData, propertylist }) {
                     </li>
                     <li className="wfc footer-hover">
                       <Link
-                        href="construction-updates/"
+                        href="/construction-updates/"
                         className={
-                          activePath === 'construction-updates/'
+                          activePath == '/construction-updates'
                             ? 'active_page'
                             : ''
                         }
@@ -513,9 +516,9 @@ export default function Footer({ homeDetails, adminData, propertylist }) {
                     </li>
                     <li className="footer-hover">
                       <Link
-                        href="awards-and-accolades/"
+                        href="/awards-and-accolades/"
                         className={
-                          activePath === 'awards-and-accolades/'
+                          activePath == '/awards-and-accolades'
                             ? 'active_page'
                             : ''
                         }
@@ -525,9 +528,9 @@ export default function Footer({ homeDetails, adminData, propertylist }) {
                     </li>
                     <li className="wfc footer-hover">
                       <Link
-                        href="nri-corner/"
+                        href="/nri-corner/"
                         className={
-                          activePath === 'nri-corner/' ? 'active_page' : ''
+                          activePath == '/nri-corner' ? 'active_page' : ''
                         }
                       >
                         <p className="capitalize">NRI Corner</p>
@@ -535,22 +538,22 @@ export default function Footer({ homeDetails, adminData, propertylist }) {
                     </li>
                     <li className="wfc footer-hover">
                       <Link
-                        href="blogs/"
-                        className={activePath === 'blogs/' ? 'active_page' : ''}
+                        href="/blogs/"
+                        className={activePath == '/blogs' ? 'active_page' : ''}
                       >
                         <p className="capitalize">blogs</p>
                       </Link>
                     </li>
                     {/* <li className="wfc footer-hover">
-                                            <Link href="/blogs" className={activePath === "/blogs" ? "active_page" : ""}>
+                                            <Link href="//blogs" className={activePath == "/blogs" ? "active_page" : ""}>
                                                 <p className="capitalize">Latest News</p>
                                             </Link>
                                         </li> */}
                     <li className="wfc footer-hover">
                       <Link
-                        href="newsletters/"
+                        href="/newsletters/"
                         className={
-                          activePath === '/newsletters/' ? 'active_page' : ''
+                          activePath == '/newsletters' ? 'active_page' : ''
                         }
                       >
                         <p className="capitalize">News Letters</p>
@@ -558,9 +561,9 @@ export default function Footer({ homeDetails, adminData, propertylist }) {
                     </li>
                     <li className="wfc footer-hover">
                       <Link
-                        href="franchise-opportunities/"
+                        href="/franchise-opportunities/"
                         className={
-                          activePath === '/franchise-opportunities/'
+                          activePath == '/franchise-opportunities'
                             ? 'active_page'
                             : ''
                         }
@@ -569,7 +572,12 @@ export default function Footer({ homeDetails, adminData, propertylist }) {
                       </Link>
                     </li>
                     <li className="wfc footer-hover">
-                      <Link href="sitemap/">
+                      <Link
+                        href="/sitemap"
+                        className={
+                          activePath === '/sitemap' ? 'active_page' : ''
+                        }
+                      >
                         <p className="capitalize">Sitemap</p>
                       </Link>
                     </li>
@@ -811,7 +819,12 @@ export default function Footer({ homeDetails, adminData, propertylist }) {
                       <ul className="inner-flex inner-flex-common">
                         <li className="footerAccordionBlock">
                           <div className="section-content flex-row alc j-c-sb w100 footer_accordion_click">
-                            <Link href="about-us/">
+                            <Link
+                              href="/about-us/"
+                              className={
+                                activePath == '/about-us' ? 'active_page' : ''
+                              }
+                            >
                               <p className="capitalize">About</p>
                             </Link>
                           </div>
@@ -854,7 +867,7 @@ export default function Footer({ homeDetails, adminData, propertylist }) {
                                       )
                                       .map((data, index) => (
                                         <Link
-                                          href={`${data.slug}`}
+                                          href={`/${data.slug}/`}
                                           className="header-hover"
                                           key={data.project_id}
                                         >
