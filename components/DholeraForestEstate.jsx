@@ -7,7 +7,7 @@ import WalkthroughVideo from "components/Walkthrough";
 import rawProjectData from "data/projectList.json";
 import { useDispatch } from 'react-redux'
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Fancybox } from "@fancyapps/ui/dist/fancybox/";
+import { Fancybox } from "@fancyapps/ui";
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
 import { openInquiry } from '../store/inquirySlice'
 import {
@@ -109,32 +109,49 @@ export default function DholeraForestEstate({
     }
   }, [projectDetail]);
 
+  // useEffect(() => {
+  //   let fancyboxInstance;
+  //   if (window.innerWidth < 767) {
+  //     setMobileScreen(true);
+  //   }
+  //   import("@fancyapps/ui").then(({ Fancybox }) => {
+  //     Fancybox.bind("[data-fancybox=virtual-tour]", {
+  //       type: "iframe",
+  //       Toolbar: false,
+  //       smallBtn: true,
+  //       iframe: {
+  //         preload: false,
+  //       },
+  //     });
+  //     Fancybox.bind("[data-fancybox=project-gallery-fancy]", {
+  //       Carousel: {
+  //         infinite: true,
+  //       },
+  //     });
+  //   });
+  //   return () => {
+  //     import("@fancyapps/ui").then(({ Fancybox }) => {
+  //       Fancybox.destroy();
+  //     });
+  //   };
+  // }, []);
+
   useEffect(() => {
-    let fancyboxInstance;
     if (window.innerWidth < 767) {
       setMobileScreen(true);
     }
-    import("@fancyapps/ui").then(({ Fancybox }) => {
-      Fancybox.bind("[data-fancybox=virtual-tour]", {
-        type: "iframe", // explicitly define the content type
-        Toolbar: false,
-        smallBtn: true,
-        iframe: {
-          preload: false,
-        },
-      });
-      Fancybox.bind("[data-fancybox=project-gallery-fancy]", {
-        Carousel: {
-          infinite: true,
-        },
-      });
+    Fancybox.bind('[data-fancybox="virtual-tour"]', {
+      type: "iframe",
+      Thums: false,
+      Toolbar: {
+        display: ["close"],
+      },
+      // iframe: {
+      //   preload: false,
+      // },
     });
-    return () => {
-      import("@fancyapps/ui").then(({ Fancybox }) => {
-        Fancybox.destroy();
-      });
-    };
   }, []);
+
 
   if (projectDetail) {
     return (
@@ -605,9 +622,7 @@ export default function DholeraForestEstate({
                               {projectDetail.virtual_data.length > 0 &&
                                 !isMobilescreen &&
                                 projectDetail.virtual_data
-                                  .filter(
-                                    (video) => video.type == "virtual-tour"
-                                  )
+                                  .filter((video) => video.type === "virtual-tour")
                                   .map((video, index) => (
                                     <div key={index} className="web-3d-icon">
                                       <a
@@ -615,24 +630,21 @@ export default function DholeraForestEstate({
                                         data-fancybox="virtual-tour"
                                         data-type="iframe"
                                         data-src={video.url}
-                                        href="javascript:void(0)"
                                       >
                                         <button
-                                          className="reecosys-template-button button-blackborder border-black "
+                                          className="reecosys-template-button button-blackborder border-black"
                                           data-aos="fade-in"
                                           data-aos-duration="1000"
                                           data-aos-delay="500"
                                         >
                                           <p>
-                                            <span className="bold-fonts">
-                                              360&deg;
-                                            </span>{" "}
-                                            Virtual Tour
+                                            <span className="bold-fonts">360&deg;</span> Virtual Tour
                                           </p>
                                         </button>
                                       </a>
                                     </div>
                                   ))}
+
                             </div>
                             <div className="visible-tab-mobile">
                               <div className="gallerySwiper-swiper-btn flex-row inner-flex-common alc">

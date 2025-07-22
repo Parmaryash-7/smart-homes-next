@@ -7,6 +7,7 @@ import { Providers } from '../store/Providers'
 import AOSInitializer from '../components/AOSInitializer'
 import InquiryPopup from '../components/InquiryPopup'
 import { ToastContainer } from 'react-toastify'
+import "@fancyapps/ui/dist/fancybox/fancybox.css";
 import Script from 'next/script'
 
 export default async function RootLayout({ children }) {

@@ -166,9 +166,8 @@ export default function Header({ propertylist, socialList }) {
                     style={{ cursor: 'pointer' }}
                   >
                     <p
-                      className={`capitalize ${
-                        megaMenuCategory === category ? 'secondary-color' : ''
-                      }`}
+                      className={`capitalize ${megaMenuCategory === category ? 'secondary-color' : ''
+                        }`}
                     >
                       {category}
                     </p>
@@ -182,11 +181,10 @@ export default function Header({ propertylist, socialList }) {
               <li>
                 <Link href="/bulk-land-in-dholera/">
                   <p
-                    className={`capitalize ${
-                      activePath === '/bulk-land-in-dholera'
+                    className={`capitalize ${activePath === '/bulk-land-in-dholera'
                         ? 'secondary-color'
                         : ''
-                    }`}
+                      }`}
                   >
                     Bulk Land
                   </p>
@@ -195,9 +193,8 @@ export default function Header({ propertylist, socialList }) {
               <li>
                 <Link href="/about-us/">
                   <p
-                    className={`capitalize ${
-                      activePath === '/about-us' ? 'secondary-color' : ''
-                    }`}
+                    className={`capitalize ${activePath === '/about-us' ? 'secondary-color' : ''
+                      }`}
                   >
                     About
                   </p>
@@ -206,11 +203,10 @@ export default function Header({ propertylist, socialList }) {
               <li>
                 <Link href="/channel-partners/">
                   <p
-                    className={`capitalize ${
-                      activePath === '/channel-partners'
+                    className={`capitalize ${activePath === '/channel-partners'
                         ? 'secondary-color'
                         : ''
-                    }`}
+                      }`}
                   >
                     Channel Partners
                   </p>
@@ -219,9 +215,8 @@ export default function Header({ propertylist, socialList }) {
               <li>
                 <Link href="/nri-corner/">
                   <p
-                    className={`capitalize ${
-                      activePath === '/nri-corner' ? 'secondary-color' : ''
-                    }`}
+                    className={`capitalize ${activePath === '/nri-corner' ? 'secondary-color' : ''
+                      }`}
                   >
                     NRI Corner
                   </p>
@@ -268,9 +263,8 @@ export default function Header({ propertylist, socialList }) {
         </div>
       </div>
       <div
-        className={`header_contact_dropdown ${
-          openContactDropdown ? 'active' : ''
-        }`}
+        className={`header_contact_dropdown ${openContactDropdown ? 'active' : ''
+          }`}
         onClick={(e) => e.stopPropagation()}
       >
         <div className="relative">
@@ -355,9 +349,8 @@ export default function Header({ propertylist, socialList }) {
               {megaMenuList.map((data, idx) => (
                 <div
                   key={idx}
-                  className={`megamenuItem relative inner-flex ${
-                    activePath === `/${data.slug}` ? 'active' : ''
-                  }`}
+                  className={`megamenuItem relative inner-flex ${activePath === `/${data.slug}` ? 'active' : ''
+                    }`}
                   onClick={() => megaMenuClickClose()}
                 >
                   <Link href={`/${data.slug}/`}>
@@ -460,9 +453,8 @@ export default function Header({ propertylist, socialList }) {
       )}
       {isMobileScreen && (
         <div
-          className={`mobile_menu_wrapper inner-flex inner-flex-medium j-c-sb ${
-            mobileMenuToggle ? 'mobileMenuActive' : ''
-          } `}
+          className={`mobile_menu_wrapper inner-flex inner-flex-medium j-c-sb ${mobileMenuToggle ? 'mobileMenuActive' : ''
+            } `}
         >
           <div className="header-navigation-links">
             <ul>
@@ -488,14 +480,15 @@ export default function Header({ propertylist, socialList }) {
                     className="inner-flex inner-flex-small accordion-block"
                     style={{ gap: '0px' }}
                     key={categoryIndex}
+
                   >
                     <div
-                      className={`flex-row j-c-sb header_accordion accordion_click ${
-                        activeIndex == category_data.category ? 'active' : ''
-                      } `}
+                      className={`flex-row j-c-sb header_accordion accordion_click ${activeIndex == category_data.category ? 'active' : ''
+                        } `}
                       onClick={() => {
                         toggleAccordion(category_data.category)
                       }}
+                      
                     >
                       <div className="section-paragraph">
                         <p className="capitalize">{category_data.category}</p>
@@ -514,9 +507,8 @@ export default function Header({ propertylist, socialList }) {
                       </div>
                     </div>
                     <div
-                      className={`content_accordian ${
-                        activeIndex == category_data.category ? 'active' : ''
-                      } `}
+                      className={`content_accordian ${activeIndex == category_data.category ? 'active' : ''
+                        } `}
                     >
                       <div>
                         <div
@@ -540,7 +532,7 @@ export default function Header({ propertylist, socialList }) {
                                   <Link
                                     href={`/${data.slug}/`}
                                     className="header-hover"
-                                    style={{display : 'block' , width : '100%' , maxWidth : '100%'}}
+                                    style={{ display: 'block', width: '100%', maxWidth: '100%' }}
                                   >
                                     <div className="flex-row flex-gap-small">
                                       <div className="flex-30">
@@ -694,9 +686,8 @@ export default function Header({ propertylist, socialList }) {
                 <div>
                   <Link
                     href="/bulk-land-in-dholera/"
-                    className={`capitalize section-paragraph ${
-                      activePath == '/bulk-land-in-dholera' ? 'active_page' : ''
-                    }`}
+                    className={`capitalize section-paragraph ${activePath == '/bulk-land-in-dholera' ? 'active_page' : ''
+                      }`}
                     onClick={() => {
                       setMobileMenuToggle(false)
                     }}
@@ -710,9 +701,8 @@ export default function Header({ propertylist, socialList }) {
                 <div>
                   <Link
                     href="/completed-projects/"
-                    className={`capitalize section-paragraph ${
-                      activePath == '/completed-projects' ? 'active_page' : ''
-                    }`}
+                    className={`capitalize section-paragraph ${activePath == '/completed-projects' ? 'active_page' : ''
+                      }`}
                     onClick={() => {
                       setMobileMenuToggle(false)
                     }}
@@ -726,9 +716,8 @@ export default function Header({ propertylist, socialList }) {
                 <div>
                   <Link
                     href="/channel-partners/"
-                    className={`capitalize section-paragraph ${
-                      activePath == '/channel-partners' ? 'active_page' : ''
-                    }`}
+                    className={`capitalize section-paragraph ${activePath == '/channel-partners' ? 'active_page' : ''
+                      }`}
                     onClick={() => {
                       setMobileMenuToggle(false)
                     }}
@@ -743,9 +732,8 @@ export default function Header({ propertylist, socialList }) {
                 <div>
                   <Link
                     href="/nri-corner/"
-                    className={`capitalize section-paragraph ${
-                      activePath == '/nri-corner' ? 'active_page' : ''
-                    }`}
+                    className={`capitalize section-paragraph ${activePath == '/nri-corner' ? 'active_page' : ''
+                      }`}
                     onClick={() => {
                       setMobileMenuToggle(false)
                     }}
@@ -760,9 +748,8 @@ export default function Header({ propertylist, socialList }) {
                 <div>
                   <Link
                     href="/contact-us/"
-                    className={`capitalize section-paragraph ${
-                      activePath == '/contact-us' ? 'active_page' : ''
-                    }`}
+                    className={`capitalize section-paragraph ${activePath == '/contact-us' ? 'active_page' : ''
+                      }`}
                     onClick={() => {
                       setMobileMenuToggle(false)
                     }}
@@ -825,11 +812,10 @@ export default function Header({ propertylist, socialList }) {
         </div>
       )}
       <div
-        className={`click-overlay  ${
-          megaMenuActive || openContactDropdown || mobileMenuToggle
+        className={`click-overlay  ${megaMenuActive || openContactDropdown || mobileMenuToggle
             ? 'active'
             : ''
-        } `}
+          } `}
         onClick={() => {
           megaMenuClickClose(),
             setOpenContactDropdown(false),
@@ -842,11 +828,10 @@ export default function Header({ propertylist, socialList }) {
         rel="noopener noreferrer"
       >
         <div
-          className={`whatsapp_connect  ${
-            megaMenuActive || openContactDropdown || mobileMenuToggle
+          className={`whatsapp_connect  ${megaMenuActive || openContactDropdown || mobileMenuToggle
               ? 'active'
               : ''
-          } `}
+            } `}
         >
           <div className="whatsapp-icon">
             <img src="/images/icon/Whatsapp.png" alt="smarthomes" />

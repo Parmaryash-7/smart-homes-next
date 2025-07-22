@@ -47,6 +47,7 @@ body {
   }
 }
 
+
 .btn-amn {
   display: none;
 }
@@ -3816,14 +3817,14 @@ span.readmore_click {
 .specification-swiper {
   padding: 3rem 2rem;
   background: #ffffff12;
-      width: fit-content;
+  width: fit-content;
   gap: 2rem;
   min-height: 25vh;
 }
 
 .spec {
-  width : fit-content !important;
-      margin-right: 16px;
+  width: fit-content !important;
+  margin-right: 16px;
 }
 
 .specificationContent.link-font-size p {
@@ -5349,9 +5350,10 @@ span.readmore_click {
   html {
     font-size: 12px;
   }
+
   .specification-ul {
-      text-align : start;
-    }
+    text-align: start;
+  }
 
   .leaders-grid-wrapper {
     grid-template-columns: repeat(2, 1fr);
@@ -5631,7 +5633,7 @@ span.readmore_click {
 
   .specification-swiper {
     min-height: 35vh;
-    width : 40vh;
+    width: 40vh;
   }
 
   .testimonialCard {
@@ -8530,14 +8532,18 @@ form .md-lable.contact_code #contact_no {
     white-space: nowrap;
   }
 
-      .specification-swiper {
-        min-height: 35vh;
-        width: 35vh;
-    }
+  .specification-swiper {
+    min-height: 35vh;
+    width: 35vh;
+  }
 
-    .specification-ul {
-      text-align : start;
-    }
+  .footer-title {
+    font-size: 1.25rem !important;
+  }
+
+  .specification-ul {
+    text-align: start;
+  }
 
   /* .reecosys-template-button.button-style-secondary {
     display: none;
@@ -9770,4 +9776,29 @@ input.ng-invalid {
 
 .f-carousel__counter {
   color: white;
+}
+
+.f-thumbs__viewport {
+  display: none !important;
+}
+
+.f-carousel__toolbar__column {
+  color: #ccc;
+  font-size: 13px;
+  -webkit-font-smoothing: subpixel-antialiased;
+  height: 44px;
+  left: 0;
+  line-height: 44px;
+  min-width: 44px;
+  mix-blend-mode: difference;
+  padding: 0 10px;
+  pointer-events: none;
+  top: 0;
+  user-select: none;
+}
+
+.f-panzoom__content {
+  width: 1495.11px;
+  height: 841px;
+  margin: 0 auto;
 }
