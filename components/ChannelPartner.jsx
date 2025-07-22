@@ -298,7 +298,7 @@ export default function ChannelPartner({ pageList }) {
             )
         );
 
-        console.log("✅ Final Submitted Data:", filteredPayload);
+        // console.log("✅ Final Submitted Data:", filteredPayload);
 
         try {
             const response = await api.ChannelInquiry(contactPayload);

@@ -129,7 +129,7 @@ export default function InputField({
             onChange={handleChange}
             className={`form-control ${errors?.[name] ? 'error' : ''} `}
           >
-            <option disabled>{placeholder}</option>
+            <option disabled selected>{placeholder}</option>
             {selectList
               .filter((p) => p.project_id !== '744' && p.project_id !== '814')
               .map((data, i) => (
@@ -147,7 +147,7 @@ export default function InputField({
       )}
 
       {tag === 'select' && name !== 'project_id' && (
-        <div className="contact_lable select_option select_apr relative">
+        <div className="contact_lable select_option select_apr relative 3">
           <select
             id={id}
             name={name}
@@ -162,8 +162,9 @@ export default function InputField({
                   <option
                     key={index}
                     value={data.value}
-                    disabled={index === 0 && start}
+                    disabled={index == 0}
                     className={`form-control ${errors?.[name] ? 'error' : ''} `}
+                    selected={index == 0}
                   >
                     {data.name || data.project_title}
                   </option>

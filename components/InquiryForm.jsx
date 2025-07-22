@@ -37,7 +37,7 @@ export default function InquiryForm({
     logged_in_master_user_id: 339,
     agree_tandc_display: true,
     last_name: '',
-    property_type: 'plot',
+    property_type: '',
     first_name: '',
     client_contact_no_display: '',
     email_address: '',
@@ -193,15 +193,14 @@ export default function InquiryForm({
 
     // if (isAbout && !inquiryObj.about_project_id)
     //   newErrors.about_project_id = true
-    if (!inquiryObj.property_type || inquiryObj.property_type.trim() === '')
-      newErrors.property_type = true
+    // if (!inquiryObj.property_type || inquiryObj.property_type.trim() === '')
+    //   newErrors.property_type = true
 
     // if (!isHome && !inquiryObj.email_address.trim()) newErrors.email_address = true;
     // else if (!isHome && !emailRegex.test(inquiryObj.email_address)) newErrors.email_address = true;
 
     if (
-      !isHome &&
-      !isAbout &&
+      !isHomeRoute &&
       (!inquiryObj.property_type || inquiryObj.property_type.trim() === '')
     ) {
       newErrors.property_type = true
@@ -215,6 +214,7 @@ export default function InquiryForm({
         el.scrollIntoView({ behavior: 'smooth', block: 'center' })
         el.focus()
       }
+      console.log(newErrors);
       return
     }
 
@@ -243,6 +243,7 @@ export default function InquiryForm({
 
       let response
       if (isHome || isAbout) {
+        // inquiryObj.property_type = "plot"
         response = await api.ContactInquiry(inquiryObj)
       } else {
         response = await api.Projectinquiry(inquiryObj)
@@ -284,7 +285,7 @@ export default function InquiryForm({
           logged_in_master_user_id: 339,
           agree_tandc_display: true,
           last_name: '',
-          property_type: 'plot',
+          property_type: '',
           first_name: '',
           client_contact_no_display: '',
           email_address: '',
