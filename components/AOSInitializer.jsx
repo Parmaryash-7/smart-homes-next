@@ -5,6 +5,8 @@ import AOS from 'aos'
 import 'aos/dist/aos.css'
 import { useDispatch } from 'react-redux'
 import { usePathname } from 'next/navigation'
+import "@fancyapps/ui/dist/fancybox/fancybox.css";
+import { Fancybox } from "@fancyapps/ui";
 
 const AOSInitializer = () => {
   //   const country = await getCountryList();
@@ -12,14 +14,32 @@ const AOSInitializer = () => {
   const pathname = usePathname()
 
   useEffect(() => {
+     const timer = setTimeout(() => {
+      Fancybox.destroy();
+
+      Fancybox.bind("[data-fancybox]", {
+        plugins: {
+          Toolbar: true,
+        },
+        Carousel: {
+          infinite: false,
+          Toolbar: {
+            display: {
+              left: ["counter"],
+              middle: [],
+              right: ["zoom", "close"],
+            },
+          },
+        },
+      });
+    }, 0);
+
     AOS.init({
       duration: 1000,
-      once: true
-    })
+      once: true,
+    });
 
-    return () => {
-      AOS.refresh()
-    }
+    return () => clearTimeout(timer);
   }, [])
 
   useEffect(() => {

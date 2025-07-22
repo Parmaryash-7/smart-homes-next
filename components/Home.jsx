@@ -400,17 +400,49 @@ export default function Home({
         : defaultPodcastData.slice(0, 2)
 
 
-    useEffect(() => {
-        Fancybox.bind('[data-fancybox="podcastFancybox"]', {
-            Toolbar: true
-        });
+//     useEffect(() => {
+//   Fancybox.bind('[data-fancybox="podcastFancybox"]', {
+//     Thumbs: {
+//       type: null, // disables thumbs
+//     },
+//     Toolbar: {
+//       display: [
+//         { id: "counter", position: "left" },
+//         { id: "zoom", position: "right" },
+//         { id: "close", position: "right" },
+//       ],
+//     },
+//     Carousel: {
+//       infinite: false,
+//     },
+//     Image: {
+//       zoom: true,
+//       panMode: "mousemove",
+//       maxZoom: 2,
+//     },
+//   });
 
-    }, []);
-    useEffect(() => {
-        Fancybox.bind('[data-fancybox="podcastFancybox2"]', {
-            Toolbar: true
-        });
-    }, []);
+//   Fancybox.bind('[data-fancybox="podcastFancybox2"]', {
+//     Thumbs: {
+//       type: null,
+//     },
+//     Toolbar: {
+//       display: [
+//         { id: "counter", position: "left" },
+//         { id: "zoom", position: "right" },
+//         { id: "close", position: "right" },
+//       ],
+//     },
+//     Carousel: {
+//       infinite: false,
+//     },
+//     Image: {
+//       zoom: true,
+//       panMode: "mousemove",
+//       maxZoom: 2,
+//     },
+//   });
+// }, []);
 
     
 
