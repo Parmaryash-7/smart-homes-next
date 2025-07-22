@@ -6,8 +6,8 @@ import parse from "html-react-parser";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
-import "swiper/css/navigation";
 import InquiryForm from "./InquiryForm";
+import './Disclaimer.css'
 
 export default function DholeraSIR() {
     const [townPlanningClickF, setTownPlanningClickF] = useState(1);
@@ -23,7 +23,11 @@ export default function DholeraSIR() {
         { title: "Public Utilities & Infrastructure", desc: "Smart roads, power, and water facilities" },
         { title: "Seamless Connectivity", desc: "Robust transport and logistics network" },
     ];
+    const [activeIndex, setActiveIndex] = useState(null);
 
+    const toggleAccordion = (index) => {
+        setActiveIndex((prevIndex) => (prevIndex === index ? null : index));
+    };
     const asked_questions = [
         {
             id: 1,
@@ -206,34 +210,54 @@ export default function DholeraSIR() {
                                 <Image src="/images/dholera-sir/key-area.jpg" alt="Key Area" width={1000} height={600} />
                             </div>
                             <div className="detail-accordion dholera-sir-accordion flex40" id="accordion">
-                                {key_area.map((item, index) => (
-                                    <div
-                                        className="accordian-title accordion-block wow fade_top"
-                                        data-wow-duration="1s"
-                                        data-wow-delay={`0.${index + 2}s`}
-                                        key={index}
-                                    >
-                                        <div className="flex-row j-c-sb alc w100 accordion_click accordion_click_relative">
-                                            <div className="w100 section-paragraph">
-                                                <p className="medium-fonts">{item.title}</p>
+                                {key_area.map((item, index) => {
+                                    const isOpen = activeIndex === index;
+
+                                    return (
+                                        <div
+                                            className={`accordian-title accordion-block ${isOpen ? "active" : ""}`}
+                                            data-aos-duration="1s"
+                                            data-aos-delay={`0.${index + 2}s`}
+                                            key={index}
+                                        >
+                                            <div
+                                                className="flex-row j-c-sb alc w100 accordion_click accordion_click_relative"
+                                                onClick={() => toggleAccordion(index)}
+                                            >
+                                                <div className="w100 section-paragraph">
+                                                    <p className="medium-fonts">{item.title}</p>
+                                                </div>
+                                                <div className="accordian-icon">
+                                                    <img
+                                                        src="/images/icon/minus.svg"
+                                                        alt="-"
+                                                        className="minusimg"
+                                                        style={{ display: isOpen ? "block" : "none" }}
+                                                    />
+                                                    <img
+                                                        src="/images/icon/plus.svg"
+                                                        alt="+"
+                                                        className="plusimg"
+                                                        style={{ display: isOpen ? "none" : "block" }}
+                                                    />
+                                                </div>
                                             </div>
-                                            <div className="accordian-icon">
-                                                <img src="/images/icon/minus.svg" alt="-" className="minusimg" />
-                                                <img src="/images/icon/plus.svg" alt="+" className="plusimg" />
+                                            <div
+                                                className={`content_accordian section-content accordion-dec-padding w100 ${isOpen ? "open" : ""
+                                                    }`}
+                                            >
+                                                <p className="secondary-color regular-fonts">{item.desc}</p>
                                             </div>
                                         </div>
-                                        <div className="content_accordian section-content accordion-dec-padding w100">
-                                            <p className="secondary-color regular-fonts">{item.desc}</p>
-                                        </div>
-                                    </div>
-                                ))}
+                                    );
+                                })}
                             </div>
                         </div>
                     </div>
                 </section>
 
                 {/* Town Planning Accordion */}
-                <section className="section-padding"  style={{background: "#fafafa"}} >
+                <section className="section-padding" style={{ background: "#fafafa" }} >
                     <div className="main-container">
                         <div className="two-grid inner-flex-small inner-flex-tab alc">
                             {asked_questions.map((data, i) => (
@@ -255,17 +279,18 @@ export default function DholeraSIR() {
                                             data-wow-duration="1s"
                                             data-wow-delay={`0.${index + 2}s`}
                                         >
-                                            <div className={`flex-row j-c-sb alc w100 accordion_click ${ activeId === data.id ? 'active' : ''} accordion_click_relative`} onClick={() => handleClick(data.id)}>
+                                            <div className={`flex-row j-c-sb alc w100 accordion_click ${activeId === data.id ? 'active' : ''} accordion_click_relative`} onClick={() => handleClick(data.id)}>
                                                 <div className="w100 section-subtitle">
                                                     <h4 className="bold-fonts">{data.question}</h4>
                                                 </div>
                                             </div>
                                             {activeId === data.id && (
-                                                <div className={`${activeId === data.id ? "content_accordian_open" : "content_accordian_close" } section-content accordion-dec-padding w100`}>
+                                                <div className={`${activeId === data.id ? "content_accordian_open" : "content_accordian_close"} section-content accordion-dec-padding w100`}>
                                                     <p className="ng-binding" dangerouslySetInnerHTML={{ __html: data.answer }}></p>
                                                 </div>
                                             )}
-                                            <style dangerouslySetInnerHTML={{__html: `
+                                            <style dangerouslySetInnerHTML={{
+                                                __html: `
                                                 .content_accordian_close {
                                                     max-height: 0;
                                                     height: 0;
@@ -368,7 +393,8 @@ export default function DholeraSIR() {
                                         spaceBetween={32}
                                         breakpoints={{
                                             1152: { slidesPerView: 3, spaceBetween: 16 },
-                                            767: { slidesPerView: 1, spaceBetween: 16 },
+                                            767: { slidesPerView: 2, spaceBetween: 16 },
+                                            0: { slidesPerView: 1, spaceBetween: 16 },
                                         }}
                                         slidesPerView={4}
                                         className="swiper-wrapper swiper-container"
