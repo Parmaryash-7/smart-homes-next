@@ -14,6 +14,7 @@
   font-size: var(--content-font-size);
   line-height: 1.5;
 }
+
 #reecosys-main-wrapper-desclaimer p strong {
   font-weight: bold;
 }
@@ -49,9 +50,11 @@
   gap: 0.25rem;
   margin: 1.5rem 0;
 }
+
 #reecosys-main-wrapper-desclaimer ol {
   list-style: decimal;
 }
+
 #reecosys-main-wrapper-desclaimer ol li {
   padding-top: 1.5rem;
 }
@@ -59,10 +62,12 @@
 #reecosys-main-wrapper-desclaimer a {
   color: #0452a5;
 }
+
 #reecosys-main-wrapper-desclaimer h1,
 #reecosys-main-wrapper-desclaimer h2 {
   font-weight: 700;
 }
+
 #reecosys-main-wrapper-desclaimer .link-padding {
   padding-top: 1.5rem;
 }
@@ -71,8 +76,33 @@
   #reecosys-main-wrapper-desclaimer {
     padding: 5rem 0;
   }
+
   #reecosys-main-wrapper-desclaimer h1 {
     font-size: 27px;
     line-height: 30px;
   }
+}
+
+
+/* Accordion open/close transition */
+.content_accordian {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease, opacity 0.5s ease;
+  opacity: 0;
+}
+
+.content_accordian.open {
+  max-height: 500px;
+  /* adjust if your content is larger */
+  opacity: 1;
+}
+
+/* Optional icon toggle */
+.accordian-title.active .plusimg {
+  display: none;
+}
+
+.accordian-title:not(.active) .minusimg {
+  display: none;
 }

@@ -19,7 +19,8 @@ export default function InquiryForm({
   isHome,
   isAbout,
   propertyList,
-  fetchedPropertyList
+  fetchedPropertyList,
+  isInq
 }) {
   const [search, setSearch] = useState('')
   const [formSubmitted, setFormSubmitted] = useState(false)
@@ -28,7 +29,7 @@ export default function InquiryForm({
   const [projectOptions, setProjectOptions] = useState([])
   const router = useRouter()
   const activePath = usePathname()
-  const isHomeRoute = activePath == '/' || activePath == '/about-us'
+  const isHomeRoute = activePath == '/' || activePath == '/about-us' || activePath == '/dholera-sir'
 
   const [inquiryObj, setInquiryObj] = useState({
     agree_tandc: '1',
@@ -242,8 +243,7 @@ export default function InquiryForm({
       // const response = await api.Projectinquiry(JSON.stringify(inquiryObj));
 
       let response
-      if (isHome || isAbout) {
-        // inquiryObj.property_type = "plot"
+      if (isHome || isAbout || isInq) {
         response = await api.ContactInquiry(inquiryObj)
       } else {
         response = await api.Projectinquiry(inquiryObj)
@@ -275,7 +275,7 @@ export default function InquiryForm({
               document: []
             })
           )
-          router.push(isHome ? '/home/thankyou' : '/about-us/thankyou')
+          router.push(isHome ? '/home/thankyou' : isAbout ? '/about-us/thankyou' : '/dholera-sir/thankyou')
         }
 
         setInquiryObj({

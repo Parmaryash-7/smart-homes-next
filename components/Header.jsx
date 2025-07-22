@@ -100,7 +100,7 @@ export default function Header({ propertylist, socialList }) {
       // Close the menu
       setMegaMenuCategory('')
       setMegaMenuActive(false)
-      window.removeEventListener('scroll', handleScroll) // clean up
+      window.removeEventListener('scroll', handleScroll) 
     } else {
       // Open the menu
       setMegaMenuCategory(category)

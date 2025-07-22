@@ -6112,7 +6112,7 @@ span.readmore_click {
   .amenities_popup.active {
     transform: unset;
     right: 0;
-    z-index: 20;
+    z-index: 9999;
   }
 
   .amenities-close-icon {
@@ -8915,7 +8915,7 @@ form .md-lable.contact_code #contact_no {
   .amenities_popup.active {
     transform: unset;
     right: 0;
-    z-index: 20;
+    z-index: 99999;
   }
 
   .amenities-close-icon {
