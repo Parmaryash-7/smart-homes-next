@@ -14,7 +14,7 @@ import {
 import 'swiper/css'
 import 'swiper/css/pagination'
 import { Fancybox } from '@fancyapps/ui/dist/fancybox/'
-import '@fancyapps/ui/dist/fancybox/fancybox.css'
+import "@fancyapps/ui/dist/fancybox/fancybox.css";
 import awardsData from 'data/awards.json'
 import { useDispatch } from 'react-redux'
 import { openInquiry } from '../store/inquirySlice'
@@ -402,14 +402,12 @@ export default function Home({
 
     useEffect(() => {
         Fancybox.bind('[data-fancybox="podcastFancybox"]', {
-            // Thumbs: { autoStart: true },
             Toolbar: true
         });
 
     }, []);
     useEffect(() => {
         Fancybox.bind('[data-fancybox="podcastFancybox2"]', {
-            Thumbs:  true ,
             Toolbar: true
         });
     }, []);
@@ -1719,7 +1717,7 @@ export default function Home({
                                 </Swiper>
                             )}
 
-                            <div className="swiper-pagination article-pagination"></div>
+                            {/* <div className="swiper-pagination article-pagination"></div> */}
 
                             <div
                                 className="wfc m0auto"
@@ -1841,7 +1839,7 @@ export default function Home({
                 </div> */}
                 <div>
                     <button
-                        className="reecosys-template-button button-style-secondary"
+                        className="reecosys-template-button button-style-secondary inquiry-btn-hompeage"
                         data-wow-duration="0.6s"
                         data-wow-delay="0.6s"
                         onClick={() => {

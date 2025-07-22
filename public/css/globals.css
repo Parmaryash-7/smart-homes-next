@@ -6144,12 +6144,15 @@ span.readmore_click {
   }
 
   .reecosys-template-button.bottomStripButton:hover {
-    background-color: var(--secondary-color);
+    /* background-color: var(--secondary-color); */
+    background-color: #1e5724 !important;
   }
 
   .reecosys-template-button.bottomStripButton:hover span,
   .reecosys-template-button.bottomStripButton:hover p {
-    color: var(--white-color) !important;
+    /* color: var(--white-color) !important; */
+    color: white !important;
+
   }
 
   .reecosys-template-button.bottomStripButton span.material-symbols-outlined {
@@ -8116,6 +8119,11 @@ form .md-lable.contact_code #contact_no {
 }
 
 @media only screen and (max-width: 991px) {
+
+  .inquiry-btn-hompeage {
+    display: none;
+  }
+
   html {
     font-size: 12px;
   }
@@ -8939,12 +8947,15 @@ form .md-lable.contact_code #contact_no {
   }
 
   .reecosys-template-button.bottomStripButton:hover {
-    background-color: var(--secondary-color);
+    /* background-color: var(--secondary-color); */
+    background-color: #1e5724 !important;
+
   }
 
   .reecosys-template-button.bottomStripButton:hover span,
   .reecosys-template-button.bottomStripButton:hover p {
-    color: var(--white-color) !important;
+    /* color: var(--white-color) !important; */
+    color: white !important;
   }
 
   .reecosys-template-button.bottomStripButton span.material-symbols-outlined {

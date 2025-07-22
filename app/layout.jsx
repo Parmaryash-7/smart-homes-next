@@ -1,5 +1,6 @@
 import '../public/css/globals.css'
 import '../components/Header.css'
+import '../public/css/jquery.fancybox.min.css'
 import Header from 'components/Header'
 import Footer from 'components/Footer'
 import api from 'lib/api.interceptor'

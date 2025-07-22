@@ -96,7 +96,7 @@ export default function BottomStrip({
             </div>
           </div>
 
-          <div className='bottomEnquirybtn'>
+          <div className={`bottomEnquirybtn  ${isMobilescreen ? "w100" : ""}`}>
             <div className="hidden-xs">
               <button
                 onClick={handleInq} 

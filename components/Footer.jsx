@@ -84,7 +84,9 @@ export default function Footer({ homeDetails, adminData, propertylist }) {
           </div>
           <div className="dsda-logos-line"></div>
           <div>
-            <img src="/images/logo/memberofCredai.jpg" alt="Credai" />
+            <Link href='https://www.smarthomesinfra.com/blog/smarthomes-infrastructure-pvt-ltd-joins-credai-ahmedabad-gihed-marking-another-milestone-in-its-journey-of-excellence' target='_blank'>
+              <img src="/images/logo/memberofCredai.jpg" alt="Credai" />
+            </Link>
           </div>
         </div>
       </div>
@@ -149,96 +151,96 @@ export default function Footer({ homeDetails, adminData, propertylist }) {
                   homeDetails.twitter_url ||
                   homeDetails.linkedin_url ||
                   homeDetails.youtube_page_url) && (
-                  <div className="flex-row inner-flex-medium">
-                    <ul className="flex-row alc">
-                      {homeDetails.facebook_url && (
-                        <li>
-                          <div>
-                            <a
-                              href={homeDetails.facebook_url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              <img
-                                src="/images/icon/social-icons/facebook.svg"
-                                alt="Facebook"
-                                className="social-media-icon-footer common-icon"
-                              />
-                            </a>
-                          </div>
-                        </li>
-                      )}
-                      {homeDetails.instagram_url && (
-                        <li>
-                          <div>
-                            <a
-                              href={homeDetails.instagram_url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              <img
-                                src="/images/icon/social-icons/instagram.svg"
-                                alt="Instagram"
-                                className="social-media-icon-footer common-icon"
-                              />
-                            </a>
-                          </div>
-                        </li>
-                      )}
-                      {homeDetails.twitter_url && (
-                        <li>
-                          <div>
-                            <a
-                              href={homeDetails.twitter_url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              <img
-                                src="/images/icon/social-icons/twitter.svg"
-                                alt="Twitter"
-                                className="social-media-icon-footer common-icon"
-                              />
-                            </a>
-                          </div>
-                        </li>
-                      )}
-                      {homeDetails.linkedin_url && (
-                        <li>
-                          <div>
-                            <a
-                              href={homeDetails.linkedin_url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              <img
-                                src="/images/icon/social-icons/linkedin.svg"
-                                alt="LinkedIn"
-                                className="social-media-icon-footer common-icon"
-                              />
-                            </a>
-                          </div>
-                        </li>
-                      )}
-                      {homeDetails.youtube_page_url && (
-                        <li>
-                          <div>
-                            <a
-                              href={homeDetails.youtube_page_url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              <img
-                                src="/images/icon/social-icons/youtube.svg"
-                                alt="YouTube"
-                                className="social-media-icon-footer common-icon"
-                              />
-                            </a>
-                          </div>
-                        </li>
-                      )}
-                    </ul>
-                  </div>
-                )}
+                    <div className="flex-row inner-flex-medium">
+                      <ul className="flex-row alc">
+                        {homeDetails.facebook_url && (
+                          <li>
+                            <div>
+                              <a
+                                href={homeDetails.facebook_url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                <img
+                                  src="/images/icon/social-icons/facebook.svg"
+                                  alt="Facebook"
+                                  className="social-media-icon-footer common-icon"
+                                />
+                              </a>
+                            </div>
+                          </li>
+                        )}
+                        {homeDetails.instagram_url && (
+                          <li>
+                            <div>
+                              <a
+                                href={homeDetails.instagram_url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                <img
+                                  src="/images/icon/social-icons/instagram.svg"
+                                  alt="Instagram"
+                                  className="social-media-icon-footer common-icon"
+                                />
+                              </a>
+                            </div>
+                          </li>
+                        )}
+                        {homeDetails.twitter_url && (
+                          <li>
+                            <div>
+                              <a
+                                href={homeDetails.twitter_url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                <img
+                                  src="/images/icon/social-icons/twitter.svg"
+                                  alt="Twitter"
+                                  className="social-media-icon-footer common-icon"
+                                />
+                              </a>
+                            </div>
+                          </li>
+                        )}
+                        {homeDetails.linkedin_url && (
+                          <li>
+                            <div>
+                              <a
+                                href={homeDetails.linkedin_url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                <img
+                                  src="/images/icon/social-icons/linkedin.svg"
+                                  alt="LinkedIn"
+                                  className="social-media-icon-footer common-icon"
+                                />
+                              </a>
+                            </div>
+                          </li>
+                        )}
+                        {homeDetails.youtube_page_url && (
+                          <li>
+                            <div>
+                              <a
+                                href={homeDetails.youtube_page_url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                <img
+                                  src="/images/icon/social-icons/youtube.svg"
+                                  alt="YouTube"
+                                  className="social-media-icon-footer common-icon"
+                                />
+                              </a>
+                            </div>
+                          </li>
+                        )}
+                      </ul>
+                    </div>
+                  )}
                 <div className="inner-flex j-c-sb alc inner-flex-common alstart flex-col-mob ">
                   <div>
                     <div className="inner-flex">
@@ -261,8 +263,8 @@ export default function Footer({ homeDetails, adminData, propertylist }) {
                             touched && !isValidEmail(email)
                               ? 'ng-invalid'
                               : touched && isValidEmail(email)
-                              ? 'ng-valid'
-                              : ''
+                                ? 'ng-valid'
+                                : ''
                           }
                           type="text"
                           name="email_address"
@@ -280,13 +282,12 @@ export default function Footer({ homeDetails, adminData, propertylist }) {
 
                       <div>
                         <button
-                          className={`reecosys-template-button button-style-secondary ${
-                            touched && !isValidEmail(email)
-                              ? 'ng-invalid'
-                              : touched
+                          className={`reecosys-template-button button-style-secondary ${touched && !isValidEmail(email)
+                            ? 'ng-invalid'
+                            : touched
                               ? 'ng-valid'
                               : ''
-                          }`}
+                            }`}
                           type="submit"
                         >
                           <p>{isSubmitting ? 'Please wait...' : 'Submit'}</p>
@@ -678,96 +679,96 @@ export default function Footer({ homeDetails, adminData, propertylist }) {
                   homeDetails.twitter_url ||
                   homeDetails.linkedin_url ||
                   homeDetails.youtube_page_url) && (
-                  <div className="flex-row inner-flex-medium socialMediaFlex">
-                    <ul className="flex-row alc">
-                      {homeDetails.facebook_url && (
-                        <li>
-                          <div>
-                            <Link
-                              href={homeDetails.facebook_url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              <img
-                                src="/images/icon/social-icons/facebook.svg"
-                                alt=""
-                                className="social-media-icon-footer common-icon"
-                              />
-                            </Link>
-                          </div>
-                        </li>
-                      )}
-                      {homeDetails.instagram_url && (
-                        <li>
-                          <div>
-                            <Link
-                              href={homeDetails.instagram_url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              <img
-                                src="/images/icon/social-icons/instagram.svg"
-                                alt=""
-                                className="social-media-icon-footer common-icon"
-                              />
-                            </Link>
-                          </div>
-                        </li>
-                      )}
-                      {homeDetails.twitter_url && (
-                        <li>
-                          <div>
-                            <Link
-                              href={homeDetails.twitter_url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              <img
-                                src="/images/icon/social-icons/twitter.svg"
-                                alt=""
-                                className="social-media-icon-footer common-icon"
-                              />
-                            </Link>
-                          </div>
-                        </li>
-                      )}
-                      {homeDetails.linkedin_url && (
-                        <li>
-                          <div>
-                            <Link
-                              href={homeDetails.linkedin_url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              <img
-                                src="/images/icon/social-icons/linkedin.svg"
-                                alt=""
-                                className="social-media-icon-footer common-icon"
-                              />
-                            </Link>
-                          </div>
-                        </li>
-                      )}
-                      {homeDetails.youtube_page_url && (
-                        <li>
-                          <div>
-                            <Link
-                              href={homeDetails.youtube_page_url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              <img
-                                src="/images/icon/social-icons/youtube.svg"
-                                alt=""
-                                className="social-media-icon-footer common-icon"
-                              />
-                            </Link>
-                          </div>
-                        </li>
-                      )}
-                    </ul>
-                  </div>
-                )}
+                    <div className="flex-row inner-flex-medium socialMediaFlex">
+                      <ul className="flex-row alc">
+                        {homeDetails.facebook_url && (
+                          <li>
+                            <div>
+                              <Link
+                                href={homeDetails.facebook_url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                <img
+                                  src="/images/icon/social-icons/facebook.svg"
+                                  alt=""
+                                  className="social-media-icon-footer common-icon"
+                                />
+                              </Link>
+                            </div>
+                          </li>
+                        )}
+                        {homeDetails.instagram_url && (
+                          <li>
+                            <div>
+                              <Link
+                                href={homeDetails.instagram_url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                <img
+                                  src="/images/icon/social-icons/instagram.svg"
+                                  alt=""
+                                  className="social-media-icon-footer common-icon"
+                                />
+                              </Link>
+                            </div>
+                          </li>
+                        )}
+                        {homeDetails.twitter_url && (
+                          <li>
+                            <div>
+                              <Link
+                                href={homeDetails.twitter_url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                <img
+                                  src="/images/icon/social-icons/twitter.svg"
+                                  alt=""
+                                  className="social-media-icon-footer common-icon"
+                                />
+                              </Link>
+                            </div>
+                          </li>
+                        )}
+                        {homeDetails.linkedin_url && (
+                          <li>
+                            <div>
+                              <Link
+                                href={homeDetails.linkedin_url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                <img
+                                  src="/images/icon/social-icons/linkedin.svg"
+                                  alt=""
+                                  className="social-media-icon-footer common-icon"
+                                />
+                              </Link>
+                            </div>
+                          </li>
+                        )}
+                        {homeDetails.youtube_page_url && (
+                          <li>
+                            <div>
+                              <Link
+                                href={homeDetails.youtube_page_url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                <img
+                                  src="/images/icon/social-icons/youtube.svg"
+                                  alt=""
+                                  className="social-media-icon-footer common-icon"
+                                />
+                              </Link>
+                            </div>
+                          </li>
+                        )}
+                      </ul>
+                    </div>
+                  )}
 
                 <div className="inner-flex j-c-sb alc inner-flex-common alstart flex-col-mob">
                   <div>
