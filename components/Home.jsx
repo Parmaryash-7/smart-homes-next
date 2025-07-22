@@ -355,38 +355,6 @@ export default function Home({
     //     }
     // };
 
-
-
-    // const handleExploreMoreClick = () => {
-    //     if (defaultPodcastData.length > 0) {
-    //         const galleryItems = defaultPodcastData.map((item) => ({
-    //             src: item.url,
-    //             type: "iframe", // for YouTube or podcast iframe
-    //         }));
-
-    //         Fancybox.show(galleryItems, {
-    //             Thumbs: true,
-    //             Toolbar: true,
-    //         });
-    //     }
-    // };
-
-    // const handleExploreMoreClick = () => {
-    //     if (defaultPodcastData.length > 0) {
-    //         const galleryItems = defaultPodcastData.map((item) => {
-    //             const videoId = getYouTubeVideoID(item.url);
-    //             return {
-    //                 src: `https://www.youtube.com/embed/${videoId}`,
-    //                 type: "iframe",
-    //             };
-    //         });
-
-    //         Fancybox.show(galleryItems, {
-    //             Thumbs: true,
-    //             Toolbar: true,
-    //         });
-    //     }
-    // };
     const getYouTubeVideoID = (url) => {
         const regex =
             /(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([^\s&?/]+)/
@@ -400,51 +368,125 @@ export default function Home({
         : defaultPodcastData.slice(0, 2)
 
 
-//     useEffect(() => {
-//   Fancybox.bind('[data-fancybox="podcastFancybox"]', {
-//     Thumbs: {
-//       type: null, // disables thumbs
-//     },
-//     Toolbar: {
-//       display: [
-//         { id: "counter", position: "left" },
-//         { id: "zoom", position: "right" },
-//         { id: "close", position: "right" },
-//       ],
-//     },
-//     Carousel: {
-//       infinite: false,
-//     },
-//     Image: {
-//       zoom: true,
-//       panMode: "mousemove",
-//       maxZoom: 2,
-//     },
-//   });
+    //     useEffect(() => {
+    //   Fancybox.bind('[data-fancybox="podcastFancybox"]', {
+    //     Thumbs: {
+    //       type: null, // disables thumbs
+    //     },
+    //     Toolbar: {
+    //       display: [
+    //         { id: "counter", position: "left" },
+    //         { id: "zoom", position: "right" },
+    //         { id: "close", position: "right" },
+    //       ],
+    //     },
+    //     Carousel: {
+    //       infinite: false,
+    //     },
+    //     Image: {
+    //       zoom: true,
+    //       panMode: "mousemove",
+    //       maxZoom: 2,
+    //     },
+    //   });
 
-//   Fancybox.bind('[data-fancybox="podcastFancybox2"]', {
-//     Thumbs: {
-//       type: null,
-//     },
-//     Toolbar: {
-//       display: [
-//         { id: "counter", position: "left" },
-//         { id: "zoom", position: "right" },
-//         { id: "close", position: "right" },
-//       ],
-//     },
-//     Carousel: {
-//       infinite: false,
-//     },
-//     Image: {
-//       zoom: true,
-//       panMode: "mousemove",
-//       maxZoom: 2,
-//     },
-//   });
-// }, []);
+    //   Fancybox.bind('[data-fancybox="podcastFancybox2"]', {
+    //     Thumbs: {
+    //       type: null,
+    //     },
+    //     Toolbar: {
+    //       display: [
+    //         { id: "counter", position: "left" },
+    //         { id: "zoom", position: "right" },
+    //         { id: "close", position: "right" },
+    //       ],
+    //     },
+    //     Carousel: {
+    //       infinite: false,
+    //     },
+    //     Image: {
+    //       zoom: true,
+    //       panMode: "mousemove",
+    //       maxZoom: 2,
+    //     },
+    //   });
+    // }, []);
 
-    
+    // Fancybox.bind('[data-fancybox="podcastFancybox2"]', {
+    //     Thumbs: {
+    //         type: null,
+    //     },
+    //     Toolbar: {
+    //         items: {
+    //             counter: { position: "left" },
+    //             autoplay: { position: "right" },
+    //             thumbs: { position: "right" },
+    //             close: { position: "right" },
+    //         },
+    //     },
+    //     Carousel: {
+    //         infinite: false,
+    //     },
+    // });
+    // Fancybox.bind('[data-fancybox="podcastFancybox"]', {
+    //     Thumbs: {
+    //         type: null,
+    //     },
+    //     Toolbar: {
+    //         items: {
+    //             counter: { position: "left" },
+    //             autoplay: { position: "right" },
+    //             thumbs: { position: "right" },
+    //             close: { position: "right" },
+    //         },
+    //     },
+    //     Carousel: {
+    //         infinite: false,
+    //     },
+    // });
+
+    // Fancybox.bind('[data-fancybox="gallery"]', {
+    //     Toolbar: {
+    //         items: {
+    //             counter: {
+    //                 position: 'left',
+    //             },
+    //             autoplay: {
+    //                 position: 'right',
+    //             },
+    //             close: {
+    //                 position: 'right',
+    //             },
+    //         },
+    //     },
+    //     Carousel: {
+    //         infinite: false,
+    //     },
+    // });
+
+    useEffect(() => {
+        Fancybox.bind('[data-fancybox="gallery"]', {
+            Toolbar: {
+                items: {
+                    counter: { position: 'left' },
+                    autoplay: { position: 'right' },
+                    close: { position: 'right' },
+                },
+            },
+            Thums : true ,
+            Carousel: {
+                infinite: false,
+            },
+        });
+
+        // Optional cleanup to prevent double-binding in strict mode
+        // return () => {
+        //     Fancybox.unbind('[data-fancybox="gallery"]');
+        //     Fancybox.close();
+        // };
+    }, []);
+
+
 
     // const handleExploreMoreClick = () => {
     //     const galleryItems = defaultPodcastData.slice(0, 2).map((item) => {
@@ -817,7 +859,7 @@ export default function Home({
                                     </div>
                                 ))}
                             </div> */}
-                            <div className="project-list-grid project-list-grid-2-column">
+                            {/* <div className="project-list-grid project-list-grid-2-column">
                                 {defaultPodcastData.map((podcast, index) => {
                                     const videoId = getYouTubeVideoID(podcast.url)
 
@@ -826,7 +868,7 @@ export default function Home({
                                             <a
                                                 href={`https://www.youtube.com/embed/${videoId}`}
                                                 data-fancybox="podcastFancybox"
-                                                  data-type="iframe"
+                                                // data-type="iframe"
                                                 className="relative cursor-pointer"
                                                 data-aos="fade-in"
                                                 data-aos-delay="400"
@@ -876,7 +918,6 @@ export default function Home({
                                     <div key={index} className="wfc m0auto" style={{ display: index == 0 ? "block" : "none" }} >
                                         <a href={`https://www.youtube.com/embed/${videoId}`}
                                             data-fancybox="podcastFancybox2">
-
                                             <button className={`reecosys-template-button button-style-secondary-outline ${isMobilescreen ? 'w100' : ''
                                                 }`}  >
                                                 <p>Explore More</p>
@@ -884,7 +925,14 @@ export default function Home({
                                         </a>
                                     </div>
                                 )
-                            })}
+                            })} */}
+                            <a
+                                data-fancybox="gallery"
+                                href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                                data-caption="Watch our YouTube Video"
+                            >
+                                <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/0.jpg" width="300" />
+                            </a>
                         </div>
                     </div>
                 </section>

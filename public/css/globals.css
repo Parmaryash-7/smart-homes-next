@@ -3014,11 +3014,11 @@ label.error {
   width: 3.5rem;
 }
 
-/* 
+
 .whatsapp_connect.active {
   bottom: 6rem;
   right: 15px;
-} */
+}
 
 .readmore_text span.readmore_click,
 span.readmore_click {
@@ -9781,7 +9781,7 @@ input.ng-invalid {
   border-color: #FF0000 !important;
 }
 
-.f-carousel__counter span {
+/* .f-carousel__counter span {
   color: white;
 }
 
@@ -9812,4 +9812,4 @@ input.ng-invalid {
   width: 1495.11px;
   height: 841px;
   margin: 0 auto;
-}
+} */
