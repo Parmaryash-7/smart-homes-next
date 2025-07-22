@@ -56,7 +56,12 @@ export default function ChannelPartner({ pageList }) {
         bank_account_no: "",
         ifsc_code: "",
         agree_tandc_display: false,
+        reference_number_display: "",
+        secondary_contact_no: ""
     });
+
+
+    
 
     const [cpObj, setCpObj] = useState({
         company_type: "",
@@ -269,6 +274,7 @@ export default function ChannelPartner({ pageList }) {
             pan_no: cpFormData.pan_no.toUpperCase(),
             contact_no: cpFormData.country + ' ' + cpFormData.contact_no_display,
             reference_number: cpFormData.country + ' ' + cpFormData.contact_no_display_2,
+            secondary_contact_no: cpFormData.country + ' ' + cpFormData.contact_no_display_2,
             from_app: "true",
             logged_in_master_user_id: 339,
             master_user_id: 339,
@@ -295,7 +301,7 @@ export default function ChannelPartner({ pageList }) {
         console.log("✅ Final Submitted Data:", filteredPayload);
 
         try {
-            const response = await api.ContactInq(contactPayload);
+            const response = await api.ChannelInquiry(contactPayload);
 
             if (response.success) {
                 dispatch(setThankYouData({
