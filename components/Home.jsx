@@ -826,6 +826,7 @@ export default function Home({
                                             <a
                                                 href={`https://www.youtube.com/embed/${videoId}`}
                                                 data-fancybox="podcastFancybox"
+                                                  data-type="iframe"
                                                 className="relative cursor-pointer"
                                                 data-aos="fade-in"
                                                 data-aos-delay="400"
