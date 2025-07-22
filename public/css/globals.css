@@ -3816,9 +3816,14 @@ span.readmore_click {
 .specification-swiper {
   padding: 3rem 2rem;
   background: #ffffff12;
-  width: 100%;
+      width: fit-content;
   gap: 2rem;
   min-height: 25vh;
+}
+
+.spec {
+  width : fit-content !important;
+      margin-right: 16px;
 }
 
 .specificationContent.link-font-size p {
@@ -5344,6 +5349,9 @@ span.readmore_click {
   html {
     font-size: 12px;
   }
+  .specification-ul {
+      text-align : start;
+    }
 
   .leaders-grid-wrapper {
     grid-template-columns: repeat(2, 1fr);
@@ -5623,6 +5631,7 @@ span.readmore_click {
 
   .specification-swiper {
     min-height: 35vh;
+    width : 40vh;
   }
 
   .testimonialCard {
@@ -8520,6 +8529,15 @@ form .md-lable.contact_code #contact_no {
   .reecosys-template-button span {
     white-space: nowrap;
   }
+
+      .specification-swiper {
+        min-height: 35vh;
+        width: 35vh;
+    }
+
+    .specification-ul {
+      text-align : start;
+    }
 
   /* .reecosys-template-button.button-style-secondary {
     display: none;

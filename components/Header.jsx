@@ -540,6 +540,7 @@ export default function Header({ propertylist, socialList }) {
                                   <Link
                                     href={`/${data.slug}/`}
                                     className="header-hover"
+                                    style={{display : 'block' , width : '100%' , maxWidth : '100%'}}
                                   >
                                     <div className="flex-row flex-gap-small">
                                       <div className="flex-30">

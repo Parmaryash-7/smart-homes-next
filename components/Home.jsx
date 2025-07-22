@@ -402,14 +402,14 @@ export default function Home({
 
     useEffect(() => {
         Fancybox.bind('[data-fancybox="podcastFancybox"]', {
-            Thumbs: { autoStart: true },
+            // Thumbs: { autoStart: true },
             Toolbar: true
         });
 
     }, []);
     useEffect(() => {
         Fancybox.bind('[data-fancybox="podcastFancybox2"]', {
-            Thumbs: { autoStart: true },
+            Thumbs:  true ,
             Toolbar: true
         });
     }, []);
