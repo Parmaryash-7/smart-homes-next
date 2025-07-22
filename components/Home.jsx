@@ -355,6 +355,38 @@ export default function Home({
     //     }
     // };
 
+
+
+    // const handleExploreMoreClick = () => {
+    //     if (defaultPodcastData.length > 0) {
+    //         const galleryItems = defaultPodcastData.map((item) => ({
+    //             src: item.url,
+    //             type: "iframe", // for YouTube or podcast iframe
+    //         }));
+
+    //         Fancybox.show(galleryItems, {
+    //             Thumbs: true,
+    //             Toolbar: true,
+    //         });
+    //     }
+    // };
+
+    // const handleExploreMoreClick = () => {
+    //     if (defaultPodcastData.length > 0) {
+    //         const galleryItems = defaultPodcastData.map((item) => {
+    //             const videoId = getYouTubeVideoID(item.url);
+    //             return {
+    //                 src: `https://www.youtube.com/embed/${videoId}`,
+    //                 type: "iframe",
+    //             };
+    //         });
+
+    //         Fancybox.show(galleryItems, {
+    //             Thumbs: true,
+    //             Toolbar: true,
+    //         });
+    //     }
+    // };
     const getYouTubeVideoID = (url) => {
         const regex =
             /(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([^\s&?/]+)/
@@ -412,38 +444,38 @@ export default function Home({
     //   });
     // }, []);
 
-    // Fancybox.bind('[data-fancybox="podcastFancybox2"]', {
-    //     Thumbs: {
-    //         type: null,
-    //     },
-    //     Toolbar: {
-    //         items: {
-    //             counter: { position: "left" },
-    //             autoplay: { position: "right" },
-    //             thumbs: { position: "right" },
-    //             close: { position: "right" },
-    //         },
-    //     },
-    //     Carousel: {
-    //         infinite: false,
-    //     },
-    // });
-    // Fancybox.bind('[data-fancybox="podcastFancybox"]', {
-    //     Thumbs: {
-    //         type: null,
-    //     },
-    //     Toolbar: {
-    //         items: {
-    //             counter: { position: "left" },
-    //             autoplay: { position: "right" },
-    //             thumbs: { position: "right" },
-    //             close: { position: "right" },
-    //         },
-    //     },
-    //     Carousel: {
-    //         infinite: false,
-    //     },
-    // });
+    Fancybox.bind('[data-fancybox="podcastFancybox2"]', {
+        Thumbs: {
+            type: null,
+        },
+        Toolbar: {
+            items: {
+                counter: { position: "left" },
+                autoplay: { position: "right" },
+                thumbs: { position: "right" },
+                close: { position: "right" },
+            },
+        },
+        Carousel: {
+            infinite: false,
+        },
+    });
+    Fancybox.bind('[data-fancybox="podcastFancybox"]', {
+        Thumbs: {
+            type: null,
+        },
+        Toolbar: {
+            items: {
+                counter: { position: "left" },
+                autoplay: { position: "right" },
+                thumbs: { position: "right" },
+                close: { position: "right" },
+            },
+        },
+        Carousel: {
+            infinite: false,
+        },
+    });
 
     // Fancybox.bind('[data-fancybox="gallery"]', {
     //     Toolbar: {
@@ -463,28 +495,6 @@ export default function Home({
     //         infinite: false,
     //     },
     // });
-
-    useEffect(() => {
-        Fancybox.bind('[data-fancybox="gallery"]', {
-            Toolbar: {
-                items: {
-                    counter: { position: 'left' },
-                    autoplay: { position: 'right' },
-                    close: { position: 'right' },
-                },
-            },
-            Thums : true ,
-            Carousel: {
-                infinite: false,
-            },
-        });
-
-        // Optional cleanup to prevent double-binding in strict mode
-        // return () => {
-        //     Fancybox.unbind('[data-fancybox="gallery"]');
-        //     Fancybox.close();
-        // };
-    }, []);
 
 
 
@@ -859,7 +869,7 @@ export default function Home({
                                     </div>
                                 ))}
                             </div> */}
-                            {/* <div className="project-list-grid project-list-grid-2-column">
+                            <div className="project-list-grid project-list-grid-2-column">
                                 {defaultPodcastData.map((podcast, index) => {
                                     const videoId = getYouTubeVideoID(podcast.url)
 
@@ -925,14 +935,14 @@ export default function Home({
                                         </a>
                                     </div>
                                 )
-                            })} */}
-                            <a
+                            })}
+                            {/* <a
                                 data-fancybox="gallery"
                                 href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
                                 data-caption="Watch our YouTube Video"
                             >
                                 <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/0.jpg" width="300" />
-                            </a>
+                            </a> */}
                         </div>
                     </div>
                 </section>

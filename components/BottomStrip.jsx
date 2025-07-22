@@ -12,42 +12,59 @@ export default function BottomStrip({
 }) {
   const bottomStripRef = useRef(null);
   const dispatch = useDispatch();
-  const isInquiryOpen = useSelector((state) => state.inquiry.isOpen); // ✅ moved to top-level
+  const isInquiryOpen = useSelector((state) => state.inquiry.isOpen);
+
+  useEffect(() => {
+    if (isInquiryOpen || isAmenityOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [isInquiryOpen, isAmenityOpen]);
 
   useEffect(() => {
     const bottomStrip = bottomStripRef.current;
+
     const handleScroll = () => {
+      if (!bottomStrip) return;
+
       const scrollTop = window.scrollY;
       const windowHeight = window.innerHeight;
       const documentHeight = document.documentElement.scrollHeight;
       const remainingDistance = documentHeight - (scrollTop + windowHeight);
 
+      if (isInquiryOpen || isAmenityOpen) {
+        bottomStrip.classList.remove("showStrip");
+        bottomStrip.classList.add("hidestrip");
+        return;
+      }
 
       if (scrollTop > 600 && remainingDistance > 600) {
-        bottomStrip?.classList.add("showStrip");
+        bottomStrip.classList.add("showStrip");
+        bottomStrip.classList.remove("hidestrip");
       } else if (scrollTop < 200) {
-        bottomStrip?.classList.remove("showStrip");
-      } else if (remainingDistance < 600) {
+        bottomStrip.classList.remove("showStrip");
+        bottomStrip.classList.add("hidestrip");
+      } else if (remainingDistance < 800) {
         setTimeout(() => {
-          bottomStrip?.classList.remove("showStrip");
+          bottomStrip.classList.remove("showStrip");
+          bottomStrip.classList.add("hidestrip");
         }, 100);
       }
-    
     };
 
     window.addEventListener("scroll", handleScroll);
-    if(isAmenityOpen && isInquiryOpen){
-      bottomStrip.classList.remove("showStrip");
-      bottomStrip.classList.add("hidestrip");
-    }
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
-
+  }, [isInquiryOpen, isAmenityOpen]);
   // const projectDetailInq = useSelector((state) => state.inquiry.projectDetailInq);
   dispatch(setProjectDetail(projectDetail))
-  const handleInq = ()=> {
+  const handleInq = () => {
     // console.log(projectDetail);
     dispatch(openInquiry(projectDetail))
   }
@@ -99,7 +116,7 @@ export default function BottomStrip({
           <div className={`bottomEnquirybtn  ${isMobilescreen ? "w100" : ""}`}>
             <div className="hidden-xs">
               <button
-                onClick={handleInq} 
+                onClick={handleInq}
                 className={`reecosys-template-button button-style-secondary ${isMobilescreen ? "w100" : ""}`}
               >
                 <span className="material-symbols-outlined">chat</span>

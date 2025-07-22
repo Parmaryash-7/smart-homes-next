@@ -7871,7 +7871,7 @@ label.error {
   padding: 1.5rem 0rem;
   background-color: var(--white-color);
   border-top: 1px solid #00000050;
-  z-index: 9;
+  z-index: 99;
 }
 
 .bottomStrip.showStrip {
@@ -9781,7 +9781,7 @@ input.ng-invalid {
   border-color: #FF0000 !important;
 }
 
-/* .f-carousel__counter span {
+.f-carousel__counter span {
   color: white;
 }
 
@@ -9812,4 +9812,4 @@ input.ng-invalid {
   width: 1495.11px;
   height: 841px;
   margin: 0 auto;
-} */
+}
