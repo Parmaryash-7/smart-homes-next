@@ -493,7 +493,9 @@ export default function Detail({
                         data-aos-delay="0.7s"
                         data-aos-duration="600"
                       >
-                        <div className="about-btn-home outline-div-button button-div ">
+                        <div className="about-btn-home outline-div-button button-div "onClick={() => {
+                                  dispatch(openInquiry())
+                                }}>
                           {/* ng-click="inquire_popup_click(); inquiry_from_click();" */}
                           <button className="reecosys-template-button button-style-secondary ">
                             <span className="material-symbols-outlined">

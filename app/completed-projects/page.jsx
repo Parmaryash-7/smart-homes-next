@@ -94,11 +94,12 @@ export async function generateMetadata() {
 export default async function CompletedProjectsPage() {
     const pageList = await api.PageList();
     const completedPropertylist = await getCompletedPropertyList();
-
+    // console.log(completedPropertylist);
     return (
         <CompletedProjects
             completedPropertylist={completedPropertylist}
             pageList={pageList}
+
         />
     );
 }

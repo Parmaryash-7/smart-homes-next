@@ -518,13 +518,13 @@ export default function Home({
     // }
     return (
         <>
-            {/* <style>{`
+            <style>{`
         .bannerCard img {
           height: 100%;
           width: 100%;
           object-fit: cover;
         }
-      `}</style> */}
+      `}</style>
 
             <div
                 className="reecosys-template-page-wrapper"

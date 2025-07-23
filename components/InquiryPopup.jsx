@@ -191,7 +191,8 @@ export default function InquiryPopupDetail() {
 
     try {
       const detail = projectOptions.find((item) => item.project_id == form.project_id);
-      const docs = detail.document_other_data ? detail.document_other_data : []
+      // const docs = detail.document_other_data ? detail.document_other_data : []
+      const docs = detail?.document_other_data || [];
 
       // console.log(form, 'res');
       const response = await api.Projectinquiry(form);
@@ -289,6 +290,7 @@ export default function InquiryPopupDetail() {
                 <div className="section-content">
                   <p className="capitalize">
                     {projectDetailInq.project_title}(Residential Plots / Dholera Bulk land deals)
+                    {/* {projectDetailInq.project_title} */}
                   </p>
                 </div>
               }</>}
