@@ -80,7 +80,7 @@ export default function NriCorner({ pageList }) {
         }
 
         // if (!inquiryObj.department || !inquiryObj.department.trim()) newErrors.department = true;
-        if (!inquiryObj.message || !inquiryObj.message.trim()) newErrors.message = true;
+        // if (!inquiryObj.message || !inquiryObj.message.trim()) newErrors.message = true;
 
 
         if (Object.keys(newErrors).length > 0) {

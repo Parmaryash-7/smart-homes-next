@@ -24,6 +24,42 @@ export default function Header({ propertylist, socialList }) {
   const [prevScrollY, setPrevScrollY] = useState(0)
   const [isHidden, setIsHidden] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
+  // const bottomStripRef = useRef(null);
+
+  // useEffect(() => {
+
+  //   const handleScroll = () => {
+
+  //     const scrollTop = window.scrollY;
+  //     const windowHeight = window.innerHeight;
+  //     const documentHeight = document.documentElement.scrollHeight;
+  //     const remainingDistance = documentHeight - (scrollTop + windowHeight);
+
+  //     if (isInquiryOpen || isAmenityOpen) {
+  //       bottomStrip.classList.remove("showStrip");
+  //       bottomStrip.classList.add("hidestrip");
+  //       return;
+  //     }
+
+  //     if (scrollTop > 600 && remainingDistance > 600) {
+  //       bottomStrip.classList.add("showStrip");
+  //       bottomStrip.classList.remove("hidestrip");
+  //     } else if (scrollTop < 200) {
+  //       bottomStrip.classList.remove("showStrip");
+  //       bottomStrip.classList.add("hidestrip");
+  //     } else if (remainingDistance < 800) {
+  //       setTimeout(() => {
+  //         bottomStrip.classList.remove("showStrip");
+  //         bottomStrip.classList.add("hidestrip");
+  //       }, 100);
+  //     }
+  //   };
+
+  //   window.addEventListener("scroll", handleScroll);
+  //   return () => {
+  //     window.removeEventListener("scroll", handleScroll);
+  //   };
+  // }, [isInquiryOpen, isAmenityOpen]);
 
   const toggleAccordion = (index) => {
     setActiveIndex(index === activeIndex ? null : index)

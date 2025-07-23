@@ -3,6 +3,7 @@ import getPropertyList from "lib/PropertList";
 import getPageList from "lib/PageList";
 import { redirect } from "next/navigation";
 import api from 'lib/api.interceptor'
+import { notFound } from "next/navigation";
 
 export default async function ProjectDetailPage({ params }) {
 
@@ -16,14 +17,21 @@ export default async function ProjectDetailPage({ params }) {
     // const projectData = propertylist.find((p) => p.slug === slug);
     // const projectData = propertylist.find((p) => p.slug.trim().toLowerCase() === slug.trim().toLowerCase());
 
-    const projectData = await api.PropertyDetail(slug)
+    // const projectData = await api.PropertyDetail(slug)
     // console.log(projectData, 'api');
 
-
-    if (!projectData) {
-        redirect('/');
+    let projectData;
+    try {
+        projectData = await api.PropertyDetail(slug);
+    } catch (error) {
+        console.error("Error fetching project detail:", error);
+        notFound(); // API failed, show 404
     }
-    
+
+    if (!projectData || !projectData[0]) {
+        notFound(); // No project found, show 404 page
+    }
+
 
     return (
         <Detail
@@ -44,7 +52,7 @@ export async function generateMetadata({ params }) {
 
     const propertylist = await api.Propertylist();
     const project = propertylist.find((p) => p.slug === slug);
-    
+
     if (!project) {
         return {
             title: 'SmartHomes Infrastructure | Project Not Found',

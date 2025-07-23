@@ -3817,13 +3817,13 @@ span.readmore_click {
 .specification-swiper {
   padding: 3rem 2rem;
   background: #ffffff12;
-  width: fit-content;
+  width: 100%;
   gap: 2rem;
   min-height: 25vh;
 }
 
 .spec {
-  width: fit-content !important;
+  width: auto !important;
   margin-right: 16px;
 }
 
@@ -5633,7 +5633,7 @@ span.readmore_click {
 
   .specification-swiper {
     min-height: 35vh;
-    width: 40vh;
+    width: 100%;
   }
 
   .testimonialCard {
@@ -8543,7 +8543,7 @@ form .md-lable.contact_code #contact_no {
 
   .specification-swiper {
     min-height: 35vh;
-    width: 35vh;
+    width: 100%;
   }
 
   .footer-title {
@@ -9819,3 +9819,4 @@ input.ng-invalid {
   height: 841px;
   margin: 0 auto;
 }
+

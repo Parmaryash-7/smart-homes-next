@@ -3,9 +3,8 @@
 import React, { useEffect, useState } from "react";
 // import { useNavigate, useParams } from "react-router";
 import Link from "next/link";
-import ReadMore from "components/ReadMore";
-import WalkthroughVideo from "components/Walkthrough";
 // import "public/styles/Detail.css"
+import { Swiper, SwiperSlide } from "swiper/react";
 import {
   Pagination,
   Keyboard,
@@ -18,7 +17,6 @@ import "swiper/css";
 import "swiper/css/free-mode";
 import rawProjectData from "data/projectList.json";
 import { openInquiry, setProjectDetail } from '../store/inquirySlice'
-import { Swiper, SwiperSlide } from "swiper/react";
 import { useDispatch } from 'react-redux'
 // import InquiryForm from "components/InquiryForm";
 import BottomStrip from "components/BottomStrip";
@@ -171,7 +169,7 @@ export default function Detail({
         onClick={() => {
           setCountryFlag(false);
         }}
-        style={{overflow : 'hidden'}}
+        style={{ overflow: 'hidden' }}
       >
         <div className="relative ">
           {bannerImages?.length > 0 && (
@@ -980,6 +978,7 @@ export default function Detail({
                   <div className="inner-flex inner-flex-medium ">
                     <Swiper
                       modules={[Navigation, FreeMode]}
+                      setWrapperSize={true}
                       observer={true}
                       observeParents={true}
                       slidesPerView={1}
@@ -998,17 +997,21 @@ export default function Detail({
                           slidesPerView: 1,
                           spaceBetween: 16,
                         },
+                        0: {
+                          slidesPerView: 1,
+                          spaceBetween: 16,
+                        },
                       }}
                       className="visible-sm visible-xs swiper-container"
-                      style={{ width: 'fit-content' }}
+                      style={{ width: '100%' }}
 
                     >
                       {projectDetail.specifications.map(
                         (specification, index) => (
                           <SwiperSlide
-                            className="inner-flex alstart spec"
+                            className="inner-flex alstart"
                             key={index}
-                            style={{width: 'fit-contain'}}
+                            style={{ width: 'fit-contain' }}
                           >
                             <div className="specification-swiper">
                               <div className="flex-row alc ">

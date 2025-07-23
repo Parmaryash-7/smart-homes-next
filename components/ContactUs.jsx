@@ -51,15 +51,47 @@ export default function ContactUs({ pageList, contactDetails }) {
             setPrivacy(privacyDData);
         }
     });
+    
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setErrors((prev) => ({ ...prev, [name]: false }));
+        setInquiryObj((prev) => ({ ...prev, [name]: val }));
 
         let val = value;
-        if (name === "name") val = val.replace(/[0-9]/g, "");
-        if (name === "client_contact_no_display") val = val.replace(/[^0-9]/g, "").slice(0, 10);
+        let error = false;
 
-        setInquiryObj((prev) => ({ ...prev, [name]: val }));
+        // Validation patterns
+        const nameRegex = /^[a-zA-Z\s]+$/;
+        const emailRegex = /^[\w.-]+@[a-zA-Z\d.-]+\.[a-zA-Z]{2,}$/;
+        const phoneRegex = /^\d{10}$/;
+
+        // Modify value & validate based on field
+        // if (name === "name") {
+        //     val = val.replace(/[0-9]/g, "");
+        //     if (!val.trim() || !nameRegex.test(val)) error = true;
+        // }
+
+        if (name === "email") {
+            if (!val.trim() || !emailRegex.test(val)) error = true;
+        }
+
+        if (name === "client_contact_no_display") {
+            val = val.replace(/[^0-9]/g, "").slice(0, 10);
+            if (!val.trim() || !phoneRegex.test(val)) error = true;
+        }
+
+        // if (name === "department") {
+        //     if (!val.trim()) error = true;
+        // }
+
+        // Optional: message validation (if required)
+        // if (name === "message") {
+        //     if (!val.trim()) error = true;
+        // }
+
+        // Set error or clear it
+        setErrors((prev) => ({ ...prev, [name]: error }));
+
+        // Update the form state
     };
 
 
@@ -87,7 +119,7 @@ export default function ContactUs({ pageList, contactDetails }) {
 
         if (!inquiryObj.department.trim()) newErrors.department = true;
 
-        if (!inquiryObj.message.trim()) newErrors.message = true;
+        // if (!inquiryObj.message.trim()) newErrors.message = true;
 
         if (Object.keys(newErrors).length > 0) {
             setErrors(newErrors);
@@ -124,8 +156,8 @@ export default function ContactUs({ pageList, contactDetails }) {
                     master_user_id: 339
                 });
                 setSearch("");
-            } 
-                // Toast(response.message)
+            }
+            // Toast(response.message)
         } catch (error) {
             console.error(error);
         }

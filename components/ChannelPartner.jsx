@@ -31,7 +31,6 @@ export default function ChannelPartner({ pageList }) {
     const [cpFormData, setCpFormData] = useState({
         AgreeTandC: "1",
         AgreeTandC_display: true,
-        agree_tandc_display: true,
         first_name: "",
         email_address: "",
         contact_no_display: "",
@@ -61,7 +60,7 @@ export default function ChannelPartner({ pageList }) {
     });
 
 
-    
+
 
     const [cpObj, setCpObj] = useState({
         company_type: "",
@@ -254,13 +253,13 @@ export default function ChannelPartner({ pageList }) {
         if (!cpFormData.aadhar_no.trim() || !aadharRegex.test(cpFormData.aadhar_no)) newErrors.aadhar_no = true;
         if (!cpFormData.pan_no.trim() || !panRegex.test(cpFormData.pan_no.toUpperCase())) newErrors.pan_no = true;
         if (!cpObj.pincode.trim() || !pincodeRegex.test(cpObj.pincode)) newErrors.pincode = true;
+        if (!cpFormData.agree_tandc_display) newErrors.agree_tandc_display = true;
         // if (!cpObj.gst_no.trim() || !gstRegex.test(cpObj.gst_no.toUpperCase())) newErrors.gst_no = true;
-        // if (!cpFormData.agree_tandc_display) newErrors.agree_tandc_display = true;
 
         if (Object.keys(newErrors).length > 0) {
 
             setErrors(newErrors);
-            console.log("Form Errors:", newErrors);
+            // console.log("Form Errors:", newErrors);
             setCpSaveF(false);
             return;
         }
@@ -284,7 +283,7 @@ export default function ChannelPartner({ pageList }) {
             company_name: "",
             birthdate: Math.floor(Date.now() / 1000),
             associated_company: false,
-            reference_name: "Test", // set from UI if needed
+            reference_name: "Test",
         };
 
         // Filter out empty, null, undefined and `false` boolean values
@@ -315,7 +314,6 @@ export default function ChannelPartner({ pageList }) {
                 setCpFormData({
                     AgreeTandC: "1",
                     AgreeTandC_display: true,
-                    agree_tandc_display: true,
                     first_name: "",
                     email_address: "",
                     contact_no_display: "",
@@ -339,7 +337,7 @@ export default function ChannelPartner({ pageList }) {
                     bank_account_no: "",
                     ifsc_code: "",
                     agree_tandc_display: false,
-                    birthdate : ''
+                    birthdate: ''
                 });
 
                 setCpObj({
@@ -358,7 +356,7 @@ export default function ChannelPartner({ pageList }) {
             Toast(response.message);
         } catch (error) {
             console.error("❌ Submission error:", error);
-        } 
+        }
     };
 
 
@@ -451,7 +449,6 @@ export default function ChannelPartner({ pageList }) {
                                                         onChange={handleInputChange}
                                                         type="email"
                                                         className={`form-control ${errors.email_address ? "error" : ""}`}
-
                                                         autoComplete="off"
                                                         tabIndex="12"
                                                     />
@@ -589,8 +586,8 @@ export default function ChannelPartner({ pageList }) {
                                                         value={cpFormData.pan_no}
                                                         onChange={handleInputChange}
                                                         type="text"
-                                                        className="form-control"
-
+                                                        // className="form-control"
+                                                        className={`form-control ${errors.pan_no ? "error" : ""}`}
                                                         minLength="10"
                                                         maxLength="10"
                                                         tabIndex="15"
@@ -607,7 +604,8 @@ export default function ChannelPartner({ pageList }) {
                                                         value={cpFormData.aadhar_no}
                                                         onChange={handleInputChange}
                                                         type="text"
-                                                        className="form-control"
+                                                        // className="form-control"
+                                                        className={`form-control ${errors.aadhar_no ? "error" : ""}`}
                                                         pattern="\d*"
                                                         inputMode="numeric"
                                                         minLength="12"
@@ -988,7 +986,7 @@ export default function ChannelPartner({ pageList }) {
                                                                 })
                                                             }
                                                         />
-                                                        <label className={`darkgray-font ${errors.agree_tandc_display ? "error-label-red" : "darkgray-font"}`} htmlFor="AgreeTandC">
+                                                        <label className={`darkgray-font ${errors.agree_tandc_display ? "error-label-red" : "darkgray-font"}`} htmlFor="AgreeTandC" onChange={handleChange}>
                                                             I confirm that the information provided is accurate and true. I agree to
                                                             abide by the terms and conditions of SmartHomes Infrastructure Pvt. Ltd.
                                                             as a Channel Partner.
