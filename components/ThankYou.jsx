@@ -30,14 +30,14 @@ export default function ThankYou() {
   useEffect(() => {
     console.log(documents);
   }, [])
-  
+
 
   return (
     <div className="reecosys-main-wrapper" id="reecosys-thankyou-wrapper">
       <section className="reecosys-section relative" id="reecosys-thankyou-section-1">
         <div className="mini-container">
           <div className="thankyou_wrapper inner-flex alc j-c-c text-center">
-            <div className="inner-flex">
+            <div className="inner-flex alc">
               <div className="thankyou-title">
                 <h1>Thank You</h1>
               </div>
@@ -71,7 +71,11 @@ export default function ThankYou() {
 
                   {showPDF && (
                     <div id="pdf-viewer-container">
-                      <div className="flex-row inner-flex-small alc j-c-c white-bg" style={{ padding: '1.5rem 0' }}>
+                      <div
+                        className={`flex-row inner-flex-small alc j-c-c ${documents.length === 1 ? "alc" : "alc" 
+                          } white-bg`}
+                        style={{ padding: '1.5rem 0' }}
+                      >
                         <div>
                           <button
                             onClick={closePDF}
@@ -81,23 +85,37 @@ export default function ThankYou() {
                           </button>
                         </div>
 
-                        {documents.map((doc, i) => (
-                          <div key={i}>
-                            <a href={doc.url} target="_blank" rel="noopener noreferrer">
+                        {documents.length === 1 ? (
+                          <div>
+                            <a href={documents[0].url} target="_blank" rel="noopener noreferrer">
                               <button
                                 onClick={closePDF}
                                 className="reecosys-template-button button-style-secondary"
                               >
-                                <p>Download {doc.type}</p>
+                                <p>Download {documents[0].type}</p>
                               </button>
                             </a>
                           </div>
-                        ))}
+                        ) : (
+                          documents.map((doc, i) => (
+                            <div key={i}>
+                              <a href={doc.url} target="_blank" rel="noopener noreferrer">
+                                <button
+                                  onClick={closePDF}
+                                  className="reecosys-template-button button-style-secondary"
+                                >
+                                  <p>Download {doc.type}</p>
+                                </button>
+                              </a>
+                            </div>
+                          ))
+                        )}
                       </div>
 
                       <iframe src={pdfURL} width="100%" height="100%" />
                     </div>
                   )}
+
                 </>
               )}
 
