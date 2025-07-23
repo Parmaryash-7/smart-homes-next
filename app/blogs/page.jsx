@@ -26,7 +26,7 @@ const defaultMetadata = {
         "Stay updated with the latest blog posts from SmartHomes Infrastructure covering Dholera Smart City, sustainable development, and real estate trends.",
     keywords:
         "SmartHomes blog, real estate news, Dholera updates, smart city development, green infrastructure",
-    image: "https://www.smarthomesinfra.in/assets/images/default-og-image.jpg",
+    image: "https://www.smarthomesinfra.com/assets/images/og-image.png",
 };
 
 export async function generateMetadata() {

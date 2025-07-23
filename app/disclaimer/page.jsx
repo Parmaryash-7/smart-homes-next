@@ -20,7 +20,7 @@ const defaultMetadata = {
         "Read the Disclaimer of SmartHomes Infrastructure to understand the limitations, liabilities, and terms regarding the information provided on our website and services.",
     keywords:
         "Disclaimer of Smarthomes Infrastructure",
-    image: "https://www.smarthomesinfra.in/assets/images/default-og-image.jpg",
+    image: "https://www.smarthomesinfra.com/assets/images/og-image.png",
 };
 
 export async function generateMetadata() {

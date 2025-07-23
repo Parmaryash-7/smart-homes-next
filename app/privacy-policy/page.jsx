@@ -20,7 +20,7 @@ const defaultMetadata = {
         "Learn how SmartHomes Infrastructure protects your personal information. Read our privacy policy to understand our practices regarding data security and confidentiality.",
     keywords:
         "SmartHomes privacy policy, data protection, user privacy, real estate confidentiality, personal data use policy",
-    image: "https://www.smarthomesinfra.in/assets/images/default-og-image.jpg",
+    image: "https://www.smarthomesinfra.com/assets/images/og-image.png",
 };
 
 export async function generateMetadata() {

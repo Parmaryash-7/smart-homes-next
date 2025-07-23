@@ -7,7 +7,7 @@ const defaultMetadata = {
         "Learn more about SmartHomes Infrastructure, a leading real estate developer in Dholera Smart City, shaping smart urban development with sustainability, technology, and innovation.",
     keywords:
         "About SmartHomes, Dholera smart city developers, real estate visionaries, SmartHomes Infrastructure company, Dholera eco-friendly homes",
-    image: "https://www.smarthomesinfra.in/assets/images/default-og-image.jpg", 
+    image: "https://www.smarthomesinfra.com/assets/images/og-image.png", 
 };
 
 export async function generateMetadata() {

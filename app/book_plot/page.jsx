@@ -7,7 +7,7 @@ const defaultMetadata = {
         "Reserve your dream plot today with SmartHomes Infrastructure in Dholera Smart City. Experience affordable and futuristic living backed by trust and transparency.",
     keywords:
         "book plot Dholera, SmartHomes Infrastructure, plot reservation, Dholera real estate, smart city investment",
-    image: "https://www.smarthomesinfra.in/assets/images/default-og-image.jpg",
+    image: "https://www.smarthomesinfra.com/assets/images/og-image.png",
 };
 
 export async function generateMetadata() {

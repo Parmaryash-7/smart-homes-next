@@ -518,13 +518,13 @@ export default function Home({
     // }
     return (
         <>
-            <style>{`
+            {/* <style>{`
         .bannerCard img {
           height: 100%;
           width: 100%;
           object-fit: cover;
         }
-      `}</style>
+      `}</style> */}
 
             <div
                 className="reecosys-template-page-wrapper"
@@ -533,10 +533,7 @@ export default function Home({
                     setCountryFlag(false)
                 }}
             >
-                <section
-                    id="piramyd-banner-section overflow_section"
-                    className="piramyd-banner-section relative pt0"
-                >
+                <section id="piramyd-banner-section overflow_section" className="piramyd-banner-section relative pt0"  >
                     <div className="banner-swiper homeBannerSwiper relative">
                         <Swiper
                             modules={[Pagination, Keyboard, Mousewheel, Autoplay]}

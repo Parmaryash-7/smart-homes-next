@@ -19,7 +19,7 @@ const defaultMetadata = {
         "SmartHomes Infrastructure specializes in high-value NRI investments in Dholera Smart City, with a strong client base across the USA, UAE, UK, Australia, and Canada. Benefit from well-planned entry and exit strategies to ensure maximum appreciation and high returns.",
     keywords:
         "NRI Investment, Dholera Smart City, Global Investors, High Returns",
-    image: "https://www.smarthomesinfra.in/assets/images/default-og-image.jpg",
+    image: "https://www.smarthomesinfra.com/assets/images/og-image.png",
 };
 
 export async function generateMetadata() {

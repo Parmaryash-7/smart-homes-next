@@ -28,7 +28,7 @@ const defaultMetadata = {
         "Connect with SmartHomes Infrastructure for expert guidance on investing in Dholera Smart City. Reach out for inquiries on residential, commercial, and industrial properties. Let’s build your future today!",
     keywords:
         "Dholera Smart City, Residential properties in Dholera, Commercial properties in Dholera, Industrial properties in Dholera",
-    image: "https://www.smarthomesinfra.in/assets/images/default-og-image.jpg",
+    image: "https://www.smarthomesinfra.com/assets/images/og-image.png",
 };
 
 export async function generateMetadata() {

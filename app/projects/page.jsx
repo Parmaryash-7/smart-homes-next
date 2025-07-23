@@ -28,7 +28,7 @@ const defaultMetadata = {
         "Discover the innovative real estate projects by SmartHomes Infrastructure in Dholera Smart City. Browse through residential and commercial developments shaping the future.",
     keywords:
         "SmartHomes projects, Dholera Smart City real estate, property development Dholera, SmartHomes Infrastructure projects",
-    image: "https://www.smarthomesinfra.in/assets/images/default-og-image.jpg",
+    image: "https://www.smarthomesinfra.com/assets/images/og-image.png",
 };
 
 export async function generateMetadata() {

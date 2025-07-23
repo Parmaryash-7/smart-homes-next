@@ -19,7 +19,7 @@ const defaultMetadata = {
         "Partner with SmartHomes Infrastructure and earn high commissions with consistent payouts. Get full training, live lead tracking, site visit assistance, and end-to-end sales & marketing support. Join us today and grow your real estate business in Dholera Smart City!",
     keywords:
         "Channel Partners, live lead Tracking, Site Visit Assistance, End-to-End Sales & Marketing Support, Dholera Smart City, Real Estate Business",
-    image: "https://www.smarthomesinfra.in/assets/images/default-og-image.jpg",
+    image: "https://www.smarthomesinfra.com/assets/images/og-image.png",
 };
 
 export async function generateMetadata() {
