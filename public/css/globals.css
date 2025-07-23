@@ -7331,6 +7331,7 @@ form .md-lable.contact_code #contact_no {
 .select_apr select {
   -webkit-appearance: none;
   appearance: none;
+  background: transparent;
 }
 
 .form-control:focus {
