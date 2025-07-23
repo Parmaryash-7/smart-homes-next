@@ -50,7 +50,7 @@ export default async function RootLayout({ children }) {
         {/* <meta name="robots" content="noindex, nofollow" /> */}
         <meta
           property="og:image"
-          content="https://smarthomesinfra.onrender.com/images/smart-homes.png"
+          content="https://www.reecosys.com/api/image-tool/index.php?src=https://www.reecosys.com/assets/uploads/home/seo/image/SEO_1751361308_96.png&h=630&w=1200"
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' />
