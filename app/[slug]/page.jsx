@@ -4,6 +4,8 @@ import getPageList from "lib/PageList";
 import { redirect } from "next/navigation";
 import api from 'lib/api.interceptor'
 import { notFound } from "next/navigation";
+import projectListJson from "../../data/projectList.json"
+
 
 export default async function ProjectDetailPage({ params }) {
 
@@ -35,6 +37,7 @@ export default async function ProjectDetailPage({ params }) {
 
     return (
         <Detail
+            projectListJson={projectListJson.list}
             projectDetail={projectData[0]}
             // propertylist={propertylist}
             pageList={pageList}

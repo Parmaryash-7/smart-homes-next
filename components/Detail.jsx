@@ -31,6 +31,7 @@ export default function Detail({
   setInquiryPopup,
   projectDetail,
   propertylist,
+  projectListJson
 }) {
   const projectsArray = rawProjectData.list;
   const dispatch = useDispatch()
@@ -45,6 +46,9 @@ export default function Detail({
   const toggleAccordion = (index) => {
     setActiveIndex(index === activeIndex ? null : index);
   };
+  const matchedProject = projectListJson.find(
+    (item) => item.project_id == projectDetail.project_id
+  );
 
   useEffect(() => {
     let dataToUse;
@@ -101,7 +105,7 @@ export default function Detail({
     document.body.style.overflow = shouldLockScroll ? "hidden" : "auto";
 
     return () => {
-      document.body.style.overflow = "auto"; // cleanup on unmount
+      document.body.style.overflow = "auto";
     };
   }, [inquiryPopup, isAmenityOpen]);
 
@@ -354,7 +358,8 @@ export default function Detail({
                 {(projectDetail.banner_data?.title ||
                   projectDetail.size_price ||
                   projectDetail.location ||
-                  projectDetail.status) && (
+                  projectDetail.status ||
+                  (matchedProject?.total_area && matchedProject.total_area.trim() !== '')) && (
                     <div className="projectBannerFlex">
                       <div className="inner-flex w100">
                         <div className="section-content">
@@ -391,9 +396,9 @@ export default function Detail({
                                 </span>
                               </>
                             )}
-                            {projectDetail.total_area && (
+                            {matchedProject?.total_area && matchedProject.total_area.trim() !== '' && (
                               <>
-                                {projectDetail.total_area}
+                                {matchedProject.total_area}
                                 <br className="visible-xs" />
                                 <span className="white-color bold-fonts hidden-xs">
                                   &nbsp; | &nbsp;
@@ -406,6 +411,7 @@ export default function Detail({
                       </div>
                     </div>
                   )}
+
               </div>
             </section>
           )}
@@ -568,7 +574,7 @@ export default function Detail({
                           >
                             <div
                               className="section-title-large"
-                              style={{ minWidth: "fit-content" }}
+                              // style={{ minWidth: "fit-content" }}
                             >
                               <h2 className=" capitalize medium-fonts">
                                 {data.name}
@@ -591,7 +597,7 @@ export default function Detail({
                             <img
                               src={projectDetail.amenities_image}
                               alt=""
-                              style="height: 100%;"
+                              // style={{width : '100%'}}
                             />
                           </div>
                         )}
