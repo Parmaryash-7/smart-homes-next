@@ -913,31 +913,31 @@ export default function Footer({ homeDetails, adminData, propertylist, projectLi
                                                       />
                                                     </div>
                                                     <div className="section-content">
-                                                      <span className="ellipsis-1 uppercase secondary-color" style={{fontSize : '1rem'}}>
+                                                      <span className="ellipsis-1 uppercase secondary-color" style={{ fontSize: '1rem' }}>
                                                         {data.size_price}
                                                       </span>
                                                     </div>
                                                   </div>
                                                 )}
-                                                {projectListJson.find(
-                                                                        (item) => item.project_id == data.project_id
-                                                                    ).total_area && (
-                                                  <div className="flex-row alc">
-                                                    <div className="iconimg">
-                                                      <img
-                                                        src="/images/icon/detail-icons/area.svg"
-                                                        alt="area-icon"
-                                                      />
+                                                {/* {projectListJson.find(
+                                                  (item) => item.project_id == data.project_id
+                                                ).total_area && (
+                                                    <div className="flex-row alc">
+                                                      <div className="iconimg">
+                                                        <img
+                                                          src="/images/icon/detail-icons/area.svg"
+                                                          alt="area-icon"
+                                                        />
+                                                      </div>
+                                                      <div className="section-content">
+                                                        <span className="ellipsis-1 uppercase secondary-color" style={{ fontSize: '1rem' }}>
+                                                          {projectListJson.find(
+                                                            (item) => item.project_id == data.project_id
+                                                          ).total_area}
+                                                        </span>
+                                                      </div>
                                                     </div>
-                                                    <div className="section-content">
-                                                      <span className="ellipsis-1 uppercase secondary-color"  style={{fontSize : '1rem'}}>
-                                                        {projectListJson.find(
-                                                                        (item) => item.project_id == data.project_id
-                                                                    ).total_area}
-                                                      </span>
-                                                    </div>
-                                                  </div>
-                                                )}
+                                                  )} */}
                                                 {data.location && (
                                                   <div className="flex-row alc">
                                                     <div className="iconimg">
@@ -947,7 +947,7 @@ export default function Footer({ homeDetails, adminData, propertylist, projectLi
                                                       />
                                                     </div>
                                                     <div className="section-content">
-                                                      <span className="ellipsis-1 uppercase secondary-color" style={{fontSize : '1rem'}}>
+                                                      <span className="ellipsis-1 uppercase secondary-color" style={{ fontSize: '1rem' }}>
                                                         {data.location}
                                                       </span>
                                                     </div>
