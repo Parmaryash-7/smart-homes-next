@@ -10,6 +10,7 @@ import InquiryPopup from '../components/InquiryPopup'
 import { ToastContainer } from 'react-toastify'
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
 import Script from 'next/script'
+import projectListJson from "../data/projectList.json"
 
 export default async function RootLayout({ children }) {
   const propertylist = await api.Propertylist()
@@ -94,7 +95,7 @@ export default async function RootLayout({ children }) {
         <AOSInitializer />
         <Providers>
           <main>
-            <Header propertylist={propertylist} socialList={socialList} />
+            <Header propertylist={propertylist} socialList={socialList} projectListJson={projectListJson.list} />
             <div className="page" >
               {children}
               <InquiryPopup />
@@ -102,6 +103,7 @@ export default async function RootLayout({ children }) {
                 propertylist={propertylist}
                 socialList={socialList}
                 homeDetails={homeDetails}
+                projectListJson={projectListJson.list}
               />
               <ToastContainer
                 position="bottom-right"

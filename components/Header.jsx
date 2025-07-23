@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation'
 import './Header.css'
 import { useSelector } from 'react-redux'
 
-export default function Header({ propertylist, socialList }) {
+export default function Header({ propertylist, socialList, projectListJson }) {
   const pathname = usePathname()
   const activePath = pathname
 
@@ -24,6 +24,7 @@ export default function Header({ propertylist, socialList }) {
   const [prevScrollY, setPrevScrollY] = useState(0)
   const [isHidden, setIsHidden] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
+  const [isWh, setIsWh] = useState(true)
   // const bottomStripRef = useRef(null);
 
   // useEffect(() => {
@@ -60,10 +61,56 @@ export default function Header({ propertylist, socialList }) {
   //     window.removeEventListener("scroll", handleScroll);
   //   };
   // }, [isInquiryOpen, isAmenityOpen]);
+  const isInquiryOpen = useSelector((state) => state.inquiry.isOpen);
+
 
   const toggleAccordion = (index) => {
     setActiveIndex(index === activeIndex ? null : index)
   }
+
+  useEffect(() => {
+    const slugs = propertylist?.map((item) => item.slug) || []
+    // console.log(slugs);
+    if (!slugs.includes(pathname.replace(/^\/+/, ''))) {
+      setIsWh(false);
+      return;
+    }
+   
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+      const remainingDistance = documentHeight - (scrollTop + windowHeight);
+      
+      if (isInquiryOpen) {
+        // bottomStrip.classList.remove("showStrip");
+        // bottomStrip.classList.add("hidestrip");
+        setIsWh(false)
+        return;
+      }
+
+      if (scrollTop > 600 && remainingDistance > 600) {
+        // bottomStrip.classList.add("showStrip");
+        // bottomStrip.classList.remove("hidestrip");
+        setIsWh(true)
+      } else if (scrollTop < 200) {
+        // bottomStrip.classList.remove("showStrip");
+        // bottomStrip.classList.add("hidestrip");
+        setIsWh(false)
+      } else if (remainingDistance < 800) {
+        setTimeout(() => {
+          // bottomStrip.classList.remove("showStrip");
+          // bottomStrip.classList.add("hidestrip");
+          setIsWh(false)
+        }, 100);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [isInquiryOpen, pathname]);
 
   useEffect(() => {
     if (window.innerWidth < 767) {
@@ -601,7 +648,9 @@ export default function Header({ propertylist, socialList }) {
                                               </div>
                                             </div>
                                           )}
-                                          {data.total_area &&
+                                          {projectListJson.find(
+                                            (item) => item.project_id == data.project_id
+                                          ).total_area &&
                                             data.total_area != ' ' && (
                                               <div className="flex-row alc">
                                                 <div className="iconimg">
@@ -612,7 +661,9 @@ export default function Header({ propertylist, socialList }) {
                                                 </div>
                                                 <div className="section-content">
                                                   <span className="ellipsis-1 uppercase secondary-color">
-                                                    {data.total_area}
+                                                    {projectListJson.find(
+                                                      (item) => item.project_id == data.project_id
+                                                    ).total_area}
                                                   </span>
                                                 </div>
                                               </div>
@@ -865,7 +916,7 @@ export default function Header({ propertylist, socialList }) {
         rel="noopener noreferrer"
       >
         <div
-          className={`whatsapp_connect  ${megaMenuActive || openContactDropdown || mobileMenuToggle
+          className={`whatsapp_connect  ${isWh
             ? 'active'
             : ''
             } `}

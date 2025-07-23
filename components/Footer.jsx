@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation'
 import './Footer.css'
 import api from '../lib/api.interceptor'
 import { Toast } from './Toast'
-export default function Footer({ homeDetails, adminData, propertylist }) {
+export default function Footer({ homeDetails, adminData, propertylist, projectListJson }) {
   const activePath = usePathname()
   const year = new Date().getFullYear()
   const [openAccordions, setOpenAccordions] = useState({})
@@ -880,7 +880,7 @@ export default function Footer({ homeDetails, adminData, propertylist }) {
                                       .filter(
                                         (data) =>
                                           data.category === category.category &&
-                                          data.project_id !== 744 && 
+                                          data.project_id !== 744 &&
                                           data.project_id != 814
                                       )
                                       .map((data, index) => (
@@ -899,7 +899,7 @@ export default function Footer({ homeDetails, adminData, propertylist }) {
                                             </div>
                                             <div className="flex-70 inner-flex">
                                               <div className="section-paragraph">
-                                                <p className="footer-title capitalize">
+                                                <p className="header-title capitalize">
                                                   {data.project_title}
                                                 </p>
                                               </div>
@@ -913,13 +913,15 @@ export default function Footer({ homeDetails, adminData, propertylist }) {
                                                       />
                                                     </div>
                                                     <div className="section-content">
-                                                      <span className="ellipsis-1 uppercase secondary-color">
+                                                      <span className="ellipsis-1 uppercase secondary-color" style={{fontSize : '1rem'}}>
                                                         {data.size_price}
                                                       </span>
                                                     </div>
                                                   </div>
                                                 )}
-                                                {data.total_area && (
+                                                {projectListJson.find(
+                                                                        (item) => item.project_id == data.project_id
+                                                                    ).total_area && (
                                                   <div className="flex-row alc">
                                                     <div className="iconimg">
                                                       <img
@@ -928,8 +930,10 @@ export default function Footer({ homeDetails, adminData, propertylist }) {
                                                       />
                                                     </div>
                                                     <div className="section-content">
-                                                      <span className="ellipsis-1 uppercase secondary-color">
-                                                        {data.total_area}
+                                                      <span className="ellipsis-1 uppercase secondary-color"  style={{fontSize : '1rem'}}>
+                                                        {projectListJson.find(
+                                                                        (item) => item.project_id == data.project_id
+                                                                    ).total_area}
                                                       </span>
                                                     </div>
                                                   </div>
@@ -943,7 +947,7 @@ export default function Footer({ homeDetails, adminData, propertylist }) {
                                                       />
                                                     </div>
                                                     <div className="section-content">
-                                                      <span className="ellipsis-1 uppercase secondary-color">
+                                                      <span className="ellipsis-1 uppercase secondary-color" style={{fontSize : '1rem'}}>
                                                         {data.location}
                                                       </span>
                                                     </div>
