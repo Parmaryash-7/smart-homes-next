@@ -880,7 +880,7 @@ export default function Footer({ homeDetails, adminData, propertylist }) {
                                       .filter(
                                         (data) =>
                                           data.category === category.category &&
-                                          data.project_id !== '744' && 
+                                          data.project_id !== 744 && 
                                           data.project_id != 814
                                       )
                                       .map((data, index) => (
@@ -888,6 +888,7 @@ export default function Footer({ homeDetails, adminData, propertylist }) {
                                           href={`/${data.slug}/`}
                                           className="header-hover"
                                           key={data.project_id}
+                                          onClick={() => toggleAccordion(category.category)}
                                         >
                                           <div className="flex-row flex-gap-small">
                                             <div className="flex-30">
