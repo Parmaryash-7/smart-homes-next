@@ -189,7 +189,7 @@ export default function BookPlotsForm({
     e.preventDefault()
 
     if (validateForm()) {
-      console.log('Form Submitted', inquiryObj2)
+      // console.log('Form Submitted', inquiryObj2)
 
       localStorage.setItem('bookingData', JSON.stringify(inquiryObj2))
 
@@ -224,7 +224,6 @@ export default function BookPlotsForm({
 
       setFormErrors({})
     } else {
-      console.log('Validation Failed')
       window.scrollTo({ top: 0, behavior: 'smooth' })
     }
   }

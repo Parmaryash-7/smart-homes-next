@@ -76,30 +76,81 @@ export default function ChannelPartner({ pageList }) {
     const [countryDropdown2, setCountryDropdown2] = useState(false);
     const [countryDropdown3, setCountryDropdown3] = useState(false);
 
-    const handleInputChange = (e) => {
-        const { name, value, type, checked } = e.target;
-        let newVal = type === "checkbox" ? checked : value;
+    // const handleInputChange = (e) => {
+    //     const { name, value, type, checked } = e.target;
+    //     let newVal = type === "checkbox" ? checked : value;
 
-        if (name === "first_name") newVal = newVal.replace(/[0-9]/g, "");
-        if (name === "contact_no_display" || name === "contact_no_display_2") {
-            newVal = newVal.replace(/[^0-9]/g, "").slice(0, 10);
-        }
-        // if (name === "aadhar_no") {
-        //     newVal = newVal.replace(/[^0-9]/g, "").slice(0, 12);
-        // }
+    //     if (name === "first_name") newVal = newVal.replace(/[0-9]/g, "");
+    //     if (name === "contact_no_display" || name === "contact_no_display_2") {
+    //         newVal = newVal.replace(/[^0-9]/g, "").slice(0, 10);
+    //     }
+    //     // if (name === "aadhar_no") {
+    //     //     newVal = newVal.replace(/[^0-9]/g, "").slice(0, 12);
+    //     // }
 
-        if (name === "reference_number") {
-            newVal = newVal.replace(/[^0-9]/g, "").slice(0, 10);
-        }
-        setCpFormData((prev) => ({ ...prev, [name]: newVal }));
-        setErrors((prev) => ({ ...prev, [name]: false }));
-    };
+    //     if (name === "reference_number") {
+    //         newVal = newVal.replace(/[^0-9]/g, "").slice(0, 10);
+    //     }
+    //     setCpFormData((prev) => ({ ...prev, [name]: newVal }));
+    //     setErrors((prev) => ({ ...prev, [name]: false }));
+    // };
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setCpObj((prev) => ({ ...prev, [name]: value }));
         setErrors((prev) => ({ ...prev, [name]: false }));
     };
+
+    const handleInputChange = (e) => {
+        const { name, value, type, checked } = e.target;
+        let newVal = type === "checkbox" ? checked : value;
+        let error = false;
+
+        // Validation patterns
+        const nameRegex = /^[a-zA-Z\s]+$/;
+        const phoneRegex = /^\d{10}$/;
+        const emailRegex = /^[\w.-]+@[a-zA-Z\d.-]+\.[a-zA-Z]{2,}$/;
+        const aadharRegex = /^[2-9]{1}[0-9]{11}$/;
+        const panRegex = /^[A-Z]{5}[0-9]{4}[A-Z]{1}$/;
+
+        // Cleanup and validate by field
+        switch (name) {
+            case "first_name":
+                newVal = newVal.replace(/[0-9]/g, "");
+                if (!newVal.trim() || !nameRegex.test(newVal)) error = true;
+                break;
+            case "email_address":
+                if (!newVal.trim() || !emailRegex.test(newVal)) error = true;
+                break;
+            case "contact_no_display":
+            case "contact_no_display_2":
+            case "reference_number":
+                newVal = newVal.replace(/[^0-9]/g, "").slice(0, 10);
+                if (!newVal.trim() || !phoneRegex.test(newVal)) error = true;
+                break;
+            case "aadhar_no":
+                newVal = newVal.replace(/[^0-9]/g, "").slice(0, 12);
+                if (!newVal.trim() || !aadharRegex.test(newVal)) error = true;
+                break;
+            case "pan_no":
+                newVal = newVal.toUpperCase();
+                if (!newVal.trim() || !panRegex.test(newVal)) error = true;
+                break;
+            case "agree_tandc_display":
+                if (!checked) error = true;
+                break;
+            default:
+                break;
+        }
+
+        // Update form data
+        setCpFormData((prev) => ({ ...prev, [name]: newVal }));
+
+        // Update error state
+        setErrors((prev) => ({ ...prev, [name]: error }));
+    };
+
+
 
     const handleCountryClick = (code, flag) => {
         setCpFormData((prev) => ({ ...prev, country: code, flag }));
