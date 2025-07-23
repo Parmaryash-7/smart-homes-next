@@ -524,23 +524,23 @@ export default function Detail({
                               </div>
                             )
                           )}
-                        {projectDetail.legal_document && (
-                          <div className="about-btn-home outline-div-button button-div  ">
-                            <button
-                              className="reecosys-template-button button-style-secondary-outline " onClick={() => {
-                                dispatch(openInquiry())
-                              }}
-                            >
-                              <span className="material-symbols-outlined">
-                                download
-                              </span>
-                              <p className="capitalize">
-                                {isMobilescreen ? "" : "Download"} Legal
-                                Document
-                              </p>
-                            </button>
-                          </div>
-                        )}
+                        {(projectDetail.legal_document ||
+                          matchedProject?.legal_document?.trim() !== "") && (
+                            <div className="about-btn-home outline-div-button button-div  ">
+                              <button
+                                className="reecosys-template-button button-style-secondary-outline "
+                                onClick={() => {
+                                  dispatch(openInquiry());
+                                }}
+                              >
+                                <span className="material-symbols-outlined">download</span>
+                                <p className="capitalize">
+                                  {isMobilescreen ? "" : "Download"} Legal Document
+                                </p>
+                              </button>
+                            </div>
+                          )}
+
                         <div className="about-btn-home outline-div-button button-div  ">
                           {/* ng-click="availableUnitClick(projectDetail.category , projectDetail.project_id )" */}
                           <Link
@@ -574,7 +574,7 @@ export default function Detail({
                           >
                             <div
                               className="section-title-large"
-                              // style={{ minWidth: "fit-content" }}
+                              style={{ minWidth: "fit-content" }}
                             >
                               <h2 className=" capitalize medium-fonts">
                                 {data.name}
@@ -597,7 +597,7 @@ export default function Detail({
                             <img
                               src={projectDetail.amenities_image}
                               alt=""
-                              // style={{width : '100%'}}
+                            // style={{width : '100%'}}
                             />
                           </div>
                         )}
