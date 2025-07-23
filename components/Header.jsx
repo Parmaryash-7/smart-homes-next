@@ -100,7 +100,7 @@ export default function Header({ propertylist, socialList }) {
       // Close the menu
       setMegaMenuCategory('')
       setMegaMenuActive(false)
-      window.removeEventListener('scroll', handleScroll) 
+      window.removeEventListener('scroll', handleScroll)
     } else {
       // Open the menu
       setMegaMenuCategory(category)
@@ -182,8 +182,8 @@ export default function Header({ propertylist, socialList }) {
                 <Link href="/bulk-land-in-dholera/">
                   <p
                     className={`capitalize ${activePath === '/bulk-land-in-dholera'
-                        ? 'secondary-color'
-                        : ''
+                      ? 'secondary-color'
+                      : ''
                       }`}
                   >
                     Bulk Land
@@ -204,8 +204,8 @@ export default function Header({ propertylist, socialList }) {
                 <Link href="/channel-partners/">
                   <p
                     className={`capitalize ${activePath === '/channel-partners'
-                        ? 'secondary-color'
-                        : ''
+                      ? 'secondary-color'
+                      : ''
                       }`}
                   >
                     Channel Partners
@@ -488,7 +488,7 @@ export default function Header({ propertylist, socialList }) {
                       onClick={() => {
                         toggleAccordion(category_data.category)
                       }}
-                      
+
                     >
                       <div className="section-paragraph">
                         <p className="capitalize">{category_data.category}</p>
@@ -521,7 +521,8 @@ export default function Header({ propertylist, socialList }) {
                             .filter(
                               (data) =>
                                 category_data.category == data.category &&
-                                data.project_id != 744
+                                data.project_id != 744 &&
+                                data.project_id != 814
                             )
                             .map((data, index) => (
                               <div
@@ -813,8 +814,8 @@ export default function Header({ propertylist, socialList }) {
       )}
       <div
         className={`click-overlay  ${megaMenuActive || openContactDropdown || mobileMenuToggle
-            ? 'active'
-            : ''
+          ? 'active'
+          : ''
           } `}
         onClick={() => {
           megaMenuClickClose(),
@@ -829,8 +830,8 @@ export default function Header({ propertylist, socialList }) {
       >
         <div
           className={`whatsapp_connect  ${megaMenuActive || openContactDropdown || mobileMenuToggle
-              ? 'active'
-              : ''
+            ? 'active'
+            : ''
             } `}
         >
           <div className="whatsapp-icon">
@@ -838,7 +839,7 @@ export default function Header({ propertylist, socialList }) {
           </div>
         </div>
       </a>
-      
+
     </div>
   )
 }

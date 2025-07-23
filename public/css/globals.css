@@ -48,9 +48,9 @@ body {
 }
 
 
-.btn-amn {
+/* .btn-amn {
   display: none;
-}
+} */
 
 .progress {
   overflow: hidden;
@@ -9161,6 +9161,11 @@ form .md-lable.contact_code #contact_no {
       "four "" five"
       "six "" six"
       "seven "; */
+  }
+
+  .country_code_list_data {
+    width: 100%;
+    max-width: 350px;
   }
 
   .contactForm.detailForm form {

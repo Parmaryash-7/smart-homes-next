@@ -779,35 +779,51 @@ export default function Footer({ homeDetails, adminData, propertylist }) {
                     </div>
                   </div>
 
-                  {/* <div className="inquiryWrapper footer-subscribe">
-                                        <form
-                                            name="subscribeForm"
-                                            id="subscribeForm"
-                                            className="footer-inquiryForm"
-                                            onSubmit={handleSubmit}
-                                        >
-                                            <div className="inquiry-label subscribe-label">
-                                                <input
-                                                    type="email"
-                                                    name="email_address"
-                                                    id="email_address"
-                                                    placeholder="Enter your email"
-                                                    value={email}
-                                                    onChange={(e) => setEmail(e.target.value)}
-                                                />
-                                            </div>
+                  <div className="inquiryWrapper footer-subscribe">
+                    <form
+                      name="subscribeForm"
+                      id="subscribeForm"
+                      className="footer-inquiryForm"
+                      onSubmit={subscribeform}
+                    >
+                      <div className="inquiry-label subscribe-label">
+                        <input
+                          className={
+                            touched && !isValidEmail(email)
+                              ? 'ng-invalid'
+                              : touched && isValidEmail(email)
+                                ? 'ng-valid'
+                                : ''
+                          }
+                          type="text"
+                          name="email_address"
+                          id="email_address"
+                          placeholder="Enter your email"
+                          value={email}
+                          onChange={(e) => {
+                            setEmail(e.target.value)
+                            if (error) setError('')
+                          }}
+                          onBlur={() => setTouched(true)}
+                        />
+                        {/* {error && <span className="error-text">{error}</span>} */}
+                      </div>
 
-                                            <div>
-                                                <button
-                                                    className="reecosys-template-button button-style-secondary"
-                                                    type="submit"
-                                                    disabled={isSubmitting}
-                                                >
-                                                    <p>{isSubmitting ? "Please wait..." : "Submit"}</p>
-                                                </button>
-                                            </div>
-                                        </form>
-                                    </div> */}
+                      <div>
+                        <button
+                          className={`reecosys-template-button button-style-secondary ${touched && !isValidEmail(email)
+                            ? 'ng-invalid'
+                            : touched
+                              ? 'ng-valid'
+                              : ''
+                            }`}
+                          type="submit"
+                        >
+                          <p>{isSubmitting ? 'Please wait...' : 'Submit'}</p>
+                        </button>
+                      </div>
+                    </form>
+                  </div>
                 </div>
               </div>
               <div className="mob-link">
@@ -864,7 +880,8 @@ export default function Footer({ homeDetails, adminData, propertylist }) {
                                       .filter(
                                         (data) =>
                                           data.category === category.category &&
-                                          data.project_id !== '744'
+                                          data.project_id !== '744' && 
+                                          data.project_id != 814
                                       )
                                       .map((data, index) => (
                                         <Link
