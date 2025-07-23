@@ -223,9 +223,9 @@ export default function InquiryForm({
     setisSubmitting(true)
     inquiryObj.project_id = inquiryObj.project_id || pageDetail?.project_id
     inquiryObj.contact_no =
-      inquiryObj.country + ' ' + inquiryObj.client_contact_no_display
+    inquiryObj.country + ' ' + inquiryObj.client_contact_no_display
     inquiryObj.client_contact_no =
-      inquiryObj.country + ' ' + inquiryObj.client_contact_no_display
+    inquiryObj.country + ' ' + inquiryObj.client_contact_no_display
     inquiryObj.contact_no_display = inquiryObj.client_contact_no_display
     inquiryObj.name = inquiryObj.first_name + ' ' + inquiryObj.last_name
     inquiryObj.client_name = inquiryObj.first_name + ' ' + inquiryObj.last_name

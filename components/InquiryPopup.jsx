@@ -24,7 +24,10 @@ export default function InquiryPopupDetail() {
   const [saveInquiry, setSaveInquiry] = useState(false);
   const [errors, setErrors] = useState({});
 
-  const slug = useSelector((state) => state.inquiry.projectDetailInq);;
+  const slug = useSelector((state) => state.inquiry.projectDetailInq);
+  // useEffect(()=>{
+  //   console.log(slug);
+  // }, [slug])
 
 
   // console.log(projectDetailInq);
@@ -69,7 +72,6 @@ export default function InquiryPopupDetail() {
 
   useEffect(() => {
     setProjectDetailInq(activePath == '/' ? null : slug)
-
   }, [activePath])
 
   // const handleChange = (e) => {
@@ -189,18 +191,23 @@ export default function InquiryPopupDetail() {
 
     // console.log('Submitted Form Data:',);
 
+
+    
+
     try {
       const detail = projectOptions.find((item) => item.project_id == form.project_id);
       // const docs = detail.document_other_data ? detail.document_other_data : []
       const docs = detail?.document_other_data || [];
+
+   
 
       // console.log(form, 'res');
       const response = await api.Projectinquiry(form);
       // console.log(response);
       if (response.success) {
         dispatch(closeInquiry());
-        dispatch(setThankYouData({ page_name: detail.project_title, documents: docs }));
-        router.push(`${detail.slug}/thankyou`);
+        dispatch(setThankYouData({ page_name: slug?.project_title, documents: docs }));
+        router.push(`${slug?.slug}/thankyou`);
 
         setForm({
           agree_tandc: '1',
@@ -223,6 +230,8 @@ export default function InquiryPopupDetail() {
           project_id: ''
         });
         setSaveInquiry(false);
+
+
       }
       Toast(response.message)
     } catch (error) {

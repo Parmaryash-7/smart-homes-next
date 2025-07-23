@@ -99,7 +99,6 @@ export default async function CompletedProjectsPage() {
         <CompletedProjects
             completedPropertylist={completedPropertylist}
             pageList={pageList}
-
         />
     );
 }

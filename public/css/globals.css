@@ -3017,7 +3017,7 @@ label.error {
 
 .whatsapp_connect.active {
   bottom: 6rem;
-  right: 15px;
+  /* right: 15px; */
 }
 
 .readmore_text span.readmore_click,
@@ -6224,7 +6224,7 @@ span.readmore_click {
 
   .whatsapp_connect {
     bottom: 15px;
-    right: 15px;
+    /* right: 15px; */
   }
 
   .amenities-grid>div {

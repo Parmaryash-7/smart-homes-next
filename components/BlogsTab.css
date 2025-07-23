@@ -9,9 +9,21 @@
 } */
 
 .secondary-color {
-    color: #000; 
+    color: #000;
 }
 
 .opacity-50 {
     opacity: 0.5;
+}
+
+.section-title-2 {
+    font-size: 3rem;
+}
+
+@media only screen and (max-width: 767px) {
+
+
+    .section-title-2 {
+        font-size: 2rem;
+    }
 }

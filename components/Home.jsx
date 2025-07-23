@@ -898,22 +898,23 @@ export default function Home({
                                                     />
                                                 </div>
                                                 <div className="podcastOverlay"></div>
-                                            </a>
 
-                                            {podcast.name && (
-                                                <div className="podcastText">
-                                                    <div className="inner-flex inner-flex-smallest">
-                                                        <div className="link-font-size">
-                                                            <p className="white-color uppercase">
-                                                                {podcast.type || 'Podcast'}
-                                                            </p>
-                                                        </div>
-                                                        <div className="section-subtitle">
-                                                            <h4 className="white-color">{podcast.name}</h4>
+
+                                                {podcast.name && (
+                                                    <div className="podcastText">
+                                                        <div className="inner-flex inner-flex-smallest">
+                                                            <div className="link-font-size">
+                                                                <p className="white-color uppercase">
+                                                                    {podcast.type || 'Podcast'}
+                                                                </p>
+                                                            </div>
+                                                            <div className="section-subtitle">
+                                                                <h4 className="white-color">{podcast.name}</h4>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            )}
+                                                )}
+                                            </a>
                                         </div>
                                     )
                                 })}
