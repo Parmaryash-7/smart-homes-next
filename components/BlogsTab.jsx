@@ -31,7 +31,7 @@ export default function BlogsTab({ pageList, blogs_types_list }) {
                     <div className="flex-row articles-tab">
                         <div className="section-title flex items-center gap-4" style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
                             <h2
-                                className={` ${activeTab === 'blogs' ? 'secondary-color' : 'opacity-50'}`}
+                                className={`cursor-pointer ${activeTab === 'blogs' ? 'secondary-color' : 'opacity-50'}`}
                                 onClick={() => setActiveTab('blogs')}
                             >
                                 Blogs
@@ -40,7 +40,7 @@ export default function BlogsTab({ pageList, blogs_types_list }) {
                             <span className='section-title-2'> / </span>
 
                             <h2
-                                className={` ${activeTab === 'latest-news' ? 'secondary-color' : 'opacity-50'}`}
+                                className={`cursor-pointer ${activeTab === 'latest-news' ? 'secondary-color' : 'opacity-50'}`}
                                 onClick={() => setActiveTab('latest-news')}
                             >
                                 Latest News

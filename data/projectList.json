@@ -39,13 +39,13 @@
             ],
             "banners_mob": [
                 {
-                    "images": "assets/images/mob-banner/Dholera Forest Estate banner 1 (1).jpg"
+                    "images": "/images/mob-banner/Dholera Forest Estate banner 1 (1).jpg"
                 },
                 {
-                    "images": "assets/images/mob-banner/Dholera Forest Estate banner 2 (1).jpg"
+                    "images": "/images/mob-banner/Dholera Forest Estate banner 2 (1).jpg"
                 },
                 {
-                    "images": "assets/images/mob-banner/Dholera Forest Estate banner 3 (1).jpg"
+                    "images": "/images/mob-banner/Dholera Forest Estate banner 3 (1).jpg"
                 }
             ]
         },
@@ -84,7 +84,7 @@
             ],
             "banners_mob": [
                 {
-                    "images": "assets/images/mob-banner/expressway city 1 (1).jpg"
+                    "images": "/images/mob-banner/expressway city 1 (1).jpg"
                 }
             ]
         },
@@ -123,7 +123,7 @@
             ],
             "banners_mob": [
                 {
-                    "images": "assets/images/mob-banner/expressway city township (1).jpg"
+                    "images": "/images/mob-banner/expressway city township (1).jpg"
                 }
             ]
         },
@@ -164,10 +164,10 @@
             ],
             "banners_mob": [
                 {
-                    "images": "assets/images/mob-banner/Avenue 1 banner 1 (1).jpg"
+                    "images": "/images/mob-banner/Avenue 1 banner 1 (1).jpg"
                 },
                 {
-                    "images": "assets/images/mob-banner/Expressway Avenue 1 banner 2 (1).jpg"
+                    "images": "/images/mob-banner/Expressway Avenue 1 banner 2 (1).jpg"
                 }
             ]
         },
@@ -203,10 +203,10 @@
             ],
             "banners_mob": [
                 {
-                    "images": "assets/images/mob-banner/Avenue Township banner 1 (1).jpg"
+                    "images": "/images/mob-banner/Avenue Township banner 1 (1).jpg"
                 },
                 {
-                    "images": "assets/images/mob-banner/Avenue toenship banner 2 (1).jpg"
+                    "images": "/images/mob-banner/Avenue toenship banner 2 (1).jpg"
                 }
             ]
         },
@@ -245,7 +245,7 @@
             ],
             "banners_mob": [
                 {
-                    "images": "assets/images/mob-banner/orange county (1).jpg"
+                    "images": "/images/mob-banner/orange county (1).jpg"
                 }
             ]
         },
@@ -288,7 +288,7 @@
             ],
             "banners_mob": [
                 {
-                    "images": "assets/images/mob-banner/Olive Garden (1).jpg"
+                    "images": "/images/mob-banner/Olive Garden (1).jpg"
                 }
             ]
         },
@@ -327,7 +327,7 @@
             ],
             "banners_mob": [
                 {
-                    "images": "assets/images/mob-banner/Mulberry Park (1).jpg"
+                    "images": "/images/mob-banner/Mulberry Park (1).jpg"
                 }
             ]
         },
@@ -405,7 +405,7 @@
             ],
             "banners_mob": [
                 {
-                    "images": "assets/images/mob-banner/dholera international Airport City 1 (3) (1).jpg"
+                    "images": "/images/mob-banner/dholera international Airport City 1 (3) (1).jpg"
                 }
             ]
         },
@@ -444,10 +444,10 @@
             ],
             "banners_mob": [
                 {
-                    "images": "assets/images/mob-banner/dholera international Airport City Township banner 1 (1).jpg"
+                    "images": "/images/mob-banner/dholera international Airport City Township banner 1 (1).jpg"
                 },
                 {
-                    "images": "assets/images/mob-banner/dholera international Airport City Township banner 2 (1).jpg"
+                    "images": "/images/mob-banner/dholera international Airport City Township banner 2 (1).jpg"
                 },
                 {
                     "images": "https://www.reecosys.com/api/image-tool/index.php?src=https://www.reecosys.com/assets/uploads/project/banner/banner_web_1736246056_32.jpg&h=1080&w=1903&q=100"
@@ -518,7 +518,7 @@
             ],
             "banners_mob": [
                 {
-                    "images": "assets/images/mob-banner/ABCD Enclave 1 (1).jpg"
+                    "images": "/images/mob-banner/ABCD Enclave 1 (1).jpg"
                 }
             ]
         },
@@ -553,7 +553,7 @@
             ],
             "banners_mob": [
                 {
-                    "images": "assets/images/mob-banner/ABCD Enclave 2 (1).jpg"
+                    "images": "/images/mob-banner/ABCD Enclave 2 (1).jpg"
                 }
             ]
         },
@@ -596,7 +596,7 @@
             ],
             "banners_mob": [
                 {
-                    "images": "assets/images/mob-banner/ABCD Enclave IV (1).jpg"
+                    "images": "/images/mob-banner/ABCD Enclave IV (1).jpg"
                 }
             ]
         },
@@ -722,7 +722,7 @@
             ],
             "banners_mob": [
                 {
-                    "images": "assets/images/mob-banner/ABCD Greens 1 (1).jpg"
+                    "images": "/images/mob-banner/ABCD Greens 1 (1).jpg"
                 }
             ]
         },
@@ -742,7 +742,7 @@
             ],
             "banners_mob": [
                 {
-                    "images": "assets/images/mob-banner/picadilly square 2 (1).jpg"
+                    "images": "/images/mob-banner/picadilly square 2 (1).jpg"
                 }
             ]
         },
