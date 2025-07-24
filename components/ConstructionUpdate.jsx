@@ -195,7 +195,7 @@ export default function ConstructionUpdate({ pageList }) {
                 <div className="banner-title">
                   <h1 className="white-color capitalize">Construction Updates</h1>
                 </div>
-              </div>
+              </div>  
             </div>
             <div className="black_overlay"></div>
           </section>
