@@ -1,17 +1,13 @@
 'use client'
-
 import React, { useEffect, useState, useCallback } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import './Header.css'
 import { useSelector } from 'react-redux'
-
 export default function Header({ propertylist, socialList, projectListJson }) {
   const pathname = usePathname()
   const activePath = pathname
-
   const inquire_popup = useSelector((state) => state.inquiry.isOpen)
-
   const [isMobileScreen, setIsMobileScreen] = useState(false)
   const [categoryList, setCategoryList] = useState([])
   const [megaMenuCategory, setMegaMenuCategory] = useState('')
@@ -26,22 +22,17 @@ export default function Header({ propertylist, socialList, projectListJson }) {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isWh, setIsWh] = useState(true)
   // const bottomStripRef = useRef(null);
-
   // useEffect(() => {
-
   //   const handleScroll = () => {
-
   //     const scrollTop = window.scrollY;
   //     const windowHeight = window.innerHeight;
   //     const documentHeight = document.documentElement.scrollHeight;
   //     const remainingDistance = documentHeight - (scrollTop + windowHeight);
-
   //     if (isInquiryOpen || isAmenityOpen) {
   //       bottomStrip.classList.remove("showStrip");
   //       bottomStrip.classList.add("hidestrip");
   //       return;
   //     }
-
   //     if (scrollTop > 600 && remainingDistance > 600) {
   //       bottomStrip.classList.add("showStrip");
   //       bottomStrip.classList.remove("hidestrip");
@@ -55,19 +46,15 @@ export default function Header({ propertylist, socialList, projectListJson }) {
   //       }, 100);
   //     }
   //   };
-
   //   window.addEventListener("scroll", handleScroll);
   //   return () => {
   //     window.removeEventListener("scroll", handleScroll);
   //   };
   // }, [isInquiryOpen, isAmenityOpen]);
   const isInquiryOpen = useSelector((state) => state.inquiry.isOpen);
-
-
   const toggleAccordion = (index) => {
     setActiveIndex(index === activeIndex ? null : index)
   }
-
   useEffect(() => {
     const slugs = propertylist?.map((item) => item.slug) || []
     // console.log(slugs);
@@ -75,20 +62,17 @@ export default function Header({ propertylist, socialList, projectListJson }) {
       setIsWh(false);
       return;
     }
-   
     const handleScroll = () => {
       const scrollTop = window.scrollY;
       const windowHeight = window.innerHeight;
       const documentHeight = document.documentElement.scrollHeight;
       const remainingDistance = documentHeight - (scrollTop + windowHeight);
-      
       if (isInquiryOpen) {
         // bottomStrip.classList.remove("showStrip");
         // bottomStrip.classList.add("hidestrip");
         setIsWh(false)
         return;
       }
-
       if (scrollTop > 600 && remainingDistance > 600) {
         // bottomStrip.classList.add("showStrip");
         // bottomStrip.classList.remove("hidestrip");
@@ -105,41 +89,34 @@ export default function Header({ propertylist, socialList, projectListJson }) {
         }, 100);
       }
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, [isInquiryOpen, pathname]);
-
   useEffect(() => {
     if (window.innerWidth < 767) {
       setIsMobileScreen(true)
     }
-
     if (Array.isArray(propertylist)) {
       getCategory()
     }
   }, [propertylist])
-
   async function getCategory() {
     try {
       const categorySet = new Set()
       const categoryArray = []
-
       propertylist.forEach((value) => {
         if (!categorySet.has(value.category)) {
           categoryArray.push({ category: value.category })
           categorySet.add(value.category)
         }
       })
-
       setCategoryList(categoryArray)
     } catch (error) {
       console.error('Error fetching property details:', error)
     }
   }
-
   // useEffect(() => {
   // 	const handleScroll = () => {
   // 		const currentScroll = window.scrollY;
@@ -151,15 +128,12 @@ export default function Header({ propertylist, socialList, projectListJson }) {
   // 		setIsScrolled(currentScroll > 250);
   // 		setPrevScrollY(currentScroll);
   // 	};
-
   // 	window.addEventListener("scroll", handleScroll);
   // 	return () => window.removeEventListener("scroll", handleScroll);
   // }, [prevScrollY]);
-
   useEffect(() => {
     document.body.style.overflow = mobileMenuToggle ? 'hidden' : 'auto'
   }, [mobileMenuToggle])
-
   // const megaMenuClick = (category) => {
   // 	if (megaMenuCategory === category) {
   // 		setMegaMenuCategory("");
@@ -171,13 +145,11 @@ export default function Header({ propertylist, socialList, projectListJson }) {
   // 		setMegaMenuList(filteredList);
   // 	}
   // };
-
   const handleScroll = () => {
     setMegaMenuCategory('')
     setMegaMenuActive(false)
     window.removeEventListener('scroll', handleScroll)
   }
-
   const megaMenuClick = (category) => {
     if (megaMenuCategory === category) {
       // Close the menu
@@ -188,7 +160,6 @@ export default function Header({ propertylist, socialList, projectListJson }) {
       // Open the menu
       setMegaMenuCategory(category)
       setMegaMenuActive(true)
-
       const filteredList = propertylist.filter(
         (item) =>
           item.category === category &&
@@ -196,20 +167,16 @@ export default function Header({ propertylist, socialList, projectListJson }) {
           item.project_id != 814
       )
       setMegaMenuList(filteredList)
-
       // Add scroll listener
       window.addEventListener('scroll', handleScroll, { passive: true })
     }
   }
-
   const megaMenuClickClose = () => {
     setMegaMenuCategory('')
     setMegaMenuActive(false)
     window.removeEventListener('scroll', handleScroll)
   }
-
   // if (!categoryList.length) return null;
-
   return (
     <div className={`header-wrapper ${inquire_popup ? 'webmenu_hidden2' : ''}`}>
       <div className="main-container" onClick={() => setMegaMenuActive(false)}>
@@ -227,7 +194,6 @@ export default function Header({ propertylist, socialList, projectListJson }) {
               />
             </Link>
           </div>
-
           <div
             className="header-links-ul"
             style={{ minHeight: '1.5rem', zIndex: 999 }}
@@ -260,7 +226,6 @@ export default function Header({ propertylist, socialList, projectListJson }) {
                   </a>
                 </li>
               ))}
-
               <li>
                 <Link href="/bulk-land-in-dholera/">
                   <p
@@ -313,7 +278,6 @@ export default function Header({ propertylist, socialList, projectListJson }) {
                 </Link>
               </li>
             </ul>
-
             <div className="visible-tab-mobile">
               <ul>
                 <li>
@@ -563,7 +527,6 @@ export default function Header({ propertylist, socialList, projectListJson }) {
                     className="inner-flex inner-flex-small accordion-block"
                     style={{ gap: '0px' }}
                     key={categoryIndex}
-
                   >
                     <div
                       className={`flex-row j-c-sb header_accordion accordion_click ${activeIndex == category_data.category ? 'active' : ''
@@ -571,7 +534,6 @@ export default function Header({ propertylist, socialList, projectListJson }) {
                       onClick={() => {
                         toggleAccordion(category_data.category)
                       }}
-
                     >
                       <div className="section-paragraph">
                         <p className="capitalize">{category_data.category}</p>
@@ -769,7 +731,6 @@ export default function Header({ propertylist, socialList, projectListJson }) {
                     </div>
                   </li>
                 ))}
-
               <li>
                 <div>
                   <Link
@@ -815,7 +776,6 @@ export default function Header({ propertylist, socialList, projectListJson }) {
                   </Link>
                 </div>
               </li>
-
               <li>
                 <div>
                   <Link
@@ -831,7 +791,6 @@ export default function Header({ propertylist, socialList, projectListJson }) {
                   </Link>
                 </div>
               </li>
-
               <li>
                 <div>
                   <Link
@@ -847,7 +806,6 @@ export default function Header({ propertylist, socialList, projectListJson }) {
                   </Link>
                 </div>
               </li>
-
               <li className="flex-row alc no-border">
                 {socialList &&
                   socialList.map((social, index) => (
@@ -926,7 +884,6 @@ export default function Header({ propertylist, socialList, projectListJson }) {
           </div>
         </div>
       </a>
-
     </div>
   )
 }

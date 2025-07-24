@@ -1,5 +1,4 @@
 "use client"
-
 import React, { useEffect, useState } from "react";
 // import { useNavigate, useParams } from "react-router";
 import Link from "next/link";
@@ -21,7 +20,6 @@ import { useDispatch } from 'react-redux'
 // import InquiryForm from "components/InquiryForm";
 import BottomStrip from "components/BottomStrip";
 import InquiryForm from "./InquiryForm";
-
 export default function Detail({
   // isAmenityOpen,
   // setAmenityToggle,
@@ -33,7 +31,6 @@ export default function Detail({
   propertylist,
   projectListJson
 }) {
-
   // console.log(projectDetail)
   const projectsArray = rawProjectData.list;
   const dispatch = useDispatch()
@@ -51,7 +48,6 @@ export default function Detail({
   const matchedProject = projectListJson.find(
     (item) => item.project_id == projectDetail.project_id
   );
-
   useEffect(() => {
     let dataToUse;
     let StaticData = {};
@@ -60,7 +56,6 @@ export default function Detail({
     // } else {
     //   dataToUse = propertylist.find((project) => project.slug === slug);
     // }
-
     if (dataToUse) {
       StaticData =
         projectsArray.find((p) => p.project_id == dataToUse.project_id) || {};
@@ -74,13 +69,11 @@ export default function Detail({
       });
     }
   }, [projectDetail, propertylist]);
-
   const bannerImages = projectDetail?.banners_data?.images || [];
   const mobileBanners = projectDetail?.banners_mob || [];
   const hasMultipleImages = bannerImages?.length > 1;
   const hasSingleImage = bannerImages?.length === 1;
   const hasMobileImages = mobileBanners[0]?.images;
-
   useEffect(() => {
     if (
       projectDetail &&
@@ -91,7 +84,6 @@ export default function Detail({
       const imgUrl = `${projectDetail.banners_data.images[0].image_web_full}&w=1920&h=1080&q=100`;
       const img = new Image();
       img.src = imgUrl;
-
       img.onload = () => {
         // optional delay to simulate $timeout in AngularJS
         setTimeout(() => {
@@ -100,17 +92,13 @@ export default function Detail({
       };
     }
   }, [projectDetail]);
-
   useEffect(() => {
     const shouldLockScroll = inquiryPopup || isAmenityOpen;
-
     document.body.style.overflow = shouldLockScroll ? "hidden" : "auto";
-
     return () => {
       document.body.style.overflow = "auto";
     };
   }, [inquiryPopup, isAmenityOpen]);
-
   useEffect(() => {
     let fancyboxInstance;
     if (window.innerWidth < 767) {
@@ -133,7 +121,6 @@ export default function Detail({
           },
         }
       );
-
       Fancybox.bind("[data-fancybox=virtual-tour]", {
         type: "iframe", // explicitly define the content type
         Toolbar: false,
@@ -142,7 +129,6 @@ export default function Detail({
           preload: false,
         },
       });
-
       Fancybox.bind("[data-fancybox=walkthrough-fancy]", {
         Carousel: {
           infinite: true,
@@ -155,7 +141,6 @@ export default function Detail({
       });
     };
   }, []);
-
   // if (projectDetail) {
   // return (
   //     <>
@@ -164,11 +149,9 @@ export default function Detail({
   //         </h1>
   //     </>
   // )
-
   return (
     <>
       {/* {seoMetaData && <Seo metaData={seoMetaData} />} */}
-
       <div
         className="reecosys-main-wrapper"
         id="reecosys-main-wrapper"
@@ -224,7 +207,6 @@ export default function Detail({
                   </Swiper>
                   // <>Swiper Here</>
                 )}
-
                 {/* Mobile view - multiple images */}
                 {hasMultipleImages && (
                   <div className="visible-tab-mobile">
@@ -282,7 +264,6 @@ export default function Detail({
                     )}
                   </div>
                 )}
-
                 {/* Pagination dots */}
                 {hasMultipleImages && (
                   <>
@@ -291,7 +272,6 @@ export default function Detail({
                     <div className="swiper-pagination detailSwiperPagination2"></div>
                   </>
                 )}
-
                 {/* Single image desktop */}
                 {hasSingleImage &&
                   bannerImages.map((banner, index) =>
@@ -312,7 +292,6 @@ export default function Detail({
                       </div>
                     ) : null
                   )}
-
                 {/* Single image mobile */}
                 {hasSingleImage && (
                   <div className="visible-tab-mobile">
@@ -355,7 +334,6 @@ export default function Detail({
                       )}
                   </div>
                 )}
-
                 {/* Project Info Overlay */}
                 {(projectDetail.banner_data?.title ||
                   projectDetail.size_price ||
@@ -371,7 +349,6 @@ export default function Detail({
                               : projectDetail.status}
                           </p>
                         </div>
-
                         {projectDetail.project_title && (
                           <div className="section-title overflow_section w60">
                             <h1
@@ -383,7 +360,6 @@ export default function Detail({
                             />
                           </div>
                         )}
-
                         <div className="section-content overflow_section">
                           <p
                             className="capitalize white-color bold-fonts"
@@ -413,7 +389,6 @@ export default function Detail({
                       </div>
                     </div>
                   )}
-
               </div>
             </section>
           )}
@@ -479,7 +454,6 @@ export default function Detail({
                                 />
                               </div>
                             )}
-
                           {projectDetail.rera_number && (
                             <div className="section-content  ">
                               <p className="capitalize gray-color">
@@ -544,7 +518,6 @@ export default function Detail({
                               </button>
                             </div>
                           )}
-
                         <div className="about-btn-home outline-div-button button-div  ">
                           {/* ng-click="availableUnitClick(projectDetail.category , projectDetail.project_id )" */}
                           <Link
@@ -690,7 +663,6 @@ export default function Detail({
                   </div>
                 </section>
               ))}
-
           {projectDetail.gallery_data[0].image?.length > 0 && (
             <section
               id="reecosys-project-detail-section-5"
@@ -871,7 +843,6 @@ export default function Detail({
                 ))}
             </section>
           )}
-
           {projectDetail.why_us && projectDetail.why_us?.length > 0 && (
             <section
               className="reecosys-template-about-section-6 reecosys-template-section  section-padding relative"
@@ -892,12 +863,10 @@ export default function Detail({
                     </div>
                   </div>
                 </div>
-
                 <div className="flex-row inner-flex-mob alc inner-flex-big">
                   <div className="flex60">
                     <img src={projectDetail.why_us_img} alt="" />
                   </div>
-
                   <div className="detail-accordion flex40" id="accordion">
                     <div className="">
                       {projectDetail.why_us.map((why_usData, index) => (
@@ -937,7 +906,6 @@ export default function Detail({
                               />
                             </div>
                           </div>
-
                           <div
                             className={`content_accordian section-content accordion-dec-padding w100 ${activeIndex == why_usData.title ? "active" : ""
                               } `}
@@ -961,7 +929,6 @@ export default function Detail({
               </div>
             </section>
           )}
-
           {projectDetail.specifications?.length > 0 && (
             <section
               className="reecosys-section section-padding highlight-bg relative"
@@ -984,7 +951,6 @@ export default function Detail({
                       </div>
                     </div>
                   </div>
-
                   <div className="inner-flex inner-flex-medium ">
                     <Swiper
                       modules={[Navigation, FreeMode]}
@@ -1014,7 +980,6 @@ export default function Detail({
                       }}
                       className="visible-sm visible-xs swiper-container"
                       style={{ width: '100%' }}
-
                     >
                       {projectDetail.specifications.map(
                         (specification, index) => (
@@ -1084,7 +1049,6 @@ export default function Detail({
                         )
                       )}
                     </div>
-
                     {projectDetail.specifications?.length > 8 && (
                       <div
                         className="wfc m0auto"
@@ -1119,7 +1083,6 @@ export default function Detail({
                       <h2>Amenities</h2>
                     </div>
                   </div>
-
                   <div
                     className="amenities-grid dholera-forest-amenities "
                     data-aos="fade-top"
@@ -1251,7 +1214,6 @@ export default function Detail({
                     pageDetail={projectDetail}
                     countryFlag={countryFlag}
                     setCountryFlag={setCountryFlag}
-
                   />
                 </div>
               </div>
@@ -1282,7 +1244,6 @@ export default function Detail({
               </div>
             </div>
             <div className="flex-row alc contactBtnFlex relative" style={{ zIndex: 2 }}>
-
               <Link href="tel:+917096961250" passHref>
                 <button
                   className="reecosys-template-button button-style-white white-text wow fadeInUp"
@@ -1293,7 +1254,6 @@ export default function Detail({
                   <p>Call Us</p>
                 </button>
               </Link>
-
               <Link href="mailto:info@smart-homes.in" passHref>
                 <button
                   className="reecosys-template-button button-style-white white-text wow fadeInUp"
@@ -1304,7 +1264,6 @@ export default function Detail({
                   <p>Send an email</p>
                 </button>
               </Link>
-
               <Link href="https://maps.app.goo.gl/4CYF8dhjXH65BjNK7" target="_blank" rel="noopener noreferrer">
                 <button
                   className="reecosys-template-button button-style-white white-text wow fadeInUp"
@@ -1315,9 +1274,7 @@ export default function Detail({
                   <p>Visit Our Office</p>
                 </button>
               </Link>
-
             </div>
-
             <div className="homeContactFormOverlay"></div>
           </div>
         </div>

@@ -6,8 +6,6 @@ import getCompletedPropertyList from "lib/CompletedPropertyList";
 import getPageList from "lib/PageList";
 import getBlogDetail from "lib/BlogDetail";
 import projectListJson from "../../data/projectList.json"
-
-
 const defaultMetadata = {
     title: "SmartHomes Infrastructure | Leading Developer in Dholera Smart City",
     description:
@@ -16,29 +14,23 @@ const defaultMetadata = {
         "SmartHomes Infrastructure, Dholera smart city, real estate developer, Dholera projects, sustainable real estate, smart city investment",
     image: "https://www.smarthomesinfra.com/assets/images/og-image.png", 
 };
-
 export async function generateMetadata() {
     const slug = "home"; // same as AngularJS used via $routeProvider.when("/")
     const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.smarthomesinfra.in";
-
     const page = await api.Propertylist(slug);
-
     const title = page?.seo_title || defaultMetadata.title;
     const description = page?.seo_description || defaultMetadata.description;
     const keywords = page?.seo_keywords || defaultMetadata.keywords;
     const ogImage = page?.seo_image || defaultMetadata.image;
     const canonicalUrl = `${siteUrl}/`;
-
     return {
         title,
         description,
         keywords,
-
         metadataBase: new URL(siteUrl),
         alternates: {
             canonical: canonicalUrl,
         },
-
         openGraph: {
             title,
             description,
@@ -55,7 +47,6 @@ export async function generateMetadata() {
                 },
             ],
         },
-
         twitter: {
             card: "summary_large_image",
             title,
@@ -64,16 +55,13 @@ export async function generateMetadata() {
             creator: "@Smart Homes Infrastructure Pvt. Ltd.",
             images: [ogImage],
         },
-
         robots: {
             index: true,
             follow: true,
         },
-
         authors: [{ name: "Smart Homes Infrastructure Pvt. Ltd." }],
     };
 }
-
 export default async function HomePage() {
     // const homeDetails = await api.HomeDetail();
     // const completedPropertylist = await api.CompletedPropertyList();
@@ -88,10 +76,8 @@ export default async function HomePage() {
     // console.log("IN HOME");
     // console.log(propertylist);
     // console.log("IN HOME");
-
     // console.log(projectListJson.list);
     return (
-
         <Home
             homeDetails={homeDetails}
             propertylist={propertylist}
@@ -99,7 +85,6 @@ export default async function HomePage() {
             pageList={pageList}
             blogData={blogData}
             projectListJson={projectListJson.list}
-
         />
     );
 }
