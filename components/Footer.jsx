@@ -545,11 +545,11 @@ export default function Footer({ homeDetails, adminData, propertylist, projectLi
                         <p className="capitalize">blogs</p>
                       </Link>
                     </li>
-                    {/* <li className="wfc footer-hover">
-                                            <Link href="//blogs" className={activePath == "/blogs" ? "active_page" : ""}>
-                                                <p className="capitalize">Latest News</p>
-                                            </Link>
-                                        </li> */}
+                    <li className="wfc footer-hover">
+                      <Link href="/latest-news" className={activePath == "/latest-news" ? "active_page" : ""}>
+                        <p className="capitalize">Latest News</p>
+                      </Link>
+                    </li>
                     <li className="wfc footer-hover">
                       <Link
                         href="/newsletters/"

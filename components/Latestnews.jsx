@@ -11,7 +11,7 @@ export default function Latestnews({ blogs_types_list }) {
             id="reecosys-contact-wrapper"
             className=" inner-flex inner-flex-big"
           >
-            {/* <section
+            <section
               className="reecosys-section relative"
               data-aos="fade-in"
               data-aos-delay="600"
@@ -19,7 +19,7 @@ export default function Latestnews({ blogs_types_list }) {
               id="reecosys-contact-us-section-1"
             >
               <div className="common-listing-banner relative">
-                <img src="/images/detail/blog_img.jpg" alt="" />
+                <img src="/images/detail/blog_img.jpg" alt=""/>
                 <div className="common-list-overlay"></div>
               </div>
               <div className="top-left-overlay-new"></div>
@@ -30,7 +30,7 @@ export default function Latestnews({ blogs_types_list }) {
                   <h2 className="secondary-color">Latest News</h2>
                 </div>
               </div>
-            </div> */}
+            </div>
             <section
               className="reecosys-section project_blog_list_setion"
               id="reecosys-blog-section-2"

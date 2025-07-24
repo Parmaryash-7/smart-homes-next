@@ -29,7 +29,7 @@ export default function BlogsTab({ pageList, blogs_types_list }) {
 
                 <div className="main-container">
                     <div className="flex-row articles-tab">
-                        <div className="section-title flex items-center gap-4" style={{ display: 'flex', gap: '1rem', alignItems : 'center' }}>
+                        <div className="section-title flex items-center gap-4" style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
                             <h2
                                 className={` ${activeTab === 'blogs' ? 'secondary-color' : 'opacity-50'}`}
                                 onClick={() => setActiveTab('blogs')}
