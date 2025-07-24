@@ -160,7 +160,12 @@ export default function ThankYouPayment() {
     setPlotBookingStatus(true);
 
     const options = {
-      key: 'rzp_test_gPEm9Lk8sfM128',
+      // Test Key
+      // key: 'rzp_test_gPEm9Lk8sfM128', 
+
+      // Live Key
+      key: 'rzp_live_IwzA0grLh3Rpct', 
+      
       amount: bookingObj.amount * 100,
       lead_id: 1,
       id: bookingObj.id,
