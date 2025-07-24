@@ -3,33 +3,50 @@
 import React, { useEffect, useState } from "react";
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
 import { Fancybox } from "@fancyapps/ui";
-import "swiper/css";
+import { Swiper, SwiperSlide } from 'swiper/react'
+import {
+  Pagination,
+  Keyboard,
+  Mousewheel,
+  Autoplay,
+  Navigation,
+  FreeMode
+} from 'swiper/modules'
+import 'swiper/css'
+import 'swiper/css/pagination'
 
 export default function ConstructionUpdate({ pageList }) {
   const [isMobilescreen, setMobilescreen] = useState(false);
-  const [SwiperComponents, setSwiperComponents] = useState({ Swiper: null, SwiperSlide: null });
+  // const [SwiperComponents, setSwiperComponents] = useState({ Swiper: null, SwiperSlide: null });
+
+  // useEffect(() => {
+  //   const loadSwiper = async () => {
+  //     const swiper = await import("swiper/react");
+  //     const SwiperCore = await import("swiper");
+  //     const { Navigation, Pagination, Autoplay, Keyboard, Scrollbar } = await import("swiper/modules");
+  //     SwiperCore.default.use([Navigation, Pagination, Autoplay, Keyboard, Scrollbar]);
+
+  //     setSwiperComponents({
+  //       Swiper: swiper.Swiper,
+  //       SwiperSlide: swiper.SwiperSlide,
+  //     });
+  //   };
+
+  //   loadSwiper();
+  //   if (window.innerWidth < 767) setMobilescreen(true);
+
+  //   Fancybox.bind("[data-fancybox]", {
+  //     Thumbs: true,
+  //     Toolbar: true,
+  //   });
+  // }, []);
 
   useEffect(() => {
-    const loadSwiper = async () => {
-      const swiper = await import("swiper/react");
-      const SwiperCore = await import("swiper");
-      const { Navigation, Pagination, Autoplay, Keyboard, Scrollbar } = await import("swiper/modules");
-      SwiperCore.default.use([Navigation, Pagination, Autoplay, Keyboard, Scrollbar]);
-
-      setSwiperComponents({
-        Swiper: swiper.Swiper,
-        SwiperSlide: swiper.SwiperSlide,
-      });
-    };
-
-    loadSwiper();
-    if (window.innerWidth < 767) setMobilescreen(true);
-
-    Fancybox.bind("[data-fancybox]", {
+    Fancybox.bind("[data-fancybox]"), {
       Thumbs: true,
       Toolbar: true,
-    });
-  }, []);
+    }
+  }, [])
 
 
   const dholeraData = [
@@ -125,24 +142,24 @@ export default function ConstructionUpdate({ pageList }) {
   ];
 
 
-  useEffect(() => {
-    const loadSwiper = async () => {
-      const swiper = await import("swiper/react");
-      const SwiperCore = await import("swiper");
-      const { Navigation, Pagination, Autoplay, Keyboard, Scrollbar } = await import("swiper/modules");
-      SwiperCore.default.use([Navigation, Pagination, Autoplay, Keyboard, Scrollbar]);
+  // useEffect(() => {
+  //   const loadSwiper = async () => {
+  //     const swiper = await import("swiper/react");
+  //     const SwiperCore = await import("swiper");
+  //     const { Navigation, Pagination, Autoplay, Keyboard, Scrollbar } = await import("swiper/modules");
+  //     SwiperCore.default.use([Navigation, Pagination, Autoplay, Keyboard, Scrollbar]);
 
-      setSwiperComponents({
-        Swiper: swiper.Swiper,
-        SwiperSlide: swiper.SwiperSlide,
-      });
-    };
+  //     setSwiperComponents({
+  //       Swiper: swiper.Swiper,
+  //       SwiperSlide: swiper.SwiperSlide,
+  //     });
+  //   };
 
-    loadSwiper();
-    if (window.innerWidth < 767) setMobilescreen(true);
-  }, []);
+  //   loadSwiper();
+  //   if (window.innerWidth < 767) setMobilescreen(true);
+  // }, []);
 
-  const { Swiper, SwiperSlide } = SwiperComponents;
+  // const { Swiper, SwiperSlide } = SwiperComponents;
 
   const constructiontownshipData = [
     { img: "/images/contruction-update/DHOLERA-EXPRESSWAY-CITY-TOWNSHIP/dect1.jpg" },
@@ -208,57 +225,58 @@ export default function ConstructionUpdate({ pageList }) {
               </div>
 
               <div className="timelineSwiper">
-                {Swiper && SwiperSlide && (
-                  <Swiper
-                    className="swiper-container"
-                    observer={true}
-                    observeParents={true}
-                    slidesPerView={3}
-                    spaceBetween={16}
-                    freeMode={true}
-                    navigation={{
-                      prevEl: ".swiper-button-prev.dholera-button",
-                      nextEl: ".swiper-button-next.dholera-button",
-                    }}
-                    breakpoints={{
-                      1152: {
-                        slidesPerView: 3,
-                      },
-                      767: {
-                        slidesPerView: 2,
-                      },
-                      0: {
-                        slidesPerView: 1.2,
-                      },
-                    }}
-                  >
-                    {dholeraData.map((data, index) => (
-                      <SwiperSlide key={index}>
-                        <div
-                          className={`inner-flex inner-flex-medium`
-                          }
-                          data-aos="fade-in"
-                          data-aos-delay="300"
-                          data-aos-duration="600"
+                {/* {Swiper && SwiperSlide && ( */}
+                <Swiper
+                  className="swiper-container"
+                  modules={[Navigation, Pagination, Autoplay, Keyboard, Mousewheel, FreeMode]}
+                  observer={true}
+                  observeParents={true}
+                  slidesPerView={3}
+                  spaceBetween={16}
+                  freeMode={true}
+                  navigation={{
+                    prevEl: ".swiper-button-prev.dholera-button",
+                    nextEl: ".swiper-button-next.dholera-button",
+                  }}
+                  breakpoints={{
+                    1152: {
+                      slidesPerView: 2.5,
+                    },
+                    767: {
+                      slidesPerView: 1.15,
+                    },
+                    0: {
+                      slidesPerView: 1,
+                    },
+                  }}
+                >
+                  {dholeraData.map((data, index) => (
+                    <SwiperSlide key={index}>
+                      <div
+                        className={`inner-flex inner-flex-medium`
+                        }
+                        data-aos="fade-in"
+                        data-aos-delay="300"
+                        data-aos-duration="600"
+                      >
+                        <a
+                          href={data.img}
+                          data-fancybox="DholeratownshipFancybox2"
+                          // onClick={(e) => {
+                          //   e.preventDefault();
+                          //   handleImageClick(data.img);
+                          // }}
+                          target="_self"
+                          rel="noopener noreferrer"
                         >
-                          <a
-                            href={data.img}
-                            data-fancybox="DholeratownshipFancybox2"
-                            // onClick={(e) => {
-                            //   e.preventDefault();
-                            //   handleImageClick(data.img);
-                            // }}
-                            target="_self"
-                            rel="noopener noreferrer"
-                          >
-                            <img src={data.img} alt="" />
-                          </a>
-                        </div>
-                      </SwiperSlide>
+                          <img src={data.img} alt="" />
+                        </a>
+                      </div>
+                    </SwiperSlide>
 
-                    ))}
-                  </Swiper>
-                )}
+                  ))}
+                </Swiper>
+                {/* )} */}
               </div>
             </div>
           </section>
@@ -295,55 +313,56 @@ export default function ConstructionUpdate({ pageList }) {
               </div>
 
               <div className="timelineSwiper">
-                {Swiper && SwiperSlide && (
-                  <Swiper
-                    className="swiper-container"
-                    observer={true}
-                    observeParents={true}
-                    slidesPerView={3}
-                    spaceBetween={16}
-                    freeMode={true}
-                    navigation={{
-                      prevEl: ".swiper-button-prev.construction-button",
-                      nextEl: ".swiper-button-next.construction-button",
-                    }}
-                    breakpoints={{
-                      1152: {
-                        slidesPerView: 3,
-                      },
-                      767: {
-                        slidesPerView: 2,
-                      },
-                      0: {
-                        slidesPerView: 1.2,
-                      },
-                    }}
-                  >
-                    {constructionData.map((data, index) => (
-                      <SwiperSlide key={index}>
-                        <div
-                          className="inner-flex inner-flex-medium"
-                          data-aos="fade-in"
-                          data-aos-delay="300"
-                          data-aos-duration="600"
+                {/* {Swiper && SwiperSlide && ( */}
+                <Swiper
+                  className="swiper-container"
+                  observer={true}
+                  modules={[Navigation, Pagination, Autoplay, Keyboard, Mousewheel, FreeMode]}
+                  observeParents={true}
+                  slidesPerView={3}
+                  spaceBetween={16}
+                  freeMode={true}
+                  navigation={{
+                    prevEl: ".swiper-button-prev.construction-button",
+                    nextEl: ".swiper-button-next.construction-button",
+                  }}
+                  breakpoints={{
+                    1152: {
+                      slidesPerView: 3,
+                    },
+                    767: {
+                      slidesPerView: 2,
+                    },
+                    0: {
+                      slidesPerView: 1.2,
+                    },
+                  }}
+                >
+                  {constructionData.map((data, index) => (
+                    <SwiperSlide key={index}>
+                      <div
+                        className="inner-flex inner-flex-medium"
+                        data-aos="fade-in"
+                        data-aos-delay="300"
+                        data-aos-duration="600"
+                      >
+                        <a
+                          href={data.img}
+                          data-fancybox="DholeraFancybox"
+                          // onClick={(e) => {
+                          //   e.preventDefault();
+                          //   handleConstructionImageClick(data.img);
+                          // }}
+                          target="_self"
+                          rel="noopener noreferrer"
                         >
-                          <a
-                            href={data.img}
-                            data-fancybox="DholeraFancybox"
-                            // onClick={(e) => {
-                            //   e.preventDefault();
-                            //   handleConstructionImageClick(data.img);
-                            // }}
-                            target="_self"
-                            rel="noopener noreferrer"
-                          >
-                            <img src={data.img} alt="" />
-                          </a>
-                        </div>
-                      </SwiperSlide>
-                    ))}
-                  </Swiper>
-                )}
+                          <img src={data.img} alt="" />
+                        </a>
+                      </div>
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+                {/* )} */}
               </div>
             </div>
           </section>
@@ -378,55 +397,56 @@ export default function ConstructionUpdate({ pageList }) {
               </div>
 
               <div className="timelineSwiper">
-                {Swiper && SwiperSlide && (
-                  <Swiper
-                    className="swiper-container"
-                    observer={true}
-                    observeParents={true}
-                    slidesPerView={3}
-                    spaceBetween={16}
-                    freeMode={true}
-                    navigation={{
-                      prevEl: ".swiper-button-prev.constructiontownshipSwiper-button",
-                      nextEl: ".swiper-button-next.constructiontownshipSwiper-button",
-                    }}
-                    breakpoints={{
-                      1152: {
-                        slidesPerView: 3,
-                      },
-                      767: {
-                        slidesPerView: 2,
-                      },
-                      0: {
-                        slidesPerView: 1.2,
-                      },
-                    }}
-                  >
-                    {constructiontownshipData.map((data, index) => (
-                      <SwiperSlide key={index}>
-                        <div
-                          className="inner-flex inner-flex-medium"
-                          data-aos="fade-in"
-                          data-aos-delay="300"
-                          data-aos-duration="600"
+                {/* {Swiper && SwiperSlide && ( */}
+                <Swiper
+                  className="swiper-container"
+                  modules={[Navigation, Pagination, Autoplay, Keyboard, Mousewheel, FreeMode]}
+                  observer={true}
+                  observeParents={true}
+                  slidesPerView={3}
+                  spaceBetween={16}
+                  freeMode={true}
+                  navigation={{
+                    prevEl: ".swiper-button-prev.constructiontownshipSwiper-button",
+                    nextEl: ".swiper-button-next.constructiontownshipSwiper-button",
+                  }}
+                  breakpoints={{
+                    1152: {
+                      slidesPerView: 3,
+                    },
+                    767: {
+                      slidesPerView: 2,
+                    },
+                    0: {
+                      slidesPerView: 1.2,
+                    },
+                  }}
+                >
+                  {constructiontownshipData.map((data, index) => (
+                    <SwiperSlide key={index}>
+                      <div
+                        className="inner-flex inner-flex-medium"
+                        data-aos="fade-in"
+                        data-aos-delay="300"
+                        data-aos-duration="600"
+                      >
+                        <a
+                          href={data.img}
+                          data-fancybox="DholeratownshipFancybox"
+                          // onClick={(e) => {
+                          //   e.preventDefault();
+                          //   handleTownshipImageClick(data.img);
+                          // }}
+                          target="_self"
+                          rel="noopener noreferrer"
                         >
-                          <a
-                            href={data.img}
-                            data-fancybox="DholeratownshipFancybox"
-                            // onClick={(e) => {
-                            //   e.preventDefault();
-                            //   handleTownshipImageClick(data.img);
-                            // }}
-                            target="_self"
-                            rel="noopener noreferrer"
-                          >
-                            <img src={data.img} alt="" />
-                          </a>
-                        </div>
-                      </SwiperSlide>
-                    ))}
-                  </Swiper>
-                )}
+                          <img src={data.img} alt="" />
+                        </a>
+                      </div>
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+                {/* )} */}
               </div>
             </div>
           </section>
@@ -463,55 +483,56 @@ export default function ConstructionUpdate({ pageList }) {
               </div>
 
               <div className="timelineSwiper">
-                {Swiper && SwiperSlide && (
-                  <Swiper
-                    className="swiper-container"
-                    observer={true}
-                    observeParents={true}
-                    slidesPerView={3}
-                    spaceBetween={16}
-                    freeMode={true}
-                    navigation={{
-                      prevEl: ".swiper-button-prev.oliveGarden-button",
-                      nextEl: ".swiper-button-next.oliveGarden-button",
-                    }}
-                    breakpoints={{
-                      1152: {
-                        slidesPerView: 3,
-                      },
-                      767: {
-                        slidesPerView: 2,
-                      },
-                      0: {
-                        slidesPerView: 1.2,
-                      },
-                    }}
-                  >
-                    {oliveGardenData.map((data, index) => (
-                      <SwiperSlide key={index}>
-                        <div
-                          className="inner-flex inner-flex-medium"
-                          data-aos="fade-in"
-                          data-aos-delay="300"
-                          data-aos-duration="600"
+                {/* {Swiper && SwiperSlide && ( */}
+                <Swiper
+                  className="swiper-container"
+                  observer={true}
+                  observeParents={true}
+                  slidesPerView={3}
+                  modules={[Navigation, Pagination, Autoplay, Keyboard, Mousewheel, FreeMode]}
+                  spaceBetween={16}
+                  freeMode={true}
+                  navigation={{
+                    prevEl: ".swiper-button-prev.oliveGarden-button",
+                    nextEl: ".swiper-button-next.oliveGarden-button",
+                  }}
+                  breakpoints={{
+                    1152: {
+                      slidesPerView: 3,
+                    },
+                    767: {
+                      slidesPerView: 2,
+                    },
+                    0: {
+                      slidesPerView: 1.2,
+                    },
+                  }}
+                >
+                  {oliveGardenData.map((data, index) => (
+                    <SwiperSlide key={index}>
+                      <div
+                        className="inner-flex inner-flex-medium"
+                        data-aos="fade-in"
+                        data-aos-delay="300"
+                        data-aos-duration="600"
+                      >
+                        <a
+                          href={data.img}
+                          data-fancybox="DholeraFancybox2"
+                          // onClick={(e) => {
+                          //   e.preventDefault();
+                          //   handleOliveGardenImageClick(data.img);
+                          // }}
+                          target="_self"
+                          rel="noopener noreferrer"
                         >
-                          <a
-                            href={data.img}
-                            data-fancybox="DholeraFancybox2"
-                            // onClick={(e) => {
-                            //   e.preventDefault();
-                            //   handleOliveGardenImageClick(data.img);
-                            // }}
-                            target="_self"
-                            rel="noopener noreferrer"
-                          >
-                            <img src={data.img} alt="" />
-                          </a>
-                        </div>
-                      </SwiperSlide>
-                    ))}
-                  </Swiper>
-                )}
+                          <img src={data.img} alt="" />
+                        </a>
+                      </div>
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+                {/* )} */}
               </div>
             </div>
           </section>
@@ -545,55 +566,56 @@ export default function ConstructionUpdate({ pageList }) {
               </div>
 
               <div className="timelineSwiper">
-                {Swiper && SwiperSlide && (
-                  <Swiper
-                    className="swiper-container"
-                    observer={true}
-                    observeParents={true}
-                    slidesPerView={3}
-                    spaceBetween={16}
-                    freeMode={true}
-                    navigation={{
-                      prevEl: ".swiper-button-prev.Airport-button",
-                      nextEl: ".swiper-button-next.Airport-button",
-                    }}
-                    breakpoints={{
-                      1152: {
-                        slidesPerView: 3,
-                      },
-                      767: {
-                        slidesPerView: 2,
-                      },
-                      0: {
-                        slidesPerView: 1.2,
-                      },
-                    }}
-                  >
-                    {AirportData.map((data, index) => (
-                      <SwiperSlide key={index}>
-                        <div
-                          className="inner-flex inner-flex-medium"
-                          data-aos="fade-in"
-                          data-aos-delay="300"
-                          data-aos-duration="600"
+                {/* {Swiper && SwiperSlide && ( */}
+                <Swiper
+                  className="swiper-container"
+                  observer={true}
+                  observeParents={true}
+                  modules={[Navigation, Pagination, Autoplay, Keyboard, Mousewheel, FreeMode]}
+                  slidesPerView={3}
+                  spaceBetween={16}
+                  freeMode={true}
+                  navigation={{
+                    prevEl: ".swiper-button-prev.Airport-button",
+                    nextEl: ".swiper-button-next.Airport-button",
+                  }}
+                  breakpoints={{
+                    1152: {
+                      slidesPerView: 3,
+                    },
+                    767: {
+                      slidesPerView: 2,
+                    },
+                    0: {
+                      slidesPerView: 1.2,
+                    },
+                  }}
+                >
+                  {AirportData.map((data, index) => (
+                    <SwiperSlide key={index}>
+                      <div
+                        className="inner-flex inner-flex-medium"
+                        data-aos="fade-in"
+                        data-aos-delay="300"
+                        data-aos-duration="600"
+                      >
+                        <a
+                          href={data.img}
+                          data-fancybox="DholeratownshipFancybox22"
+                          // onClick={(e) => {
+                          //   e.preventDefault();
+                          //   handleAirportImageClick(data.img);
+                          // }}
+                          target="_self"
+                          rel="noopener noreferrer"
                         >
-                          <a
-                            href={data.img}
-                            data-fancybox="DholeratownshipFancybox22"
-                            // onClick={(e) => {
-                            //   e.preventDefault();
-                            //   handleAirportImageClick(data.img);
-                            // }}
-                            target="_self"
-                            rel="noopener noreferrer"
-                          >
-                            <img src={data.img} alt="" />
-                          </a>
-                        </div>
-                      </SwiperSlide>
-                    ))}
-                  </Swiper>
-                )}
+                          <img src={data.img} alt="" />
+                        </a>
+                      </div>
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+                {/* )} */}
               </div>
             </div>
           </section>
@@ -630,55 +652,56 @@ export default function ConstructionUpdate({ pageList }) {
               </div>
 
               <div className="timelineSwiper">
-                {Swiper && SwiperSlide && (
-                  <Swiper
-                    className="swiper-container"
-                    observer={true}
-                    observeParents={true}
-                    slidesPerView={3}
-                    spaceBetween={16}
-                    freeMode={true}
-                    navigation={{
-                      prevEl: ".swiper-button-prev.garden-button",
-                      nextEl: ".swiper-button-next.garden-button",
-                    }}
-                    breakpoints={{
-                      1152: {
-                        slidesPerView: 3,
-                      },
-                      767: {
-                        slidesPerView: 3,
-                      },
-                      0: {
-                        slidesPerView: 1.2,
-                      },
-                    }}
-                  >
-                    {gardenData.map((data, index) => (
-                      <SwiperSlide key={index}>
-                        <div
-                          className="inner-flex inner-flex-medium"
-                          data-aos="fade-in"
-                          data-aos-delay="700"
-                          data-aos-duration="600"
+                {/* {Swiper && SwiperSlide && ( */}
+                <Swiper
+                  className="swiper-container"
+                  observer={true}
+                  observeParents={true}
+                  slidesPerView={3}
+                  modules={[Navigation, Pagination, Autoplay, Keyboard, Mousewheel, FreeMode]}
+                  spaceBetween={16}
+                  freeMode={true}
+                  navigation={{
+                    prevEl: ".swiper-button-prev.garden-button",
+                    nextEl: ".swiper-button-next.garden-button",
+                  }}
+                  breakpoints={{
+                    1152: {
+                      slidesPerView: 3,
+                    },
+                    767: {
+                      slidesPerView: 3,
+                    },
+                    0: {
+                      slidesPerView: 1.2,
+                    },
+                  }}
+                >
+                  {gardenData.map((data, index) => (
+                    <SwiperSlide key={index}>
+                      <div
+                        className="inner-flex inner-flex-medium"
+                        data-aos="fade-in"
+                        data-aos-delay="700"
+                        data-aos-duration="600"
+                      >
+                        <a
+                          href={data.img}
+                          data-fancybox="DholeraFancybox3"
+                          // onClick={(e) => {
+                          //   e.preventDefault();
+                          //   handleGardenImageClick(data.img);
+                          // }}
+                          target="_self"
+                          rel="noopener noreferrer"
                         >
-                          <a
-                            href={data.img}
-                            data-fancybox="DholeraFancybox3"
-                            // onClick={(e) => {
-                            //   e.preventDefault();
-                            //   handleGardenImageClick(data.img);
-                            // }}
-                            target="_self"
-                            rel="noopener noreferrer"
-                          >
-                            <img src={data.img} alt="" />
-                          </a>
-                        </div>
-                      </SwiperSlide>
-                    ))}
-                  </Swiper>
-                )}
+                          <img src={data.img} alt="" />
+                        </a>
+                      </div>
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+                {/* )} */}
               </div>
             </div>
           </section>

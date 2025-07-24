@@ -27,11 +27,11 @@ export default async function ProjectDetailPage({ params }) {
         projectData = await api.PropertyDetail(slug);
     } catch (error) {
         console.error("Error fetching project detail:", error);
-        notFound(); // API failed, show 404
+        notFound(); 
     }
 
     if (!projectData || !projectData[0]) {
-        notFound(); // No project found, show 404 page
+        notFound(); 
     }
 
 

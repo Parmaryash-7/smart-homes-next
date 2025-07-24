@@ -33,6 +33,8 @@ export default function Detail({
   propertylist,
   projectListJson
 }) {
+
+  // console.log(projectDetail)
   const projectsArray = rawProjectData.list;
   const dispatch = useDispatch()
   // const { slug } = useParams();
@@ -493,9 +495,9 @@ export default function Detail({
                         data-aos-delay="0.7s"
                         data-aos-duration="600"
                       >
-                        <div className="about-btn-home outline-div-button button-div "onClick={() => {
-                                  dispatch(openInquiry())
-                                }}>
+                        <div className="about-btn-home outline-div-button button-div " onClick={() => {
+                          dispatch(openInquiry())
+                        }}>
                           {/* ng-click="inquire_popup_click(); inquiry_from_click();" */}
                           <button className="reecosys-template-button button-style-secondary ">
                             <span className="material-symbols-outlined">
@@ -1202,11 +1204,11 @@ export default function Detail({
                       ></iframe>
                     </div>
                   )}
-                  {projectDetail.location_link && (
+                  {matchedProject.location_link && (
                     <div className="wfc m0auto">
                       <div className="">
                         <a
-                          href={projectDetail.location_link}
+                          href={matchedProject.location_link}
                           target="_blank"
                           rel="noopener noreferrer"
                         >
@@ -1257,6 +1259,69 @@ export default function Detail({
           </section>
         </div>
       </div>
+      <section
+        className="reecosys-template-section relative"
+        id="reecosys-template-home-section-10"
+      >
+        <div className="">
+          <div className="homeContactForm relative j-c-sb">
+            <div
+              className="inner-flex j-c-sb  relative"
+              style={{ zIndex: 2 }}
+            >
+              <div
+                className="section-title"
+                data-aos="fade-up"
+                data-aos-delay="300"
+                data-aos-duration="600"
+              >
+                <h2 className="white-color">
+                  Prefer connecting directly? Get in touch with us via phone,
+                  email, or visit us at our office—we're here to help!
+                </h2>
+              </div>
+            </div>
+            <div className="flex-row alc contactBtnFlex relative" style={{ zIndex: 2 }}>
+
+              <Link href="tel:+917096961250" passHref>
+                <button
+                  className="reecosys-template-button button-style-white white-text wow fadeInUp"
+                  data-wow-delay="0.3s"
+                  data-wow-duration="0.6s"
+                >
+                  <span className="material-symbols-outlined">phone_in_talk</span>
+                  <p>Call Us</p>
+                </button>
+              </Link>
+
+              <Link href="mailto:info@smart-homes.in" passHref>
+                <button
+                  className="reecosys-template-button button-style-white white-text wow fadeInUp"
+                  data-wow-delay="0.4s"
+                  data-wow-duration="0.6s"
+                >
+                  <span className="material-symbols-outlined">drafts</span>
+                  <p>Send an email</p>
+                </button>
+              </Link>
+
+              <Link href="https://maps.app.goo.gl/4CYF8dhjXH65BjNK7" target="_blank" rel="noopener noreferrer">
+                <button
+                  className="reecosys-template-button button-style-white white-text wow fadeInUp"
+                  data-wow-delay="0.5s"
+                  data-wow-duration="0.6s"
+                >
+                  <span className="material-symbols-outlined">distance</span>
+                  <p>Visit Our Office</p>
+                </button>
+              </Link>
+
+            </div>
+
+            <div className="homeContactFormOverlay"></div>
+          </div>
+        </div>
+      </section>
       <div
         className={`click-overlay ${isAmenityOpen ? "active" : ""}`}
         onClick={() => {
