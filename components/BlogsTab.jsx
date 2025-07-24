@@ -55,7 +55,7 @@ export default function BlogsTab({ pageList, blogs_types_list }) {
                     {activeTab === 'blogs' ? (
                         <Blogs pageList={pageList} blogs_types_list={blogs_types_list} />
                     ) : (
-                        <Latestnews blogs_types_list={blogs_types_list} />
+                        <Latestnews blogs_types_list={blogs_types_list} isActive={true} />
                     )}
                 </div>
             </div>

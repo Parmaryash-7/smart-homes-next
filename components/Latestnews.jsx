@@ -2,7 +2,7 @@
 import React from "react";
 import "./Latestnews.css";
 
-export default function Latestnews({ blogs_types_list }) {
+export default function Latestnews({ blogs_types_list, isActive = false }) {
   return (
     <>
       <div className="latestnews_wrapper">
@@ -11,7 +11,13 @@ export default function Latestnews({ blogs_types_list }) {
             id="reecosys-contact-wrapper"
             className=" inner-flex inner-flex-big"
           >
-            <section
+            {isActive ? (
+              <>
+                
+              </>
+            ) : <>
+
+              <section
               className="reecosys-section relative"
               data-aos="fade-in"
               data-aos-delay="600"
@@ -31,6 +37,7 @@ export default function Latestnews({ blogs_types_list }) {
                 </div>
               </div>
             </div>
+            </>}
             <section
               className="reecosys-section project_blog_list_setion"
               id="reecosys-blog-section-2"

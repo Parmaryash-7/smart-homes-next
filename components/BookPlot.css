@@ -151,3 +151,7 @@
         .personal-grid>div {
         } */
   }
+
+  .cursor-pointer {
+    cursor: pointer;
+  }
