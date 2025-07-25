@@ -11,7 +11,7 @@ const defaultMetadata = {
 };
 
 export async function generateMetadata() {
-    const slug = "newsletter";
+    const slug = "newsletters";
     const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.smarthomesinfra.com";
 
     const pageList = await api.PageList();
@@ -21,7 +21,7 @@ export async function generateMetadata() {
     const description = page?.seo_description || defaultMetadata.description;
     const keywords = page?.seo_keywords || defaultMetadata.keywords;
     const ogImage = page?.seo_image || defaultMetadata.image;
-    const canonicalUrl = `${siteUrl}/newsletter`;
+    const canonicalUrl = `${siteUrl}/newsletters`;
 
     return {
         title,
