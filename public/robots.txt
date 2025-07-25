@@ -1,2 +1,3 @@
 User-agent: *
-Disallow:
+Disallow: /book-plot-now
+Disallow: /sitemap.xml
