@@ -56,7 +56,8 @@ export default function ChannelPartner({ pageList }) {
         ifsc_code: "",
         agree_tandc_display: false,
         reference_number_display: "",
-        secondary_contact_no: ""
+        secondary_contact_no: "",
+        company_url : ''
     });
 
 
@@ -76,79 +77,82 @@ export default function ChannelPartner({ pageList }) {
     const [countryDropdown2, setCountryDropdown2] = useState(false);
     const [countryDropdown3, setCountryDropdown3] = useState(false);
 
-    // const handleInputChange = (e) => {
-    //     const { name, value, type, checked } = e.target;
-    //     let newVal = type === "checkbox" ? checked : value;
-
-    //     if (name === "first_name") newVal = newVal.replace(/[0-9]/g, "");
-    //     if (name === "contact_no_display" || name === "contact_no_display_2") {
-    //         newVal = newVal.replace(/[^0-9]/g, "").slice(0, 10);
-    //     }
-    //     // if (name === "aadhar_no") {
-    //     //     newVal = newVal.replace(/[^0-9]/g, "").slice(0, 12);
-    //     // }
-
-    //     if (name === "reference_number") {
-    //         newVal = newVal.replace(/[^0-9]/g, "").slice(0, 10);
-    //     }
-    //     setCpFormData((prev) => ({ ...prev, [name]: newVal }));
-    //     setErrors((prev) => ({ ...prev, [name]: false }));
-    // };
-
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setCpObj((prev) => ({ ...prev, [name]: value }));
-        setErrors((prev) => ({ ...prev, [name]: false }));
-    };
-
     const handleInputChange = (e) => {
         const { name, value, type, checked } = e.target;
         let newVal = type === "checkbox" ? checked : value;
-        let error = false;
 
-        // Validation patterns
-        const nameRegex = /^[a-zA-Z\s]+$/;
-        const phoneRegex = /^\d{10}$/;
-        const emailRegex = /^[\w.-]+@[a-zA-Z\d.-]+\.[a-zA-Z]{2,}$/;
-        const aadharRegex = /^[2-9]{1}[0-9]{11}$/;
-        const panRegex = /^[A-Z]{5}[0-9]{4}[A-Z]{1}$/;
-
-        // Cleanup and validate by field
-        switch (name) {
-            case "first_name":
-                newVal = newVal.replace(/[0-9]/g, "");
-                if (!newVal.trim() || !nameRegex.test(newVal)) error = true;
-                break;
-            case "email_address":
-                if (!newVal.trim() || !emailRegex.test(newVal)) error = true;
-                break;
-            case "contact_no_display":
-            case "contact_no_display_2":
-            case "reference_number":
-                newVal = newVal.replace(/[^0-9]/g, "").slice(0, 10);
-                if (!newVal.trim() || !phoneRegex.test(newVal)) error = true;
-                break;
-            case "aadhar_no":
-                newVal = newVal.replace(/[^0-9]/g, "").slice(0, 12);
-                if (!newVal.trim() || !aadharRegex.test(newVal)) error = true;
-                break;
-            case "pan_no":
-                newVal = newVal.toUpperCase();
-                if (!newVal.trim() || !panRegex.test(newVal)) error = true;
-                break;
-            case "agree_tandc_display":
-                if (!checked) error = true;
-                break;
-            default:
-                break;
+        if (name === "first_name") newVal = newVal.replace(/[0-9]/g, "");
+        if (name === "contact_no_display" || name === "contact_no_display_2") {
+            newVal = newVal.replace(/[^0-9]/g, "").slice(0, 10);
         }
+        // if (name === "aadhar_no") {
+        //     newVal = newVal.replace(/[^0-9]/g, "").slice(0, 12);
+        // }
 
-        // Update form data
+        if (name === "reference_number") {
+            newVal = newVal.replace(/[^0-9]/g, "").slice(0, 10);
+        }
         setCpFormData((prev) => ({ ...prev, [name]: newVal }));
-
-        // Update error state
-        setErrors((prev) => ({ ...prev, [name]: error }));
+        setErrors((prev) => ({ ...prev, [name]: false }));
     };
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setCpFormData((prev) => ({ ...prev, [name]: value }));
+        setErrors((prev) => ({ ...prev, [name]: false }));
+    };
+
+    // const handleInputChange = (e) => {
+    //     const { name, value, type, checked } = e.target;
+    //     let newVal = type === "checkbox" ? checked : value;
+    //     let error = false;
+
+    //     // Validation patterns
+    //     const nameRegex = /^[a-zA-Z\s]+$/;
+    //     const phoneRegex = /^\d{10}$/;
+    //     const emailRegex = /^[\w.-]+@[a-zA-Z\d.-]+\.[a-zA-Z]{2,}$/;
+    //     const aadharRegex = /^[2-9]{1}[0-9]{11}$/;
+    //     const panRegex = /^[A-Z]{5}[0-9]{4}[A-Z]{1}$/;
+
+    //     // Cleanup and validate by field
+    //     // switch (name) {
+    //     //     case "first_name":
+    //     //         newVal = newVal.replace(/[0-9]/g, "");
+    //     //         if (!newVal.trim() || !nameRegex.test(newVal)) error = true;
+    //     //         break;
+    //     //     case "email_address":
+    //     //         if (!newVal.trim() || !emailRegex.test(newVal)) error = true;
+    //     //         break;
+    //     //     case "contact_no_display":
+    //     //     case "contact_no_display_2":
+    //     //     case "reference_number":
+    //     //         newVal = newVal.replace(/[^0-9]/g, "").slice(0, 10);
+    //     //         if (!newVal.trim() || !phoneRegex.test(newVal)) error = true;
+    //     //         break;
+    //     //     case "aadhar_no":
+    //     //         newVal = newVal.replace(/[^0-9]/g, "").slice(0, 12);
+    //     //         if (!newVal.trim() || !aadharRegex.test(newVal)) error = true;
+    //     //         break;
+    //     //     case "pan_no":
+    //     //         newVal = newVal.toUpperCase();
+    //     //         if (!newVal.trim() || !panRegex.test(newVal)) error = true;
+    //     //         break;
+    //     //     case "agree_tandc_display":
+    //     //         if (!checked) error = true;
+    //     //         break;
+    //     //     default:
+    //     //         break;
+    //     // }
+
+    //     // Update form data
+    //     setCpFormData((prev) => ({ ...prev, [name]: newVal }));
+
+    //     // Update error state
+    //     setErrors((prev) => ({ ...prev, [name]: error }));
+
+    //     // console.log(error)
+
+    // };
 
 
 
@@ -285,6 +289,7 @@ export default function ChannelPartner({ pageList }) {
     //         setCpSaveF(false);
     //     }
     // };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -303,7 +308,7 @@ export default function ChannelPartner({ pageList }) {
         if (!cpFormData.contact_no_display.trim() || !phoneRegex.test(cpFormData.contact_no_display)) newErrors.contact_no_display = true;
         if (!cpFormData.aadhar_no.trim() || !aadharRegex.test(cpFormData.aadhar_no)) newErrors.aadhar_no = true;
         if (!cpFormData.pan_no.trim() || !panRegex.test(cpFormData.pan_no.toUpperCase())) newErrors.pan_no = true;
-        if (!cpObj.pincode.trim() || !pincodeRegex.test(cpObj.pincode)) newErrors.pincode = true;
+        if (!cpFormData.pincode.trim() || !pincodeRegex.test(cpFormData.pincode)) newErrors.pincode = true;
         if (!cpFormData.agree_tandc_display) newErrors.agree_tandc_display = true;
         // if (!cpObj.gst_no.trim() || !gstRegex.test(cpObj.gst_no.toUpperCase())) newErrors.gst_no = true;
 
@@ -320,7 +325,6 @@ export default function ChannelPartner({ pageList }) {
 
         const contactPayload = {
             ...cpFormData,
-            ...cpObj,
             pan_no: cpFormData.pan_no.toUpperCase(),
             contact_no: cpFormData.country + ' ' + cpFormData.contact_no_display,
             reference_number: cpFormData.country + ' ' + cpFormData.contact_no_display_2,
@@ -347,19 +351,20 @@ export default function ChannelPartner({ pageList }) {
                     !(typeof value === "boolean" && value === false)
             )
         );
-
-        // console.log("✅ Final Submitted Data:", filteredPayload);
+        console.log(newErrors)
+        console.log("Final Submitted Data:", filteredPayload);
 
         try {
             const response = await api.ChannelInquiry(contactPayload);
 
             if (response.success) {
                 dispatch(setThankYouData({
+                    page_name: 'channel-partner',
                     type: "channelpartner",
                     name: cpFormData.first_name,
                 }));
 
-                router.push("/channel-partner/thank-you");
+                router.push("/channel-partner/thankyou");
 
                 // Reset forms
                 setCpFormData({
@@ -368,6 +373,7 @@ export default function ChannelPartner({ pageList }) {
                     first_name: "",
                     email_address: "",
                     contact_no_display: "",
+                    birthdate: "",
                     contact_no_display_2: "",
                     country: "91",
                     flag: "https://flagcdn.com/w40/in.webp",
@@ -388,7 +394,9 @@ export default function ChannelPartner({ pageList }) {
                     bank_account_no: "",
                     ifsc_code: "",
                     agree_tandc_display: false,
-                    birthdate: ''
+                    reference_number_display: "",
+                    secondary_contact_no: "",
+                    company_url : ''
                 });
 
                 setCpObj({
@@ -675,7 +683,7 @@ export default function ChannelPartner({ pageList }) {
                                                         name="company_type"
                                                         className="form-control"
                                                         id="company_type"
-                                                        value={cpObj.company_type}
+                                                        value={cpFormData.company_type}
                                                         onChange={handleChange}
                                                         tabIndex={17}
                                                     >
@@ -696,7 +704,7 @@ export default function ChannelPartner({ pageList }) {
                                                         type="text"
                                                         className="form-control"
                                                         tabIndex={18}
-                                                        value={cpObj.address}
+                                                        value={cpFormData.address}
                                                         onChange={handleChange}
                                                     />
                                                     <label className="md-lable" htmlFor="address">Registered Business Address</label>
@@ -709,7 +717,7 @@ export default function ChannelPartner({ pageList }) {
                                                         type="text"
                                                         className="form-control"
                                                         tabIndex={19}
-                                                        value={cpObj.city}
+                                                        value={cpFormData.city}
                                                         onChange={handleChange}
                                                     />
                                                     <label className="md-lable" htmlFor="city">City</label>
@@ -722,7 +730,7 @@ export default function ChannelPartner({ pageList }) {
                                                         type="text"
                                                         className="form-control"
                                                         tabIndex={20}
-                                                        value={cpObj.state}
+                                                        value={cpFormData.state}
                                                         onChange={handleChange}
                                                     />
                                                     <label className="md-lable" htmlFor="state">State</label>
@@ -737,7 +745,7 @@ export default function ChannelPartner({ pageList }) {
                                                         tabIndex={21}
                                                         minLength={6}
                                                         maxLength={6}
-                                                        value={cpObj.pincode}
+                                                        value={cpFormData.pincode}
                                                         onChange={handleChange}
                                                         inputMode="numeric"
                                                         pattern="[0-9]*"
@@ -749,10 +757,10 @@ export default function ChannelPartner({ pageList }) {
                                                     <input
                                                         id="company_url"
                                                         name="company_url"
-                                                        type="url"
+                                                        type="text"
                                                         className="form-control"
                                                         tabIndex={22}
-                                                        value={cpObj.company_url}
+                                                        value={cpFormData.company_url}
                                                         onChange={handleChange}
                                                     />
                                                     <label className="md-lable" htmlFor="company_url">Company Website</label>
@@ -765,7 +773,7 @@ export default function ChannelPartner({ pageList }) {
                                                         type="text"
                                                         className="form-control"
                                                         tabIndex={23}
-                                                        value={cpObj.gst_no}
+                                                        value={cpFormData.gst_no}
                                                         onChange={handleChange}
                                                     />
                                                     <label className="md-lable" htmlFor="gst_no">GST Number</label>
@@ -1060,7 +1068,8 @@ export default function ChannelPartner({ pageList }) {
                                                         type="submit"
                                                         tabIndex="37"
                                                     >
-                                                        <p>{cp_save_f ? "Please Wait..." : "Submit"}</p>
+                                                        {/* <p>{cp_save_f ? "Please Wait..." : "Submit"}</p> */}
+                                                        <p>Submit</p>
                                                     </button>
                                                 </div>
 
