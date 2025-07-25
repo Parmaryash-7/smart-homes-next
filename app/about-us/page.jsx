@@ -7,7 +7,7 @@ const defaultMetadata = {
         "Learn more about SmartHomes Infrastructure, a leading real estate developer in Dholera Smart City, shaping smart urban development with sustainability, technology, and innovation.",
     keywords:
         "About SmartHomes, Dholera smart city developers, real estate visionaries, SmartHomes Infrastructure company, Dholera eco-friendly homes",
-    image: "https://www.smarthomesinfra.com/assets/images/og-image.png", 
+    image: "https://www.smarthomesinfra.com/images/og-image.png", 
 };
 
 export async function generateMetadata() {
@@ -17,12 +17,12 @@ export async function generateMetadata() {
     const pageList = await api.PageList();
     const page = pageList.find(p => p.slug === slug);
     // console.log(page);
-    const title = page?.seo_title || defaultMetadata.title;
-    const description = page?.seo_description || defaultMetadata.description;
-    const keywords = page?.seo_keywords || defaultMetadata.keywords;
-    const ogImage = page?.seo_image || defaultMetadata.image;
+    const title = page?.page_title || defaultMetadata.title;
+    const description = page?.page_description || defaultMetadata.description;
+    const keywords = page?.page_keywords || defaultMetadata.keywords;
+    const ogImage = page?.page_image_full || defaultMetadata.image;
     const canonicalUrl = `${siteUrl}/about-us`;
-
+    // console.log(ogImage);
     return {
         title,
         description,

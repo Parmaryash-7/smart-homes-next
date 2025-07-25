@@ -17,9 +17,9 @@ import api from "lib/api.interceptor";
 const defaultMetadata = {
     title: "Privacy Policy | SmartHomes Infrastructure",
     description:
-        "Learn how SmartHomes Infrastructure protects your personal information. Read our privacy policy to understand our practices regarding data security and confidentiality.",
+        "Read the Privacy Policy of SmartHomes Infrastructure to understand how we collect, use, and protect your personal information while ensuring data security and confidentiality.",
     keywords:
-        "SmartHomes privacy policy, data protection, user privacy, real estate confidentiality, personal data use policy",
+        "Privacy Policy, SmartHomes Infrastructure",
     image: "https://www.smarthomesinfra.com/images/og-image.png",
 };
 

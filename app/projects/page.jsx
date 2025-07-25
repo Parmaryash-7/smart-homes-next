@@ -23,11 +23,11 @@ import getPageList from "lib/PageList";
 import getPropertyList from "lib/PropertList";
 
 const defaultMetadata = {
-    title: "Projects | SmartHomes Infrastructure in Dholera Smart City",
+    title: "SmartHomes Infrastructure Projects | Premium Properties in Dholera Smart City",
     description:
-        "Discover the innovative real estate projects by SmartHomes Infrastructure in Dholera Smart City. Browse through residential and commercial developments shaping the future.",
+        "Explore premium residential, commercial, and industrial projects by SmartHomes Infrastructure in Dholera Smart City. Discover legally clear, NA/NOC-approved, RERA-registered properties for secure investments.",
     keywords:
-        "SmartHomes projects, Dholera Smart City real estate, property development Dholera, SmartHomes Infrastructure projects",
+        "RERA-Registered Properties, NA/NOC Clear Title Properties, Premium Residential Projects, Commercial Projects, Industrial Projects",
     image: "https://www.smarthomesinfra.com/images/og-image.png",
 };
 

@@ -2,11 +2,11 @@ import ImportantDocuments from "../../components/ImportantDocuments";
 import api from "../../lib/api.interceptor";
 
 const defaultMetadata = {
-    title: "Dholera Smart City News, blogs & Updates | SmartHomes Infrastructure",
+    title: "NRI Investment in Dholera Smart City | Important Documents",
     description:
-        "Real Estate News, Real Estate blogs, Dholera Smart City, ",
+        "NRI Investment in Dholera Smart City | Important Documents ",
     keywords:
-        "SmartHomes newsletter, Dholera Smart City updates, real estate newsletter, SmartHomes Infrastructure news",
+        "NRI Investment in Dholera Smart City | Important Documents",
     image: "https://www.smarthomesinfra.com/images/og-image.png",
 };
 

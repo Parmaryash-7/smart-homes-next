@@ -28,7 +28,7 @@ export async function generateMetadata() {
 
     const pageList = await api.PageList();
     const page = pageList.find((p) => p.slug === slug);
-    console.log(page);
+    // console.log(page);
     const title = page?.seo_title || defaultMetadata.title;
     const description = page?.seo_description || defaultMetadata.description;
     const keywords = page?.seo_keywords || defaultMetadata.keywords;

@@ -51,12 +51,12 @@ export async function generateMetadata() {
     const pageList = await api.PageList();
     const projectData = propertylist.find((p) => p.slug === slug);
 
-    const title = projectData?.seo_title || defaultMetadata.title;
-    const description = projectData?.seo_description || defaultMetadata.description;
-    const keywords = projectData?.seo_keywords || defaultMetadata.keywords;
-    const ogImage = projectData?.seo_image || defaultMetadata.image;
+    const title = projectData?.page_title || defaultMetadata.title;
+    const description = projectData?.page_description || defaultMetadata.description;
+    const keywords = projectData?.page_keywords || defaultMetadata.keywords;
+    const ogImage = projectData?.page_image_full || defaultMetadata.image;
     const canonicalUrl = `${siteUrl}/dholera-forest-estate`;
-
+    console.log(ogImage);
     return {
         title,
         description,

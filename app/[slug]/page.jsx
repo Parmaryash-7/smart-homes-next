@@ -52,8 +52,8 @@ export async function generateMetadata({ params }) {
             robots: { index: false, follow: false },
         };
     }
-    const metaImage = project.image_web_full || `${siteUrl}/images/og-image.png`;
-    console.log(metaImage)
+    const metaImage = project.page_image_full || `${siteUrl}/images/og-image.png`;
+    // console.log(metaImage)
     return {
         title: project.page_title || project.name || 'SmartHomes Infrastructure',
         description: project.page_description || 'Explore SmartHomes Infrastructure projects and initiatives.',

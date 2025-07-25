@@ -15,9 +15,9 @@ import api from "lib/api.interceptor";
 const defaultMetadata = {
     title: "Dholera Smart City News, blogs & Updates | SmartHomes Infrastructure",
     description:
-        "Real Estate News, Real Estate blogs, Dholera Smart City, ",
+        "Stay informed with the latest blogs, news, blogs, and updates on real estate in Dholera Smart City and its surroundings. Explore market trends, investment insights, and growth opportunities. ",
     keywords:
-        "SmartHomes latest news, Dholera updates, real estate news, smart city blog, smart homes infrastructure",
+        "Real Estate News, Real Estate blogs, Dholera Smart City,",
     image: "https://www.smarthomesinfra.com/images/og-image.png",
 };
 
