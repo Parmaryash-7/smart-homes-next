@@ -11,10 +11,6 @@ export default async function ProjectDetailPage({ params }) {
     const { slug } = params;
     // const pageList = await api.PageList();
     const pageList = await getPageList();
-    // const projectData = propertylist.find((p) => p.slug === slug);
-    // const projectData = propertylist.find((p) => p.slug.trim().toLowerCase() === slug.trim().toLowerCase());
-    // const projectData = await api.PropertyDetail(slug)
-    // console.log(projectData, 'api');
     let projectData;
     try {
         projectData = await api.PropertyDetail(slug);
@@ -25,6 +21,7 @@ export default async function ProjectDetailPage({ params }) {
     if (!projectData || !projectData[0]) {
         notFound();
     }
+    console.log(projectData);
     return (
         <Detail
             projectListJson={projectListJson.list}

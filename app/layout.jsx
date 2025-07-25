@@ -11,6 +11,7 @@ import { ToastContainer } from 'react-toastify'
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
 import Script from 'next/script'
 import projectListJson from "../data/projectList.json"
+import DisclaimerPopup from '../components/DisclaimerPopup'
 
 export default async function RootLayout({ children }) {
   const propertylist = await api.Propertylist()
@@ -70,7 +71,7 @@ export default async function RootLayout({ children }) {
             gtag('js', new Date());
             gtag('config', 'AW-752745452');
           `}
-        </Script> 
+        </Script>
         <Script id="gtm-head" strategy="afterInteractive">
           {`
             (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -93,6 +94,7 @@ export default async function RootLayout({ children }) {
             <Header propertylist={propertylist} socialList={socialList} projectListJson={projectListJson.list} />
             <div className="page" >
               {children}
+              <DisclaimerPopup />
               <InquiryPopup />
               <Footer
                 propertylist={propertylist}
