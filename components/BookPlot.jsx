@@ -405,7 +405,7 @@ export default function BookPlotsForm({
           widgetIdRef.current = window.grecaptcha.render(
             'recaptcha-container',
             {
-              sitekey: '6Lc8goArAAAAABEfJMPPR3G7Rx89r5yrsr-X-iew',
+              sitekey: '6LdIAXwrAAAAAOo3_bSEEPe83mmBwz81hs7gHsdT',
               callback: 'onRecaptchaSuccess',
               'expired-callback': 'onRecaptchaExpired'
             }
@@ -528,8 +528,8 @@ export default function BookPlotsForm({
                         id="phone_number"
                         name="phone_number"
                         type="tel"
-                        minLength="10"
-                        maxLength="10"
+                        // minLength="10"
+                        // maxLength="10"
                         autoComplete="off"
                         className={`form-control contact-form ${formErrors.phone_number ? 'error' : ''
                           }`}
@@ -911,8 +911,8 @@ export default function BookPlotsForm({
                         id="reference_contact_number"
                         name="reference_contact_number"
                         type="tel"
-                        minLength="10"
-                        maxLength="10"
+                        // minLength="10"
+                        // maxLength="10"
                         autoComplete="off"
                         className={`form-control contact-form ${formErrors.reference_contact_number ? 'error' : ''
                           }`}
