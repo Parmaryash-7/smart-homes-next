@@ -57,11 +57,9 @@ export default function ChannelPartner({ pageList }) {
         agree_tandc_display: false,
         reference_number_display: "",
         secondary_contact_no: "",
-        company_url: ''
+        company_url: '',
+        pincode: ''
     });
-
-
-
 
     const [cpObj, setCpObj] = useState({
         company_type: "",
@@ -85,6 +83,18 @@ export default function ChannelPartner({ pageList }) {
         if (name === "contact_no_display" || name === "contact_no_display_2") {
             newVal = newVal.replace(/[^0-9]/g, "").slice(0, 10);
         }
+        if (name === "aadhar_no") {
+            newVal = newVal.replace(/[^0-9]/g, "").slice(0, 12);
+        }
+
+        if (name === "pincode") {
+            newVal = newVal.replace(/[^0-9]/g, "").slice(0, 6);
+        }
+        if (name === "pan_no") {
+            newVal = newVal.toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, 10);
+        }
+
+
         // if (name === "aadhar_no") {
         //     newVal = newVal.replace(/[^0-9]/g, "").slice(0, 12);
         // }
@@ -200,7 +210,7 @@ export default function ChannelPartner({ pageList }) {
 
 
     // const handleSubmit = async (e) => {
-    //     console.log("🚀 Submit clicked");
+    //     console.log("Submit clicked");
     //     e.preventDefault();
 
     //     const validationErrors = validateForm();
@@ -308,11 +318,20 @@ export default function ChannelPartner({ pageList }) {
         if (!cpFormData.contact_no_display.trim() || !phoneRegex.test(cpFormData.contact_no_display)) newErrors.contact_no_display = true;
         if (!cpFormData.aadhar_no.trim() || !aadharRegex.test(cpFormData.aadhar_no)) newErrors.aadhar_no = true;
         if (!cpFormData.pan_no.trim() || !panRegex.test(cpFormData.pan_no.toUpperCase())) newErrors.pan_no = true;
-        // if (!cpFormData.pincode.trim() || !pincodeRegex.test(cpFormData.pincode)) newErrors.pincode = true;
+        if (cpFormData.pincode.trim() && !pincodeRegex.test(cpFormData.pincode)) {
+            newErrors.pincode = true;
+        }
         if (!cpFormData.agree_tandc_display) newErrors.agree_tandc_display = true;
         // if (!cpObj.gst_no.trim() || !gstRegex.test(cpObj.gst_no.toUpperCase())) newErrors.gst_no = true;
 
         if (Object.keys(newErrors).length > 0) {
+
+            setTimeout(() => {
+                const firstErrorElement = document.querySelector('.error');
+                if (firstErrorElement) {
+                    firstErrorElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }, 100);
 
             setErrors(newErrors);
             // console.log("Form Errors:", newErrors);
@@ -396,7 +415,8 @@ export default function ChannelPartner({ pageList }) {
                     agree_tandc_display: false,
                     reference_number_display: "",
                     secondary_contact_no: "",
-                    company_url: ''
+                    company_url: '',
+                    pincode: ''
                 });
 
                 setCpObj({
@@ -506,7 +526,7 @@ export default function ChannelPartner({ pageList }) {
                                                         name="email_address"
                                                         value={cpFormData.email_address}
                                                         onChange={handleInputChange}
-                                                        type="email"
+                                                        type="text"
                                                         className={`form-control ${errors.email_address ? "error" : ""}`}
                                                         autoComplete="off"
                                                         tabIndex="12"
@@ -522,8 +542,8 @@ export default function ChannelPartner({ pageList }) {
                                                         value={cpFormData.contact_no_display}
                                                         onChange={handleInputChange}
                                                         type="tel"
-                                                        minLength="10"
-                                                        maxLength="10"
+                                                        // minLength="10"
+                                                        // maxLength="10"
                                                         className={`form-control contact-form ${errors.contact_no_display ? "error" : ""}`}
                                                         tabIndex="13"
                                                     />
@@ -581,8 +601,8 @@ export default function ChannelPartner({ pageList }) {
                                                         value={cpFormData.contact_no_display_2}
                                                         onChange={handleInputChange}
                                                         type="tel"
-                                                        minLength="10"
-                                                        maxLength="10"
+                                                        // minLength="10"
+                                                        // maxLength="10"
                                                         className="form-control contact-form"
                                                         tabIndex="14"
                                                     />
@@ -647,8 +667,8 @@ export default function ChannelPartner({ pageList }) {
                                                         type="text"
                                                         // className="form-control"
                                                         className={`form-control ${errors.pan_no ? "error" : ""}`}
-                                                        minLength="10"
-                                                        maxLength="10"
+                                                        // minLength="10"
+                                                        // maxLength="10"
                                                         tabIndex="15"
                                                         style={{ textTransform: "uppercase" }}
                                                     />
@@ -665,10 +685,10 @@ export default function ChannelPartner({ pageList }) {
                                                         type="text"
                                                         // className="form-control"
                                                         className={`form-control ${errors.aadhar_no ? "error" : ""}`}
-                                                        pattern="\d*"
+                                                        // pattern="\d*"
                                                         inputMode="numeric"
-                                                        minLength="12"
-                                                        maxLength="12"
+                                                        // minLength="12"
+                                                        // maxLength="12"
                                                         tabIndex="16"
                                                     />
                                                     <label className="md-lable" htmlFor="aadhar_no">Aadhar Number*</label>
@@ -740,15 +760,16 @@ export default function ChannelPartner({ pageList }) {
                                                     <input
                                                         id="Pincode"
                                                         name="pincode"
-                                                        type="text"
-                                                        className="form-control"
+                                                        type="tel"
+                                                        // className="form-control"
+                                                        className={`form-control ${errors.pincode ? "error" : ""}`}
                                                         tabIndex={21}
-                                                        minLength={6}
-                                                        maxLength={6}
+                                                        // minLength={6}
+                                                        // maxLength={6}
                                                         value={cpFormData.pincode}
-                                                        onChange={handleChange}
+                                                        onChange={handleInputChange}
                                                         inputMode="numeric"
-                                                        pattern="[0-9]*"
+                                                    // pattern="[0-9]*"
                                                     />
                                                     <label className="md-lable" htmlFor="Pincode">Pincode</label>
                                                 </div>
