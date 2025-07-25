@@ -90,7 +90,6 @@ export async function generateMetadata() {
 export default async function BlogsPage() {
     const pageList = await getPageList();
     const blogDetailData = await getBlogDetail();
-
     return (
         <BlogsTab
             pageList={pageList}

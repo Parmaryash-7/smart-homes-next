@@ -81,6 +81,6 @@ export async function generateMetadata() {
 
 export default async function NewsletterPage() {
     const blogDetailData = await getBlogDetail();
-
+    // console.log(blogDetailData);
     return <Newsletter blogs_types_list={blogDetailData} />;
 }

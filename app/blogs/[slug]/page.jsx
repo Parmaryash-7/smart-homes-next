@@ -33,12 +33,12 @@ const defaultMetadata = {
         "Read the latest insights, news, and updates from SmartHomes Infrastructure about Dholera Smart City and sustainable real estate development.",
     keywords:
         "SmartHomes blog, Dholera insights, real estate updates, smart city blog",
-    image: "https://www.smarthomesinfra.com/images/og-image.png", 
+    image: "https://www.smarthomesinfra.com/assets/images/og-image.png", 
 };
 
 export async function generateMetadata({ params }) {
     const { slug } = params;
-    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.smarthomesinfra.com";
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.smarthomesinfra.in";
 
     const blogs = await getBlogDetail();
     const blog = blogs.find((b) => b.slug === slug);
