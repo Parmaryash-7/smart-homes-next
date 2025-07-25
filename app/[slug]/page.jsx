@@ -21,7 +21,9 @@ export default async function ProjectDetailPage({ params }) {
     if (!projectData || !projectData[0]) {
         notFound();
     }
-    console.log(projectData);
+    console.log(projectListJson.list, "list");
+    console.log(projectData[0], "data");
+    console.log(pageList, "page list");
     return (
         <Detail
             projectListJson={projectListJson.list}
