@@ -26,7 +26,7 @@ const defaultMetadata = {
 
 export async function generateMetadata() {
   const slug = "Thankyou";
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.smarthomesinfra.in";
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.smarthomesinfra.com";
 
   const page = await api.Propertylist(slug);
 

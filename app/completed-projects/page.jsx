@@ -35,7 +35,7 @@ const defaultMetadata = {
 
 export async function generateMetadata() {
     const slug = "completed-projects";
-    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.smarthomesinfra.in";
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.smarthomesinfra.com";
 
     const pageList = await api.PageList();
     const page = pageList.find((p) => p.slug === slug);

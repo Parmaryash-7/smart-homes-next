@@ -20,10 +20,10 @@ export default async function ProjectDetailPage({ params }) {
         projectData = await api.PropertyDetail(slug);
     } catch (error) {
         console.error("Error fetching project detail:", error);
-        notFound(); 
+        notFound();
     }
     if (!projectData || !projectData[0]) {
-        notFound(); 
+        notFound();
     }
     return (
         <Detail
@@ -38,12 +38,13 @@ export default async function ProjectDetailPage({ params }) {
 // import { redirect } from "next/navigation";
 // import api from 'lib/api.interceptor';
 export async function generateMetadata({ params }) {
-    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.smarthomesinfra.in';
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.smarthomesinfra.com';
     const { slug } = params;
     const propertylistRunning = await api.Propertylist();
     const completedPropertylist = await api.CompletedPropertyList();
     const propertylist = [...propertylistRunning, ...completedPropertylist];
     const project = propertylist.find((p) => p.slug === slug);
+    // console.log(project);
     if (!project) {
         return {
             title: 'SmartHomes Infrastructure | Project Not Found',
@@ -51,7 +52,8 @@ export async function generateMetadata({ params }) {
             robots: { index: false, follow: false },
         };
     }
-    const metaImage = project.page_image || `${siteUrl}/assets/images/default-og-image.jpg`;
+    const metaImage = project.image_web_full || `${siteUrl}/images/og-image.png`;
+    console.log(metaImage)
     return {
         title: project.page_title || project.name || 'SmartHomes Infrastructure',
         description: project.page_description || 'Explore SmartHomes Infrastructure projects and initiatives.',

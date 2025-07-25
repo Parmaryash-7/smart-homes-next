@@ -45,7 +45,7 @@ const defaultMetadata = {
 
 export async function generateMetadata() {
     const slug = "dholera-forest-estate";
-    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.smarthomesinfra.in";
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.smarthomesinfra.com";
 
     const propertylist = await api.Propertylist();
     const pageList = await api.PageList();
