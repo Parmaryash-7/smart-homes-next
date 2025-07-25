@@ -57,7 +57,7 @@ export default function ChannelPartner({ pageList }) {
         agree_tandc_display: false,
         reference_number_display: "",
         secondary_contact_no: "",
-        company_url : ''
+        company_url: ''
     });
 
 
@@ -308,7 +308,7 @@ export default function ChannelPartner({ pageList }) {
         if (!cpFormData.contact_no_display.trim() || !phoneRegex.test(cpFormData.contact_no_display)) newErrors.contact_no_display = true;
         if (!cpFormData.aadhar_no.trim() || !aadharRegex.test(cpFormData.aadhar_no)) newErrors.aadhar_no = true;
         if (!cpFormData.pan_no.trim() || !panRegex.test(cpFormData.pan_no.toUpperCase())) newErrors.pan_no = true;
-        if (!cpFormData.pincode.trim() || !pincodeRegex.test(cpFormData.pincode)) newErrors.pincode = true;
+        // if (!cpFormData.pincode.trim() || !pincodeRegex.test(cpFormData.pincode)) newErrors.pincode = true;
         if (!cpFormData.agree_tandc_display) newErrors.agree_tandc_display = true;
         // if (!cpObj.gst_no.trim() || !gstRegex.test(cpObj.gst_no.toUpperCase())) newErrors.gst_no = true;
 
@@ -396,7 +396,7 @@ export default function ChannelPartner({ pageList }) {
                     agree_tandc_display: false,
                     reference_number_display: "",
                     secondary_contact_no: "",
-                    company_url : ''
+                    company_url: ''
                 });
 
                 setCpObj({
