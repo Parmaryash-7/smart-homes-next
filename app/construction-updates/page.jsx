@@ -17,7 +17,7 @@ const defaultMetadata = {
         "Get the latest construction updates on SmartHomes Infrastructure's projects in Dholera Smart City. Stay informed about project progress, milestones, and development updates.",
     keywords:
         "Dholera Smart City, Smart Home's construction updates",
-    image: "https://www.smarthomesinfra.com/assets/images/og-image.png",
+    image: "https://www.smarthomesinfra.com/images/og-image.png",
 };
 
 export async function generateMetadata() {

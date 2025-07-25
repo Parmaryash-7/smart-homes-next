@@ -21,7 +21,7 @@ const defaultMetadata = {
     "Thank You",
   keywords:
     "Thank You",
-  image: "https://www.smarthomesinfra.com/assets/images/og-image.png",
+  image: "https://www.smarthomesinfra.com/images/og-image.png",
 };
 
 export async function generateMetadata() {

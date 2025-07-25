@@ -18,7 +18,7 @@ const defaultMetadata = {
         "Real Estate News, Real Estate blogs, Dholera Smart City, ",
     keywords:
         "SmartHomes latest news, Dholera updates, real estate news, smart city blog, smart homes infrastructure",
-    image: "https://www.smarthomesinfra.com/assets/images/og-image.png",
+    image: "https://www.smarthomesinfra.com/images/og-image.png",
 };
 
 export async function generateMetadata() {

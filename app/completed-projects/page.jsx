@@ -30,7 +30,7 @@ const defaultMetadata = {
         "Discover SmartHomes Infrastructure's completed projects in Dholera Smart City. All projects are NA, NOC approved, and clear title properties—offering a safe and reliable investment for the future.",
     keywords:
         "completed projects Dholera, SmartHomes developments, Dholera smart city projects, real estate achievements, infrastructure progress",
-    image: "https://www.smarthomesinfra.com/assets/images/og-image.png",
+    image: "https://www.smarthomesinfra.com/images/og-image.png",
 };
 
 export async function generateMetadata() {

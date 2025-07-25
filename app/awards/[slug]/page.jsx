@@ -41,7 +41,7 @@ const defaultMetadata = {
     title: "Awards & Recognitions | SmartHomes Infrastructure Dholera",
     description: "Explore our prestigious awards recognizing our excellence in real estate development and smart city innovation at Dholera Smart City.",
     keywords: "SmartHomes awards, Dholera real estate, achievements, real estate recognition, Gujarat property awards",
-    image: "https://www.smarthomesinfra.com/assets/images/og-image.png", 
+    image: "https://www.smarthomesinfra.com/images/og-image.png", 
 };
 
 export async function generateMetadata({ params }) {

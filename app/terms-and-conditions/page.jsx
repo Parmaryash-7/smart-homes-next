@@ -19,7 +19,7 @@ const defaultMetadata = {
         "Read the terms and conditions of SmartHomes Infrastructure to understand our policies, disclaimers, and legal guidelines.",
     keywords:
         "SmartHomes terms and conditions, legal policies, real estate terms, SmartHomes Infrastructure",
-    image: "https://www.smarthomesinfra.com/assets/images/og-image.png",
+    image: "https://www.smarthomesinfra.com/images/og-image.png",
 };
 
 export async function generateMetadata() {

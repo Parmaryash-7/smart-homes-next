@@ -40,7 +40,7 @@ const defaultMetadata = {
         "Dholera Forest Estate offers serviced villas, residential and commercial plots in Dholera Smart City. Spread across 2 Lakh Sq. Yards, it’s Dholera’s first forest-themed township with world-class amenities.",
     keywords:
         "Dholera Forest Estate, Serviced Villas, Residential and Commercial Plots in Dholera, forest estate, dholera investment",
-    image: "https://www.smarthomesinfra.com/assets/images/og-image.png",
+    image: "https://www.smarthomesinfra.com/images/og-image.png",
 };
 
 export async function generateMetadata() {

@@ -14,7 +14,7 @@ const defaultMetadata = {
         "Join SmartHomes Infrastructure, the most trusted real estate brand in Dholera Smart City. Become a franchise partner and benefit from a proven business model, legally clear properties, and a high-growth investment opportunity.",
     keywords:
         "Partner with SmartHomes Infrastructure, Franchise Opportunity, Dholera Smart City, ",
-    image: "https://www.smarthomesinfra.com/assets/images/og-image.png",
+    image: "https://www.smarthomesinfra.com/images/og-image.png",
 };
 
 export async function generateMetadata() {
