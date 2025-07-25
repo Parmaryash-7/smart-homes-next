@@ -84,9 +84,8 @@ export default async function RootLayout({ children }) {
 
 
         {/* Google reCAPTCHA */}
-        <Script src="https://www.google.com/recaptcha/api.js"
-          strategy="afterInteractive"
-        />
+        <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
+
 
         <AOSInitializer />
         <Providers>

@@ -184,7 +184,7 @@ export default function BookPlotsForm({
     return Object.keys(errors).length === 0
   }
 
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault()
 
@@ -398,28 +398,32 @@ export default function BookPlotsForm({
 
   // for capture
 
+
   useEffect(() => {
+    const onRecaptchaSuccess = (token) => {
+      console.log("Recaptcha success:", token);
+    };
+
+    const onRecaptchaExpired = () => {
+      console.log("Recaptcha expired");
+    };
+
     const renderRecaptcha = () => {
       if (typeof window.grecaptcha !== 'undefined') {
-        if (widgetIdRef.current === null) {
-          widgetIdRef.current = window.grecaptcha.render(
-            'recaptcha-container',
-            {
-              sitekey: '6LdIAXwrAAAAAOo3_bSEEPe83mmBwz81hs7gHsdT',
-              callback: 'onRecaptchaSuccess',
-              'expired-callback': 'onRecaptchaExpired'
-            }
-          )
-        } else {
-          window.grecaptcha.reset(widgetIdRef.current)
+        if (!document.getElementById('recaptcha-container')?.hasChildNodes()) {
+          widgetIdRef.current = window.grecaptcha.render('recaptcha-container', {
+            sitekey: '6LdIAXwrAAAAAOo3_bSEEPe83mmBwz81hs7gHsdT',
+            callback: onRecaptchaSuccess,
+            'expired-callback': onRecaptchaExpired,
+          });
         }
       } else {
-        setTimeout(renderRecaptcha, 500)
+        setTimeout(renderRecaptcha, 500);
       }
-    }
+    };
 
-    renderRecaptcha()
-  }, [])
+    renderRecaptcha();
+  }, []);
 
   const handleProjectSelect = async (projectId) => {
     setInquiryObj2((prev) => ({ ...prev, project_id: projectId }))
