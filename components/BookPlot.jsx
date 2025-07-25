@@ -531,8 +531,8 @@ export default function BookPlotsForm({
                         id="phone_number"
                         name="phone_number"
                         type="tel"
-                        // minLength="10"
-                        // maxLength="10"
+                        minLength="10"
+                        maxLength="10"
                         autoComplete="off"
                         className={`form-control contact-form ${formErrors.phone_number ? 'error' : ''
                           }`}
@@ -914,8 +914,8 @@ export default function BookPlotsForm({
                         id="reference_contact_number"
                         name="reference_contact_number"
                         type="tel"
-                        // minLength="10"
-                        // maxLength="10"
+                        minLength="10"
+                        maxLength="10"
                         autoComplete="off"
                         className={`form-control contact-form ${formErrors.reference_contact_number ? 'error' : ''
                           }`}
