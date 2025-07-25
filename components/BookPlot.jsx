@@ -27,6 +27,7 @@ export default function BookPlotsForm({
   const [showRefCountryDropdown, setShowRefCountryDropdown] = useState(false)
   const [userSearchText, setUserSearchText] = useState('')
   const [refSearchText, setRefSearchText] = useState('')
+  const [recaptchaReady, setRecaptchaReady] = useState(false);
 
   const handleUserFlagClick = () => {
     setShowUserCountryDropdown((prev) => !prev)
@@ -393,7 +394,10 @@ export default function BookPlotsForm({
   // for capture
 
 
+
   useEffect(() => {
+    if (!recaptchaReady) return;
+
     const onRecaptchaSuccess = (token) => {
       console.log("Recaptcha success:", token);
     };
@@ -404,6 +408,7 @@ export default function BookPlotsForm({
 
     const renderRecaptcha = () => {
       if (typeof window.grecaptcha !== 'undefined') {
+        // Only render if not already rendered
         if (!document.getElementById('recaptcha-container')?.hasChildNodes()) {
           widgetIdRef.current = window.grecaptcha.render('recaptcha-container', {
             sitekey: '6LdIAXwrAAAAAOo3_bSEEPe83mmBwz81hs7gHsdT',
@@ -417,7 +422,7 @@ export default function BookPlotsForm({
     };
 
     renderRecaptcha();
-  }, []);
+  }, [recaptchaReady]);
 
   const handleProjectSelect = async (projectId) => {
     setInquiryObj2((prev) => ({ ...prev, project_id: projectId }))
@@ -1052,11 +1057,11 @@ export default function BookPlotsForm({
                       </a>
                     </label>
                   </p>
-                  {/* <Script
+                  <Script
                     src="https://www.google.com/recaptcha/api.js?render=explicit"
                     strategy="afterInteractive"
                     onLoad={() => setRecaptchaReady(true)}
-                  /> */}
+                  />
 
                   <div
                     id="recaptcha-container"
