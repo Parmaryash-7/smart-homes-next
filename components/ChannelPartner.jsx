@@ -351,8 +351,8 @@ export default function ChannelPartner({ pageList }) {
                     !(typeof value === "boolean" && value === false)
             )
         );
-        console.log(newErrors)
-        console.log("Final Submitted Data:", filteredPayload);
+        // console.log(newErrors)
+        // console.log("Final Submitted Data:", filteredPayload);
 
         try {
             const response = await api.ChannelInquiry(contactPayload);
