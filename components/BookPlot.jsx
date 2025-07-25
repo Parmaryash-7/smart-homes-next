@@ -1,5 +1,5 @@
 'use client'
-
+import Script from 'next/script'
 import React, { useEffect, useState, useMemo, useRef } from 'react'
 import moment from 'moment'
 import './BookPlot.css'
@@ -254,9 +254,8 @@ export default function BookPlotsForm({
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
 
-    // ✅ PHONE FIELDS — digits only, do NOT affect nationality/flag
     if (name === 'phone_number' || name === 'reference_contact_number') {
-      const numericValue = value.replace(/\D/g, ''); // allow only digits
+      const numericValue = value.replace(/\D/g, '');
 
       setInquiryObj2((prev) => ({
         ...prev,
@@ -272,7 +271,6 @@ export default function BookPlotsForm({
       return;
     }
 
-    // ✅ NATIONALITY — updates nationality, flag, and phone code
     if (name === 'nationality') {
       const selected = countryList.find((c) => c.nicename === value);
       if (selected) {
@@ -293,12 +291,10 @@ export default function BookPlotsForm({
       return;
     }
 
-    // ✅ PROJECT TYPE — apply project type filter
     if (name === 'project_type') {
       setFilterType(value);
     }
 
-    // ✅ PROJECT ID — update unit plans for selected project
     if (name === 'project_id') {
       const selectedProject = filteredProjects.find(
         (p) => p.project_id === value
@@ -311,7 +307,6 @@ export default function BookPlotsForm({
       }
     }
 
-    // ✅ PLOT NUMBER — auto-fill size + unit ID
     if (name === 'plot_number') {
       const selectedUnit = unitPlans.find((unit) => unit.flat_no_temp === value);
 
@@ -325,7 +320,6 @@ export default function BookPlotsForm({
       }
     }
 
-    // ✅ DEFAULT UPDATE — all other inputs
     setInquiryObj2((prev) => ({
       ...prev,
       [name]: type === 'checkbox' ? checked : value
@@ -1058,13 +1052,18 @@ export default function BookPlotsForm({
                       </a>
                     </label>
                   </p>
+                  {/* <Script
+                    src="https://www.google.com/recaptcha/api.js?render=explicit"
+                    strategy="afterInteractive"
+                    onLoad={() => setRecaptchaReady(true)}
+                  /> */}
 
                   <div
                     id="recaptcha-container"
                     className="g-recaptcha"
-                    data-sitekey="6Lc8goArAAAAABEfJMPPR3G7Rx89r5yrsr-X-iew"
-                    data-callback="onRecaptchaSuccess"
-                    data-expired-callback="onRecaptchaExpired"
+                  // data-sitekey="6Lc8goArAAAAABEfJMPPR3G7Rx89r5yrsr-X-iew"
+                  // data-callback="onRecaptchaSuccess"
+                  // data-expired-callback="onRecaptchaExpired"
                   ></div>
 
                   <div className="flex-row alc">
