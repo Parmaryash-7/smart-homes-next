@@ -442,7 +442,13 @@ export default function Detail({
                               </div>
                             )}
                           {!projectDetail.amenities_image &&
-                            projectDetail.highlights?.length > 0 && (
+                              Array.isArray(projectDetail.highlights) &&
+                              projectDetail.highlights.length > 0 &&
+                              Array.isArray(projectDetail.gallery_data) &&
+                              projectDetail.gallery_data.length > 0 &&
+                              Array.isArray(projectDetail.gallery_data[0].image) &&
+                              projectDetail.gallery_data[0].image.length > 0 &&
+                              projectDetail.gallery_data[0].image[0].image && (
                               <div
                                 data-aos="fade-top"
                                 data-aos-delay="400"
@@ -1312,7 +1318,9 @@ export default function Detail({
             </div>
             <div className="all-amenites-list">
               <ul>
-                {projectDetail.amenities_data.map((amenities, index) => (
+                {Array.isArray(projectDetail.amenities_data) &&
+                projectDetail.amenities_data.length > 0 &&
+                projectDetail.amenities_data.map((amenities, index) => (
                   <li key={index} className="flex-row alc">
                     <div className="amenities-icon ">
                       <img
