@@ -1,3 +1,13 @@
 User-agent: *
-Disallow: /book-plot-now
-Disallow: /sitemap.xml
+Disallow:
+Disallow: /book-plot-now/dholera-international-airport-city-1/ 
+Disallow: /book-plot-now/dholera-international-airport-city-2-commercial-plots/ 
+Disallow: /book-plot-now/dholera-expressway-city-township/ 
+Disallow: /book-plot-now/dholera-forest-estate/
+Disallow: /book-plot-now/dholera-expressway-city-I/
+Disallow: /book-plot-now/dholera-expressway-avenue-1-commercial-plots/ 
+Disallow: /book-plot-now/dholera-forest-estate-commercial-plots/ 
+Disallow: /book-plot-now/dholera-international-airport-city-2/
+Disallow: /book-plot-now/dholera-expressway-avenue-1/
+
+Sitemap: https://www.smarthomesinfra.com/sitemap.xml
