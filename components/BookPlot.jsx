@@ -1,4 +1,5 @@
 'use client'
+
 import Script from 'next/script'
 import React, { useEffect, useState, useMemo, useRef } from 'react'
 import moment from 'moment'
@@ -22,13 +23,10 @@ export default function BookPlotsForm({
   const [filterType, setFilterType] = useState('')
   const [filteredProjects, setFilteredProjects] = useState([])
   const [unitPlans, setUnitPlans] = useState([])
-  const widgetIdRef = useRef(null)
   const [showUserCountryDropdown, setShowUserCountryDropdown] = useState(false)
   const [showRefCountryDropdown, setShowRefCountryDropdown] = useState(false)
   const [userSearchText, setUserSearchText] = useState('')
   const [refSearchText, setRefSearchText] = useState('')
-  const [recaptchaReady, setRecaptchaReady] = useState(false);
-
   const handleUserFlagClick = () => {
     setShowUserCountryDropdown((prev) => !prev)
     setShowRefCountryDropdown(false)
@@ -393,36 +391,66 @@ export default function BookPlotsForm({
 
   // for capture
 
+  // const [recaptchaReady, setRecaptchaReady] = useState(false);
+  // const widgetIdRef = useRef(null);
+  // const [recaptchaToken, setRecaptchaToken] = useState('');
 
+  // const onRecaptchaSuccess = (token) => {
+  //   console.log('Recaptcha success:', token);
+  //   setRecaptchaToken(token);
+  // };
+
+  // const onRecaptchaExpired = () => {
+  //   console.log('Recaptcha expired');
+  //   setRecaptchaToken('');
+  // };
+
+  // useEffect(() => {
+  //   if (!recaptchaReady) return;
+
+  //   const interval = setInterval(() => {
+  //     if (window.grecaptcha && window.grecaptcha.render) {
+  //       clearInterval(interval);
+
+  //       if (!document.getElementById('recaptcha-container')?.hasChildNodes()) {
+  //         widgetIdRef.current = window.grecaptcha.render('recaptcha-container', {
+  //           sitekey: '6LdIAXwrAAAAAOo3_bSEEPe83mmBwz81hs7gHsdT',
+  //           callback: onRecaptchaSuccess,
+  //           'expired-callback': onRecaptchaExpired,
+  //         });
+  //       }
+  //     }
+  //   }, 100); 
+
+  //   return () => clearInterval(interval);
+  // }, [recaptchaReady]);
+
+  const [recaptchaReady, setRecaptchaReady] = useState(false);
+  const [widgetId, setWidgetId] = useState(null);
 
   useEffect(() => {
-    if (!recaptchaReady) return;
+    // Wait for reCAPTCHA script to load and avoid double render
+    if (
+      recaptchaReady &&
+      typeof window !== "undefined" &&
+      window.grecaptcha &&
+      widgetId === null &&
+      document.getElementById("recaptcha-container")?.innerHTML === ""
+    ) {
+      const id = window.grecaptcha.render("recaptcha-container", {
+        sitekey: "6LdIAXwrAAAAAOo3_bSEEPe83mmBwz81hs7gHsdT",
+        callback: (token) => {
+          console.log("reCAPTCHA success:", token);
+        },
+        "expired-callback": () => {
+          console.log("reCAPTCHA expired");
+        },
+      });
 
-    const onRecaptchaSuccess = (token) => {
-      console.log("Recaptcha success:", token);
-    };
+      setWidgetId(id);
+    }
+  }, [recaptchaReady, widgetId]);
 
-    const onRecaptchaExpired = () => {
-      console.log("Recaptcha expired");
-    };
-
-    const renderRecaptcha = () => {
-      if (typeof window.grecaptcha !== 'undefined') {
-        // Only render if not already rendered
-        if (!document.getElementById('recaptcha-container')?.hasChildNodes()) {
-          widgetIdRef.current = window.grecaptcha.render('recaptcha-container', {
-            sitekey: '6LdIAXwrAAAAAOo3_bSEEPe83mmBwz81hs7gHsdT',
-            callback: onRecaptchaSuccess,
-            'expired-callback': onRecaptchaExpired,
-          });
-        }
-      } else {
-        setTimeout(renderRecaptcha, 500);
-      }
-    };
-
-    renderRecaptcha();
-  }, [recaptchaReady]);
 
   const handleProjectSelect = async (projectId) => {
     setInquiryObj2((prev) => ({ ...prev, project_id: projectId }))
@@ -1060,16 +1088,16 @@ export default function BookPlotsForm({
                   <Script
                     src="https://www.google.com/recaptcha/api.js?render=explicit"
                     strategy="afterInteractive"
-                    onLoad={() => setRecaptchaReady(true)}
+                    onLoad={() => {
+                      console.log("reCAPTCHA script loaded");
+                      setRecaptchaReady(true);
+                    }}
                   />
 
                   <div
                     id="recaptcha-container"
                     className="g-recaptcha"
-                  // data-sitekey="6Lc8goArAAAAABEfJMPPR3G7Rx89r5yrsr-X-iew"
-                  // data-callback="onRecaptchaSuccess"
-                  // data-expired-callback="onRecaptchaExpired"
-                  ></div>
+                  />
 
                   <div className="flex-row alc">
                     <div className="submit-button button-div filled-div-button form_button noPrint">
