@@ -582,6 +582,16 @@ export default function Footer({ homeDetails, adminData, propertylist, projectLi
                         <p className="capitalize">Sitemap</p>
                       </Link>
                     </li>
+                    <li className="wfc footer-hover">
+                      <Link
+                        href="/career"
+                        className={
+                          activePath === '/career' ? 'active_page' : ''
+                        }
+                      >
+                        <p className="capitalize">Career</p>
+                      </Link>
+                    </li>
                   </ul>
                 </div>
               </div>
