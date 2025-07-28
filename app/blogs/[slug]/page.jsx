@@ -28,12 +28,12 @@ import getBlogDetail from "lib/BlogDetail";
 import getBlogLatest from "lib/BlogLatest";
 
 const defaultMetadata = {
-    title: "Blog | SmartHomes Infrastructure",
+    title: "Dholera Smart City News, blogs & Updates | SmartHomes Infrastructure",
     description:
         "Read the latest insights, news, and updates from SmartHomes Infrastructure about Dholera Smart City and sustainable real estate development.",
     keywords:
-        "SmartHomes blog, Dholera insights, real estate updates, smart city blog",
-    image: "https://www.smarthomesinfra.com/images/og-image.png", 
+        "Real Estate News, Real Estate blogs, Dholera Smart City, ",
+    image: "https://www.smarthomesinfra.com/images/og-image.png",
 };
 
 export async function generateMetadata({ params }) {

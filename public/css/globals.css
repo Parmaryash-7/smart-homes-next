@@ -431,6 +431,7 @@ body {
 body.no-scroll-body {
   overflow-y: hidden;
 }
+
 body.no-scroll-body-d {
   overflow: hidden !important;
   position: fixed;
@@ -2621,9 +2622,14 @@ label.error {
 
 .blog_bind_data a {
   text-decoration: underline !important;
-  color: var(--secondary-highlight-color) !important;
+  color: black !important;
 }
 
+.blog_bind_data a:hover,
+.blog_bind_data a:hover * {
+  transition: var(--common-transition);
+  color: var(--secondary-highlight-color) !important;
+}
 .blog_bind_data td,
 .blog_bind_data table {
   width: 100% !important;
@@ -2660,7 +2666,7 @@ label.error {
 
 .blog_bind_data h3 {
   /* font-size: 1.5rem; */
-  font-size: 2.5rem;
+  font-size: 2rem;
   margin-bottom: 0.5rem;
 }
 
