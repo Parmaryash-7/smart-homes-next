@@ -19,7 +19,7 @@ const nextConfig = {
         permanent: true, 
       },
       {
-        source: '/book-plot-now/dholera-expressway-city-township/',
+        source: '/book_plot/dholera-expressway-city-township/',
         destination: '/dholera-expressway-city-township',
         permanent: true,
       },

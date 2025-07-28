@@ -1,0 +1,31 @@
+.accordion_click {
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.accordion_click.active .material-symbols-outlined {
+    transform: rotate(180deg);
+    transition: transform 0.3s ease;
+}
+/* 
+.content_accordian {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.5s ease, opacity 0.4s ease;
+} */
+
+/* 
+.career_position_list.active .content_accordian {
+    max-height: 500px;
+    opacity: 1;
+} */
+
+.career-wrapper .content_accordian {
+    max-height: fit-content;
+    overflow: hidden;
+    opacity: 1;
+    transition: max-height 0.5s ease, opacity 0.4s ease;
+    padding: 0 0;
+
+}
