@@ -26,7 +26,7 @@ export async function generateMetadata() {
     const title = page?.seo_title || defaultMetadata.title;
     const description = page?.seo_description || defaultMetadata.description;
     const keywords = page?.seo_keywords || defaultMetadata.keywords;
-    const ogImage = page?.seo_image || defaultMetadata.image;
+    const ogImage = "https://www.smarthomesinfra.com/images/og-image.png";
     const canonicalUrl = `${siteUrl}/career`;
 
     return {
