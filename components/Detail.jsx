@@ -442,13 +442,13 @@ export default function Detail({
                               </div>
                             )}
                           {!projectDetail.amenities_image &&
-                              Array.isArray(projectDetail.highlights) &&
-                              projectDetail.highlights.length > 0 &&
-                              Array.isArray(projectDetail.gallery_data) &&
-                              projectDetail.gallery_data.length > 0 &&
-                              Array.isArray(projectDetail.gallery_data[0].image) &&
-                              projectDetail.gallery_data[0].image.length > 0 &&
-                              projectDetail.gallery_data[0].image[0].image && (
+                            Array.isArray(projectDetail.highlights) &&
+                            projectDetail.highlights.length > 0 &&
+                            Array.isArray(projectDetail.gallery_data) &&
+                            projectDetail.gallery_data.length > 0 &&
+                            Array.isArray(projectDetail.gallery_data[0].image) &&
+                            projectDetail.gallery_data[0].image.length > 0 &&
+                            projectDetail.gallery_data[0].image[0].image && (
                               <div
                                 data-aos="fade-top"
                                 data-aos-delay="400"
@@ -669,186 +669,188 @@ export default function Detail({
                   </div>
                 </section>
               ))}
-          {projectDetail.gallery_data[0].image?.length > 0 && (
-            <section
-              id="reecosys-project-detail-section-5"
-              className="section-padding pt0"
-            >
-              {projectDetail.gallery_data
-                .filter((gallery) => gallery.image?.length > 0)
-                .map((gallery, index) => (
-                  <div
-                    key={index}
-                    className="reecosys-section"
-                    id="reecosys-detail-section-gallery"
-                  >
-                    <div className="inner-flex inner-flex-medium">
-                      <div className="main-container-fluid">
-                        <div
-                          className="flex-row alc j-c-sb relative "
-                          data-aos="fade-top"
-                          data-aos-duration="1000"
-                          data-aos-delay="400"
-                        >
-                          {gallery.title ||
-                            (gallery.tag_line && (
-                              <div className="inner-flex inner-flex-medium ">
-                                {gallery.title && (
-                                  <div className="section-title">
-                                    <h2 className="  ">{gallery.title}</h2>
-                                  </div>
-                                )}
-                                {gallery.tag_line && (
-                                  <div
-                                    className="section-information inner-flex "
-                                    ng-if=" && gallery.tag_line != 'undefined'"
-                                  >
+          {Array.isArray(projectDetail?.gallery_data) &&
+            projectDetail.gallery_data.length > 0 &&
+            projectDetail.gallery_data[0].image?.length > 0 && (
+              <section
+                id="reecosys-project-detail-section-5"
+                className="section-padding pt0"
+              >
+                {projectDetail.gallery_data
+                  .filter((gallery) => gallery.image?.length > 0)
+                  .map((gallery, index) => (
+                    <div
+                      key={index}
+                      className="reecosys-section"
+                      id="reecosys-detail-section-gallery"
+                    >
+                      <div className="inner-flex inner-flex-medium">
+                        <div className="main-container-fluid">
+                          <div
+                            className="flex-row alc j-c-sb relative "
+                            data-aos="fade-top"
+                            data-aos-duration="1000"
+                            data-aos-delay="400"
+                          >
+                            {gallery.title ||
+                              (gallery.tag_line && (
+                                <div className="inner-flex inner-flex-medium ">
+                                  {gallery.title && (
                                     <div className="section-title">
-                                      <h2
-                                        className=" aos fadeInUp"
-                                        data-aos-delay="400"
-                                        data-aos-duration="600"
-                                      >
-                                        {gallery.tag_line}
-                                      </h2>
-                                    </div>
-                                  </div>
-                                )}
-                                {projectDetail.virtual_data?.length > 0 &&
-                                  !isMobilescreen && (
-                                    <div className="web-3d-icon">
-                                      {projectDetail.virtual_data
-                                        .filter(
-                                          (video) =>
-                                            video.type == "virtual-tour"
-                                        )
-                                        .map((video, index) => (
-                                          <a
-                                            key={index}
-                                            className="fancybox"
-                                            data-fancybox="virtual-tour"
-                                            data-src={video.url}
-                                            href="javascript:void(0)"
-                                            target="_self"
-                                          >
-                                            <button
-                                              className="reecosys-template-button button-blackborder border-black"
-                                              data-aos="fade-in"
-                                              data-aos-duration="1000"
-                                              data-aos-delay="500"
-                                            >
-                                              <p>
-                                                <span className="bold-fonts">
-                                                  360&deg;
-                                                </span>{" "}
-                                                Virtual Tour
-                                              </p>
-                                            </button>
-                                          </a>
-                                        ))}
+                                      <h2 className="  ">{gallery.title}</h2>
                                     </div>
                                   )}
-                              </div>
-                            ))}
-                        </div>
-                      </div>
-                      <div className="project-gallery-outer">
-                        <div className="project_gallery_grid main-container-fluid">
-                          {gallery.image.map((gallaryImgData, index) => (
-                            <div
-                              key={index}
-                              className={`galleryItem ${index < 8 ? "gallery-active" : ""
-                                } `}
-                            >
-                              <a
-                                data-fancybox="project-gallery-fancy"
-                                href={gallaryImgData.image_full}
-                                target="_self"
-                              >
-                                <div className=" overflow project_gallery_hover   relative">
-                                  <img
-                                    src={`${gallaryImgData.image}&h=500&w=500&q=100`}
-                                    alt={projectDetail.size_price}
-                                    className="image-cover"
-                                    data-aos="fade-in"
-                                    data-aos-duration="1000"
-                                    data-aos-delay={index * 300}
-                                  />
-                                  <div className="project_gallery_overlay"></div>
-                                  {gallaryImgData.title &&
+                                  {gallery.tag_line && (
+                                    <div
+                                      className="section-information inner-flex "
+                                      ng-if=" && gallery.tag_line != 'undefined'"
+                                    >
+                                      <div className="section-title">
+                                        <h2
+                                          className=" aos fadeInUp"
+                                          data-aos-delay="400"
+                                          data-aos-duration="600"
+                                        >
+                                          {gallery.tag_line}
+                                        </h2>
+                                      </div>
+                                    </div>
+                                  )}
+                                  {projectDetail.virtual_data?.length > 0 &&
                                     !isMobilescreen && (
-                                      <div className="smallest-font galleryFonts">
-                                        <p className="capitalize white-color">
-                                          {gallaryImgData.title}
-                                        </p>
+                                      <div className="web-3d-icon">
+                                        {projectDetail.virtual_data
+                                          .filter(
+                                            (video) =>
+                                              video.type == "virtual-tour"
+                                          )
+                                          .map((video, index) => (
+                                            <a
+                                              key={index}
+                                              className="fancybox"
+                                              data-fancybox="virtual-tour"
+                                              data-src={video.url}
+                                              href="javascript:void(0)"
+                                              target="_self"
+                                            >
+                                              <button
+                                                className="reecosys-template-button button-blackborder border-black"
+                                                data-aos="fade-in"
+                                                data-aos-duration="1000"
+                                                data-aos-delay="500"
+                                              >
+                                                <p>
+                                                  <span className="bold-fonts">
+                                                    360&deg;
+                                                  </span>{" "}
+                                                  Virtual Tour
+                                                </p>
+                                              </button>
+                                            </a>
+                                          ))}
                                       </div>
                                     )}
                                 </div>
-                              </a>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                      <div className="main-container">
-                        {gallery.image?.length > 8 && (
-                          <div
-                            className={`view_gallery_btn m0auto ${isMobilescreen ? "" : "wfc"
-                              } `}
-                          >
-                            {gallery.image.map((gallaryImgData, index) => (
-                              <a
-                                key={index}
-                                href={gallaryImgData.image_full}
-                                data-fancybox="project-gallery-fancy2"
-                                target="_self"
-                                className={index != 0 ? "hidden" : ""}
-                              >
-                                <button
-                                  className={`reecosys-template-button button-style-secondary-outline ${isMobilescreen ? "w100" : ""
-                                    } `}
-                                >
-                                  <p>View All Images</p>
-                                </button>
-                              </a>
-                            ))}
-                          </div>
-                        )}
-                      </div>
-                      {projectDetail.virtual_data?.length > 0 &&
-                        isMobilescreen && (
-                          <div className="main-container">
-                            {projectDetail.virtual_data
-                              .filter((video) => video.type == "virtual-tour")
-                              .map((video, index) => (
-                                <div className="w100" key={index}>
-                                  <a
-                                    className="fancybox"
-                                    data-fancybox="virtual-tour"
-                                    data-src={video.url}
-                                    href="javascript:void(0)"
-                                    target="_self"
-                                  >
-                                    <button
-                                      className="reecosys-template-button button-blackborder border-black  w100"
-                                      data-aos="fade-in"
-                                      data-aos-duration="6000"
-                                      data-aos-delay="6000"
-                                    >
-                                      <p>
-                                        <span className="bold">360&deg;</span>{" "}
-                                        Virtual Tour
-                                      </p>
-                                    </button>
-                                  </a>
-                                </div>
                               ))}
                           </div>
-                        )}
+                        </div>
+                        <div className="project-gallery-outer">
+                          <div className="project_gallery_grid main-container-fluid">
+                            {gallery.image.map((gallaryImgData, index) => (
+                              <div
+                                key={index}
+                                className={`galleryItem ${index < 8 ? "gallery-active" : ""
+                                  } `}
+                              >
+                                <a
+                                  data-fancybox="project-gallery-fancy"
+                                  href={gallaryImgData.image_full}
+                                  target="_self"
+                                >
+                                  <div className=" overflow project_gallery_hover   relative">
+                                    <img
+                                      src={`${gallaryImgData.image}&h=500&w=500&q=100`}
+                                      alt={projectDetail.size_price}
+                                      className="image-cover"
+                                      data-aos="fade-in"
+                                      data-aos-duration="1000"
+                                      data-aos-delay={index * 300}
+                                    />
+                                    <div className="project_gallery_overlay"></div>
+                                    {gallaryImgData.title &&
+                                      !isMobilescreen && (
+                                        <div className="smallest-font galleryFonts">
+                                          <p className="capitalize white-color">
+                                            {gallaryImgData.title}
+                                          </p>
+                                        </div>
+                                      )}
+                                  </div>
+                                </a>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                        <div className="main-container">
+                          {gallery.image?.length > 8 && (
+                            <div
+                              className={`view_gallery_btn m0auto ${isMobilescreen ? "" : "wfc"
+                                } `}
+                            >
+                              {gallery.image.map((gallaryImgData, index) => (
+                                <a
+                                  key={index}
+                                  href={gallaryImgData.image_full}
+                                  data-fancybox="project-gallery-fancy2"
+                                  target="_self"
+                                  className={index != 0 ? "hidden" : ""}
+                                >
+                                  <button
+                                    className={`reecosys-template-button button-style-secondary-outline ${isMobilescreen ? "w100" : ""
+                                      } `}
+                                  >
+                                    <p>View All Images</p>
+                                  </button>
+                                </a>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                        {projectDetail.virtual_data?.length > 0 &&
+                          isMobilescreen && (
+                            <div className="main-container">
+                              {projectDetail.virtual_data
+                                .filter((video) => video.type == "virtual-tour")
+                                .map((video, index) => (
+                                  <div className="w100" key={index}>
+                                    <a
+                                      className="fancybox"
+                                      data-fancybox="virtual-tour"
+                                      data-src={video.url}
+                                      href="javascript:void(0)"
+                                      target="_self"
+                                    >
+                                      <button
+                                        className="reecosys-template-button button-blackborder border-black  w100"
+                                        data-aos="fade-in"
+                                        data-aos-duration="6000"
+                                        data-aos-delay="6000"
+                                      >
+                                        <p>
+                                          <span className="bold">360&deg;</span>{" "}
+                                          Virtual Tour
+                                        </p>
+                                      </button>
+                                    </a>
+                                  </div>
+                                ))}
+                            </div>
+                          )}
+                      </div>
                     </div>
-                  </div>
-                ))}
-            </section>
-          )}
+                  ))}
+              </section>
+            )}
           {projectDetail.why_us && projectDetail.why_us?.length > 0 && (
             <section
               className="reecosys-template-about-section-6 reecosys-template-section  section-padding relative"
@@ -1319,21 +1321,21 @@ export default function Detail({
             <div className="all-amenites-list">
               <ul>
                 {Array.isArray(projectDetail.amenities_data) &&
-                projectDetail.amenities_data.length > 0 &&
-                projectDetail.amenities_data.map((amenities, index) => (
-                  <li key={index} className="flex-row alc">
-                    <div className="amenities-icon ">
-                      <img
-                        src={amenities.icon}
-                        alt={projectDetail.project_title}
-                        className="lazyload"
-                      />
-                    </div>
-                    <div className="amenities-text">
-                      <p>{amenities.amenity}</p>
-                    </div>
-                  </li>
-                ))}
+                  projectDetail.amenities_data.length > 0 &&
+                  projectDetail.amenities_data.map((amenities, index) => (
+                    <li key={index} className="flex-row alc">
+                      <div className="amenities-icon ">
+                        <img
+                          src={amenities.icon}
+                          alt={projectDetail.project_title}
+                          className="lazyload"
+                        />
+                      </div>
+                      <div className="amenities-text">
+                        <p>{amenities.amenity}</p>
+                      </div>
+                    </li>
+                  ))}
               </ul>
             </div>
           </div>

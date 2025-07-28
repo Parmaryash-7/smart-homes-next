@@ -87,13 +87,13 @@ export default async function RootLayout({ children }) {
         <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
 
 
+        <DisclaimerPopup />
         <AOSInitializer />
         <Providers>
           <main>
             <Header propertylist={propertylist} socialList={socialList} projectListJson={projectListJson.list} />
             <div className="page" >
               {children}
-              <DisclaimerPopup />
               <InquiryPopup />
               <Footer
                 propertylist={propertylist}
