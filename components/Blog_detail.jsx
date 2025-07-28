@@ -9,6 +9,7 @@ export default function Blog_detail({ recent_blog_init_data, blogs_types_list, s
     const [blog_data, setBlog_data] = useState(null);
     const [recent_blog_data, setRecentBlogData] = useState([]);
     const [sanitizedHtml, setSanitizedHtml] = useState("");
+    // console.log("Raw description HTML:", blog_data.description);
 
     // useEffect(() => {
     //     import("dompurify").then((DOMPurify) => {
@@ -18,16 +19,17 @@ export default function Blog_detail({ recent_blog_init_data, blogs_types_list, s
     // }, [html]);
 
     useEffect(() => {
-        if (!blog_data?.description) return;
+    if (!blog_data?.description) return;
 
-        import("dompurify").then((DOMPurify) => {
-            const clean = DOMPurify.default.sanitize(blog_data.description, {
-                FORBID_TAGS: ["style", "script"],
-                FORBID_ATTR: ["style", "class"],
-            });
-            setSanitizedHtml(clean);
+    import("dompurify").then((DOMPurify) => {   
+        const clean = DOMPurify.default.sanitize(blog_data.description, {
+            FORBID_TAGS: ["script", "style"],
+            FORBID_ATTR: ["onerror", "onclick", "onload"]
         });
-    }, [blog_data]);
+        setSanitizedHtml(clean);
+    });
+}, [blog_data]);
+
 
     useEffect(() => {
         if (typeof window !== "undefined" && window.innerWidth < 767) {
@@ -110,7 +112,6 @@ export default function Blog_detail({ recent_blog_init_data, blogs_types_list, s
                                                                 src={`${blog_data.image_full}&h=1080&w=1903&q=100`}
                                                                 alt={blog_data.title}
                                                                 className="lazyload"
-                                                                ng-if="blog_data.image_full"
                                                             />
                                                         </div>
                                                         <br />
@@ -119,17 +120,15 @@ export default function Blog_detail({ recent_blog_init_data, blogs_types_list, s
                                                     </div>
                                                     {blog_data.description && (
                                                         <div className="blog_bind_data">
-                                                                                        {/* <div
+                                                            {/* <div
                                                             dangerouslySetInnerHTML={{
                                                             __html: blog_data.description,
                                                             }}
                                                         ></div> */}
-                                                            
-                                                            <div
-                                                                dangerouslySetInnerHTML={{
-                                                                    __html: sanitizedHtml,
-                                                                }}
-                                                            />
+                                                        <div
+                                                        className="blog_bind_data"
+                                                        dangerouslySetInnerHTML={{ __html: sanitizedHtml }}
+                                                        ></div>
                                                         </div>
                                                     )}
                                                 </div>
