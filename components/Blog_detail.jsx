@@ -39,7 +39,6 @@ export default function Blog_detail({ recent_blog_init_data, blogs_types_list, s
         if (blogs_types_list && slug) {
             const blogData = blogs_types_list.find((data) => data.slug === slug);
             setBlog_data(blogData);
-
             const recentBlogs = blogs_types_list
                 .filter((data) => data.slug !== slug && data.published_time)
                 .sort((a, b) => b.published_time - a.published_time);
@@ -144,7 +143,7 @@ export default function Blog_detail({ recent_blog_init_data, blogs_types_list, s
                                                         <div className="recent_blog_grids inner-flex inner-flex-small">
                                                             {recent_blog_data?.map((data, i) => (
                                                                 <div className="recent_blogs_details " key={i}>
-                                                                    <Link href={`/blogs/${data.slug}`}>
+                                                                    <Link href={`blog/${data.slug}`}>
                                                                         <div className="inner-flex">
                                                                             <div className="recent_blog_image">
                                                                                 <img
