@@ -68,7 +68,7 @@ export default function Blogs({ blogs_types_list }) {
                           data.tags_commaseparted === "Articles" && (
                             <div key={i} className="project-list-card">
                               <Link
-                                href={`/blogs/${data.slug}`}
+                                href={`blog/${data.slug}`}
                                 className="inner-flex"
                               >
                                 <div className=" ">

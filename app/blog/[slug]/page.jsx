@@ -47,7 +47,7 @@ export async function generateMetadata({ params }) {
     const description = blog?.seo_description || defaultMetadata.description;
     const keywords = blog?.seo_keywords || defaultMetadata.keywords;
     const ogImage = blog?.seo_image ? `${siteUrl}${blog.image}` : defaultMetadata.image;
-    const canonicalUrl = `${siteUrl}/blogs/${slug}`;
+    const canonicalUrl = `${siteUrl}/blog/${slug}`;
 
     return {
         title,
