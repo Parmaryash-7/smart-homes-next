@@ -2669,6 +2669,11 @@ label.error {
   font-size: 2rem;
   margin-bottom: 0.5rem;
 }
+.blog_bind_data h4 {
+  /* font-size: 1.5rem; */
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+}
 
 .blog_bind_data h3 b {
   font-size: 1.5rem;
@@ -2708,10 +2713,10 @@ label.error {
   font-family: var(--bold-font-family);
 }
 
-.blog_bind_data big strong {
+/* .blog_bind_data big strong {
   font-size: 2rem;
   font-family: var(--bold-font-family);
-}
+} */
 
 .header-hover:hover .header-title {
   color: #1e5724;
