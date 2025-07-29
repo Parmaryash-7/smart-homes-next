@@ -20,7 +20,7 @@ export default async function BookPlotNowPage({ params }) {
     if (newSlug) {
         redirect(`/${newSlug}`);
     } else {
-        redirect("/");
+       redirect(`/${slug}`); 
     }
 
     // const unitList = unitListJson.unit_list.filter((unit) => unit.slug === slug);
