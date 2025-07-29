@@ -100,6 +100,7 @@ export default async function BlogSlugPage({ params }) {
     const pageList = await getPageList();
     const blogs_types_list = await getBlogDetail();
     const recent_blog_init_data = await getBlogLatest();
+    
 
     return (
         <Blog_detail
