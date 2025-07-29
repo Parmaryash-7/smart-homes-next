@@ -161,10 +161,10 @@ export default function ThankYouPayment() {
 
     const options = {
       // Test Key
-      key: 'rzp_test_gPEm9Lk8sfM128', 
+      // key: 'rzp_test_gPEm9Lk8sfM128', 
 
       // Live Key
-      // key: 'rzp_live_IwzA0grLh3Rpct', 
+      key: 'rzp_live_IwzA0grLh3Rpct', 
       
       amount: bookingObj.amount * 100,
       lead_id: 1,
