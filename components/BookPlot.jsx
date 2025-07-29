@@ -12,7 +12,8 @@ import { fetchCountryList } from 'store/countrySlice'
 export default function BookPlotsForm({
   propertylist = [],
   completedPropertylist = [],
-  searchParams = {}
+  searchParams = {},
+  selectedProject
 }) {
   const router = useRouter()
   const dispatch = useDispatch()
@@ -94,8 +95,8 @@ export default function BookPlotsForm({
     flag4: 'https://flagcdn.com/w40/in.webp',
     country4: '91',
     country: '91',
-    project_type: '',
-    project_id: '',
+    project_type: selectedProject.type,
+    project_id: selectedProject.id,
     plot_number: '',
     plot_size: '',
     unit_id: '',

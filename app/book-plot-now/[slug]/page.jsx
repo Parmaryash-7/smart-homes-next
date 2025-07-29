@@ -1,8 +1,8 @@
 import React from "react";
-import BookPlotNowComponent from "../../../components/BookPlotNow";
+// import BookPlotNowComponent from "../../../components/BookPlotNow";
 import { notFound, redirect } from "next/navigation";
-import api from "../../../lib/api.interceptor";
-import unitListJson from "data/unitlist.json";
+// import api from "../../../lib/api.interceptor";
+// import unitListJson from "data/unitlist.json";
 
 export const dynamic = "force-dynamic";
 
