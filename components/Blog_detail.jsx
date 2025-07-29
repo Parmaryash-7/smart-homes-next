@@ -19,16 +19,16 @@ export default function Blog_detail({ recent_blog_init_data, blogs_types_list, s
     // }, [html]);
 
     useEffect(() => {
-    if (!blog_data?.description) return;
+        if (!blog_data?.description) return;
 
-    import("dompurify").then((DOMPurify) => {   
-        const clean = DOMPurify.default.sanitize(blog_data.description, {
-            FORBID_TAGS: ["script", "style"],
-            FORBID_ATTR: ["onerror", "onclick", "onload"]
+        import("dompurify").then((DOMPurify) => {
+            const clean = DOMPurify.default.sanitize(blog_data.description, {
+                FORBID_TAGS: ["script", "style"],
+                FORBID_ATTR: ["onerror", "onclick", "onload"]
+            });
+            setSanitizedHtml(clean);
         });
-        setSanitizedHtml(clean);
-    });
-}, [blog_data]);
+    }, [blog_data]);
 
 
     useEffect(() => {
@@ -118,16 +118,13 @@ export default function Blog_detail({ recent_blog_init_data, blogs_types_list, s
                                                         <br />
                                                     </div>
                                                     {blog_data.description && (
-                                                        <div className="blog_bind_data">
-                                                            {/* <div
-                                                            dangerouslySetInnerHTML={{
-                                                            __html: blog_data.description,
-                                                            }}
-                                                        ></div> */}
-                                                        <div
-                                                        className="blog_bind_data"
-                                                        dangerouslySetInnerHTML={{ __html: sanitizedHtml }}
-                                                        ></div>
+                                                        <div className="blog_data">
+                                                            <div className="blog_bind_data">
+                                                                <div
+                                                                    className="blog_bind_data"
+                                                                    dangerouslySetInnerHTML={{ __html: sanitizedHtml }}
+                                                                ></div>
+                                                            </div>
                                                         </div>
                                                     )}
                                                 </div>
