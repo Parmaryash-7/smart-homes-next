@@ -6,10 +6,22 @@ import { notFound, redirect } from "next/navigation";
 
 export const dynamic = "force-dynamic";
 
+const slugRedirectMap = {
+    "dholera-international-airport-city-1": "dholera-international-airport-city-I",
+    "dholera-expressway-avenue-1": "dholera-expressway-avenue-I",
+};
+
 export default async function BookPlotNowPage({ params }) {
     const { slug } = params;
 
-    redirect(`/${slug}`)
+    // redirect(`/${slug}`)
+
+    const newSlug = slugRedirectMap[slug];
+    if (newSlug) {
+        redirect(`/${newSlug}`);
+    } else {
+        redirect("/");
+    }
 
     // const unitList = unitListJson.unit_list.filter((unit) => unit.slug === slug);
     // if (!unitList || unitList.length === 0) {
