@@ -92,6 +92,7 @@ export async function generateMetadata() {
 export default async function ContactUsPage() {
     const pageList = await api.PageList();
     const contactDetails = await api.ContactFData();
+    // console.log(contactDetails)
 
     return (
         <ContactUs
