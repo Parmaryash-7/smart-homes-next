@@ -1079,7 +1079,8 @@ export default function Footer({ homeDetails, adminData, propertylist, projectLi
                           'latest-news',
                           'newsletters',
                           'franchise-opportunities',
-                          'sitemap'
+                          'sitemap',
+                          'career'
                         ].map((link) => (
                           <li className="footerAccordionBlock" key={link}>
                             <div className="section-content flex-row alc j-c-sb w100 footer_accordion_click">
