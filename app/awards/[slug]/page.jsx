@@ -107,7 +107,6 @@ export async function generateMetadata({ params }) {
     };
 }
 
-// ✅ Page component
 export default async function AwardsSlugPage({ params }) {
     const { slug } = params;
 

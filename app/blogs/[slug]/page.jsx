@@ -38,7 +38,7 @@ const defaultMetadata = {
 
 export async function generateMetadata({ params }) {
     const { slug } = params;
-    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.smarthomesinfra.in";
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.smarthomesinfra.com";
 
     const blogs = await getBlogDetail();
     const blog = blogs.find((b) => b.slug === slug);
