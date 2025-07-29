@@ -143,7 +143,7 @@ export default function Blog_detail({ recent_blog_init_data, blogs_types_list, s
                                                         <div className="recent_blog_grids inner-flex inner-flex-small">
                                                             {recent_blog_data?.map((data, i) => (
                                                                 <div className="recent_blogs_details " key={i}>
-                                                                    <Link href={`blog/${data.slug}`}>
+                                                                    <Link href={`${data.slug}`}>
                                                                         <div className="inner-flex">
                                                                             <div className="recent_blog_image">
                                                                                 <img
