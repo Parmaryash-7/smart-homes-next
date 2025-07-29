@@ -51,7 +51,7 @@ export default function ContactUs({ pageList, contactDetails }) {
             setPrivacy(privacyDData);
         }
     });
-    
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setInquiryObj((prev) => ({ ...prev, [name]: val }));
@@ -291,6 +291,7 @@ export default function ContactUs({ pageList, contactDetails }) {
                                                 </div>
                                                 <div className="contact_btn">
                                                     <a href={contactDetails.contact_list[0].map_url} target="_blank" rel="noreferrer">
+                                                        {/* <a href='https://g.co/kgs/7P6DSjk' target="_blank" rel="noreferrer"> */}
                                                         <div className="" data-aos="fade-in"
                                                             data-aos-delay="700"
                                                             data-aos-duration="600">
