@@ -5349,9 +5349,9 @@ span.readmore_click {
     padding: 3rem;
   }
 
-  .homeBannerSwiper {
+  /* .homeBannerSwiper {
     height: 70vh !important;
-  }
+  } */
 
 }
 
@@ -5419,7 +5419,8 @@ span.readmore_click {
   }
 
   .homeBannerSwiper {
-    height: 80vh !important;
+    /* height: 80vh !important; */
+    height: 45vh !important;
   }
 
 }
@@ -9094,7 +9095,8 @@ form .md-lable.contact_code #contact_no {
   .homeBannerSwiper,
   .piramyd-banner-section .bannerImg,
   .piramyd-banner-section .bannerImg img {
-    height: 65vh !important;
+    /* height: 65vh !important; */
+    height: 55vh !important;
   }
 
   .form_wrapper {
@@ -9806,9 +9808,15 @@ form .md-lable.contact_code #contact_no {
   }
 }
 
-@media only screen and (max-width: 600px) {}
+@media only screen and (max-width: 600px) {
 
-@media only screen and (max-width: 325px) {}
+}
+
+@media only screen and (max-width: 325px) {
+      .homeBannerSwiper, .piramyd-banner-section .bannerImg, .piramyd-banner-section .bannerImg img {
+        height: 45vh !important;
+    }
+}
 
 .fancybox__infobar,
 .fancybox__infobar span {

@@ -13,6 +13,24 @@ import Script from 'next/script'
 import projectListJson from "../data/projectList.json"
 import DisclaimerPopup from '../components/DisclaimerPopup'
 
+
+// export const metadata = {
+//   title: "SmartHomes Infrastructure | Top Developer in Dholera Smart City,Dholera sir",
+//   description: "SmartHomes Infrastructure,top developer in Dholera Smart City, residential & commercial plots, villas, shops, showrooms,land  parcel ,Dholera SIR,best builders in dholera",
+//   openGraph: {
+//     title: "SmartHomes Infrastructure | Top Developer in Dholera Smart City,Dholera sir",
+//     description: "Default OG description",
+//     url: "https://www.yoursite.com",
+//     images: [
+//       {
+//         url: "https://www.reecosys.com/api/image-tool/index.php?src=https://www.reecosys.com/assets/uploads/home/seo/image/SEO_1751361308_96.png&h=630&w=1200", 
+//         alt: "smarthomes",
+//       },
+//     ],
+//   },
+// };
+
+
 export default async function RootLayout({ children }) {
   const propertylist = await api.Propertylist()
   const socialList = await api.SocialMediaList()

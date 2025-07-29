@@ -84,7 +84,7 @@ export default function Footer({ homeDetails, adminData, propertylist, projectLi
           </div>
           <div className="dsda-logos-line"></div>
           <div>
-            <Link href='https://www.smarthomesinfra.com/blog/smarthomes-infrastructure-pvt-ltd-joins-credai-ahmedabad-gihed-marking-another-milestone-in-its-journey-of-excellence' target='_blank'>
+            <Link href='https://www.smarthomesinfra.com/blogs/smarthomes-infrastructure-pvt-ltd-joins-credai-ahmedabad-gihed-marking-another-milestone-in-its-journey-of-excellence' target='_blank'>
               <img src="/images/logo/memberofCredai.jpg" alt="Credai" />
             </Link>
           </div>
