@@ -2623,6 +2623,8 @@ label.error {
 .blog_bind_data a {
   text-decoration: underline !important;
   color: black !important;
+  line-height: 1.15;
+  margin-bottom : 0.25rem;
 }
 
 .blog_bind_data a:hover,
@@ -2652,9 +2654,10 @@ label.error {
 } */
 
 .blog_bind_data h2 {
-  font-size: 2.65rem;
+  font-size: 2rem;
   margin-bottom: 1rem;
   /* margin-bottom: 1rem; */
+  line-height: 1.5;
 }
 
 .blog_bind_data h2 b,
@@ -2665,8 +2668,9 @@ label.error {
 }
 
 .blog_bind_data h3 {
-  /* font-size: 1.5rem; */
-  font-size: 2rem;
+  font-size: 1.5rem;
+  line-height: 1.5;
+  /* font-size: 2rem; */
   margin: 1rem 0;
   /* margin-bottom: 0.5rem; */
 }
@@ -2703,7 +2707,9 @@ label.error {
 }
 
 .blog_bind_data p {
-  margin-bottom: 0.75rem;
+  /* margin-bottom: 0.75rem; */
+  margin-bottom:  0.25rem;
+  line-height : 1.15
 }
 
 .blog_bind_data p,
@@ -4893,7 +4899,8 @@ span.readmore_click {
 .blog_bind_data ol li,
 .blog_bind_data ul li {
   font-size: var(--content-font-size);
-  margin: 5px 0;
+  line-height: 1.15;
+  margin-bottom : 0.25rem;
   font-family: var(--regular-font-family);
 }
 
