@@ -5,7 +5,7 @@ import Career from '../../components/Career';
 import InquiryCareer from '../../components/InquiryCareer';
 import api from '../../lib/api.interceptor';
 
-export const dynamic = 'force-dynamic';
+// export const dynamic = 'force-dynamic';
 
 const defaultMetadata = {
     title: "Career",
