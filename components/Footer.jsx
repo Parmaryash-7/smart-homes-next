@@ -505,6 +505,16 @@ export default function Footer({ homeDetails, adminData, propertylist, projectLi
                     </li>
                     <li className="wfc footer-hover">
                       <Link
+                        href="/career"
+                        className={
+                          activePath === '/career' ? 'active_page' : ''
+                        }
+                      >
+                        <p className="capitalize">Career</p>
+                      </Link>
+                    </li>
+                    <li className="wfc footer-hover">
+                      <Link
                         href="/construction-updates/"
                         className={
                           activePath == '/construction-updates'
@@ -580,16 +590,6 @@ export default function Footer({ homeDetails, adminData, propertylist, projectLi
                         }
                       >
                         <p className="capitalize">Sitemap</p>
-                      </Link>
-                    </li>
-                    <li className="wfc footer-hover">
-                      <Link
-                        href="/career"
-                        className={
-                          activePath === '/career' ? 'active_page' : ''
-                        }
-                      >
-                        <p className="capitalize">Career</p>
                       </Link>
                     </li>
                   </ul>
@@ -1072,6 +1072,7 @@ export default function Footer({ homeDetails, adminData, propertylist, projectLi
                           'channel-partners',
                           'contact-us',
                           'dholera-sir',
+                          'career',
                           'construction-updates',
                           'awards-and-accolades',
                           'nri-corner',
@@ -1080,7 +1081,6 @@ export default function Footer({ homeDetails, adminData, propertylist, projectLi
                           'newsletters',
                           'franchise-opportunities',
                           'sitemap',
-                          'career'
                         ].map((link) => (
                           <li className="footerAccordionBlock" key={link}>
                             <div className="section-content flex-row alc j-c-sb w100 footer_accordion_click">
