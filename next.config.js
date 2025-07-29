@@ -29,6 +29,11 @@ const nextConfig = {
         permanent: true, 
       },
        {
+        source: '/India-Dedicated-Freight-Corridor-Augment-Manufacturing-Development-Smart-Cities.php',
+        destination: '/blogs',
+        permanent: true, 
+      },
+       {
         source: '/project/mulberry-park',
         destination: '/mulberry-park',
         permanent: true, 
@@ -49,12 +54,12 @@ const nextConfig = {
         permanent: true, 
       },
        {
-        source: '/project/mulberry-park/type=construction',
+        source: '/project/mulberry-park/',
         destination: '/mulberry-park',
         permanent: true, 
       },
        {
-        source: '/project/abcd-enclave-3/type=gallery',
+        source: '/project/abcd-enclave-3',
         destination: '/abcd-enclave-3',
         permanent: true, 
       },
@@ -64,7 +69,7 @@ const nextConfig = {
         permanent: true, 
       },
        {
-        source: '/project/olive-garden/type=construction',
+        source: '/project/olive-garden/',
         destination: '/olive-garden',
         permanent: true, 
       },
@@ -79,17 +84,17 @@ const nextConfig = {
         permanent: true, 
       },
        {
-        source: '/project/orange-county/type=gallery',
+        source: '/project/orange-county',
         destination: '/orange-county',
         permanent: true, 
       },
        {
-        source: '/project/abcd-enclave-I/type=gallery',
+        source: '/project/abcd-enclave-I',
         destination: '/abcd-enclave-I',
         permanent: true, 
       },
        {
-        source: '/project/abcd-greens-1/type=gallery',
+        source: '/project/abcd-greens-1',
         destination: '/abcd-greens-1',
         permanent: true, 
       },
