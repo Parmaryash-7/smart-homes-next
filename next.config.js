@@ -18,6 +18,11 @@ const nextConfig = {
         destination: '/sitemap',
         permanent: true, 
       },
+      {
+        source: '/dholera-Forest-Estate-Phase-2',
+        destination: '/dholera-forest-estate',
+        permanent: true, 
+      },
       // {
       //   source: '/book_plot/dholera-expressway-city-township/',
       //   destination: '/dholera-expressway-city-township',
