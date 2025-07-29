@@ -31,7 +31,7 @@
 //     );
 // }
 
-
+export const dynamic = 'force-dynamic';
 import AwardsDetail from "components/AwardsDetail";
 import api from 'lib/api.interceptor';
 import { notFound } from "next/navigation";

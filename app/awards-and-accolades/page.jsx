@@ -13,6 +13,7 @@
 //     return <Awards pageList={pageList} propertylist={propertylist} />;
 // }
 
+export const dynamic = 'force-dynamic';
 import Awards from "components/Awards";
 import api from 'lib/api.interceptor';
 import awardsData from "data/awards.json";

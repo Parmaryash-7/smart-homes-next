@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import AboutUs from "components/AboutUs";
 import api from 'lib/api.interceptor';
 

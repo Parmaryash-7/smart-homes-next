@@ -10,7 +10,7 @@
 //     return <Privacy pageList={pageList} />;
 // }
 
-
+export const dynamic = 'force-dynamic';
 import Privacy from "components/Privacy";
 import api from "lib/api.interceptor";
 

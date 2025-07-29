@@ -30,7 +30,7 @@
 //     );
 // }
 
-
+export const dynamic = 'force-dynamic';
 import DholeraForestEstate from "components/DholeraForestEstate";
 import api from "lib/api.interceptor";
 

@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import Home from "components/Home";
 import api from "lib/api.interceptor";
 import getHomeDetail from "lib/HomeDetail";

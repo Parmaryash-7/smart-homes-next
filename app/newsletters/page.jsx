@@ -7,7 +7,7 @@
 //     return <Newsletter blogs_types_list={blogDetailData} />;
 // }
 
-
+export const dynamic = 'force-dynamic';
 import Newsletter from "components/Newsletter";
 import getBlogDetail from "lib/BlogDetail";
 import api from "lib/api.interceptor";

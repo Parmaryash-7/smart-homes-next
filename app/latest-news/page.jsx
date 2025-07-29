@@ -7,7 +7,7 @@
 //     return <Latestnews blogs_types_list={blogDetailData} />;
 // }
 
-
+export const dynamic = 'force-dynamic';
 import Latestnews from "components/Latestnews";
 import getBlogDetail from "lib/BlogDetail";
 import api from "lib/api.interceptor";

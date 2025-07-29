@@ -17,7 +17,7 @@
 //     );
 // }
 
-
+export const dynamic = 'force-dynamic';
 import Projects from "components/Projects";
 import getPageList from "lib/PageList";
 import getPropertyList from "lib/PropertList";

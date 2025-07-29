@@ -15,6 +15,7 @@
 // }
 
 // import Blogs from "components/Blogs";
+export const dynamic = 'force-dynamic';
 import BlogsTab from "components/BlogsTab";
 import api from 'lib/api.interceptor';
 import getPageList from "lib/PageList";

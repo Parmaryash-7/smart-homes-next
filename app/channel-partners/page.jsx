@@ -9,7 +9,7 @@
 //     return <ChannelPartner pageList={pageList} />;
 // }
 
-
+export const dynamic = 'force-dynamic';
 import ChannelPartner from "components/ChannelPartner";
 import api from 'lib/api.interceptor';
 

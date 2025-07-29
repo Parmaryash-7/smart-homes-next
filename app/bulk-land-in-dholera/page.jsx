@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import Bulk_Land from "components/Bulk_Land";
 // import getBulkLand from "lib/BulkLand"; 
 import api from "lib/api.interceptor";

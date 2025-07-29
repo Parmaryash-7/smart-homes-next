@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import React from "react";
 import DholeraSir from "components/DholeraSir";
 import api from 'lib/api.interceptor'

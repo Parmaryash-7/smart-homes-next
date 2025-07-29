@@ -21,7 +21,7 @@
 //         />
 //     );
 // }
-
+export const dynamic = 'force-dynamic';
 import Blog_detail from "components/Blog_detail";
 import getPageList from "lib/PageList";
 import getBlogDetail from "lib/BlogDetail";

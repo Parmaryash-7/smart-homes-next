@@ -9,7 +9,7 @@
 //     return <NriCorner pageList={pageList} />;
 // }
 
-
+export const dynamic = 'force-dynamic';
 import NriCorner from "components/NriCorner";
 import api from "lib/api.interceptor";
 

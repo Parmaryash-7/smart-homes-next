@@ -214,6 +214,7 @@
 
 // import dynamic from 'next/dynamic'
 // import { redirect } from 'next/navigation'
+export const dynamic = 'force-dynamic';
 import BookPlotPayment from 'components/BookPlotPayment'
 
 // const BookPlotPayment = dynamic(() => import('components/BookPlotPayment'), { ssr: false })

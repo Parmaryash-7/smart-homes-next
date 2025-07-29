@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import Detail from "components/Detail";
 import getPropertyList from "lib/PropertList";
 import getPageList from "lib/PageList";

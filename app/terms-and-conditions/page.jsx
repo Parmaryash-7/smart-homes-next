@@ -10,6 +10,7 @@
 //     return <Terms pageList={pageList} />;
 // }
 
+export const dynamic = 'force-dynamic';
 import Terms from "components/Terms";
 import api from "lib/api.interceptor";
 

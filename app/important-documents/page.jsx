@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import ImportantDocuments from "../../components/ImportantDocuments";
 import api from "../../lib/api.interceptor";
 

@@ -8,6 +8,7 @@
 
 //     return <ConstructionUpdate pageList={pageList} />;
 // }
+export const dynamic = 'force-dynamic';
 import ConstructionUpdate from "components/ConstructionUpdate";
 import api from "lib/api.interceptor";
 

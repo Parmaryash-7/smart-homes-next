@@ -20,6 +20,7 @@
 //     );
 // }
 
+export const dynamic = 'force-dynamic';
 import CompletedProjects from "components/CompletedProjects";
 import api from "lib/api.interceptor";
 import getCompletedPropertyList from "lib/CompletedPropertyList";

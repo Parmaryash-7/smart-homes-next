@@ -5,7 +5,7 @@
 //   return <ThankYou pageName="your inquiry" />
 // }
 
-
+export const dynamic = 'force-dynamic';
 import React from 'react'
 import ThankYou from 'components/ThankYou'
 import api from 'lib/api.interceptor'

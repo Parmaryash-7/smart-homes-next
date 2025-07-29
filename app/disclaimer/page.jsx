@@ -10,7 +10,7 @@
 //     return <Disclaimer pageList={pageList} />;
 // }
 
-
+export const dynamic = 'force-dynamic';
 import Disclaimer from "components/Disclaimer";
 import api from "lib/api.interceptor";
 

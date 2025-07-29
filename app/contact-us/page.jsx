@@ -18,7 +18,7 @@
 //     );
 // }
 
-
+export const dynamic = 'force-dynamic';
 import ContactUs from "components/ContactUs";
 import api from "lib/api.interceptor";
 

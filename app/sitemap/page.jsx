@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import React from 'react'
 import SiteMap from 'components/SiteMap'
 import api from "lib/api.interceptor";

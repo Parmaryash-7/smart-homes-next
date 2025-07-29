@@ -586,10 +586,7 @@ export default function Home({
                             {!isMobilescreen && (
                                 <SwiperSlide>
                                     <div className="bannerCard relative slide-inner">
-                                        <img
-                                            src="https://ik.imagekit.io/yfswm0s2t1o/smart-homes/homepage-banner_zzGXAr3K7.jpg?updatedAt=1745243437680"
-                                            alt=""
-                                        />
+                                        <img src="https://ik.imagekit.io/yfswm0s2t1o/smart-homes/homepage-banner_zzGXAr3K7.jpg?updatedAt=1745243437680" alt="" />
                                     </div>
                                 </SwiperSlide>
                             )}
@@ -597,10 +594,22 @@ export default function Home({
                             {isMobilescreen && (
                                 <SwiperSlide>
                                     <div className="bannerCard relative slide-inner">
-                                        <img
-                                            src="https://ik.imagekit.io/yfswm0s2t1o/smart-homes/homepage-banner-mob_3DmGnwr1v.webp?updatedAt=1745316401441"
-                                            alt=""
-                                        />
+                                        <img  src="https://ik.imagekit.io/yfswm0s2t1o/smart-homes/homepage-banner-mob_3DmGnwr1v.webp?updatedAt=1745316401441" alt="" />
+                                    </div>
+                                </SwiperSlide>
+                            )}
+                            {!isMobilescreen && (
+                                <SwiperSlide>
+                                    <div className="bannerCard relative slide-inner">
+                                        <img src="/images/website_banner_web.jpg" alt="" />
+                                    </div>
+                                </SwiperSlide>
+                            )}
+
+                            {isMobilescreen && (
+                                <SwiperSlide>
+                                    <div className="bannerCard relative slide-inner">
+                                        <img src="/images/website_banner_mobile.jpg" alt="" />
                                     </div>
                                 </SwiperSlide>
                             )}

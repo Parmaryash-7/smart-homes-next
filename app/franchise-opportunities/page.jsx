@@ -4,7 +4,7 @@
 //     return <Franchise_opportunities />;
 // }
 
-
+export const dynamic = 'force-dynamic';
 import Franchise_opportunities from "components/Franchise_opportunities";
 import api from "lib/api.interceptor";
 
