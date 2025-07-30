@@ -41,11 +41,11 @@ const nextConfig = {
         destination: '/blogs/indias-dedicated-freight-corridor-augment-manufacturing-development-smart-cities',
         permanent: true, 
       },
-      //  {
-      //   source: '/project/mulberry-park',
-      //   destination: '/mulberry-park',
-      //   permanent: true, 
-      // },
+       {
+        source: '/project/mulberry-park',
+        destination: '/mulberry-park',
+        permanent: true, 
+      },
        {
         source: '/project/abcd-enclave-4',
         destination: '/abcd-enclave-4',
