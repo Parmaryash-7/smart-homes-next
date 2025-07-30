@@ -88,13 +88,17 @@ export async function generateMetadata() {
     };
 }
 
-export default async function BlogsPage() {
+export default async function BlogsPage({searchParams}) {
     const pageList = await getPageList();
     const blogDetailData = await getBlogDetail();
+    // console.log(searchParams);
+    const activeTab = searchParams.tab || 'blogs'; 
+
     return (
         <BlogsTab
             pageList={pageList}
             blogs_types_list={blogDetailData}
+            activeTabId={activeTab}
         />
     );
 }
