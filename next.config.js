@@ -30,7 +30,7 @@ const nextConfig = {
       },
        {
         source: '/India-Dedicated-Freight-Corridor-Augment-Manufacturing-Development-Smart-Cities.php',
-        destination: '/blogs',
+        destination: '/blogs/indias-dedicated-freight-corridor-augment-manufacturing-development-smart-cities',
         permanent: true, 
       },
        {
@@ -53,10 +53,10 @@ const nextConfig = {
         destination: '/blogs/empowering-tomorrow-pm-modis-semiconductor-vision-ignites-dholera-smart-citys-growth',
         permanent: true, 
       },
-       {
-        source: '/project/mulberry-park/',
+      {
+        source: '/project/mulberry-park/:path*',
         destination: '/mulberry-park',
-        permanent: true, 
+        permanent: true,
       },
        {
         source: '/project/abcd-enclave-3',

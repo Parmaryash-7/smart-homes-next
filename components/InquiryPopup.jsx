@@ -16,6 +16,7 @@ export default function InquiryPopupDetail() {
   const router = useRouter();
   const activePath = usePathname();
   const isOpen = useSelector((state) => state.inquiry.isOpen);
+  const { isDrive }= useSelector((state) => state.inquiry);
   const [propertylist, setPropertylist] = useState([]);
   const [projectOptions, setProjectOptions] = useState([]);
   const [projectDetailInq, setProjectDetailInq] = useState('')
@@ -197,9 +198,12 @@ export default function InquiryPopupDetail() {
 
     try {
       const detail = projectOptions.find((item) => item.project_id == form.project_id);
-      const matchedProject = projectListJson.list.find(
-      (item) => item.project_id == form.project_id
-    );
+      let matchedProject = null;
+      if(isDrive){
+        matchedProject = projectListJson.list.find(
+          (item) => item.project_id == form.project_id
+        );
+      }
       // const docs = detail.document_other_data ? detail.document_other_data : []
       const docs = detail?.document_other_data || [];
 
@@ -211,7 +215,7 @@ export default function InquiryPopupDetail() {
       // console.log(response);
       if (response.success) {
         dispatch(closeInquiry());
-        dispatch(setThankYouData({ page_name: slug?.project_title, documents: docs, drive_url: matchedProject?.legal_document }));
+        dispatch(setThankYouData({ page_name: slug?.project_title, documents: docs, drive_url: matchedProject?.legal_document ? matchedProject?.legal_document : ""}));
         router.push(`${slug?.slug}/thankyou`);
 
         setForm({

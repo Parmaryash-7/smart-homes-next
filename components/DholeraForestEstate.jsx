@@ -9,7 +9,7 @@ import { useDispatch } from 'react-redux'
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Fancybox } from "@fancyapps/ui";
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
-import { openInquiry } from '../store/inquirySlice'
+import { openInquiry, setDrive } from '../store/inquirySlice'
 import {
   Pagination,
   Keyboard,
@@ -341,6 +341,7 @@ export default function DholeraForestEstate({
                       <div className="about-btn-home outline-div-button button-div ">
                         <button className="reecosys-template-button button-style-white white-text " onClick={() => {
                           dispatch(openInquiry())
+                          dispatch(setDrive(false));
                         }}>
                           <span className="material-symbols-outlined">
                             call
@@ -428,6 +429,7 @@ export default function DholeraForestEstate({
                             {/* ng-click="inquire_popup_click(); inquiry_from_click();" */}
                             <button className="reecosys-template-button button-style-secondary " onClick={() => {
                               dispatch(openInquiry())
+                              dispatch(setDrive(false));
                             }}>
                               <span className="material-symbols-outlined">
                                 chat
@@ -445,6 +447,7 @@ export default function DholeraForestEstate({
                                   {/* ng-click="inquire_popup_click(); inquiry_from_click(data.type);" */}
                                   <button className="reecosys-template-button button-style-secondary-outline " onClick={() => {
                                     dispatch(openInquiry())
+                                    dispatch(setDrive(false));
                                   }}>
                                     <span className="material-symbols-outlined">
                                       download
@@ -460,6 +463,7 @@ export default function DholeraForestEstate({
                           {/* ng-click="inquire_popup_click();    inquiry_from_click('legal-document');" */}
                           <div className="about-btn-home outline-div-button button-div " onClick={() => {
                             dispatch(openInquiry())
+                            dispatch(setDrive(true));
                           }}>
                             <button className="reecosys-template-button button-style-secondary-outline " >
                               <span className="material-symbols-outlined">

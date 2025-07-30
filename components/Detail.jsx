@@ -15,7 +15,7 @@ import {
 import "swiper/css";
 import "swiper/css/free-mode";
 import rawProjectData from "data/projectList.json";
-import { openInquiry, setProjectDetail, setThankYouData } from '../store/inquirySlice'
+import { openInquiry, setDrive, setProjectDetail, setThankYouData } from '../store/inquirySlice'
 import { useDispatch } from 'react-redux'
 // import InquiryForm from "components/InquiryForm";
 import BottomStrip from "components/BottomStrip";
@@ -477,6 +477,7 @@ export default function Detail({
                       >
                         <div className="about-btn-home outline-div-button button-div " onClick={() => {
                           dispatch(openInquiry())
+                          dispatch(setDrive(false));
                         }}>
                           {/* ng-click="inquire_popup_click(); inquiry_from_click();" */}
                           <button className="reecosys-template-button button-style-secondary ">
@@ -496,6 +497,7 @@ export default function Detail({
                                 {/* ng-click="inquire_popup_click(); inquiry_from_click(data.type);" */}
                                 <button className="reecosys-template-button button-style-secondary-outline " onClick={() => {
                                   dispatch(openInquiry())
+                                  dispatch(setDrive(false));
                                 }}>
                                   <span className="material-symbols-outlined">
                                     download
@@ -515,6 +517,7 @@ export default function Detail({
                                 className="reecosys-template-button button-style-secondary-outline "
                                 onClick={() => {
                                   dispatch(openInquiry());
+                                  dispatch(setDrive(true));
                                   // dispatch(setThankYouData({ drive_url:  matchedProject.legal_document}));
                                 }}
                               >

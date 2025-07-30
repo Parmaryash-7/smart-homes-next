@@ -7,6 +7,7 @@ const initialState = {
     documents: [],
     drive_url: '',
   },
+  isDrive: false,
   projectDetailInq: null,
   inquiryPrefill: null, 
 };
@@ -32,6 +33,9 @@ const inquirySlice = createSlice({
     setProjectDetail(state, action) {
       state.projectDetailInq = action.payload; 
     },
+    setDrive(state, action) {
+      state.isDrive = action.payload; 
+    },
     removeProjectDetail(state) {
       state.projectDetailInq = null; 
     },
@@ -45,6 +49,7 @@ export const {
   clearThankYouData,
   setProjectDetail,
   removeProjectDetail, 
+  setDrive,
 } = inquirySlice.actions;
 
 export default inquirySlice.reducer;
