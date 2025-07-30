@@ -17,7 +17,7 @@ import { Fancybox } from '@fancyapps/ui/dist/fancybox/'
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
 import awardsData from 'data/awards.json'
 import { useDispatch } from 'react-redux'
-import { openInquiry } from '../store/inquirySlice'
+import { openInquiry, setDrive } from '../store/inquirySlice'
 import InquiryForm from 'components/InquiryForm'
 
 export default function Home({
@@ -1942,6 +1942,7 @@ export default function Home({
                         data-wow-delay="0.6s"
                         onClick={() => {
                             dispatch(openInquiry())
+                            dispatch(setDrive(false))
                         }}
                         style={{
                             position: 'fixed',

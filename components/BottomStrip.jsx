@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef } from "react";
 import Link from "next/link";
-import { openInquiry, setProjectDetail } from '../store/inquirySlice';
+import { openInquiry, setDrive, setProjectDetail } from '../store/inquirySlice';
 import { useDispatch, useSelector } from 'react-redux';
 
 export default function BottomStrip({
@@ -67,6 +67,7 @@ export default function BottomStrip({
   const handleInq = () => {
     // console.log(projectDetail);
     dispatch(openInquiry(projectDetail))
+    dispatch(setDrive(false))
   }
 
   return (
