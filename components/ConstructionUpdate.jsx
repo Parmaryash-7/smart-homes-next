@@ -123,7 +123,6 @@ export default function ConstructionUpdate({ pageList }) {
     { img: "/images/contruction-update/Maple-Garden-CU/Maple-Garden-7.jpg" },
     { img: "/images/contruction-update/Maple-Garden-CU/Maple-Garden-8.jpg" },
     { img: "/images/contruction-update/Maple-Garden-CU/Maple-Garden-9.jpg" },
-    { img: "/images/contruction-update/Maple-Garden-CU/Maple-Garden-10.jpg" },
     { img: "/images/contruction-update/Maple-Garden-CU/Maple-Garden-11.jpg" },
     { img: "/images/contruction-update/Maple-Garden-CU/Maple-Garden-12.jpg" },
     { img: "/images/contruction-update/Maple-Garden-CU/Maple-Garden-13.jpg" },
