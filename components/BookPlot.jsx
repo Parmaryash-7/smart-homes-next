@@ -486,7 +486,7 @@ export default function BookPlotsForm({
       widgetId === null &&
       document.getElementById("recaptcha-container")?.innerHTML === ""
     ) {
-      const id = window.grecaptcha.render("recaptcha-container", {
+      const id = window?.grecaptcha?.render("recaptcha-container", {
         sitekey: "6LdIAXwrAAAAAOo3_bSEEPe83mmBwz81hs7gHsdT",
         callback: (token) => {
           console.log("reCAPTCHA success:", token);
@@ -498,7 +498,7 @@ export default function BookPlotsForm({
 
       setWidgetId(id);
     }
-  }, [recaptchaReady, widgetId]);
+  }, [recaptchaReady]);
 
 
   const handleProjectSelect = async (projectId) => {
@@ -1138,7 +1138,6 @@ export default function BookPlotsForm({
                     src="https://www.google.com/recaptcha/api.js?render=explicit"
                     strategy="afterInteractive"
                     onLoad={() => {
-                      console.log("reCAPTCHA script loaded");
                       setRecaptchaReady(true);
                     }}
                   />
