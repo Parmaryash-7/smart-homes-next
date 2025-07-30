@@ -230,8 +230,7 @@ export default function ContactUs({ pageList, contactDetails }) {
                                     {/* Map */}
                                     <div className="mapiframe">
                                         <div>
-                                            <iframe
-                                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4553.478923843906!2d72.5414256!3d23.1139178!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e83930923a74f%3A0x129658ea84833cbd!2sSmartHomes%20Infrastructure%20Pvt.%20Ltd.!5e1!3m2!1sen!2sin!4v1737636715820!5m2!1sen!2sin"
+                                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3669.5415333440474!2d72.53875347531653!3d23.113873079109855!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395f2533c2127e1f%3A0xf0e18bfc39adecd8!2sSmartHomes%20Infrastructure%20Pvt%20Ltd!5e0!3m2!1sen!2sin!4v1753858872905!5m2!1sen!2sin" 
                                                 style={{ border: 0 }}
                                                 allowFullScreen=""
                                                 loading="lazy"
