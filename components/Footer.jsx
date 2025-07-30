@@ -133,7 +133,7 @@ export default function Footer({ homeDetails, adminData, propertylist, projectLi
                     <span className="material-symbols-outlined">distance</span>
                     <p className="address-hover">
                       <a
-                        href="https://maps.app.goo.gl/Uqam4igTpm3YEPCF8"
+                        href="https://g.co/kgs/7P6DSjk"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="secondary-color"
