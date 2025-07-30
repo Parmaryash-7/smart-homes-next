@@ -69,7 +69,7 @@ export default function InquiryCareer() {
 
     const res = await api.CareerFileUpload(file)
     if (res.success) {
-      console.log(res);
+      // console.log(res);
       setForm({ ...form, resume_upload: file, resume: res.file_name });
     }
     Toast(res.message)
