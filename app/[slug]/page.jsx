@@ -6,10 +6,14 @@ import { redirect } from "next/navigation";
 import api from 'lib/api.interceptor'
 import { notFound } from "next/navigation";
 import projectListJson from "../../data/projectList.json"
-export default async function ProjectDetailPage({ params }) {
+export default async function ProjectDetailPage({ params, searchParams  }) {
     // const propertylist = await api.Propertylist()
     // const propertylist = await getPropertyList()
     const { slug } = params;
+    // If any query params exist, redirect to clean URL
+    if (Object.keys(searchParams).length > 0) {
+        redirect(`/${slug}`); // 308 Permanent Redirect by default
+    }
     // const pageList = await api.PageList();
     const pageList = await getPageList();
     let projectData;
