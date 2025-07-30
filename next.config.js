@@ -1,7 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   productionBrowserSourceMaps: true,
-
   async rewrites() {
     return [
       {
@@ -10,13 +9,17 @@ const nextConfig = {
       }
     ]
   },
-
   async redirects() {
     return [
       {
         source: '/sitemap.php',
         destination: '/sitemap',
         permanent: true, 
+      },
+      {
+        source: '/blog/:slug*',
+        destination: '/blogs/:slug*',
+        permanent: true,
       },
       {
         source: '/latest-news',
@@ -38,11 +41,11 @@ const nextConfig = {
         destination: '/blogs/indias-dedicated-freight-corridor-augment-manufacturing-development-smart-cities',
         permanent: true, 
       },
-       {
-        source: '/project/mulberry-park',
-        destination: '/mulberry-park',
-        permanent: true, 
-      },
+      //  {
+      //   source: '/project/mulberry-park',
+      //   destination: '/mulberry-park',
+      //   permanent: true, 
+      // },
        {
         source: '/project/abcd-enclave-4',
         destination: '/abcd-enclave-4',
@@ -58,11 +61,11 @@ const nextConfig = {
         destination: '/blogs/empowering-tomorrow-pm-modis-semiconductor-vision-ignites-dholera-smart-citys-growth',
         permanent: true, 
       },
-      {
-        source: '/project/mulberry-park/:path*',
-        destination: '/mulberry-park',
-        permanent: true,
-      },
+      // {
+      //   source: '/project/mulberry-park/:path*',
+      //   destination: '/mulberry-park',
+      //   permanent: true,
+      // },
        {
         source: '/project/abcd-enclave-3',
         destination: '/abcd-enclave-3',
@@ -78,7 +81,6 @@ const nextConfig = {
         destination: '/olive-garden/',
         permanent: true, 
       },
-
        {
         source: '/project/olive-garden:path*',
         destination: '/olive-garden/',
@@ -182,5 +184,4 @@ const nextConfig = {
     ]
   }
 }
-
 export default nextConfig
