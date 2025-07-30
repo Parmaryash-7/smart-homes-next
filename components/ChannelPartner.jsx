@@ -357,6 +357,7 @@ export default function ChannelPartner({ pageList }) {
             company_name: "",
             birthdate: Math.floor(Date.now() / 1000),
             associated_company: false,
+            
             reference_name: "Test",
         };
 

@@ -7,6 +7,8 @@ import './BookPlot.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { useRouter } from 'next/navigation'
 import { fetchCountryList } from 'store/countrySlice'
+import { setBookingData } from '../store/BookingSlice'
+import api from "../lib/api.interceptor"
 // import getPlotList from "lib/getPlotList";
 
 export default function BookPlotsForm({
@@ -87,6 +89,7 @@ export default function BookPlotsForm({
     phone_number: '',
     email: '',
     date_of_birth_display: '',
+    date_of_birth: '',
     nationality: 'India',
     permanent_address: '',
     current_address: '',
@@ -102,7 +105,20 @@ export default function BookPlotsForm({
     plot_number: '',
     plot_size: '',
     unit_id: '',
-    terms_condition_agreed_display: true
+    action: "save",
+    terms_condition_agreed_display: true,
+    transaction_date: Math.floor(Date.now() / 1000),
+    payment_details: "Razorpay",
+    from_app: true,
+    master_user_id: 339,
+    logged_in_master_user_id: 339,
+    inquiry_from: "web",
+    user_type: "N",
+    terms_condition_agreed: "Yes",
+    applicant_name: "",
+    place: "Website",
+    contact_no: "",
+    booking_id: "",
   })
 
   const validateForm = () => {
@@ -191,11 +207,30 @@ export default function BookPlotsForm({
     e.preventDefault()
 
     if (validateForm()) {
-      // console.log('Form Submitted', inquiryObj2)
+      inquiryObj2.date_of_birth = inquiryObj2.date_of_birth_display;
+      if (inquiryObj2.terms_condition_agreed_display) {
+        inquiryObj2.terms_condition_agreed = "Yes"
+      } else {
+        inquiryObj2.terms_condition_agreed = "No"
+      }
+      if (inquiryObj2.full_name) {
+        inquiryObj2.applicant_name = inquiryObj2.full_name.split(" ")[0]
+      }
+      if (inquiryObj2.phone_number) {
+        inquiryObj2.contact_no = inquiryObj2.country + " " + inquiryObj2.phone_number
+      }
+      const response = await api.PlotBooking(inquiryObj2);
+      console.log(response);
 
-      localStorage.setItem('bookingData', JSON.stringify(inquiryObj2))
+      if (response.status == "1") {
+        inquiryObj2.booking_id = response.id;
+        console.log('Form Submitted', inquiryObj2)
+        dispatch(setBookingData(inquiryObj2))
+        localStorage.setItem('bookingData', JSON.stringify(inquiryObj2))
+        router.push('/bookplotpayment')
+      }
 
-      router.push('/bookplotpayment')
+
 
       // Optionally reset form
       setInquiryObj2({
@@ -430,6 +465,17 @@ export default function BookPlotsForm({
 
   const [recaptchaReady, setRecaptchaReady] = useState(false);
   const [widgetId, setWidgetId] = useState(null);
+  useEffect(() => {
+    if (projectDetail) {
+      setSelectedProjectId(projectDetail.project_id);
+
+      const fetchData = async () => {
+        await fetchUnitPlansFromAPI(projectDetail.project_id);
+      };
+
+      fetchData();
+    }
+  }, [projectDetail]);
 
   useEffect(() => {
     // Wait for reCAPTCHA script to load and avoid double render
