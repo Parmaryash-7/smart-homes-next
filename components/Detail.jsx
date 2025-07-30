@@ -161,7 +161,7 @@ export default function Detail({
         onClick={() => {
           setCountryFlag(false);
         }}
-        style={{ overflow: 'hidden' }}
+        // style={{ overflow: 'hidden' }}
       >
         <div className="relative ">
           {bannerImages?.length > 0 && (

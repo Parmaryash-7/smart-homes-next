@@ -2633,10 +2633,25 @@ label.error {
   color: var(--secondary-highlight-color) !important;
 }
 
+/* 
 .blog_bind_data td,
 .blog_bind_data table {
   width: 100% !important;
   max-width: 100% !important;
+} */
+
+.blog_bind_data table,
+.blog_bind_data td,
+.blog_bind_data th {
+  border: 1px solid;
+}
+
+.blog_bind_data table {
+  margin-bottom: 1rem;
+}
+
+.blog_bind_data td {
+  padding: 0.5rem;
 }
 
 .blog_bind_data p b,
@@ -8446,7 +8461,7 @@ form .md-lable.contact_code #contact_no {
 
   .sticky-div {
     position: relative;
-    top: unset;
+    top: 2rem;
   }
 
   .data-list-news-card {
@@ -9808,14 +9823,15 @@ form .md-lable.contact_code #contact_no {
   }
 }
 
-@media only screen and (max-width: 600px) {
-
-}
+@media only screen and (max-width: 600px) {}
 
 @media only screen and (max-width: 325px) {
-      .homeBannerSwiper, .piramyd-banner-section .bannerImg, .piramyd-banner-section .bannerImg img {
-        height: 45vh !important;
-    }
+
+  .homeBannerSwiper,
+  .piramyd-banner-section .bannerImg,
+  .piramyd-banner-section .bannerImg img {
+    height: 45vh !important;
+  }
 }
 
 .fancybox__infobar,
