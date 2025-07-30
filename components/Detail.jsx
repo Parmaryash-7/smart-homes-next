@@ -45,9 +45,12 @@ export default function Detail({
   const toggleAccordion = (index) => {
     setActiveIndex(index === activeIndex ? null : index);
   };
+  // console.log("ID" , projectDetail.project_id);
   const matchedProject = projectListJson.find(
     (item) => item.project_id == projectDetail.project_id
   );
+  // console.log("OBJ MATCh", );
+
   useEffect(() => {
     let dataToUse;
     let StaticData = {};
@@ -339,7 +342,7 @@ export default function Detail({
                   projectDetail.size_price ||
                   projectDetail.location ||
                   projectDetail.status ||
-                  (matchedProject?.total_area && matchedProject.total_area.trim() !== '')) && (
+                  (matchedProject?.total_area && matchedProject.total_area)) && (
                     <div className="projectBannerFlex">
                       <div className="inner-flex w100">
                         <div className="section-content">
@@ -374,7 +377,7 @@ export default function Detail({
                                 </span>
                               </>
                             )}
-                            {matchedProject?.total_area && matchedProject.total_area.trim() !== '' && (
+                            {matchedProject?.total_area && matchedProject.total_area && (
                               <>
                                 {matchedProject.total_area}
                                 <br className="visible-xs" />
@@ -510,8 +513,7 @@ export default function Detail({
                               </div>
                             )
                           )}
-                        {(projectDetail.legal_document ||
-                          matchedProject?.legal_document?.trim() !== "") && (
+                        { (matchedProject?.legal_document) && (
                             <div className="about-btn-home outline-div-button button-div  ">
                               <button
                                 className="reecosys-template-button button-style-secondary-outline "

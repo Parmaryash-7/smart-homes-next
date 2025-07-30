@@ -69,8 +69,14 @@ const nextConfig = {
         permanent: true, 
       },
        {
-        source: '/project/olive-garden/',
-        destination: '/olive-garden',
+        source: '/project/olive-garden:path*/:path*',
+        destination: '/olive-garden/',
+        permanent: true, 
+      },
+
+       {
+        source: '/project/olive-garden:path*',
+        destination: '/olive-garden/',
         permanent: true, 
       },
        {
