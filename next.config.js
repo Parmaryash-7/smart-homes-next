@@ -20,7 +20,7 @@ const nextConfig = {
       },
       {
         source: '/latest-news',
-        destination: '/blogs',
+        destination: '/blogs?tab=latest-news',
         permanent: true, 
       },
       {
