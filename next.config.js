@@ -19,6 +19,11 @@ const nextConfig = {
         permanent: true, 
       },
       {
+        source: '/latest-news',
+        destination: '/blogs',
+        permanent: true, 
+      },
+      {
         source: '/dholera-Forest-Estate-Phase-2',
         destination: '/dholera-forest-estate',
         permanent: true, 
