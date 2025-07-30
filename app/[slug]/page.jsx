@@ -10,11 +10,9 @@ export default async function ProjectDetailPage({ params, searchParams  }) {
     // const propertylist = await api.Propertylist()
     // const propertylist = await getPropertyList()
     const { slug } = params;
-    // If any query params exist, redirect to clean URL
     if (Object.keys(searchParams).length > 0) {
-        redirect(`/${slug}`); // 308 Permanent Redirect by default
+        redirect(`/${slug}`); 
     }
-    // const pageList = await api.PageList();
     const pageList = await getPageList();
     let projectData;
     try {
