@@ -84,7 +84,7 @@ export default function Sitemap() {
                                     { href: "/completed-projects", text: "Completed Projects" },
                                     { href: "/channel-partners", text: "Channel Partners" },
                                     { href: "/contact-us", text: "Contact Us" },
-                                    { href: "/dholera-SIR", text: "Dholera SIR" },
+                                    { href: "/dholera-sir", text: "Dholera SIR" },
                                     { href: "/construction-updates", text: "Construction Updates" },
                                     { href: "/awards-and-accolades", text: "Achievements and Awards" },
                                     { href: "/nri-corner", text: "NRI Corner" },
