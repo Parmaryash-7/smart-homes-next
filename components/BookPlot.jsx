@@ -479,25 +479,27 @@ export default function BookPlotsForm({
 
   useEffect(() => {
     // Wait for reCAPTCHA script to load and avoid double render
-    if (
-      recaptchaReady &&
-      typeof window !== "undefined" &&
-      window.grecaptcha &&
-      widgetId === null &&
-      document.getElementById("recaptcha-container")?.innerHTML === ""
-    ) {
-      const id = window?.grecaptcha?.render("recaptcha-container", {
-        sitekey: "6LdIAXwrAAAAAOo3_bSEEPe83mmBwz81hs7gHsdT",
-        callback: (token) => {
-          console.log("reCAPTCHA success:", token);
-        },
-        "expired-callback": () => {
-          console.log("reCAPTCHA expired");
-        },
-      });
+    setTimeout(()=>{
+      if (
+        recaptchaReady &&
+        typeof window !== "undefined" &&
+        window.grecaptcha &&
+        widgetId === null &&
+        document.getElementById("recaptcha-container")?.innerHTML === ""
+      ) {
+        const id = window.grecaptcha.render("recaptcha-container", {
+          sitekey: "6LdIAXwrAAAAAOo3_bSEEPe83mmBwz81hs7gHsdT",
+          callback: (token) => {
+            console.log("reCAPTCHA success:", token);
+          },
+          "expired-callback": () => {
+            console.log("reCAPTCHA expired");
+          },
+        });
 
-      setWidgetId(id);
-    }
+        setWidgetId(id);
+      }
+    }, 1000)
   }, [recaptchaReady]);
 
 
