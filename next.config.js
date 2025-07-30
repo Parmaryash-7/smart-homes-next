@@ -16,6 +16,11 @@ const nextConfig = {
         destination: '/sitemap',
         permanent: true, 
       },
+        {
+        source: '/undefined&w=1920&h=750',
+        destination: '/',
+        permanent: true, 
+      },
       {
         source: '/blog/:slug*',
         destination: '/blogs/:slug*',
@@ -41,9 +46,14 @@ const nextConfig = {
         destination: '/blogs/indias-dedicated-freight-corridor-augment-manufacturing-development-smart-cities',
         permanent: true, 
       },
-       {
+      {
         source: '/project/mulberry-park',
         destination: '/mulberry-park',
+        permanent: true, 
+      },
+      {
+        source: '/newsletter',
+        destination: '/newsletters',
         permanent: true, 
       },
        {
