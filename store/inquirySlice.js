@@ -5,6 +5,7 @@ const initialState = {
   thankyouData: {
     page_name: '',
     documents: [],
+    drive_url: '',
   },
   projectDetailInq: null,
   inquiryPrefill: null, 

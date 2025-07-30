@@ -15,7 +15,7 @@ import {
 import "swiper/css";
 import "swiper/css/free-mode";
 import rawProjectData from "data/projectList.json";
-import { openInquiry, setProjectDetail } from '../store/inquirySlice'
+import { openInquiry, setProjectDetail, setThankYouData } from '../store/inquirySlice'
 import { useDispatch } from 'react-redux'
 // import InquiryForm from "components/InquiryForm";
 import BottomStrip from "components/BottomStrip";
@@ -515,6 +515,7 @@ export default function Detail({
                                 className="reecosys-template-button button-style-secondary-outline "
                                 onClick={() => {
                                   dispatch(openInquiry());
+                                  // dispatch(setThankYouData({ drive_url:  matchedProject.legal_document}));
                                 }}
                               >
                                 <span className="material-symbols-outlined">download</span>
@@ -533,6 +534,9 @@ export default function Detail({
                                 category: projectDetail.category,
                                 project_id: projectDetail.project_id,
                               },
+                            }}
+                              onClick={() => {
+                              dispatch(setProjectDetail(projectDetail))
                             }}
                           >
                             <button className="reecosys-template-button button-style-secondary-outline ">

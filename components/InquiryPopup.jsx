@@ -9,7 +9,7 @@ import { fetchCountryList } from 'store/countrySlice';
 import './InquiryPopup.css';
 import api from 'lib/api.interceptor.js'
 import { Toast } from './Toast'
-
+import projectListJson from '../data/projectList.json'
 
 export default function InquiryPopupDetail() {
   const dispatch = useDispatch();
@@ -141,14 +141,15 @@ export default function InquiryPopupDetail() {
   //   }
 
   //   if (!form.client_contact_no_display.trim()) {
-  //     newErrors.client_contact_no_display = 'Phone number is required';
-  //   } else if (!phoneRegex.test(form.client_contact_no_display)) {
-  //     newErrors.client_contact_no_display = 'Must be 10 digits';
-  //   }
-
+    //     newErrors.client_contact_no_display = 'Phone number is required';
+    //   } else if (!phoneRegex.test(form.client_contact_no_display)) {
+      //     newErrors.client_contact_no_display = 'Must be 10 digits';
+      //   }
+      
   //   return newErrors;
   // };
-
+  
+  // console.log('JSON', projectListJson);
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (projectDetailInq?.project_id) {
@@ -174,7 +175,7 @@ export default function InquiryPopupDetail() {
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
-      console.log(newErrors, 'Err');
+      // console.log(newErrors, 'Err');
       setSaveInquiry(false);
       return;
     }
@@ -196,17 +197,21 @@ export default function InquiryPopupDetail() {
 
     try {
       const detail = projectOptions.find((item) => item.project_id == form.project_id);
+      const matchedProject = projectListJson.list.find(
+      (item) => item.project_id == form.project_id
+    );
       // const docs = detail.document_other_data ? detail.document_other_data : []
       const docs = detail?.document_other_data || [];
 
-   
+      // console.log('matched', matchedProject);
+      // console.log(detail.legal_document);
 
       // console.log(form, 'res');
       const response = await api.Projectinquiry(form);
       // console.log(response);
       if (response.success) {
         dispatch(closeInquiry());
-        dispatch(setThankYouData({ page_name: slug?.project_title, documents: docs }));
+        dispatch(setThankYouData({ page_name: slug?.project_title, documents: docs, drive_url: matchedProject?.legal_document }));
         router.push(`${slug?.slug}/thankyou`);
 
         setForm({

@@ -7,7 +7,7 @@ import Link from 'next/link'
 
 export default function ThankYou() {
   const router = useRouter()
-  const { page_name, documents } = useSelector((state) => state.inquiry.thankyouData || {})
+  const { page_name, documents, drive_url } = useSelector((state) => state.inquiry.thankyouData || {})
 
   const [showPDF, setShowPDF] = useState(false)
   const [pdfURL, setPdfURL] = useState('')
@@ -28,8 +28,12 @@ export default function ThankYou() {
   }
 
   useEffect(() => {
-    console.log(documents);
-  }, [])
+    // console.log('url', drive_url);
+    if(drive_url){
+       window.open(drive_url, "_blank");
+    }
+    // console.log(documents);
+  }, [drive_url])
 
 
   return (

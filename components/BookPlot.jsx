@@ -17,6 +17,7 @@ export default function BookPlotsForm({
   const router = useRouter()
   const dispatch = useDispatch()
   const { countryList } = useSelector((state) => state.country)
+  const projectDetail = useSelector((state) => state.inquiry.projectDetailInq)
   const [selectedProjectId, setSelectedProjectId] = useState(null)
   const [formErrors, setFormErrors] = useState({})
   const [bookPlotBirthDate, setBookPlotBirthDate] = useState('')
@@ -31,6 +32,8 @@ export default function BookPlotsForm({
     setShowUserCountryDropdown((prev) => !prev)
     setShowRefCountryDropdown(false)
   }
+
+  // console.log(projectDetail);
 
   const handleRefFlagClick = () => {
     setShowRefCountryDropdown((prev) => !prev)
@@ -94,8 +97,8 @@ export default function BookPlotsForm({
     flag4: 'https://flagcdn.com/w40/in.webp',
     country4: '91',
     country: '91',
-    project_type: '',
-    project_id: '',
+    project_type: projectDetail?.category ? projectDetail.category : '',
+    project_id: projectDetail?.project_id ? projectDetail.project_id : '',
     plot_number: '',
     plot_size: '',
     unit_id: '',

@@ -140,7 +140,7 @@ export default function InquiryPopupDetail() {
             return;
         }
 
-        console.log('Submitted Form Data:', form);
+        // console.log('Submitted Form Data:', form);
     };
 
     if (!isOpen) return null;
