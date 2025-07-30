@@ -601,7 +601,7 @@ export default function Home({
                             {!isMobilescreen && (
                                 <SwiperSlide>
                                     <div className="bannerCard relative slide-inner">
-                                        <img src="/images/website_banner_web 3.jpg" alt="" />
+                                        <img src="/images/Mobile_web_3_30.jpg" alt="" />
                                     </div>
                                 </SwiperSlide>
                             )}

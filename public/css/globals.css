@@ -41,6 +41,10 @@ body {
   width: 100%;
 }
 
+.homeBannerSwiper {
+  height: 90vh !important;
+}
+
 @media only screen and (max-width: 767px) {
   .fullpageloader div {
     width: 80%;
@@ -7791,9 +7795,9 @@ label.error {
   background: linear-gradient(180deg, #00000000 78%, #000 100%);
 }
 
-.homeBannerSwiper {
+/* .homeBannerSwiper {
   height: 90vh !important;
-}
+} */
 
 /* .piramyd-banner-section, .piramyd-banner-section .bannerImg img {
     height: 90vh;
