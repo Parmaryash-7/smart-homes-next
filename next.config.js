@@ -61,11 +61,11 @@ const nextConfig = {
         destination: '/blogs/empowering-tomorrow-pm-modis-semiconductor-vision-ignites-dholera-smart-citys-growth',
         permanent: true, 
       },
-      // {
-      //   source: '/project/mulberry-park/:path*',
-      //   destination: '/mulberry-park',
-      //   permanent: true,
-      // },
+      {
+        source: '/project/mulberry-park/:path*',
+        destination: '/mulberry-park',
+        permanent: true,
+      },
        {
         source: '/project/abcd-enclave-3',
         destination: '/abcd-enclave-3',
