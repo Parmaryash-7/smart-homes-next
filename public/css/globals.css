@@ -2665,6 +2665,10 @@ label.error {
   line-height: 1.5;
 }
 
+.blog_bind_data b {
+  font-weight: bold;
+}
+
 /* .blog_bind_data p b,
 .blog_bind_data p,
 .blog_bind_data p strong {
@@ -5267,7 +5271,7 @@ span.readmore_click {
   }
 
   .homeBannerSwiper {
-    height: 80vh !important;
+    height: 73svh !important;
   }
 
   .amenities-grid>div {
