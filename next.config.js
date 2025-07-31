@@ -14,13 +14,18 @@ const nextConfig = {
       {
         source: '/sitemap.php',
         destination: '/sitemap',
-        permanent: true, 
+        permanent: true,
       },
-        {
+      {
         source: '/undefined&w=1920&h=750',
         destination: '/',
-        permanent: true, 
+        permanent: true,
       },
+      // {
+      //   source: '/dholera-SIR',
+      //   destination: '/dholera-sir',
+      //   permanent: true,
+      // },
       {
         source: '/blog/:slug*',
         destination: '/blogs/:slug*',
@@ -29,122 +34,122 @@ const nextConfig = {
       {
         source: '/latest-news',
         destination: '/blogs?tab=latest-news',
-        permanent: true, 
+        permanent: true,
       },
       {
         source: '/dholera-Forest-Estate-Phase-2',
         destination: '/dholera-forest-estate',
-        permanent: true, 
+        permanent: true,
       },
-       {
+      {
         source: '/article/dholera-smart-city-news-by-smart-homes-vol-06',
         destination: '/images/pdf/DHOLERA-SMART-CITY-NEWS-BY-SMART-HOMES-VOL-05.pdf',
-        permanent: true, 
+        permanent: true,
       },
-       {
+      {
         source: '/India-Dedicated-Freight-Corridor-Augment-Manufacturing-Development-Smart-Cities.php',
         destination: '/blogs/indias-dedicated-freight-corridor-augment-manufacturing-development-smart-cities',
-        permanent: true, 
+        permanent: true,
       },
       {
         source: '/project/mulberry-park',
         destination: '/mulberry-park',
-        permanent: true, 
+        permanent: true,
       },
       {
         source: '/newsletter',
         destination: '/newsletters',
-        permanent: true, 
+        permanent: true,
       },
-       {
+      {
         source: '/project/abcd-enclave-4',
         destination: '/abcd-enclave-4',
-        permanent: true, 
+        permanent: true,
       },
-       {
+      {
         source: '/project/maple-garden',
         destination: '/maple-garden',
-        permanent: true, 
+        permanent: true,
       },
-       {
+      {
         source: '/article/empowering-tomorrow-pm-modis-semiconductor-vision-ignites-dholera-smart-citys-growth',
         destination: '/blogs/empowering-tomorrow-pm-modis-semiconductor-vision-ignites-dholera-smart-citys-growth',
-        permanent: true, 
+        permanent: true,
       },
       {
         source: '/project/mulberry-park/:path*',
         destination: '/mulberry-park',
         permanent: true,
       },
-       {
+      {
         source: '/project/abcd-enclave-3',
         destination: '/abcd-enclave-3',
-        permanent: true, 
+        permanent: true,
       },
-       {
+      {
         source: '/project/piccadilly-square-2',
         destination: '/piccadilly-square-2',
-        permanent: true, 
+        permanent: true,
       },
-       {
+      {
         source: '/project/olive-garden:path*/:path*',
         destination: '/olive-garden/',
-        permanent: true, 
+        permanent: true,
       },
-       {
+      {
         source: '/project/olive-garden:path*',
         destination: '/olive-garden/',
-        permanent: true, 
+        permanent: true,
       },
-       {
+      {
         source: '/nri-section.html',
         destination: '/nri-corner',
-        permanent: true, 
+        permanent: true,
       },
-       {
+      {
         source: '/project/abcd-greens-1',
         destination: '/abcd-greens-1',
-        permanent: true, 
+        permanent: true,
       },
-       {
+      {
         source: '/project/orange-county',
         destination: '/orange-county',
-        permanent: true, 
+        permanent: true,
       },
-       {
+      {
         source: '/project/abcd-enclave-I',
         destination: '/abcd-enclave-I',
-        permanent: true, 
+        permanent: true,
       },
-       {
+      {
         source: '/project/abcd-greens-1',
         destination: '/abcd-greens-1',
-        permanent: true, 
+        permanent: true,
       },
-       {
+      {
         source: '/project/abcd-enclave-I',
         destination: '/abcd-enclave-I',
-        permanent: true, 
+        permanent: true,
       },
-       {
+      {
         source: '/file/Draft-DPR-for-development-of-Dholera-Solar-Park.pdf',
         destination: '/images/document-pdf/Draft-DPR-for-development-of-Dholera-Solar-Park.pdf',
-        permanent: true, 
+        permanent: true,
       },
-       {
+      {
         source: '/file/prelim-dholerasir-town-planning-4A-OPFP.pdf',
         destination: '/images/document-pdf/prelim-dholerasir-town-planning-4A-OPFP.pdf',
-        permanent: true, 
+        permanent: true,
       },
-       {
+      {
         source: '/file/ABCD-ENCLAVE-3_Bhadiyad-286-Gam-no-6-hak-patrak.pdf',
         destination: '/abcd-enclave-3',
-        permanent: true, 
+        permanent: true,
       },
-       {
+      {
         source: '/file/Ambli-665-Brochure-Website.pdf',
         destination: '/important-documents',
-        permanent: true, 
+        permanent: true,
       },
       // {
       //   source: '/book_plot/dholera-expressway-city-township/',

@@ -9,6 +9,7 @@ export function middleware(request) {
   }
   // ✅ Redirect /dholera-SIR → /dholera-sir
   if (pathname === '/dholera-SIR') {
+    console.log("middle");
     url.pathname = '/dholera-sir';
     return NextResponse.redirect(url, 301);
   }

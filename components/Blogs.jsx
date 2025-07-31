@@ -5,6 +5,7 @@ import "./Blogs.css";
 import Link from "next/link";
 
 export default function Blogs({ blogs_types_list }) {
+  console.log("blog", blogs_types_list);
   return (
     <>
       <div className="blogs_wrapper">
@@ -65,7 +66,7 @@ export default function Blogs({ blogs_types_list }) {
                     <div className="project-list-grid project-list-grid-2-column">
                       {blogs_types_list.map(
                         (data, i) =>
-                          data.tags_commaseparted === "Articles" && (
+                          (data.tags_commaseparted.toLowerCase() === "articles") && (
                             <div key={i} className="project-list-card">
                               <Link
                                 href={`blogs/${data.slug}`}
