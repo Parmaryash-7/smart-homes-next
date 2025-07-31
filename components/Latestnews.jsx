@@ -13,30 +13,30 @@ export default function Latestnews({ blogs_types_list, isActive = false }) {
           >
             {isActive ? (
               <>
-                
+
               </>
             ) : <>
 
               <section
-              className="reecosys-section relative"
-              data-aos="fade-in"
-              data-aos-delay="600"
-              data-aos-duration="400"
-              id="reecosys-contact-us-section-1"
-            >
-              <div className="common-listing-banner relative">
-                <img src="/images/detail/blog_img.jpg" alt=""/>
-                <div className="common-list-overlay"></div>
-              </div>
-              <div className="top-left-overlay-new"></div>
-            </section>
-            <div className="main-container">
-              <div className="flex-row articles-tab">
-                <div className="section-title">
-                  <h2 className="secondary-color">Latest News</h2>
+                className="reecosys-section relative"
+                data-aos="fade-in"
+                data-aos-delay="600"
+                data-aos-duration="400"
+                id="reecosys-contact-us-section-1"
+              >
+                <div className="common-listing-banner relative">
+                  <img src="/images/detail/blog_img.jpg" alt="" />
+                  <div className="common-list-overlay"></div>
+                </div>
+                <div className="top-left-overlay-new"></div>
+              </section>
+              <div className="main-container">
+                <div className="flex-row articles-tab">
+                  <div className="section-title">
+                    <h2 className="secondary-color">Latest News</h2>
+                  </div>
                 </div>
               </div>
-            </div>
             </>}
             <section
               className="reecosys-section project_blog_list_setion"
@@ -76,8 +76,10 @@ export default function Latestnews({ blogs_types_list, isActive = false }) {
                               ng-if=""
                               className="data-list-news-card"
                             >
+                              {/* <a
+                                href={data.banner_title} */}
                               <a
-                                href={data.banner_title}
+                                href={`/latest-news/${data.slug}`}
                                 className="data-list-news-card-flex"
                                 target="_blank"
                               >
@@ -102,7 +104,6 @@ export default function Latestnews({ blogs_types_list, isActive = false }) {
                                         {data.published_date && (
                                           <div
                                             className="banner-detail-row banner-detail-row-grid"
-                                            ng-if=""
                                           >
                                             <div className="project-information-div">
                                               <div className="section-content banner-detail-row-grid-text">
