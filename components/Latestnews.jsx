@@ -3,7 +3,6 @@ import React from "react";
 import "./Latestnews.css";
 
 export default function Latestnews({ blogs_types_list, isActive = false }) {
-  // console.log("latest news", blogs_types_list);
   return (
     <>
       <div className="latestnews_wrapper">
@@ -71,7 +70,7 @@ export default function Latestnews({ blogs_types_list, isActive = false }) {
                     <div className="project-list-grid project-list-grid-2-column project-listsmall-gap">
                       {blogs_types_list.map(
                         (data, i) =>
-                          (data.tags_commaseparted.toLowerCase() === "latest-news" || data.tags_commaseparted.toLowerCase() === "latest news" || data.tags_commaseparted.toLowerCase() === "latestnews") && (
+                          (["latest-news", "latest news"].includes(data.tags_commaseparted.toLowerCase())) && (
                             <div
                               key={i}
                               ng-if=""
