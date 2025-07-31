@@ -65,7 +65,7 @@ export default function Blogs({ blogs_types_list }) {
                     <div className="project-list-grid project-list-grid-2-column">
                       {blogs_types_list.map(
                         (data, i) =>
-                          (!["latest-news", "latest news", "Newsletter", "newsletter"].includes(data.tags_commaseparted.toLowerCase()))
+                          (!["latest-news", "latest news", "Newsletter", "newsletter", ""].includes(data.tags_commaseparted.toLowerCase()))
                           && (
                             <div key={i} className="project-list-card">
                               <Link
