@@ -5,7 +5,7 @@ import "./Blogs.css";
 import Link from "next/link";
 
 export default function Blogs({ blogs_types_list }) {
-  console.log("blog", blogs_types_list);
+  // console.log("blog", blogs_types_list);
   return (
     <>
       <div className="blogs_wrapper">

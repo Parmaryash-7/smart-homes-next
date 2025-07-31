@@ -3,7 +3,7 @@ import React from "react";
 import "./Latestnews.css";
 
 export default function Latestnews({ blogs_types_list, isActive = false }) {
-  console.log("latest news", blogs_types_list);
+  // console.log("latest news", blogs_types_list);
   return (
     <>
       <div className="latestnews_wrapper">
