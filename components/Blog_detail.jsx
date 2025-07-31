@@ -40,7 +40,7 @@ export default function Blog_detail({ recent_blog_init_data, blogs_types_list, s
             const blogData = blogs_types_list.find((data) => data.slug === slug);
             setBlog_data(blogData);
             const recentBlogs = blogs_types_list
-                .filter((data) => data.slug !== slug && data.published_time)
+                .filter((data) => data.slug !== slug && data.published_time && (data.tags_commaseparted.toLowerCase() == "articles" || data.tags_commaseparted.toLowerCase() == "blogs" || data.tags_commaseparted.toLowerCase() == "blog"))
                 .sort((a, b) => b.published_time - a.published_time);
 
             setRecentBlogData(recentBlogs.slice(0, 3));

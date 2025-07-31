@@ -66,7 +66,7 @@ export default function Blogs({ blogs_types_list }) {
                     <div className="project-list-grid project-list-grid-2-column">
                       {blogs_types_list.map(
                         (data, i) =>
-                          (data.tags_commaseparted.toLowerCase() === "articles") && (
+                          (data.tags_commaseparted.toLowerCase() === "articles" || data.tags_commaseparted.toLowerCase() === "blogs" || data.tags_commaseparted.toLowerCase() === "blog") && (
                             <div key={i} className="project-list-card">
                               <Link
                                 href={`blogs/${data.slug}`}

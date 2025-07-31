@@ -6922,3 +6922,7 @@ span.readmore_click {
     display: none !important
   }
 }
+
+.cursor-pointer {
+  cursor: pointer !important;
+}
