@@ -79,6 +79,7 @@ export default async function LatestDetails({ params }) {
 
     return (
         <Blog_detail
+            isNews={true}
             slug={slug}
             pageList={pageList}
             blogs_types_list={blogs_types_list}

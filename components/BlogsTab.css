@@ -27,3 +27,31 @@
         font-size: 2rem;
     }
 }
+.pagination {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.pagination button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+}
+.pagination button.active {
+    color: white;
+    background: #004A18;
+}
+
+.center-loading {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

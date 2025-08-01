@@ -80,7 +80,5 @@ export async function generateMetadata() {
 }
 
 export default async function LatestNewsPage() {
-    const blogDetailData = await getBlogDetail();
-
-    return <Latestnews blogs_types_list={blogDetailData} />;
+    return <Latestnews blogs_types_list={paginatedData} />;
 }

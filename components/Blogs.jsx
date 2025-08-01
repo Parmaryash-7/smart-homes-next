@@ -65,53 +65,53 @@ export default function Blogs({ blogs_types_list }) {
                     <div className="project-list-grid project-list-grid-2-column">
                       {blogs_types_list.map(
                         (data, i) =>
-                          (!["latest-news", "latest news", "Newsletter", "newsletter", ""].includes(data.tags_commaseparted.toLowerCase()))
-                          && (
-                            <div key={i} className="project-list-card">
-                              <Link
-                                href={`blogs/${data.slug}`}
-                                className="inner-flex"
-                              >
-                                <div className=" ">
-                                  <div className="list_blog_img overflow">
-                                    <img
-                                      src={`${data.image_full}&h=400&w=590&q=100`}
-                                      alt=""
-                                      className="image-cover lazyload"
-                                    />
-                                  </div>
+                        (
+                          <div key={data.slug} className="project-list-card">
+                            <Link
+                              href={`blogs/${data.slug}`}
+                              className="inner-flex"
+                            >
+                              <div className=" ">
+                                <div className="list_blog_img overflow">
+                                  <img
+                                    style={{ aspectRatio: '31 / 21' }}
+                                    src={`${data.image_full}&h=400&w=590&q=100`}
+                                    alt=""
+                                    className="image-cover lazyload shimer-block"
+                                  />
                                 </div>
-                                <div className="project-info-list">
-                                  <div className="">
-                                    <div className=" flex-row j-c-sb list_blogs_text">
-                                      <div className="section-paragraph">
-                                        <p className="capitalize bold-fonts ellipsis-2">
-                                          {data.banner_title}
-                                        </p>
-                                      </div>
-                                      <div className="project-arrow-icon common-icon">
-                                        <img
-                                          src="/images/icon/right_arrow_line.svg"
-                                          alt="Blog"
-                                        />
-                                      </div>
+                              </div>
+                              <div className="project-info-list">
+                                <div className="">
+                                  <div className=" flex-row j-c-sb list_blogs_text">
+                                    <div className="section-paragraph">
+                                      <p className="capitalize bold-fonts ellipsis-2">
+                                        {data.banner_title}
+                                      </p>
                                     </div>
-                                    {data.published_date && (
-                                      <div className="banner-detail-row banner-detail-row-grid">
-                                        <div className="project-information-div">
-                                          <div className="section-content banner-detail-row-grid-text">
-                                            <p className="capitalize">
-                                              {data.published_date}
-                                            </p>
-                                          </div>
+                                    <div className="project-arrow-icon common-icon">
+                                      <img
+                                        src="/images/icon/right_arrow_line.svg"
+                                        alt="Blog"
+                                      />
+                                    </div>
+                                  </div>
+                                  {data.published_date && (
+                                    <div className="banner-detail-row banner-detail-row-grid">
+                                      <div className="project-information-div">
+                                        <div className="section-content banner-detail-row-grid-text">
+                                          <p className="capitalize">
+                                            {data.published_date}
+                                          </p>
                                         </div>
                                       </div>
-                                    )}
-                                  </div>
+                                    </div>
+                                  )}
                                 </div>
-                              </Link>
-                            </div>
-                          )
+                              </div>
+                            </Link>
+                          </div>
+                        )
                       )}
                     </div>
                   )}

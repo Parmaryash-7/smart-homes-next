@@ -1152,7 +1152,7 @@ body.no-scroll-body {
 }
 
 .shimer-block {
-  display: none;
+  /* display: none; */
   background-repeat: no-repeat;
   animation: shimmer 2s infinite linear;
   background: linear-gradient(to right, #eff1f3 4%, #e2e2e2 25%, #eff1f3 36%);

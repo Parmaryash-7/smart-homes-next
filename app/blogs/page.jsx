@@ -31,7 +31,7 @@ const defaultMetadata = {
 };
 
 export async function generateMetadata() {
-    const slug = "blogs"; 
+    const slug = "blogs";
     const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.smarthomesinfra.com";
 
     const pageList = await api.PageList();
@@ -88,17 +88,43 @@ export async function generateMetadata() {
     };
 }
 
-export default async function BlogsPage({searchParams}) {
+export default async function BlogsPage({ searchParams }) {
     const pageList = await getPageList();
     const blogDetailData = await getBlogDetail();
-    // console.log(searchParams);
-    const activeTab = searchParams.tab || 'blogs'; 
 
+    const activePage = parseInt(searchParams.page) || 1;
+    const itemsPerPage = 10;
+    const activeTab = searchParams.tab || 'blogs';
+    console.log('server tab: ', activeTab);
+    // console.log(activePage);
+
+    // ✅ Filter FIRST
+    const filterData = blogDetailData.filter((item) => {
+        const tag = item.tags_commaseparted?.toLowerCase() || '';
+        if (activeTab === "blogs" || activeTab === undefined) {
+            return !["latest-news", "latest news", "newsletter", ""].includes(tag);
+        } else {
+            return ["latest-news", "latest news"].includes(tag);
+        }
+    });
+
+
+    // ✅ Then paginate AFTER filtering
+    const startIndex = (activePage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    const paginatedData = filterData.slice(startIndex, endIndex);
+
+    // Optionally also return:
+    const totalPages = Math.ceil(filterData.length / itemsPerPage);
+    const hasNextPage = activePage < totalPages;
+    const hasPreviousPage = activePage > 1;
     return (
         <BlogsTab
             pageList={pageList}
-            blogs_types_list={blogDetailData}
+            All_blogs_length={totalPages}
+            blogs_types_list={paginatedData}
             activeTabId={activeTab}
+            activePage={activePage}
         />
     );
 }

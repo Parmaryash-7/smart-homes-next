@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 // import DOMPurify from "dompurify";
 
-export default function Blog_detail({ recent_blog_init_data, blogs_types_list, slug }) {
+export default function Blog_detail({ isNews = false, recent_blog_init_data, blogs_types_list, slug }) {
     const [isMobilescreen, setIsMobilescreen] = useState(false);
     const [blog_data, setBlog_data] = useState(null);
     const [recent_blog_data, setRecentBlogData] = useState([]);
@@ -40,7 +40,7 @@ export default function Blog_detail({ recent_blog_init_data, blogs_types_list, s
             const blogData = blogs_types_list.find((data) => data.slug === slug);
             setBlog_data(blogData);
             const recentBlogs = blogs_types_list
-                .filter((data) => data.slug !== slug && data.published_time && (data.tags_commaseparted.toLowerCase() != "latest-news" || data.tags_commaseparted.toLowerCase() != "latest news"))
+                .filter((data) => data.slug !== slug && data.published_time && (isNews ? (data.tags_commaseparted.toLowerCase() == "latest-news" || data.tags_commaseparted.toLowerCase() == "latest news") : (data.tags_commaseparted.toLowerCase() != "latest-news" || data.tags_commaseparted.toLowerCase() != "latest news")))
                 .sort((a, b) => b.published_time - a.published_time);
 
             setRecentBlogData(recentBlogs.slice(0, 3));
